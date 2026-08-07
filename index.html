@@ -16,7 +16,6 @@
       --it-green:#009246; --it-green-dim:rgba(0,146,70,0.12); --it-green-glow:rgba(0,146,70,0.06);
       --it-red:#CE2B37;   --it-red-dim:rgba(206,43,55,0.12);  --it-red-glow:rgba(206,43,55,0.06);
       --border:rgba(238,235,229,0.08); --border-mid:rgba(238,235,229,0.12);
-      --nav-h: 90px;
     }
     html { scroll-behavior: smooth; }
     body { background:var(--black); color:var(--white); font-family:'Inter',sans-serif; font-weight:300; line-height:1.7; cursor:none; overflow-x:hidden; }
@@ -34,14 +33,12 @@
     /* ── NAV ── */
     nav { position:fixed; top:0; left:0; right:0; z-index:600; display:flex; align-items:center; justify-content:space-between; padding:36px 72px; transition:padding .5s,background .5s; }
     nav.scrolled { padding:20px 72px; background:rgba(5,5,5,0.95); backdrop-filter:blur(28px); border-bottom:1px solid var(--border); }
-
     .logo { text-decoration:none; display:flex; flex-direction:column; gap:4px; }
     .logo-wordmark { display:flex; align-items:baseline; }
     .logo-apex { font-family:'Cormorant Garamond',serif; font-size:1.55rem; font-weight:600; letter-spacing:0.22em; color:var(--white); text-transform:uppercase; line-height:1; }
     .logo-dot { display:inline-block; width:4px; height:4px; border-radius:50%; background:var(--it-red); margin:0 2px; position:relative; top:-3px; }
     .logo-excl { font-family:'Cormorant Garamond',serif; font-size:1.55rem; font-weight:300; letter-spacing:0.22em; color:rgba(238,235,229,0.45); text-transform:uppercase; line-height:1; }
     .logo-sub { font-size:0.48rem; letter-spacing:0.36em; text-transform:uppercase; color:rgba(238,235,229,0.26); }
-
     .nav-links { display:flex; gap:48px; list-style:none; }
     .nav-links a { font-size:0.67rem; letter-spacing:0.2em; text-transform:uppercase; color:rgba(238,235,229,0.38); text-decoration:none; font-weight:400; transition:color .3s; position:relative; }
     .nav-links a::after { content:''; position:absolute; bottom:-5px; left:0; width:0; height:1px; background:linear-gradient(90deg,var(--it-green),rgba(238,235,229,0.6),var(--it-red)); transition:width .45s; }
@@ -53,8 +50,17 @@
     .nav-btn:hover::before { opacity:1; }
     .nav-btn span { position:relative; z-index:1; }
 
-    /* ── HERO ── */
-    #hero { position:relative; height:100vh; min-height:750px; overflow:hidden; display:flex; align-items:flex-end; }
+    /* ══════════════════════════════════════
+       HERO — content ALTIJD onderaan
+    ══════════════════════════════════════ */
+    #hero {
+      position: relative;
+      height: 100vh;
+      min-height: 750px;
+      overflow: hidden;
+      display: flex;
+      align-items: flex-end; /* ← KRITIEK: content naar onderkant */
+    }
     .hero-media { position:absolute; inset:0; }
     .hero-media img { width:100%; height:100%; object-fit:cover; object-position:center 40%; filter:brightness(0.42) saturate(0.65) contrast(1.15); transform:scale(1.04); animation:heroZoom 18s ease-in-out infinite alternate; }
     @keyframes heroZoom { from{transform:scale(1.04)} to{transform:scale(1.10)} }
@@ -65,8 +71,17 @@
     .hero-edge span:nth-child(2){background:rgba(238,235,229,0.45)}
     .hero-edge span:nth-child(3){background:var(--it-red);opacity:.7}
 
-    /* FIX: hero content zit nu onderaan, maar met genoeg padding zodat tekst niet achter nav valt */
-    .hero-content { position:relative; z-index:3; padding:0 72px 88px; width:100%; display:grid; grid-template-columns:1fr 1fr; align-items:flex-end; gap:60px; }
+    /* Hero content: GEEN padding-top — alleen bottom */
+    .hero-content {
+      position: relative;
+      z-index: 3;
+      padding: 0 72px 88px; /* top=0, bottom=88px */
+      width: 100%;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      align-items: flex-end;
+      gap: 60px;
+    }
 
     .hero-eyebrow { display:flex; align-items:center; gap:14px; margin-bottom:28px; }
     .hero-eyebrow-text { font-size:0.62rem; letter-spacing:0.32em; text-transform:uppercase; color:rgba(238,235,229,0.38); }
@@ -116,7 +131,6 @@
     #tools::before { content:''; position:absolute; top:-500px; right:-300px; width:900px; height:900px; background:radial-gradient(circle,var(--it-green-glow) 0%,transparent 65%); pointer-events:none; }
     #tools::after  { content:''; position:absolute; bottom:-400px; left:-200px; width:700px; height:700px; background:radial-gradient(circle,var(--it-red-glow) 0%,transparent 65%); pointer-events:none; }
     .tools-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); }
-
     .tool-card { position:relative; padding:60px 52px; overflow:hidden; transition:background .5s; cursor:none; text-decoration:none; display:block; background:var(--black-2); }
     .tool-card-bg-img { position:absolute; inset:0; z-index:0; }
     .tool-card-bg-img img { width:100%; height:100%; object-fit:cover; filter:brightness(0.15) saturate(0.45); transition:filter .7s,transform .9s; }
@@ -155,6 +169,7 @@
     .import-grid { display:grid; grid-template-columns:1fr 1fr; gap:110px; align-items:center; }
     .import-visual { position:relative; }
     .import-img-wrap { position:relative; height:620px; overflow:hidden; background:var(--black-3); }
+    .import-photo { width:100%; height:100%; object-fit:cover; object-position:center; filter:brightness(0.7) saturate(0.7); display:block; }
     .import-frame { position:absolute; top:-16px; left:-16px; right:16px; bottom:16px; border:1px solid rgba(238,235,229,0.07); pointer-events:none; z-index:2; }
     .import-tristrip { position:absolute; top:-16px; left:-16px; bottom:16px; width:2px; display:flex; flex-direction:column; z-index:3; }
     .import-tristrip span{flex:1;display:block}
@@ -169,13 +184,6 @@
     .ic:nth-child(3n+1) .ic-dot{background:var(--it-green)}
     .ic:nth-child(3n+2) .ic-dot{background:rgba(238,235,229,0.5)}
     .ic:nth-child(3n)   .ic-dot{background:var(--it-red)}
-
-    .map-svg-wrap { width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
-    .map-svg-wrap svg { width:100%; height:100%; }
-
-    /* Import foto stijl */
-    .import-photo { width:100%; height:100%; object-fit:cover; object-position:center; filter:brightness(0.7) saturate(0.7); display:block; }
-
     .import-steps { margin-top:56px; }
     .import-step { display:flex; gap:28px; padding:24px 0; border-bottom:1px solid var(--border); }
     .import-step:first-child { border-top:1px solid var(--border); }
@@ -258,36 +266,9 @@
     #overons { background:var(--black-2); overflow:hidden; }
     .oo-layout { display:grid; grid-template-columns:1fr 1fr; gap:120px; align-items:center; }
     .oo-img-wrap { position:relative; }
-
-    /* Founder foto container met crop-focus op gezicht */
-    .oo-img {
-      width:100%;
-      height:640px;
-      object-fit:cover;
-      object-position:center top;
-      filter:brightness(0.88) saturate(0.75) contrast(1.08);
-      display:block;
-    }
-
-    /* Overlay die de zijkant (raamkant) vervaagt */
-    .oo-side-fade {
-      position:absolute;
-      top:0; right:0; bottom:0;
-      width:35%;
-      background:linear-gradient(to left, var(--black-2) 0%, rgba(10,10,10,0.85) 40%, transparent 100%);
-      z-index:2;
-      pointer-events:none;
-    }
-    /* Fade bovenkant licht weg */
-    .oo-top-fade {
-      position:absolute;
-      top:0; left:0; right:0;
-      height:15%;
-      background:linear-gradient(to bottom, var(--black-2) 0%, transparent 100%);
-      z-index:2;
-      pointer-events:none;
-    }
-
+    .oo-img { width:100%; height:640px; object-fit:cover; object-position:center 15%; filter:brightness(0.88) saturate(0.75) contrast(1.08); display:block; }
+    .oo-side-fade { position:absolute; top:0; right:0; bottom:0; width:35%; background:linear-gradient(to left,var(--black-2) 0%,rgba(10,10,10,0.85) 40%,transparent 100%); z-index:2; pointer-events:none; }
+    .oo-top-fade { position:absolute; top:0; left:0; right:0; height:15%; background:linear-gradient(to bottom,var(--black-2) 0%,transparent 100%); z-index:2; pointer-events:none; }
     .oo-frame { position:absolute; top:-18px; left:-18px; right:18px; bottom:18px; border:1px solid rgba(238,235,229,0.07); pointer-events:none; z-index:3; }
     .oo-tristrip { position:absolute; top:-18px; left:-18px; width:2px; height:calc(100% + 36px); display:flex; flex-direction:column; z-index:4; }
     .oo-tristrip span{flex:1;display:block}
@@ -390,10 +371,9 @@
     .fi.vis { opacity:1; transform:none; }
     .fi.d1{transition-delay:.1s} .fi.d2{transition-delay:.2s} .fi.d3{transition-delay:.3s}
 
-    /* ════════════════════════════════════════
-       RESPONSIVE — MOBILE VERBETERINGEN
-       Grotere tekst op iPhone, correcte spacing
-    ════════════════════════════════════════ */
+    /* ══════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════ */
     @media(max-width:1100px){
       .tools-grid{grid-template-columns:1fr}
       .import-grid{grid-template-columns:1fr;gap:60px}
@@ -412,106 +392,56 @@
     }
 
     @media(max-width:768px){
-      /* Nav */
       nav{padding:22px 28px}
       nav.scrolled{padding:14px 28px}
       .nav-links{display:none}
+      section{padding:88px 24px}
+      #aftersales{padding:88px 24px}
 
-      /* Sections */
-      section{padding:80px 24px}
-      #aftersales{padding:80px 24px}
-
-      /* Hero — FIX: meer padding-bottom zodat tekst niet achter nav valt */
-      #hero { min-height:100svh; }
-      .hero-content{
-        padding: 100px 24px 80px;
-        grid-template-columns:1fr;
-        align-items:flex-end;
+      /* ── HERO MOBILE FIX ──
+         align-items:flex-end blijft actief via #hero
+         padding: alleen bottom, GEEN top
+      */
+      #hero {
+        height: 100svh;
+        min-height: 600px;
+        align-items: flex-end; /* expliciet herhalen voor mobile */
       }
-      .hero-scroll-ind{left:24px;bottom:24px}
+      .hero-content {
+        padding: 0 24px 72px; /* GEEN padding-top */
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+      .hero-scroll-ind{left:24px;bottom:72px}
 
-      /* Hero tekst groter op mobile */
-      h1.hero-title { font-size:clamp(2.8rem,11vw,4.5rem); margin-bottom:28px; }
-      .hero-eyebrow-text { font-size:0.72rem; }
-      .hero-sub { font-size:1rem; text-align:left; max-width:100%; }
-      .hero-stat-n { font-size:2rem; }
-      .hero-stat-l { font-size:0.65rem; }
-      .hero-stats { gap:24px; }
+      /* Tekst groottes mobile */
+      h1.hero-title{font-size:clamp(2.8rem,10vw,4.2rem);margin-bottom:24px}
+      .hero-eyebrow-text{font-size:0.72rem}
+      .hero-sub{font-size:0.95rem;text-align:left;max-width:100%}
+      .hero-stat-n{font-size:1.9rem}
+      .hero-stat-l{font-size:0.62rem}
+      .hero-stats{gap:22px}
+      .hero-right{align-items:flex-start}
 
-      /* Section titels groter */
-      .s-title { font-size:clamp(2rem,8vw,3rem); }
-      .s-sub { font-size:0.95rem; }
-      .s-eye-text { font-size:0.72rem; }
-
-      /* Tool cards */
-      .tool-name { font-size:1.6rem; }
-      .tool-desc { font-size:0.88rem; }
-      .tool-tagline { font-size:1.05rem; }
-
-      /* Import stappen */
-      .import-step-t { font-size:0.95rem; }
-      .import-step-d { font-size:0.85rem; }
-      .import-img-wrap { height:320px; }
-
-      /* Diensten */
+      /* Overige mobile */
+      .s-title{font-size:clamp(2rem,7vw,3rem)}
+      .s-sub{font-size:0.92rem}
       .diensten-grid{grid-template-columns:1fr}
-      .d-name { font-size:1.2rem; }
-      .d-desc { font-size:0.85rem; }
-
-      /* Waarom */
-      .waarom-grid{grid-template-columns:1fr}
-      .w-title { font-size:1.45rem; }
-      .w-desc { font-size:0.9rem; }
-      .w-item { min-height:300px; padding:36px 28px; }
-
-      /* Werkwijze */
-      .ww-t { font-size:1.15rem; }
-      .ww-d { font-size:0.88rem; }
-
-      /* Projecten */
       .proj-grid{grid-template-columns:1fr}
-      .proj-card { height:420px; }
-      .proj-name { font-size:1.45rem; }
-      .proj-specs { font-size:0.82rem; }
-
-      /* Over ons */
-      .oo-img { height:380px; }
-      .oo-text { font-size:0.95rem; }
-      .oo-sig-name { font-size:1.35rem; }
-      .oo-stats { grid-template-columns:1fr }
-      .oo-stat-n { font-size:1.8rem; }
-      .oo-stat-l { font-size:0.65rem; }
-
-      /* Tarieven */
-      .tar-card{padding:36px 24px}
-      .tar-text { font-size:0.95rem; }
-
-      /* Aftersales */
-      .afs-q { font-size:clamp(1.2rem,4.5vw,1.8rem); }
-
-      /* Contact */
-      .ci-val { font-size:0.95rem; }
-      .cp-text { font-size:0.9rem; }
-      .cp-item { font-size:0.88rem; }
-      .contact-promise { padding:32px 24px; }
-
-      /* Buttons groter op touch */
-      .btn-white, .btn-ghost { padding:16px 32px; font-size:0.78rem; }
-      .tar-btn { padding:17px 36px; font-size:0.75rem; }
-      .nav-btn { padding:12px 22px; font-size:0.7rem; }
-
-      /* Footer */
+      .proj-card{height:400px}
       footer{padding:56px 24px 36px}
       .ft{grid-template-columns:1fr;gap:36px}
       .ft-bottom{flex-direction:column;gap:16px;text-align:center}
-      .ft-desc { font-size:0.88rem; }
-      .ft-links a { font-size:0.9rem; }
+      .tar-card{padding:36px 24px}
+      .oo-stats{grid-template-columns:1fr}
+      .waarom-grid{grid-template-columns:1fr}
+      .btn-white,.btn-ghost{padding:15px 28px;font-size:0.75rem}
+      .contact-promise{padding:32px 24px}
     }
 
-    /* Extra small (iPhone SE etc.) */
-    @media(max-width:375px){
-      h1.hero-title { font-size:clamp(2.4rem,10vw,3.5rem); }
-      .s-title { font-size:clamp(1.8rem,8vw,2.6rem); }
+    @media(max-width:390px){
+      h1.hero-title{font-size:clamp(2.4rem,9vw,3.4rem)}
+      .s-title{font-size:clamp(1.9rem,7vw,2.6rem)}
       nav{padding:18px 20px}
       section{padding:72px 20px}
     }
@@ -522,7 +452,7 @@
 <div id="cur"></div>
 <div id="cur-ring"></div>
 
-<!-- ═══════════════ NAV ═══════════════ -->
+<!-- NAV -->
 <nav id="nav">
   <a href="#" class="logo">
     <div class="logo-wordmark">
@@ -541,19 +471,17 @@
   <a href="#contact" class="nav-btn"><span>Gesprek plannen</span></a>
 </nav>
 
-<!-- ═══════════════ HERO ═══════════════ -->
+<!-- HERO -->
 <section id="hero">
   <div class="hero-media">
-    <!--
-      Homepage foto: Lamborghini cockpit — rijke, sfeervolle cockpitopname
-      Je stuurde twee opties; de cockpit-foto geeft de meeste diepte als fullscreen hero
-    -->
     <img
       src="https://res.cloudinary.com/sfd8ohjz/image/upload/v1786112048/Lamborghini_cockpit_zw7pmk.jpg"
       alt="Lamborghini cockpit — APEXclusive"
     />
   </div>
   <div class="hero-edge"><span></span><span></span><span></span></div>
+
+  <!-- Content zit onderaan dankzij align-items:flex-end op #hero -->
   <div class="hero-content">
     <div class="hero-left">
       <div class="hero-eyebrow">
@@ -579,13 +507,14 @@
       </div>
     </div>
   </div>
+
   <div class="hero-scroll-ind">
     <div class="scroll-line-wrap"><span></span><span></span><span></span></div>
     <span>Scroll</span>
   </div>
 </section>
 
-<!-- ═══════════════ TOOLS ═══════════════ -->
+<!-- TOOLS -->
 <section id="tools">
   <div class="tools-topbar"><span></span><span></span><span></span></div>
   <div class="s-head fi">
@@ -602,11 +531,9 @@
   </div>
   <div class="tools-grid">
 
-    <!-- 01 BPM Calculator — rekenmachine / dashboard -->
     <a href="https://bpm.apexclusive.nl" class="tool-card fi d1">
       <div class="tool-card-bg-img">
-        <!-- Sportauto dashboard met cijfers = passend bij "berekenen" -->
-        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=80" alt="BPM Calculator" />
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=80" alt="" />
       </div>
       <div class="tool-card-bg-gradient"></div>
       <div class="tool-card-inner">
@@ -623,15 +550,9 @@
       </div>
     </a>
 
-    <!-- 02 Kentekencheck — Nederlands kenteken close-up -->
     <a href="https://kentekencheck.apexclusive.nl" class="tool-card fi d2">
       <div class="tool-card-bg-img">
-        <!--
-          Nederlands geel kenteken close-up — het meest passende beeld voor "Kentekencheck"
-          Unsplash heeft geen directe NL-kenteken foto; dit is het best beschikbare alternatief
-          (nachtelijke straat met reflectie, impliceert kenteken-scan)
-        -->
-        <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=900&q=80" alt="Kentekencheck" />
+        <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=900&q=80" alt="" />
       </div>
       <div class="tool-card-bg-gradient"></div>
       <div class="tool-card-inner">
@@ -648,11 +569,9 @@
       </div>
     </a>
 
-    <!-- 03 Advertentie Analyse — laptop / analyse -->
     <a href="https://carrapport.apexclusive.nl" class="tool-card fi d3">
       <div class="tool-card-bg-img">
-        <!-- Magnifying glass / analytics = advertentie analyseren -->
-        <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=900&q=80" alt="Advertentie Analyse" />
+        <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=900&q=80" alt="" />
       </div>
       <div class="tool-card-bg-gradient"></div>
       <div class="tool-badge">Aanbevolen</div>
@@ -673,22 +592,16 @@
   </div>
 </section>
 
-<!-- ═══════════════ IMPORT ═══════════════ -->
+<!-- IMPORT -->
 <section id="import">
   <div class="import-grid">
     <div class="import-visual fi">
       <div class="import-img-wrap">
-
-        <!--
-          Import sectie: aflevering Lamborghini Urus
-          Jouw eigen foto van de Urus-aflevering — perfect passend bij "importbegeleiding"
-        -->
         <img
           class="import-photo"
           src="https://res.cloudinary.com/sfd8ohjz/image/upload/v1786111940/987D691B-FFBF-4137-9766-15DEF62F5CD4_1_201_a_k1eyvp.jpg"
           alt="Aflevering Lamborghini Urus — APEXclusive import"
         />
-
         <div class="import-frame"></div>
         <div class="import-tristrip"><span></span><span></span><span></span></div>
         <div class="import-card">
@@ -705,7 +618,6 @@
         </div>
       </div>
     </div>
-
     <div class="fi d1">
       <div class="s-eye">
         <div class="tri-pill">
@@ -728,7 +640,7 @@
   </div>
 </section>
 
-<!-- ═══════════════ DIENSTEN ═══════════════ -->
+<!-- DIENSTEN -->
 <section id="diensten">
   <div class="s-head fi">
     <div class="s-eye">
@@ -754,7 +666,7 @@
   </div>
 </section>
 
-<!-- ═══════════════ WAAROM ═══════════════ -->
+<!-- WAAROM -->
 <section id="waarom">
   <div class="waarom-wm" aria-hidden="true">A</div>
   <div class="s-head fi">
@@ -769,64 +681,46 @@
     <h2 class="s-title">Vier redenen<br><em>om ons te kiezen.</em></h2>
   </div>
   <div class="waarom-grid">
-
     <div class="w-item fi">
-      <div class="w-item-bg">
-        <!-- Lamborghini cockpit interieur = persoonlijke begeleiding / piloten-sfeer -->
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80" alt="Persoonlijke begeleiding" />
-      </div>
-      <div class="w-item-overlay"></div>
-      <div class="w-item-glow"></div>
+      <div class="w-item-bg"><img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80" alt="" /></div>
+      <div class="w-item-overlay"></div><div class="w-item-glow"></div>
       <div class="w-item-content">
         <div class="w-icon"><svg viewBox="0 0 24 24"><path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/><circle cx="12" cy="7" r="4"/></svg></div>
         <div class="w-title">Persoonlijke begeleiding</div>
         <p class="w-desc">Elke opdracht begint met een persoonlijk gesprek. Uw wensen staan centraal — niet een aanbod uit de voorraad.</p>
       </div>
     </div>
-
     <div class="w-item fi d1">
-      <div class="w-item-bg">
-        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=900&q=80" alt="Onafhankelijk advies" />
-      </div>
-      <div class="w-item-overlay"></div>
-      <div class="w-item-glow"></div>
+      <div class="w-item-bg"><img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=900&q=80" alt="" /></div>
+      <div class="w-item-overlay"></div><div class="w-item-glow"></div>
       <div class="w-item-content">
         <div class="w-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
         <div class="w-title">Onafhankelijk advies</div>
         <p class="w-desc">Geen voorraad, geen dealerbelang. Alleen advies dat volledig aansluit bij uw situatie.</p>
       </div>
     </div>
-
     <div class="w-item fi d2">
-      <div class="w-item-bg">
-        <img src="https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=900&q=80" alt="Europese marktkennis" />
-      </div>
-      <div class="w-item-overlay"></div>
-      <div class="w-item-glow"></div>
+      <div class="w-item-bg"><img src="https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=900&q=80" alt="" /></div>
+      <div class="w-item-overlay"></div><div class="w-item-glow"></div>
       <div class="w-item-content">
         <div class="w-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
         <div class="w-title">Europese marktkennis</div>
         <p class="w-desc">Duitsland, België, Italië, Spanje — ons netwerk omspant heel Europa.</p>
       </div>
     </div>
-
     <div class="w-item fi d3">
-      <div class="w-item-bg">
-        <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=900&q=80" alt="Volledige ontzorging" />
-      </div>
-      <div class="w-item-overlay"></div>
-      <div class="w-item-glow"></div>
+      <div class="w-item-bg"><img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=900&q=80" alt="" /></div>
+      <div class="w-item-overlay"></div><div class="w-item-glow"></div>
       <div class="w-item-content">
         <div class="w-icon"><svg viewBox="0 0 24 24"><polyline points="9 11 12 14 22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/></svg></div>
         <div class="w-title">Volledige ontzorging</div>
         <p class="w-desc">Van eerste zoektocht tot sleuteloverdracht — alles geregeld, niets vergeten.</p>
       </div>
     </div>
-
   </div>
 </section>
 
-<!-- ═══════════════ WERKWIJZE ═══════════════ -->
+<!-- WERKWIJZE -->
 <section id="werkwijze">
   <div class="ww-layout">
     <div class="ww-sticky fi">
@@ -852,7 +746,7 @@
   </div>
 </section>
 
-<!-- ═══════════════ PROJECTEN ═══════════════ -->
+<!-- PROJECTEN -->
 <section id="projecten">
   <div class="s-head fi">
     <div class="s-eye">
@@ -867,13 +761,8 @@
     <p class="s-sub">Elk voertuig persoonlijk begeleid, zorgvuldig gekeurd en aan een tevreden eigenaar overgedragen.</p>
   </div>
   <div class="proj-grid">
-
-    <!-- Kaart 1 — Lamborghini Huracán Spyder (cockpit-interieur foto) -->
     <div class="proj-card fi">
-      <img
-        src="https://res.cloudinary.com/sfd8ohjz/image/upload/v1786111924/5D3019CA-22AA-4240-B1C7-8C11D4005F8B_1_105_c_lxanhh.jpg"
-        alt="Lamborghini Huracán Spyder"
-      />
+      <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/v1786111924/5D3019CA-22AA-4240-B1C7-8C11D4005F8B_1_105_c_lxanhh.jpg" alt="Lamborghini Huracán Spyder" />
       <div class="proj-overlay">
         <div class="proj-loc">Persoonlijke import · Zweden</div>
         <div class="proj-line"></div>
@@ -882,13 +771,8 @@
       </div>
       <div class="proj-tri"><span></span><span></span><span></span></div>
     </div>
-
-    <!-- Kaart 2 — Lamborghini Urus aflevering -->
     <div class="proj-card fi d1">
-      <img
-        src="https://res.cloudinary.com/sfd8ohjz/image/upload/v1786111940/987D691B-FFBF-4137-9766-15DEF62F5CD4_1_201_a_k1eyvp.jpg"
-        alt="Lamborghini Urus"
-      />
+      <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/v1786111940/987D691B-FFBF-4137-9766-15DEF62F5CD4_1_201_a_k1eyvp.jpg" alt="Lamborghini Urus" />
       <div class="proj-overlay">
         <div class="proj-loc">Persoonlijke import · Luxemburg</div>
         <div class="proj-line"></div>
@@ -897,13 +781,8 @@
       </div>
       <div class="proj-tri"><span></span><span></span><span></span></div>
     </div>
-
-    <!-- Kaart 3 — Audi RS6 (jouw eigen RS6 foto) -->
     <div class="proj-card fi d2">
-      <img
-        src="https://res.cloudinary.com/sfd8ohjz/image/upload/v1786112182/8112FE63-03BD-4C6D-9A40-1217FCD5910F_1_201_a_vbazdb.heic"
-        alt="Audi RS6 Avant C8"
-      />
+      <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/v1786112182/8112FE63-03BD-4C6D-9A40-1217FCD5910F_1_201_a_vbazdb.heic" alt="Audi RS6 Avant C8" />
       <div class="proj-overlay">
         <div class="proj-loc">Aankoopbegeleiding · Duitsland</div>
         <div class="proj-line"></div>
@@ -912,30 +791,19 @@
       </div>
       <div class="proj-tri"><span></span><span></span><span></span></div>
     </div>
-
   </div>
 </section>
 
-<!-- ═══════════════ OVER ONS ═══════════════ -->
+<!-- OVER ONS -->
 <section id="overons">
   <div class="oo-layout">
     <div class="oo-img-wrap fi">
-      <!--
-        Founder foto: Martijn Puts
-        - object-position: center top → toont gezicht bovenaan
-        - .oo-side-fade → vervaagt de zijruit rechts weg via CSS gradient
-        - .oo-top-fade  → subtiele fade bovenkant
-        - Lamborghini logo in hoofdsteun blijft zichtbaar in het midden
-      -->
       <img
         src="https://res.cloudinary.com/sfd8ohjz/image/upload/v1786112744/8A26E528-46F4-471D-856C-7D4210809521_1_105_c_uguopr.jpg"
         alt="Martijn Puts — Founder APEXclusive"
         class="oo-img"
-        style="object-position: center 15%;"
       />
-      <!-- Vervaagt de zijruit rechts in beeld -->
       <div class="oo-side-fade"></div>
-      <!-- Subtiele fade boven -->
       <div class="oo-top-fade"></div>
       <div class="oo-frame"></div>
       <div class="oo-tristrip"><span></span><span></span><span></span></div>
@@ -943,7 +811,6 @@
         <p class="oo-qt">Precisie en oog voor detail zijn geen eigenschappen — het zijn gewoontes.</p>
       </div>
     </div>
-
     <div class="fi d1">
       <div class="s-eye">
         <div class="tri-pill">
@@ -973,7 +840,7 @@
   </div>
 </section>
 
-<!-- ═══════════════ TARIEVEN ═══════════════ -->
+<!-- TARIEVEN -->
 <section id="tarieven">
   <div class="tar-inner">
     <div class="s-eye fi" style="justify-content:center">
@@ -994,7 +861,7 @@
   </div>
 </section>
 
-<!-- ═══════════════ AFTERSALES ═══════════════ -->
+<!-- AFTERSALES -->
 <section id="aftersales">
   <div class="afs-inner fi">
     <div class="afs-tri"><span></span><span></span><span></span></div>
@@ -1004,7 +871,7 @@
   </div>
 </section>
 
-<!-- ═══════════════ CONTACT ═══════════════ -->
+<!-- CONTACT -->
 <section id="contact">
   <div class="contact-layout">
     <div class="fi">
@@ -1051,7 +918,7 @@
   </div>
 </section>
 
-<!-- ═══════════════ FOOTER ═══════════════ -->
+<!-- FOOTER -->
 <footer>
   <div class="ft">
     <div>
@@ -1091,8 +958,8 @@
 </footer>
 
 <script>
-  /* ── Cursor ── */
-  const cur  = document.getElementById('cur');
+  /* Cursor */
+  const cur = document.getElementById('cur');
   const ring = document.getElementById('cur-ring');
   let mx=0,my=0,rx=0,ry=0;
   document.addEventListener('mousemove',e=>{ mx=e.clientX; my=e.clientY; cur.style.left=mx+'px'; cur.style.top=my+'px'; });
@@ -1102,24 +969,16 @@
     el.addEventListener('mouseleave',()=>document.body.classList.remove('hov'));
   });
 
-  /* ── Scrolled nav ── */
-  window.addEventListener('scroll',()=>{ document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60); });
+  /* Nav scrolled */
+  window.addEventListener('scroll',()=>{
+    document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60);
+  });
 
-  /* ── Fade-in animatie ── */
+  /* Fade-in */
   const obs = new IntersectionObserver(entries=>{
     entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('vis'); });
   },{threshold:0.08});
   document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
-
-  /* ── Hero: voorkom dat tekst achter nav valt op elk scherm ── */
-  function fixHeroMin() {
-    const nav = document.getElementById('nav');
-    const hero = document.getElementById('hero');
-    // Zorg dat de minimale hoogte altijd viewport dekt
-    hero.style.minHeight = window.innerHeight + 'px';
-  }
-  fixHeroMin();
-  window.addEventListener('resize', fixHeroMin);
 </script>
 </body>
 </html>
