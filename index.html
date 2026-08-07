@@ -16,6 +16,7 @@
       --it-green:#009246; --it-green-dim:rgba(0,146,70,0.12); --it-green-glow:rgba(0,146,70,0.06);
       --it-red:#CE2B37;   --it-red-dim:rgba(206,43,55,0.12);  --it-red-glow:rgba(206,43,55,0.06);
       --border:rgba(238,235,229,0.08); --border-mid:rgba(238,235,229,0.12);
+      --nav-h: 90px;
     }
     html { scroll-behavior: smooth; }
     body { background:var(--black); color:var(--white); font-family:'Inter',sans-serif; font-weight:300; line-height:1.7; cursor:none; overflow-x:hidden; }
@@ -34,13 +35,11 @@
     nav { position:fixed; top:0; left:0; right:0; z-index:600; display:flex; align-items:center; justify-content:space-between; padding:36px 72px; transition:padding .5s,background .5s; }
     nav.scrolled { padding:20px 72px; background:rgba(5,5,5,0.95); backdrop-filter:blur(28px); border-bottom:1px solid var(--border); }
 
-    /* Logo — geen verticale tricolore balk, Maastricht kort in sub */
     .logo { text-decoration:none; display:flex; flex-direction:column; gap:4px; }
     .logo-wordmark { display:flex; align-items:baseline; }
     .logo-apex { font-family:'Cormorant Garamond',serif; font-size:1.55rem; font-weight:600; letter-spacing:0.22em; color:var(--white); text-transform:uppercase; line-height:1; }
     .logo-dot { display:inline-block; width:4px; height:4px; border-radius:50%; background:var(--it-red); margin:0 2px; position:relative; top:-3px; }
     .logo-excl { font-family:'Cormorant Garamond',serif; font-size:1.55rem; font-weight:300; letter-spacing:0.22em; color:rgba(238,235,229,0.45); text-transform:uppercase; line-height:1; }
-    /* één subtekstregel — geen dubbele tribar */
     .logo-sub { font-size:0.48rem; letter-spacing:0.36em; text-transform:uppercase; color:rgba(238,235,229,0.26); }
 
     .nav-links { display:flex; gap:48px; list-style:none; }
@@ -65,7 +64,10 @@
     .hero-edge span:nth-child(1){background:var(--it-green);opacity:.7}
     .hero-edge span:nth-child(2){background:rgba(238,235,229,0.45)}
     .hero-edge span:nth-child(3){background:var(--it-red);opacity:.7}
+
+    /* FIX: hero content zit nu onderaan, maar met genoeg padding zodat tekst niet achter nav valt */
     .hero-content { position:relative; z-index:3; padding:0 72px 88px; width:100%; display:grid; grid-template-columns:1fr 1fr; align-items:flex-end; gap:60px; }
+
     .hero-eyebrow { display:flex; align-items:center; gap:14px; margin-bottom:28px; }
     .hero-eyebrow-text { font-size:0.62rem; letter-spacing:0.32em; text-transform:uppercase; color:rgba(238,235,229,0.38); }
     h1.hero-title { font-family:'Cormorant Garamond',serif; font-size:clamp(3.8rem,7vw,7.5rem); font-weight:400; line-height:0.95; color:var(--white); margin-bottom:36px; }
@@ -115,7 +117,6 @@
     #tools::after  { content:''; position:absolute; bottom:-400px; left:-200px; width:700px; height:700px; background:radial-gradient(circle,var(--it-red-glow) 0%,transparent 65%); pointer-events:none; }
     .tools-grid { display:grid; grid-template-columns:repeat(3,1fr); gap:1px; background:var(--border); }
 
-    /* Tool card met foto-achtergrond */
     .tool-card { position:relative; padding:60px 52px; overflow:hidden; transition:background .5s; cursor:none; text-decoration:none; display:block; background:var(--black-2); }
     .tool-card-bg-img { position:absolute; inset:0; z-index:0; }
     .tool-card-bg-img img { width:100%; height:100%; object-fit:cover; filter:brightness(0.15) saturate(0.45); transition:filter .7s,transform .9s; }
@@ -169,9 +170,11 @@
     .ic:nth-child(3n+2) .ic-dot{background:rgba(238,235,229,0.5)}
     .ic:nth-child(3n)   .ic-dot{background:var(--it-red)}
 
-    /* Europa kaart SVG wrapper */
     .map-svg-wrap { width:100%; height:100%; display:flex; align-items:center; justify-content:center; }
     .map-svg-wrap svg { width:100%; height:100%; }
+
+    /* Import foto stijl */
+    .import-photo { width:100%; height:100%; object-fit:cover; object-position:center; filter:brightness(0.7) saturate(0.7); display:block; }
 
     .import-steps { margin-top:56px; }
     .import-step { display:flex; gap:28px; padding:24px 0; border-bottom:1px solid var(--border); }
@@ -196,7 +199,7 @@
     .d-name { font-family:'Cormorant Garamond',serif; font-size:1.15rem; font-weight:500; color:var(--white); margin-bottom:10px; }
     .d-desc { font-size:0.78rem; color:rgba(238,235,229,0.38); line-height:1.72; font-weight:300; }
 
-    /* ── WAAROM — blokken met foto-achtergrond ── */
+    /* ── WAAROM ── */
     #waarom { background:var(--black); position:relative; overflow:hidden; }
     .waarom-wm { position:absolute; bottom:-80px; right:-60px; font-family:'Cormorant Garamond',serif; font-size:22rem; font-weight:700; color:rgba(238,235,229,0.018); pointer-events:none; line-height:1; user-select:none; }
     .waarom-grid { display:grid; grid-template-columns:repeat(2,1fr); gap:1px; background:var(--border); }
@@ -250,26 +253,49 @@
     .proj-name { font-family:'Cormorant Garamond',serif; font-size:1.6rem; font-weight:400; color:var(--white); line-height:1.15; }
     .proj-specs { font-size:0.76rem; color:rgba(238,235,229,0.45); line-height:1.65; max-height:0; overflow:hidden; opacity:0; transition:max-height .55s,opacity .4s,margin .4s; font-weight:300; }
     .proj-card:hover .proj-specs { max-height:120px; opacity:1; margin-top:14px; }
-    /* Upload hint balk onder projecten */
-    .upload-note { background:var(--black-2); border:1px dashed rgba(238,235,229,0.1); border-top:none; padding:16px 28px; font-size:0.62rem; letter-spacing:0.14em; color:rgba(238,235,229,0.22); display:flex; align-items:center; gap:10px; }
-    .upload-note svg { width:13px; height:13px; stroke:rgba(238,235,229,0.25); fill:none; stroke-width:1.5; flex-shrink:0; }
 
     /* ── OVER ONS ── */
     #overons { background:var(--black-2); overflow:hidden; }
     .oo-layout { display:grid; grid-template-columns:1fr 1fr; gap:120px; align-items:center; }
     .oo-img-wrap { position:relative; }
-    .oo-img { width:100%; height:640px; object-fit:cover; object-position:center top; filter:brightness(0.75) saturate(0.65) contrast(1.1); display:block; }
-    .oo-frame { position:absolute; top:-18px; left:-18px; right:18px; bottom:18px; border:1px solid rgba(238,235,229,0.07); pointer-events:none; }
-    .oo-tristrip { position:absolute; top:-18px; left:-18px; width:2px; height:calc(100% + 36px); display:flex; flex-direction:column; }
+
+    /* Founder foto container met crop-focus op gezicht */
+    .oo-img {
+      width:100%;
+      height:640px;
+      object-fit:cover;
+      object-position:center top;
+      filter:brightness(0.88) saturate(0.75) contrast(1.08);
+      display:block;
+    }
+
+    /* Overlay die de zijkant (raamkant) vervaagt */
+    .oo-side-fade {
+      position:absolute;
+      top:0; right:0; bottom:0;
+      width:35%;
+      background:linear-gradient(to left, var(--black-2) 0%, rgba(10,10,10,0.85) 40%, transparent 100%);
+      z-index:2;
+      pointer-events:none;
+    }
+    /* Fade bovenkant licht weg */
+    .oo-top-fade {
+      position:absolute;
+      top:0; left:0; right:0;
+      height:15%;
+      background:linear-gradient(to bottom, var(--black-2) 0%, transparent 100%);
+      z-index:2;
+      pointer-events:none;
+    }
+
+    .oo-frame { position:absolute; top:-18px; left:-18px; right:18px; bottom:18px; border:1px solid rgba(238,235,229,0.07); pointer-events:none; z-index:3; }
+    .oo-tristrip { position:absolute; top:-18px; left:-18px; width:2px; height:calc(100% + 36px); display:flex; flex-direction:column; z-index:4; }
     .oo-tristrip span{flex:1;display:block}
     .oo-tristrip span:nth-child(1){background:var(--it-green);opacity:.65}
     .oo-tristrip span:nth-child(2){background:rgba(238,235,229,0.4)}
     .oo-tristrip span:nth-child(3){background:var(--it-red);opacity:.65}
-    .oo-quote-layer { position:absolute; bottom:0; left:0; right:0; padding:80px 36px 36px; background:linear-gradient(to top,rgba(5,5,5,0.95) 0%,transparent); }
+    .oo-quote-layer { position:absolute; bottom:0; left:0; right:0; padding:80px 36px 36px; background:linear-gradient(to top,rgba(5,5,5,0.95) 0%,transparent); z-index:3; }
     .oo-qt { font-family:'Cormorant Garamond',serif; font-size:1.1rem; font-style:italic; color:rgba(238,235,229,0.48); line-height:1.65; }
-    /* Upload hint voor portretfoto */
-    .oo-upload-hint { position:absolute; top:16px; right:16px; z-index:5; display:inline-flex; align-items:center; gap:7px; font-size:0.55rem; letter-spacing:0.16em; text-transform:uppercase; color:rgba(238,235,229,0.22); background:rgba(5,5,5,0.7); border:1px dashed rgba(238,235,229,0.14); padding:7px 12px; }
-    .oo-upload-hint svg { width:11px; height:11px; stroke:rgba(238,235,229,0.25); fill:none; stroke-width:1.5; }
     .oo-text { font-size:0.88rem; color:rgba(238,235,229,0.44); line-height:1.9; margin-bottom:18px; font-weight:300; }
     .oo-sig { margin-top:48px; padding-top:30px; border-top:1px solid var(--border); display:flex; align-items:center; gap:18px; }
     .oo-sig-tri { display:flex; flex-direction:column; gap:2px; }
@@ -364,7 +390,10 @@
     .fi.vis { opacity:1; transform:none; }
     .fi.d1{transition-delay:.1s} .fi.d2{transition-delay:.2s} .fi.d3{transition-delay:.3s}
 
-    /* ── RESPONSIVE ── */
+    /* ════════════════════════════════════════
+       RESPONSIVE — MOBILE VERBETERINGEN
+       Grotere tekst op iPhone, correcte spacing
+    ════════════════════════════════════════ */
     @media(max-width:1100px){
       .tools-grid{grid-template-columns:1fr}
       .import-grid{grid-template-columns:1fr;gap:60px}
@@ -381,22 +410,110 @@
       .hero-right{align-items:flex-start}
       .hero-sub{text-align:left}
     }
+
     @media(max-width:768px){
+      /* Nav */
       nav{padding:22px 28px}
       nav.scrolled{padding:14px 28px}
       .nav-links{display:none}
-      section{padding:88px 28px}
-      #aftersales{padding:88px 28px}
-      .hero-content{padding:0 28px 72px}
-      .hero-scroll-ind{left:28px;bottom:72px}
+
+      /* Sections */
+      section{padding:80px 24px}
+      #aftersales{padding:80px 24px}
+
+      /* Hero — FIX: meer padding-bottom zodat tekst niet achter nav valt */
+      #hero { min-height:100svh; }
+      .hero-content{
+        padding: 100px 24px 80px;
+        grid-template-columns:1fr;
+        align-items:flex-end;
+      }
+      .hero-scroll-ind{left:24px;bottom:24px}
+
+      /* Hero tekst groter op mobile */
+      h1.hero-title { font-size:clamp(2.8rem,11vw,4.5rem); margin-bottom:28px; }
+      .hero-eyebrow-text { font-size:0.72rem; }
+      .hero-sub { font-size:1rem; text-align:left; max-width:100%; }
+      .hero-stat-n { font-size:2rem; }
+      .hero-stat-l { font-size:0.65rem; }
+      .hero-stats { gap:24px; }
+
+      /* Section titels groter */
+      .s-title { font-size:clamp(2rem,8vw,3rem); }
+      .s-sub { font-size:0.95rem; }
+      .s-eye-text { font-size:0.72rem; }
+
+      /* Tool cards */
+      .tool-name { font-size:1.6rem; }
+      .tool-desc { font-size:0.88rem; }
+      .tool-tagline { font-size:1.05rem; }
+
+      /* Import stappen */
+      .import-step-t { font-size:0.95rem; }
+      .import-step-d { font-size:0.85rem; }
+      .import-img-wrap { height:320px; }
+
+      /* Diensten */
       .diensten-grid{grid-template-columns:1fr}
+      .d-name { font-size:1.2rem; }
+      .d-desc { font-size:0.85rem; }
+
+      /* Waarom */
+      .waarom-grid{grid-template-columns:1fr}
+      .w-title { font-size:1.45rem; }
+      .w-desc { font-size:0.9rem; }
+      .w-item { min-height:300px; padding:36px 28px; }
+
+      /* Werkwijze */
+      .ww-t { font-size:1.15rem; }
+      .ww-d { font-size:0.88rem; }
+
+      /* Projecten */
       .proj-grid{grid-template-columns:1fr}
-      footer{padding:56px 28px 36px}
+      .proj-card { height:420px; }
+      .proj-name { font-size:1.45rem; }
+      .proj-specs { font-size:0.82rem; }
+
+      /* Over ons */
+      .oo-img { height:380px; }
+      .oo-text { font-size:0.95rem; }
+      .oo-sig-name { font-size:1.35rem; }
+      .oo-stats { grid-template-columns:1fr }
+      .oo-stat-n { font-size:1.8rem; }
+      .oo-stat-l { font-size:0.65rem; }
+
+      /* Tarieven */
+      .tar-card{padding:36px 24px}
+      .tar-text { font-size:0.95rem; }
+
+      /* Aftersales */
+      .afs-q { font-size:clamp(1.2rem,4.5vw,1.8rem); }
+
+      /* Contact */
+      .ci-val { font-size:0.95rem; }
+      .cp-text { font-size:0.9rem; }
+      .cp-item { font-size:0.88rem; }
+      .contact-promise { padding:32px 24px; }
+
+      /* Buttons groter op touch */
+      .btn-white, .btn-ghost { padding:16px 32px; font-size:0.78rem; }
+      .tar-btn { padding:17px 36px; font-size:0.75rem; }
+      .nav-btn { padding:12px 22px; font-size:0.7rem; }
+
+      /* Footer */
+      footer{padding:56px 24px 36px}
       .ft{grid-template-columns:1fr;gap:36px}
       .ft-bottom{flex-direction:column;gap:16px;text-align:center}
-      .tar-card{padding:36px 28px}
-      .oo-stats{grid-template-columns:1fr}
-      .waarom-grid{grid-template-columns:1fr}
+      .ft-desc { font-size:0.88rem; }
+      .ft-links a { font-size:0.9rem; }
+    }
+
+    /* Extra small (iPhone SE etc.) */
+    @media(max-width:375px){
+      h1.hero-title { font-size:clamp(2.4rem,10vw,3.5rem); }
+      .s-title { font-size:clamp(1.8rem,8vw,2.6rem); }
+      nav{padding:18px 20px}
+      section{padding:72px 20px}
     }
   </style>
 </head>
@@ -405,10 +522,7 @@
 <div id="cur"></div>
 <div id="cur-ring"></div>
 
-<!-- ═══════════════════════════════════════════════════
-     NAV — logo zonder verticale tricolore balk
-     "Maastricht" staat compact in de sub-regel
-═══════════════════════════════════════════════════ -->
+<!-- ═══════════════ NAV ═══════════════ -->
 <nav id="nav">
   <a href="#" class="logo">
     <div class="logo-wordmark">
@@ -427,10 +541,17 @@
   <a href="#contact" class="nav-btn"><span>Gesprek plannen</span></a>
 </nav>
 
-<!-- ═══════════════════════════════════════════════════ HERO ═══ -->
+<!-- ═══════════════ HERO ═══════════════ -->
 <section id="hero">
   <div class="hero-media">
-    <img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?w=1920&q=90" alt="Lamborghini" />
+    <!--
+      Homepage foto: Lamborghini cockpit — rijke, sfeervolle cockpitopname
+      Je stuurde twee opties; de cockpit-foto geeft de meeste diepte als fullscreen hero
+    -->
+    <img
+      src="https://res.cloudinary.com/sfd8ohjz/image/upload/v1786112048/Lamborghini_cockpit_zw7pmk.jpg"
+      alt="Lamborghini cockpit — APEXclusive"
+    />
   </div>
   <div class="hero-edge"><span></span><span></span><span></span></div>
   <div class="hero-content">
@@ -464,9 +585,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════
-     TOOLS — elk kaartje met eigen achtergrondafbeelding
-═══════════════════════════════════════════════════ -->
+<!-- ═══════════════ TOOLS ═══════════════ -->
 <section id="tools">
   <div class="tools-topbar"><span></span><span></span><span></span></div>
   <div class="s-head fi">
@@ -483,10 +602,11 @@
   </div>
   <div class="tools-grid">
 
-    <!-- 01 BPM — dashboard/interieur -->
+    <!-- 01 BPM Calculator — rekenmachine / dashboard -->
     <a href="https://bpm.apexclusive.nl" class="tool-card fi d1">
       <div class="tool-card-bg-img">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80" alt="" />
+        <!-- Sportauto dashboard met cijfers = passend bij "berekenen" -->
+        <img src="https://images.unsplash.com/photo-1503376780353-7e6692767b70?w=900&q=80" alt="BPM Calculator" />
       </div>
       <div class="tool-card-bg-gradient"></div>
       <div class="tool-card-inner">
@@ -503,10 +623,15 @@
       </div>
     </a>
 
-    <!-- 02 Kentekencheck — kenteken close-up -->
+    <!-- 02 Kentekencheck — Nederlands kenteken close-up -->
     <a href="https://kentekencheck.apexclusive.nl" class="tool-card fi d2">
       <div class="tool-card-bg-img">
-        <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=900&q=80" alt="" />
+        <!--
+          Nederlands geel kenteken close-up — het meest passende beeld voor "Kentekencheck"
+          Unsplash heeft geen directe NL-kenteken foto; dit is het best beschikbare alternatief
+          (nachtelijke straat met reflectie, impliceert kenteken-scan)
+        -->
+        <img src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=900&q=80" alt="Kentekencheck" />
       </div>
       <div class="tool-card-bg-gradient"></div>
       <div class="tool-card-inner">
@@ -523,10 +648,11 @@
       </div>
     </a>
 
-    <!-- 03 Advertentie Analyse — showroom / auto detail -->
+    <!-- 03 Advertentie Analyse — laptop / analyse -->
     <a href="https://carrapport.apexclusive.nl" class="tool-card fi d3">
       <div class="tool-card-bg-img">
-        <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=900&q=80" alt="" />
+        <!-- Magnifying glass / analytics = advertentie analyseren -->
+        <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=900&q=80" alt="Advertentie Analyse" />
       </div>
       <div class="tool-card-bg-gradient"></div>
       <div class="tool-badge">Aanbevolen</div>
@@ -547,117 +673,21 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════
-     IMPORT — Europa SVG-kaart met tricolore
-═══════════════════════════════════════════════════ -->
+<!-- ═══════════════ IMPORT ═══════════════ -->
 <section id="import">
   <div class="import-grid">
     <div class="import-visual fi">
       <div class="import-img-wrap">
 
-        <!-- ▼▼▼ EUROPA KAART — vervangt de Porsche foto ▼▼▼ -->
-        <div class="map-svg-wrap">
-          <svg viewBox="0 0 500 480" xmlns="http://www.w3.org/2000/svg">
-            <defs>
-              <radialGradient id="rg-nl" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#CE2B37" stop-opacity="0.5"/>
-                <stop offset="100%" stop-color="#CE2B37" stop-opacity="0"/>
-              </radialGradient>
-              <radialGradient id="rg-it" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="#009246" stop-opacity="0.5"/>
-                <stop offset="100%" stop-color="#009246" stop-opacity="0"/>
-              </radialGradient>
-              <radialGradient id="rg-de" cx="50%" cy="50%" r="50%">
-                <stop offset="0%" stop-color="rgba(238,235,229,0.3)" stop-opacity="1"/>
-                <stop offset="100%" stop-color="rgba(238,235,229,0)" stop-opacity="0"/>
-              </radialGradient>
-            </defs>
-            <rect width="500" height="480" fill="#050505"/>
-
-            <!-- Glow-ringen rondom actieve landen -->
-            <ellipse cx="185" cy="168" rx="55" ry="45" fill="url(#rg-nl)" opacity="0.6"/>
-            <ellipse cx="265" cy="340" rx="45" ry="70" fill="url(#rg-it)" opacity="0.6"/>
-            <ellipse cx="255" cy="200" rx="90" ry="75" fill="url(#rg-de)" opacity="0.25"/>
-
-            <!-- ── Landen ── -->
-            <!-- Noorwegen -->
-            <path d="M200 20 L225 16 L238 45 L228 80 L210 88 L195 65 Z" fill="rgba(238,235,229,0.05)" stroke="rgba(238,235,229,0.1)" stroke-width="0.7"/>
-            <!-- Zweden -->
-            <path d="M228 18 L260 16 L272 50 L265 88 L238 92 L228 65 Z" fill="rgba(238,235,229,0.06)" stroke="rgba(238,235,229,0.1)" stroke-width="0.7"/>
-            <!-- Finland -->
-            <path d="M262 16 L295 14 L305 48 L290 82 L265 88 L264 52 Z" fill="rgba(238,235,229,0.04)" stroke="rgba(238,235,229,0.08)" stroke-width="0.7"/>
-            <!-- Denemarken -->
-            <path d="M220 98 L234 94 L238 112 L226 118 L218 110 Z" fill="rgba(238,235,229,0.06)" stroke="rgba(238,235,229,0.1)" stroke-width="0.7"/>
-            <!-- Polen -->
-            <path d="M262 130 L315 124 L322 162 L298 174 L262 168 Z" fill="rgba(238,235,229,0.05)" stroke="rgba(238,235,229,0.08)" stroke-width="0.7"/>
-            <!-- Tsjechië -->
-            <path d="M262 168 L298 162 L305 182 L282 192 L258 186 Z" fill="rgba(238,235,229,0.05)" stroke="rgba(238,235,229,0.08)" stroke-width="0.7"/>
-            <!-- Oostenrijk -->
-            <path d="M238 192 L282 186 L290 204 L265 212 L234 208 Z" fill="rgba(238,235,229,0.05)" stroke="rgba(238,235,229,0.08)" stroke-width="0.7"/>
-            <!-- Zwitserland -->
-            <path d="M210 200 L238 196 L242 214 L218 220 L206 214 Z" fill="rgba(238,235,229,0.07)" stroke="rgba(238,235,229,0.1)" stroke-width="0.7"/>
-
-            <!-- NEDERLAND — rood -->
-            <path d="M172 148 L196 144 L202 164 L188 172 L170 166 Z" fill="rgba(206,43,55,0.3)" stroke="#CE2B37" stroke-width="1.4"/>
-            <!-- België -->
-            <path d="M172 168 L196 162 L200 180 L180 188 L168 180 Z" fill="rgba(238,235,229,0.07)" stroke="rgba(238,235,229,0.14)" stroke-width="0.7"/>
-            <!-- Luxemburg -->
-            <path d="M196 172 L205 170 L207 183 L198 185 Z" fill="rgba(238,235,229,0.07)" stroke="rgba(238,235,229,0.12)" stroke-width="0.7"/>
-            <!-- DUITSLAND — wit-grijze tint -->
-            <path d="M196 144 L255 136 L268 162 L262 190 L238 196 L210 190 L200 178 L202 162 Z" fill="rgba(238,235,229,0.1)" stroke="rgba(238,235,229,0.22)" stroke-width="1"/>
-            <!-- Frankrijk -->
-            <path d="M145 182 L172 168 L180 188 L200 178 L210 190 L202 232 L178 244 L148 234 L132 212 Z" fill="rgba(238,235,229,0.06)" stroke="rgba(238,235,229,0.1)" stroke-width="0.7"/>
-            <!-- Spanje -->
-            <path d="M110 250 L178 238 L182 278 L164 310 L130 312 L110 286 Z" fill="rgba(238,235,229,0.06)" stroke="rgba(238,235,229,0.1)" stroke-width="0.7"/>
-            <!-- Portugal -->
-            <path d="M108 252 L122 248 L126 284 L112 290 L100 275 Z" fill="rgba(238,235,229,0.05)" stroke="rgba(238,235,229,0.08)" stroke-width="0.7"/>
-            <!-- ITALIË — groen -->
-            <path d="M210 212 L248 208 L262 246 L272 294 L256 342 L240 372 L228 368 L224 330 L215 292 L204 252 Z" fill="rgba(0,146,70,0.22)" stroke="#009246" stroke-width="1.4"/>
-            <!-- Sardinië -->
-            <path d="M196 330 L208 326 L214 344 L202 352 L192 342 Z" fill="rgba(0,146,70,0.14)" stroke="#009246" stroke-width="0.8"/>
-            <!-- Sicilië -->
-            <path d="M230 378 L252 374 L260 390 L242 398 L226 390 Z" fill="rgba(0,146,70,0.14)" stroke="#009246" stroke-width="0.8"/>
-
-            <!-- Gestippelde routes -->
-            <line x1="184" y1="158" x2="240" y2="228" stroke="rgba(238,235,229,0.07)" stroke-width="1" stroke-dasharray="5,5"/>
-            <line x1="240" y1="228" x2="250" y2="310" stroke="rgba(0,146,70,0.18)" stroke-width="1" stroke-dasharray="4,6"/>
-            <line x1="184" y1="158" x2="255" y2="148" stroke="rgba(238,235,229,0.06)" stroke-width="0.8" stroke-dasharray="5,5"/>
-
-            <!-- Steden — pulseringen -->
-            <!-- Amsterdam -->
-            <circle cx="184" cy="158" r="5" fill="#CE2B37" opacity="0.95"/>
-            <circle cx="184" cy="158" r="10" fill="none" stroke="#CE2B37" stroke-width="0.8" opacity="0.4"/>
-            <!-- Berlijn -->
-            <circle cx="280" cy="148" r="3.5" fill="rgba(238,235,229,0.7)"/>
-            <!-- Milaan -->
-            <circle cx="232" cy="226" r="5" fill="#009246" opacity="0.95"/>
-            <circle cx="232" cy="226" r="10" fill="none" stroke="#009246" stroke-width="0.8" opacity="0.4"/>
-            <!-- Parijs -->
-            <circle cx="162" cy="204" r="3" fill="rgba(238,235,229,0.55)"/>
-            <!-- Madrid -->
-            <circle cx="136" cy="280" r="3" fill="rgba(238,235,229,0.45)"/>
-            <!-- Stockholm -->
-            <circle cx="248" cy="68" r="3" fill="rgba(238,235,229,0.45)"/>
-            <!-- Luxemburg stad -->
-            <circle cx="200" cy="178" r="2.5" fill="rgba(238,235,229,0.55)"/>
-
-            <!-- Labels -->
-            <text x="166" y="144" font-family="Inter,sans-serif" font-size="8" fill="#CE2B37" opacity="0.95" letter-spacing="0.5">NL</text>
-            <text x="225" y="242" font-family="Inter,sans-serif" font-size="8" fill="#009246" opacity="0.95" letter-spacing="0.5">IT</text>
-            <text x="230" y="168" font-family="Inter,sans-serif" font-size="7.5" fill="rgba(238,235,229,0.55)" letter-spacing="0.5">DE</text>
-            <text x="148" y="220" font-family="Inter,sans-serif" font-size="7"   fill="rgba(238,235,229,0.4)"  letter-spacing="0.5">FR</text>
-            <text x="120" y="278" font-family="Inter,sans-serif" font-size="7"   fill="rgba(238,235,229,0.38)" letter-spacing="0.5">ES</text>
-            <text x="244" y="64"  font-family="Inter,sans-serif" font-size="7"   fill="rgba(238,235,229,0.38)" letter-spacing="0.5">SE</text>
-            <text x="187" y="178" font-family="Inter,sans-serif" font-size="5.5" fill="rgba(238,235,229,0.42)" letter-spacing="0.3">LU</text>
-            <text x="164" y="178" font-family="Inter,sans-serif" font-size="5.5" fill="rgba(238,235,229,0.35)" letter-spacing="0.3">BE</text>
-
-            <!-- Tricolore balk onderaan (Italiaanse vlag referentie) -->
-            <rect x="0"   y="472" width="166" height="8" fill="#009246" opacity="0.75"/>
-            <rect x="167" y="472" width="166" height="8" fill="rgba(238,235,229,0.5)"/>
-            <rect x="334" y="472" width="166" height="8" fill="#CE2B37" opacity="0.75"/>
-          </svg>
-        </div>
-        <!-- ▲▲▲ EUROPA KAART einde ▲▲▲ -->
+        <!--
+          Import sectie: aflevering Lamborghini Urus
+          Jouw eigen foto van de Urus-aflevering — perfect passend bij "importbegeleiding"
+        -->
+        <img
+          class="import-photo"
+          src="https://res.cloudinary.com/sfd8ohjz/image/upload/v1786111940/987D691B-FFBF-4137-9766-15DEF62F5CD4_1_201_a_k1eyvp.jpg"
+          alt="Aflevering Lamborghini Urus — APEXclusive import"
+        />
 
         <div class="import-frame"></div>
         <div class="import-tristrip"><span></span><span></span><span></span></div>
@@ -698,7 +728,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════ DIENSTEN ═══ -->
+<!-- ═══════════════ DIENSTEN ═══════════════ -->
 <section id="diensten">
   <div class="s-head fi">
     <div class="s-eye">
@@ -724,10 +754,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════
-     WAAROM — 4 blokken met sjieke foto-achtergrond
-     (de losse gallery-strip van Lamborghini/Ferrari/RS6/Porsche is verwijderd)
-═══════════════════════════════════════════════════ -->
+<!-- ═══════════════ WAAROM ═══════════════ -->
 <section id="waarom">
   <div class="waarom-wm" aria-hidden="true">A</div>
   <div class="s-head fi">
@@ -743,10 +770,10 @@
   </div>
   <div class="waarom-grid">
 
-    <!-- 1 Persoonlijke begeleiding — cockpit/piloot -->
     <div class="w-item fi">
       <div class="w-item-bg">
-        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80" alt="" />
+        <!-- Lamborghini cockpit interieur = persoonlijke begeleiding / piloten-sfeer -->
+        <img src="https://images.unsplash.com/photo-1558618666-fcd25c85cd64?w=900&q=80" alt="Persoonlijke begeleiding" />
       </div>
       <div class="w-item-overlay"></div>
       <div class="w-item-glow"></div>
@@ -757,10 +784,9 @@
       </div>
     </div>
 
-    <!-- 2 Onafhankelijk advies — handshake/document -->
     <div class="w-item fi d1">
       <div class="w-item-bg">
-        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=900&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1450101499163-c8848c66ca85?w=900&q=80" alt="Onafhankelijk advies" />
       </div>
       <div class="w-item-overlay"></div>
       <div class="w-item-glow"></div>
@@ -771,10 +797,9 @@
       </div>
     </div>
 
-    <!-- 3 Europese marktkennis — snelweg Europa -->
     <div class="w-item fi d2">
       <div class="w-item-bg">
-        <img src="https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=900&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1504214208698-ea1916a2195a?w=900&q=80" alt="Europese marktkennis" />
       </div>
       <div class="w-item-overlay"></div>
       <div class="w-item-glow"></div>
@@ -785,10 +810,9 @@
       </div>
     </div>
 
-    <!-- 4 Volledige ontzorging — Porsche / auto detail -->
     <div class="w-item fi d3">
       <div class="w-item-bg">
-        <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=900&q=80" alt="" />
+        <img src="https://images.unsplash.com/photo-1563720223185-11003d516935?w=900&q=80" alt="Volledige ontzorging" />
       </div>
       <div class="w-item-overlay"></div>
       <div class="w-item-glow"></div>
@@ -802,7 +826,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════ WERKWIJZE ═══ -->
+<!-- ═══════════════ WERKWIJZE ═══════════════ -->
 <section id="werkwijze">
   <div class="ww-layout">
     <div class="ww-sticky fi">
@@ -828,13 +852,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════
-     PROJECTEN
-     ► Vervang de drie src="…" door uw eigen foto's:
-       Kaart 1: src="huracan-spyder.jpg"
-       Kaart 2: src="lamborghini-urus.jpg"
-       Kaart 3: src="audi-rs6.jpg"
-═══════════════════════════════════════════════════ -->
+<!-- ═══════════════ PROJECTEN ═══════════════ -->
 <section id="projecten">
   <div class="s-head fi">
     <div class="s-eye">
@@ -850,9 +868,12 @@
   </div>
   <div class="proj-grid">
 
-    <!-- Kaart 1 — vervang src door uw Huracán Spyder foto -->
+    <!-- Kaart 1 — Lamborghini Huracán Spyder (cockpit-interieur foto) -->
     <div class="proj-card fi">
-      <img src="https://images.unsplash.com/photo-1621135802920-133df287f89c?w=800&q=88" alt="Lamborghini Huracán Spyder" />
+      <img
+        src="https://res.cloudinary.com/sfd8ohjz/image/upload/v1786111924/5D3019CA-22AA-4240-B1C7-8C11D4005F8B_1_105_c_lxanhh.jpg"
+        alt="Lamborghini Huracán Spyder"
+      />
       <div class="proj-overlay">
         <div class="proj-loc">Persoonlijke import · Zweden</div>
         <div class="proj-line"></div>
@@ -862,9 +883,12 @@
       <div class="proj-tri"><span></span><span></span><span></span></div>
     </div>
 
-    <!-- Kaart 2 — vervang src door uw Urus foto -->
+    <!-- Kaart 2 — Lamborghini Urus aflevering -->
     <div class="proj-card fi d1">
-      <img src="https://images.unsplash.com/photo-1494976388531-d1058494cdd8?w=800&q=88" alt="Lamborghini Urus" />
+      <img
+        src="https://res.cloudinary.com/sfd8ohjz/image/upload/v1786111940/987D691B-FFBF-4137-9766-15DEF62F5CD4_1_201_a_k1eyvp.jpg"
+        alt="Lamborghini Urus"
+      />
       <div class="proj-overlay">
         <div class="proj-loc">Persoonlijke import · Luxemburg</div>
         <div class="proj-line"></div>
@@ -874,9 +898,12 @@
       <div class="proj-tri"><span></span><span></span><span></span></div>
     </div>
 
-    <!-- Kaart 3 — vervang src door uw Audi RS6 foto -->
+    <!-- Kaart 3 — Audi RS6 (jouw eigen RS6 foto) -->
     <div class="proj-card fi d2">
-      <img src="https://images.unsplash.com/photo-1555215695-3004980ad54e?w=800&q=88" alt="Audi RS6" />
+      <img
+        src="https://res.cloudinary.com/sfd8ohjz/image/upload/v1786112182/8112FE63-03BD-4C6D-9A40-1217FCD5910F_1_201_a_vbazdb.heic"
+        alt="Audi RS6 Avant C8"
+      />
       <div class="proj-overlay">
         <div class="proj-loc">Aankoopbegeleiding · Duitsland</div>
         <div class="proj-line"></div>
@@ -887,40 +914,33 @@
     </div>
 
   </div>
-  <!-- Instructie voor eigen foto's -->
-  <div class="upload-note">
-    <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-    Eigen foto's plaatsen: verander de drie <code>src="…"</code> attributen hierboven naar bijv. <code>src="huracan-spyder.jpg"</code> &nbsp;·&nbsp; <code>src="urus.jpg"</code> &nbsp;·&nbsp; <code>src="rs6.jpg"</code>
-  </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════
-     OVER ONS
-     ► Vervang src="…" bij .oo-img door uw eigen portretfoto:
-       src="martijn-puts.jpg"
-       Aanbevolen formaat: staand, min. 900×1280 px
-═══════════════════════════════════════════════════ -->
+<!-- ═══════════════ OVER ONS ═══════════════ -->
 <section id="overons">
   <div class="oo-layout">
     <div class="oo-img-wrap fi">
       <!--
-        ▼ UW EIGEN FOTO — wijzig src naar bijv. src="martijn-puts.jpg"
-          Zet het bestand in dezelfde map als dit HTML-bestand.
+        Founder foto: Martijn Puts
+        - object-position: center top → toont gezicht bovenaan
+        - .oo-side-fade → vervaagt de zijruit rechts weg via CSS gradient
+        - .oo-top-fade  → subtiele fade bovenkant
+        - Lamborghini logo in hoofdsteun blijft zichtbaar in het midden
       -->
       <img
-        src="https://images.unsplash.com/photo-1560250097-0b93528c311a?w=900&q=88"
+        src="https://res.cloudinary.com/sfd8ohjz/image/upload/v1786112744/8A26E528-46F4-471D-856C-7D4210809521_1_105_c_uguopr.jpg"
         alt="Martijn Puts — Founder APEXclusive"
         class="oo-img"
+        style="object-position: center 15%;"
       />
+      <!-- Vervaagt de zijruit rechts in beeld -->
+      <div class="oo-side-fade"></div>
+      <!-- Subtiele fade boven -->
+      <div class="oo-top-fade"></div>
       <div class="oo-frame"></div>
       <div class="oo-tristrip"><span></span><span></span><span></span></div>
       <div class="oo-quote-layer">
         <p class="oo-qt">Precisie en oog voor detail zijn geen eigenschappen — het zijn gewoontes.</p>
-      </div>
-      <!-- Upload hint (zichtbaar als herinnering, verwijder dit blok na eigen foto) -->
-      <div class="oo-upload-hint">
-        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
-        Eigen foto: src="martijn-puts.jpg"
       </div>
     </div>
 
@@ -953,7 +973,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════ TARIEVEN ═══ -->
+<!-- ═══════════════ TARIEVEN ═══════════════ -->
 <section id="tarieven">
   <div class="tar-inner">
     <div class="s-eye fi" style="justify-content:center">
@@ -974,7 +994,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════ AFTERSALES ═══ -->
+<!-- ═══════════════ AFTERSALES ═══════════════ -->
 <section id="aftersales">
   <div class="afs-inner fi">
     <div class="afs-tri"><span></span><span></span><span></span></div>
@@ -984,7 +1004,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════ CONTACT ═══ -->
+<!-- ═══════════════ CONTACT ═══════════════ -->
 <section id="contact">
   <div class="contact-layout">
     <div class="fi">
@@ -1031,7 +1051,7 @@
   </div>
 </section>
 
-<!-- ═══════════════════════════════════════════════════ FOOTER ═══ -->
+<!-- ═══════════════ FOOTER ═══════════════ -->
 <footer>
   <div class="ft">
     <div>
@@ -1086,8 +1106,20 @@
   window.addEventListener('scroll',()=>{ document.getElementById('nav').classList.toggle('scrolled',window.scrollY>60); });
 
   /* ── Fade-in animatie ── */
-  const obs = new IntersectionObserver(entries=>{ entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('vis'); }); },{threshold:0.1});
+  const obs = new IntersectionObserver(entries=>{
+    entries.forEach(e=>{ if(e.isIntersecting) e.target.classList.add('vis'); });
+  },{threshold:0.08});
   document.querySelectorAll('.fi').forEach(el=>obs.observe(el));
+
+  /* ── Hero: voorkom dat tekst achter nav valt op elk scherm ── */
+  function fixHeroMin() {
+    const nav = document.getElementById('nav');
+    const hero = document.getElementById('hero');
+    // Zorg dat de minimale hoogte altijd viewport dekt
+    hero.style.minHeight = window.innerHeight + 'px';
+  }
+  fixHeroMin();
+  window.addEventListener('resize', fixHeroMin);
 </script>
 </body>
 </html>
