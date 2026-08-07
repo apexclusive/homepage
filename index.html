@@ -34,17 +34,54 @@ a{color:inherit;text-decoration:none}
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:var(--ink)}
 ::-webkit-scrollbar-thumb{background:linear-gradient(to bottom,var(--ig) 33%,rgba(198,203,209,.5) 33% 66%,var(--ir) 66%)}
-
-/* layout */
 section{padding:clamp(5rem,10vw,9rem) var(--pd);position:relative}
 .wrap{max-width:1160px;margin:0 auto;position:relative;z-index:1}
 .head{max-width:60ch;margin-bottom:clamp(2.75rem,5.5vw,4.5rem)}
 .rule{width:56px;height:2px;background:var(--ch);margin-top:1.5rem}
 
-/* eyebrow */
-.ey{font-family:var(--lb);font-size:.66rem;letter-spacing:.38em;text-transform:uppercase;color:var(--pt);font-weight:400;margin-bottom:1.4rem;display:flex;align-items:center;gap:.9rem}
-.ey::before{content:'';width:22px;height:1px;background:var(--pt);flex:none}
-.ey.c{justify-content:center}.ey.c::after{content:'';width:22px;height:1px;background:var(--pt);flex:none}
+/* ══════════════════════════════════════════════
+   TRICOLORE EYEBROW — geanimeerde Italiaanse vlag
+   boven elke sectietitel
+══════════════════════════════════════════════ */
+.ey{
+  font-family:var(--lb);font-size:.66rem;letter-spacing:.38em;text-transform:uppercase;
+  color:var(--pt);font-weight:400;margin-bottom:1.4rem;
+  display:flex;align-items:center;gap:.9rem;
+}
+/* Tricolore animatiebalk links van de eyebrow */
+.ey-tri{
+  display:flex;
+  flex-direction:row;
+  gap:0;
+  flex-shrink:0;
+  overflow:hidden;
+  height:14px;
+  width:0;
+  transition:width .8s cubic-bezier(.2,.7,.3,1);
+}
+.ey-tri span{
+  display:block;
+  flex:1;
+  min-width:0;
+}
+.ey-tri span:nth-child(1){background:var(--ig)}
+.ey-tri span:nth-child(2){background:#ffffff}
+.ey-tri span:nth-child(3){background:var(--ir)}
+/* Wanneer sectie in beeld: balk schuift open */
+.ey.tri-in .ey-tri{width:48px}
+
+/* Center variant */
+.ey.c{justify-content:center}
+.ey.c .ey-tri-r{
+  display:flex;flex-direction:row;gap:0;flex-shrink:0;
+  overflow:hidden;height:14px;width:0;
+  transition:width .8s .15s cubic-bezier(.2,.7,.3,1);
+}
+.ey.c .ey-tri-r span{display:block;flex:1;min-width:0}
+.ey.c .ey-tri-r span:nth-child(1){background:var(--ir)}
+.ey.c .ey-tri-r span:nth-child(2){background:#ffffff}
+.ey.c .ey-tri-r span:nth-child(3){background:var(--ig)}
+.ey.tri-in .ey-tri-r{width:48px}
 
 /* type */
 h1,h2,h3,h4{font-family:var(--sf);font-weight:300;line-height:1.1;letter-spacing:.01em}
@@ -56,7 +93,6 @@ h2 .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:
 h2 .w i{display:inline-block;font-style:inherit;transform:translateY(115%);transition:transform .95s cubic-bezier(.2,.7,.3,1)}
 h2.in .w i{transform:none}
 
-/* progress */
 #progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:200;background:var(--pt-s);transform-origin:left;transform:scaleX(0)}
 
 /* ── LOGO ── */
@@ -101,9 +137,7 @@ nav.hide{transform:translateY(-105%)}
 #mm a:hover{color:var(--pt)}
 @media(max-width:900px){.navlinks,nav .btn{display:none}#burger{display:flex}}
 
-/* ═══════════════════════════════════
-   HERO
-═══════════════════════════════════ */
+/* ── HERO ── */
 .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding-top:8rem;padding-bottom:6.5rem;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:-2}
 .hero .livery{position:absolute;top:0;bottom:0;left:0;width:4px;z-index:1;background:var(--tr);opacity:0;animation:lvin .9s .6s cubic-bezier(.2,.7,.3,1) forwards}
@@ -126,10 +160,7 @@ nav.hide{transform:translateY(-105%)}
 .scrollcue i{display:block;width:40px;height:1px;background:linear-gradient(to right,var(--pt),transparent);animation:pull 2.2s ease-in-out infinite}
 @keyframes pull{50%{transform:scaleX(.4);transform-origin:left}}
 
-/* ═══════════════════════════════════
-   ANGST-BREAKER — waarom uitbesteden
-   (nieuwe sectie direct onder hero)
-═══════════════════════════════════ */
+/* ── FEAR BREAKER ── */
 .fear{background:var(--ink2);border-top:1px solid var(--ln);border-bottom:1px solid var(--ln);padding:clamp(3rem,6vw,5rem) var(--pd)}
 .fear-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:1px;background:var(--ln);max-width:1160px;margin:0 auto}
 .fear-item{background:var(--ink2);padding:2.2rem 2rem;position:relative;transition:background .35s}
@@ -147,52 +178,36 @@ nav.hide{transform:translateY(-105%)}
 .fear-q{font-family:var(--sf);font-size:1.05rem;font-style:italic;color:rgba(198,203,209,.55);margin-bottom:.55rem;line-height:1.45}
 .fear-a{font-size:.82rem;color:var(--mt);line-height:1.7}
 
-/* ═══════════════════════════════════
-   TOOLS — 3 kaarten met foto
-═══════════════════════════════════ */
+/* ── TOOLS ── */
 .tools-sec{background:var(--ink);padding:clamp(5rem,10vw,9rem) var(--pd)}
 .tools-intro{text-align:center;max-width:640px;margin:0 auto clamp(2.5rem,5vw,4rem)}
-.tools-intro .ey{justify-content:center}.tools-intro .ey::after{content:'';width:22px;height:1px;background:var(--pt);flex:none}
-
-/* Urgentie banner boven tools */
-.tools-banner{
-  background:var(--ink3);border:1px solid var(--ln);
-  padding:1rem 1.75rem;margin-bottom:2.5rem;
-  display:flex;align-items:center;gap:1rem;
-  position:relative;overflow:hidden;
-}
+.tools-banner{background:var(--ink3);border:1px solid var(--ln);padding:1rem 1.75rem;margin-bottom:2.5rem;display:flex;align-items:center;gap:1rem;position:relative;overflow:hidden}
 .tools-banner::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--tr);opacity:.6}
-.tools-banner-icon{width:8px;height:8px;border-radius:50%;background:var(--ig);flex-shrink:0;animation:pulse 2s ease-in-out infinite}
+.tools-banner-dot{width:8px;height:8px;border-radius:50%;background:var(--ig);flex-shrink:0;animation:pulse 2s ease-in-out infinite}
 @keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,146,70,.4)}50%{box-shadow:0 0 0 6px rgba(0,146,70,0)}}
 .tools-banner p{font-size:.78rem;color:#ccc;font-family:var(--lb);letter-spacing:.08em}
 .tools-banner p strong{color:var(--pt)}
-
 .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln)}
 @media(max-width:860px){.tgrid{grid-template-columns:1fr}}
-
 .tc{display:flex;flex-direction:column;background:var(--ink);position:relative;overflow:hidden;transition:background .4s;text-decoration:none;color:inherit}
 .tc:hover{background:var(--ink3)}
-
-/* Foto container — vaste hoogte */
-.tc-photo{width:100%;height:210px;overflow:hidden;position:relative;flex-shrink:0;background:var(--ink3)}
+.tc-photo{width:100%;height:220px;overflow:hidden;position:relative;flex-shrink:0;background:var(--ink3)}
 .tc-photo img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:brightness(.28) saturate(.45);transition:filter .65s,transform .85s}
-.tc-photo img.img-contain{object-fit:contain;padding:1.75rem;filter:brightness(.6) saturate(.25);background:var(--ink3)}
+.tc-photo img.img-contain{object-fit:contain;padding:1.5rem;filter:brightness(.62) saturate(.28);background:var(--ink3)}
 .tc-photo img.img-logo{object-fit:contain;padding:2.25rem;filter:brightness(.55) saturate(.1) contrast(1.1);background:var(--ink3)}
-.tc:hover .tc-photo img{filter:brightness(.45) saturate(.7);transform:scale(1.04)}
-.tc:hover .tc-photo img.img-contain{filter:brightness(.8) saturate(.5);transform:none}
-.tc:hover .tc-photo img.img-logo{filter:brightness(.75) saturate(.25);transform:none}
+.tc:hover .tc-photo img{filter:brightness(.48) saturate(.7);transform:scale(1.04)}
+.tc:hover .tc-photo img.img-contain{filter:brightness(.82) saturate(.5);transform:none}
+.tc:hover .tc-photo img.img-logo{filter:brightness(.78) saturate(.25);transform:none}
 .tc-photo-fade{position:absolute;inset:0;background:linear-gradient(to top,var(--ink) 0%,transparent 55%);z-index:1;pointer-events:none}
 .tc-photo::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;z-index:2;transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
 .tc:nth-child(1) .tc-photo::after{background:var(--ig)}
 .tc:nth-child(2) .tc-photo::after{background:var(--pt)}
 .tc:nth-child(3) .tc-photo::after{background:var(--ir)}
 .tc:hover .tc-photo::after{transform:scaleX(1)}
-
 .tc-body{padding:1.6rem 1.85rem 1.85rem;display:flex;flex-direction:column;flex:1}
 .tc-body .num{font-family:var(--sf);font-size:.82rem;color:var(--pt);letter-spacing:.2em;opacity:.55;margin-bottom:.5rem}
 .tc-body h3{font-size:1.42rem;margin-bottom:.45rem}
 .tc-body p{font-size:.83rem;margin-bottom:1.25rem;flex:1}
-/* Voordeel bullet onder tekst */
 .tc-perk{font-family:var(--lb);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(198,203,209,.35);margin-bottom:1.1rem;display:flex;align-items:center;gap:.5rem}
 .tc-perk::before{content:'';width:4px;height:4px;border-radius:50%;flex-shrink:0}
 .tc:nth-child(1) .tc-perk::before{background:var(--ig)}
@@ -202,9 +217,7 @@ nav.hide{transform:translateY(-105%)}
 .tc-go i{width:16px;height:1px;background:var(--pt);transition:width .4s;display:block}
 .tc:hover .tc-go i{width:30px}
 
-/* ═══════════════════════════════════
-   IMPORT
-═══════════════════════════════════ */
+/* ── IMPORT ── */
 .imp-sec{background:var(--ink2);padding:clamp(5rem,10vw,9rem) var(--pd)}
 .imp-grid{display:grid;grid-template-columns:.88fr 1fr;gap:clamp(2.5rem,5.5vw,5rem);align-items:center}
 @media(max-width:860px){.imp-grid{grid-template-columns:1fr}}
@@ -233,9 +246,7 @@ nav.hide{transform:translateY(-105%)}
 .imp-step-t{font-size:.84rem;font-weight:500;color:var(--tx);margin-bottom:2px}
 .imp-step-d{font-size:.76rem;color:var(--mt);line-height:1.6}
 
-/* ═══════════════════════════════════
-   DIENSTEN
-═══════════════════════════════════ */
+/* ── DIENSTEN ── */
 .svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(270px,100%),1fr));gap:2.75rem 2.5rem}
 .svc{padding-top:1.6rem;border-top:1px solid var(--hr);position:relative}
 .svc::before{content:'';position:absolute;left:0;top:-1px;height:2px;width:0;background:var(--tr);transition:width .5s cubic-bezier(.2,.7,.3,1)}
@@ -245,16 +256,12 @@ nav.hide{transform:translateY(-105%)}
 .svc a.il{color:var(--ig);border-bottom:1px solid rgba(0,146,70,.28);transition:border-color .3s}
 .svc a.il:hover{border-bottom-color:var(--ig)}
 
-/* ═══════════════════════════════════
-   REDENEN
-═══════════════════════════════════ */
+/* ── REDENEN ── */
 .r-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:3rem 2.5rem}
 .reason .big{font-family:var(--sf);font-size:3.4rem;line-height:1;color:transparent;-webkit-text-stroke:1px var(--pt);display:block;margin-bottom:1rem;opacity:.4;transition:color .45s,opacity .45s}
 .reason:hover .big{color:var(--pt);opacity:.85}
 
-/* ═══════════════════════════════════
-   WERKWIJZE
-═══════════════════════════════════ */
+/* ── WERKWIJZE ── */
 .steps{position:relative;max-width:800px;--tp:0}
 .steps::before{content:'';position:absolute;left:10px;top:8px;bottom:8px;width:1px;background:rgba(198,203,209,.08)}
 .steps::after{content:'';position:absolute;left:10px;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--ig),var(--pt),var(--ir));transform:scaleY(var(--tp));transform-origin:top;will-change:transform}
@@ -267,18 +274,16 @@ nav.hide{transform:translateY(-105%)}
 .step h3{font-size:1.32rem;margin:.45rem 0 .4rem}
 .step p{max-width:54ch}
 
-/* Sleutels / Porsche foto */
+/* Sleuteloverdracht foto */
 .sleutels-wrap{margin-top:3rem;position:relative;max-width:700px;overflow:hidden;border:1px solid var(--ln)}
-.sleutels-wrap img{width:100%;height:340px;object-fit:cover;object-position:center 35%;display:block;filter:brightness(.55) saturate(.5);transition:filter .8s,transform 1s}
-.sleutels-wrap:hover img{filter:brightness(.68) saturate(.65);transform:scale(1.02)}
+.sleutels-wrap img{width:100%;height:360px;object-fit:cover;object-position:center 40%;display:block;filter:brightness(.52) saturate(.48);transition:filter .8s,transform 1s}
+.sleutels-wrap:hover img{filter:brightness(.65) saturate(.62);transform:scale(1.02)}
 .sleutels-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--tr);z-index:2;opacity:.7}
 .sleutels-quote{position:absolute;bottom:0;left:0;right:0;padding:2.75rem 2rem 1.5rem;background:linear-gradient(to top,rgba(8,8,8,.96) 0%,rgba(8,8,8,.45) 65%,transparent 100%);z-index:1}
 .sleutels-quote p{font-family:var(--sf);font-style:italic;font-size:1.05rem;color:rgba(198,203,209,.58);line-height:1.6}
 .sleutels-quote cite{display:block;margin-top:.65rem;font-family:var(--lb);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(198,203,209,.3);font-style:normal}
 
-/* ═══════════════════════════════════
-   OVER ONS
-═══════════════════════════════════ */
+/* ── OVER ONS ── */
 .about-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:1.35rem;margin-bottom:clamp(2.75rem,5.5vw,4.25rem)}
 .ac{background:var(--ink3);border:1px solid var(--ln);padding:1.85rem 1.65rem;transition:transform .4s,background .4s,border-color .4s;position:relative;overflow:hidden}
 .ac::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--ch);opacity:0;transition:opacity .4s}
@@ -286,6 +291,22 @@ nav.hide{transform:translateY(-105%)}
 .ac .tag{font-family:var(--lb);font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--pt);margin-bottom:.85rem;display:block;opacity:.75}
 .ac h4{font-size:1.08rem;margin-bottom:.45rem;font-weight:400}
 .ac p{font-size:.82rem}
+
+/* Garage row — auto's die Martijn heeft gereden */
+.garage-row{display:flex;gap:10px;flex-wrap:wrap;margin:2rem 0 2.5rem}
+.garage-badge{
+  font-family:var(--lb);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
+  padding:.45rem 1rem;border:1px solid var(--ln);color:rgba(198,203,209,.45);
+  position:relative;overflow:hidden;transition:border-color .4s,color .4s;
+}
+.garage-badge::before{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.7,.3,1)}
+.garage-badge:nth-child(1)::before{background:var(--ig)}
+.garage-badge:nth-child(2)::before{background:var(--pt)}
+.garage-badge:nth-child(3)::before{background:var(--pt)}
+.garage-badge:nth-child(4)::before{background:var(--ir)}
+.garage-badge:nth-child(5)::before{background:var(--pt)}
+.garage-badge:hover{border-color:rgba(198,203,209,.28);color:var(--pt)}
+.garage-badge:hover::before{transform:scaleX(1)}
 
 .split{display:grid;grid-template-columns:.82fr 1fr;gap:clamp(2.5rem,5.5vw,5rem);align-items:center}
 @media(max-width:860px){.split{grid-template-columns:1fr}}
@@ -298,9 +319,7 @@ nav.hide{transform:translateY(-105%)}
 .sig{font-family:var(--sf);font-style:italic;font-size:1.65rem;color:var(--pt);margin-top:1.75rem}
 .role{font-family:var(--lb);font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mt);margin-top:.3rem}
 
-/* ═══════════════════════════════════
-   PROJECTEN
-═══════════════════════════════════ */
+/* ── PROJECTEN ── */
 .p-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr));gap:1.75rem}
 .proj{position:relative;overflow:hidden;background:var(--ink3);border:1px solid var(--hr);transition:border-color .5s}
 .proj:hover{border-color:var(--ln)}
@@ -317,9 +336,7 @@ nav.hide{transform:translateY(-105%)}
 .veil::before{content:'';position:absolute;inset:0;z-index:2;background:var(--ink3);transform:scaleX(1);transform-origin:right;transition:transform .9s cubic-bezier(.75,0,.25,1)}
 .veil.in::before{transform:scaleX(0)}
 
-/* ═══════════════════════════════════
-   QUOTE / AFTER SALES
-═══════════════════════════════════ */
+/* ── QUOTE ── */
 .quote{height:220vh;padding:0;background:var(--ink)}
 .q-pin{position:sticky;top:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:0 var(--pd)}
 .quote blockquote{max-width:68ch;margin:0 auto;text-align:center;border:0;font-family:var(--sf);font-size:clamp(1.3rem,2.8vw,1.82rem);font-style:italic;line-height:1.72;color:#ccc}
@@ -327,16 +344,12 @@ nav.hide{transform:translateY(-105%)}
 .quote blockquote .qw{opacity:.1;transition:opacity .18s linear}
 .quote .attrib{margin-top:2rem;font-family:var(--lb);font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;color:var(--pt)}
 
-/* ═══════════════════════════════════
-   TARIEVEN — compact
-═══════════════════════════════════ */
+/* ── TARIEVEN ── */
 .tar-wrap{background:var(--ink3);border:1px solid var(--ln);padding:2.75rem;position:relative;overflow:hidden;margin-top:1.75rem}
 .tar-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--ch);opacity:.38}
 .tar-wrap::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--ig),rgba(198,203,209,.35),var(--ir));opacity:.28}
 
-/* ═══════════════════════════════════
-   CONTACT
-═══════════════════════════════════ */
+/* ── CONTACT ── */
 .contact-sec{text-align:center;background:radial-gradient(ellipse at 50% 0%,rgba(198,203,209,.065),transparent 58%),var(--ink2);padding:clamp(5rem,10vw,9rem) var(--pd)}
 .contact-sec h2{font-size:clamp(2.2rem,5vw,3.8rem)}
 .contact-sec .lead{margin:0 auto 2.75rem}
@@ -358,9 +371,7 @@ nav.hide{transform:translateY(-105%)}
 .cp-item:nth-child(3n+2) .cp-dot{background:rgba(198,203,209,.5)}
 .cp-item:nth-child(3n) .cp-dot{background:var(--ir)}
 
-/* ═══════════════════════════════════
-   FOOTER
-═══════════════════════════════════ */
+/* ── FOOTER ── */
 footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 .fg{max-width:1160px;margin:0 auto;padding:3.5rem 0 2.75rem;display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.75rem 2.25rem}
 @media(max-width:720px){.fg{grid-template-columns:1fr}}
@@ -380,7 +391,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 @media(prefers-reduced-motion:reduce){
   .rv,.hero .sub,.hero h1,.hero .lead,.hero .cta-row{opacity:1;transform:none;transition:none;animation:none}
   .hero-bg img,.scrollcue i,.hero h1 em{animation:none}
-  h2 .w i{transform:none;transition:none}
+  h2 .w i,.ey-tri,.ey.c .ey-tri-r{transform:none;transition:none;width:48px!important}
   .veil::before{display:none}
   .steps::after{transform:none}
   .step .dot::after{transform:scale(1)}
@@ -395,7 +406,6 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 
 <div id="progress"></div>
 
-<!-- ══ NAV ══ -->
 <nav id="nav">
   <a href="#top" class="brand">
     <span class="brand-apex">APEX</span>
@@ -450,38 +460,28 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   <div class="scrollcue" id="cue"><i></i> Scroll</div>
 </header>
 
-<!-- ══ ANGST-BREAKER ══
-     Adresseert de 4 grootste drempels voor auto-import
-═══════════════════════════════════════════════════ -->
+<!-- ══ ANGST-BREAKER ══ -->
 <div class="fear">
   <div class="fear-grid">
     <div class="fear-item rv">
-      <div class="fear-icon">
-        <svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg>
-      </div>
+      <div class="fear-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
       <div class="fear-q">"Stel dat ik een auto koop met verborgen schade?"</div>
-      <div class="fear-a">Wij regelen een onafhankelijke aankoopkeuring ter plaatse. U koopt niets zonder groen licht van onze specialist.</div>
+      <div class="fear-a">U koopt niets zonder groen licht. Een onafhankelijke aankoopkeuring regelen wij, indien gewenst, ter plaatse in het land van herkomst — professioneel en volledig objectief.</div>
     </div>
     <div class="fear-item rv">
-      <div class="fear-icon">
-        <svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg>
-      </div>
+      <div class="fear-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
       <div class="fear-q">"Is de BPM niet veel duurder dan ik denk?"</div>
-      <div class="fear-a">Gebruik onze gratis BPM Calculator voor een directe indicatie. Bij import regelen wij de officiële taxatie via erkende partners.</div>
+      <div class="fear-a">Gebruik onze gratis BPM Calculator voor een directe indicatie. Bij import regelen wij de officiële taxatie via erkende partners — transparant en zonder verrassingen achteraf.</div>
     </div>
     <div class="fear-item rv">
-      <div class="fear-icon">
-        <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg>
-      </div>
+      <div class="fear-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
       <div class="fear-q">"Ik spreek de taal niet en ken de markt niet."</div>
-      <div class="fear-a">Wij zijn uw verlengde arm in Duitsland, Italië, België, Spanje en meer. Communicatie, inspecties, onderhandeling — wij regelen het.</div>
+      <div class="fear-a">Wij zijn uw verlengde arm in Duitsland, Italië, België en Spanje. Communicatie, onderhandeling en lokale inspecties — wij regelen het alsof het onze eigen auto betreft.</div>
     </div>
     <div class="fear-item rv">
-      <div class="fear-icon">
-        <svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg>
-      </div>
+      <div class="fear-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
       <div class="fear-q">"De papieren en registratie zijn te ingewikkeld."</div>
-      <div class="fear-a">RDW-keuring, kentekenregistratie en kentekenmontage aan huis. U doet niets — wij leveren de auto rijklaar voor uw deur.</div>
+      <div class="fear-a">RDW-keuring, kentekenregistratie en kentekenmontage aan huis. U rijdt pas als alles klopt — en dat regelen wij volledig voor u.</div>
     </div>
   </div>
 </div>
@@ -490,14 +490,18 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 <section class="tools-sec" id="tools">
   <div class="wrap">
     <div class="tools-intro rv">
-      <p class="ey c">Gratis instrumenten</p>
+      <!-- Geanimeerde tricolore eyebrow -->
+      <p class="ey c">
+        <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
+        Gratis instrumenten
+        <span class="ey-tri-r" aria-hidden="true"><span></span><span></span><span></span></span>
+      </p>
       <h2>Bereken, controleer &amp; analyseer — voordat u beslist.</h2>
       <p class="lead">Drie tools die wij zelf dagelijks gebruiken. Gratis, direct, zonder registratie. Zo komt u beter voorbereid het gesprek in — of beslist u om het volledig aan ons uit te besteden.</p>
     </div>
 
-    <!-- Urgentie-banner -->
     <div class="tools-banner rv">
-      <div class="tools-banner-icon"></div>
+      <div class="tools-banner-dot"></div>
       <p><strong>Tip van Martijn:</strong> Begin altijd met de kentekencheck en BPM Calculator voordat u een bod uitbrengt op een buitenlandse auto. Het kan u duizenden euro's schelen.</p>
     </div>
 
@@ -506,8 +510,12 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
       <!-- 01 BPM Calculator -->
       <a class="tc" href="https://bpm.apexclusive.nl">
         <div class="tc-photo">
+          <!--
+            Luxe rekenmachine / financieel dashboard foto
+            Unsplash premium finance/luxury look
+          -->
           <img
-            src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_700,q_55,f_auto/v1786119322/Calculadora_Cientifica-0-01_generated_ozcslx.jpg"
+            src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=700&q=60&auto=format"
             alt="BPM Calculator" loading="lazy" decoding="async">
           <div class="tc-photo-fade"></div>
         </div>
@@ -525,7 +533,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         <div class="tc-photo">
           <img
             src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_700,q_60,f_auto/v1786120828/Nederlands_Kenteken_Sticker_gfmewm.png"
-            alt="Nederlands kenteken check" loading="lazy" decoding="async"
+            alt="Nederlands kenteken" loading="lazy" decoding="async"
             class="img-contain">
           <div class="tc-photo-fade"></div>
         </div>
@@ -543,7 +551,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         <div class="tc-photo">
           <img
             src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_700,q_60,f_auto/v1786118058/mobile-de-seeklogo_z1hb8f.png"
-            alt="Advertentie analyse Mobile.de AutoScout24" loading="lazy" decoding="async"
+            alt="Advertentie analyse" loading="lazy" decoding="async"
             class="img-logo">
           <div class="tc-photo-fade"></div>
         </div>
@@ -561,9 +569,13 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
     <!-- CTA onder tools -->
     <div class="rv" style="text-align:center;margin-top:3rem;padding:2.5rem;background:var(--ink3);border:1px solid var(--ln);position:relative;overflow:hidden">
       <div style="position:absolute;top:0;left:0;right:0;height:1px;background:var(--tr);opacity:.45"></div>
-      <p class="ey c" style="margin-bottom:.75rem">Liever alles uitbesteden?</p>
+      <p class="ey c">
+        <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
+        Liever alles uitbesteden?
+        <span class="ey-tri-r" aria-hidden="true"><span></span><span></span><span></span></span>
+      </p>
       <h3 style="font-size:1.55rem;margin-bottom:.75rem">Wij doen het voor u — van A tot Z.</h3>
-      <p style="max-width:480px;margin:0 auto 1.75rem">Geen zin in tools, formulieren en risico's? Dat begrijpen wij. Plan een vrijblijvend gesprek en wij nemen het volledig over.</p>
+      <p style="max-width:480px;margin:0 auto 1.75rem;color:var(--mt)">Geen zin in tools, formulieren en risico's? Dat begrijpen wij. Plan een vrijblijvend gesprek en wij nemen het volledig over.</p>
       <a href="#contact" class="btn"><span>Vrijblijvend gesprek plannen</span></a>
     </div>
 
@@ -576,6 +588,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
     <div class="imp-grid">
       <div class="imp-visual rv">
         <div class="imp-img">
+          <!-- Europa dots kaart -->
           <img
             src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_900,q_60,f_auto/v1786120997/Europa_dots_kunp9q.jpg"
             alt="Europa — uw zoekgebied" loading="lazy" decoding="async">
@@ -595,9 +608,12 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         </div>
       </div>
       <div class="rv">
-        <p class="ey">Importbegeleiding</p>
+        <p class="ey">
+          <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
+          Importbegeleiding
+        </p>
         <h2>Europa is uw showroom. Wij zijn uw gids.</h2>
-        <p class="lead" style="margin-bottom:1.35rem">De mooiste exemplaren staan zelden bij een Nederlandse dealer. Wij doorzoeken heel Europa — en regelen het volledige importtraject van A tot Z.</p>
+        <p class="lead" style="margin-bottom:1.35rem">De mooiste exemplaren staan zelden bij een Nederlandse dealer. Wij doorzoeken heel Europa — en regelen het volledige importtraject van A tot Z, zonder dat u er wakker van hoeft te liggen.</p>
         <div class="imp-steps">
           <div class="imp-step">
             <div class="imp-step-n">01</div>
@@ -605,15 +621,15 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
           </div>
           <div class="imp-step">
             <div class="imp-step-n">02</div>
-            <div><div class="imp-step-t">Onafhankelijke keuring ter plaatse</div><div class="imp-step-d">Inspectie door een erkende specialist in het land van herkomst. Volledig objectief.</div></div>
+            <div><div class="imp-step-t">Onafhankelijke keuring ter plaatse</div><div class="imp-step-d">Op verzoek regelen wij een aankoopkeuring ter plaatse in het land van herkomst. Volledig objectief, door een erkende specialist.</div></div>
           </div>
           <div class="imp-step">
             <div class="imp-step-n">03</div>
-            <div><div class="imp-step-t">BPM-taxatie &amp; importafhandeling</div><div class="imp-step-d">Coördinatie van de volledige importafhandeling via erkende partners. Geen verrassingen.</div></div>
+            <div><div class="imp-step-t">BPM-taxatie &amp; importafhandeling</div><div class="imp-step-d">Coördinatie van de volledige importafhandeling via erkende partners. Transparant, geen verrassingen.</div></div>
           </div>
           <div class="imp-step">
             <div class="imp-step-n">04</div>
-            <div><div class="imp-step-t">Rijklaar afgeleverd aan huis</div><div class="imp-step-d">RDW-keuring, kenteken en montage direct bij u thuis. U stapt in — wij hebben de rest geregeld.</div></div>
+            <div><div class="imp-step-t">Rijklaar afgeleverd aan huis</div><div class="imp-step-d">RDW-keuring, kenteken en montage bij u thuis. U stapt in — wij hebben de rest geregeld.</div></div>
           </div>
         </div>
         <div style="margin-top:2.25rem"><a href="#contact" class="btn"><span>Import bespreken</span></a></div>
@@ -626,18 +642,21 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 <section id="diensten" style="background:var(--ink2)">
   <div class="wrap">
     <div class="head rv">
-      <p class="ey">Diensten</p>
+      <p class="ey">
+        <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
+        Diensten
+      </p>
       <h2>Alles onder één dak.</h2>
       <p class="lead">Van zoektocht tot sleuteloverdracht — elke stap professioneel begeleid, niets over het hoofd gezien.</p>
     </div>
     <div class="svc-grid">
-      <div class="svc rv"><span class="n">01</span><h3>Aankoopbegeleiding</h3><p>Onafhankelijk zoeken, historie beoordelen, technische staat controleren.</p></div>
-      <div class="svc rv"><span class="n">02</span><h3>Technische Keuring</h3><p>Aankoopkeuring door een erkende specialist ter plaatse. Zo weet u precies wat u koopt.</p></div>
-      <div class="svc rv"><span class="n">03</span><h3>Onderhandeling</h3><p>Scherpe onderhandeling op basis van marktkennis. U betaalt de juiste prijs, nooit meer.</p></div>
+      <div class="svc rv"><span class="n">01</span><h3>Aankoopbegeleiding</h3><p>Onafhankelijk zoeken, historie beoordelen, technische staat controleren — volledig in uw belang.</p></div>
+      <div class="svc rv"><span class="n">02</span><h3>Technische Keuring</h3><p>Op verzoek regelen wij een aankoopkeuring ter plaatse door een erkende specialist. U koopt met zekerheid.</p></div>
+      <div class="svc rv"><span class="n">03</span><h3>Onderhandeling</h3><p>Scherpe onderhandeling op basis van marktkennis. U betaalt de juiste prijs — nooit meer.</p></div>
       <div class="svc rv"><span class="n">04</span><h3>Importbegeleiding</h3><p>Volledig importtraject inclusief BPM-taxatie, registratie en documentatie. <a class="il" href="https://bpm.apexclusive.nl">BPM berekenen →</a></p></div>
-      <div class="svc rv"><span class="n">05</span><h3>Taxatie</h3><p>Onafhankelijke taxatie door een gecertificeerde expert op locatie naar keuze.</p></div>
+      <div class="svc rv"><span class="n">05</span><h3>Taxatie</h3><p>Onafhankelijke taxatie door een gecertificeerde expert, op locatie naar keuze.</p></div>
       <div class="svc rv"><span class="n">06</span><h3>BPM-afhandeling</h3><p>Volledige BPM-afhandeling en Nederlandse registratie via erkende partners.</p></div>
-      <div class="svc rv"><span class="n">07</span><h3>RDW-keuring aan huis</h3><p>Verplichte RDW-keuring direct na aflevering. U hoeft nergens voor te rijden.</p></div>
+      <div class="svc rv"><span class="n">07</span><h3>RDW-keuring aan huis</h3><p>Verplichte RDW-keuring direct na aflevering, bij u thuis. U hoeft nergens voor te rijden.</p></div>
       <div class="svc rv"><span class="n">08</span><h3>Kenteken aan huis</h3><p>Kenteken afgeleverd en professioneel gemonteerd. De laatste stap, perfect afgerond.</p></div>
     </div>
   </div>
@@ -647,22 +666,30 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 <section id="werkwijze">
   <div class="wrap">
     <div class="head rv">
-      <p class="ey">Werkwijze</p>
+      <p class="ey">
+        <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
+        Werkwijze
+      </p>
       <h2>Van eerste gesprek tot sleuteloverdracht.</h2>
       <p class="lead">Transparant van start tot finish. Persoonlijk. Volledig op maat.</p>
     </div>
     <div class="steps" id="steps">
       <div class="step rv"><span class="dot"></span><span class="k">Stap 01</span><h3>Intake &amp; wensen</h3><p>Een persoonlijk gesprek over uw wensen, budget en rijervaring. Zonder verplichtingen.</p></div>
-      <div class="step rv"><span class="dot"></span><span class="k">Stap 02</span><h3>Zoeken &amp; screenen</h3><p>Wij doorzoeken netwerk en markt op voertuigen die exact passen. Inclusief buitenlandse bronnen.</p></div>
-      <div class="step rv"><span class="dot"></span><span class="k">Stap 03</span><h3>Keuring &amp; advies</h3><p>Onafhankelijke aankoopkeuring ter plaatse. U beslist pas als het rapport groen licht geeft.</p></div>
-      <div class="step rv"><span class="dot"></span><span class="k">Stap 04</span><h3>Onderhandelen &amp; aankopen</h3><p>Wij onderhandelen namens u. U beslist. Wij regelen de volledige overdracht.</p></div>
-      <div class="step rv"><span class="dot"></span><span class="k">Stap 05</span><h3>Import, BPM &amp; aflevering</h3><p>Volledige importafhandeling, RDW-keuring en kentekenmontage aan uw deur.</p></div>
+      <div class="step rv"><span class="dot"></span><span class="k">Stap 02</span><h3>Zoeken &amp; screenen</h3><p>Wij doorzoeken netwerk en markt op voertuigen die exact passen. Inclusief buitenlandse bronnen waar anderen niet kijken.</p></div>
+      <div class="step rv"><span class="dot"></span><span class="k">Stap 03</span><h3>Keuring &amp; advies</h3><p>Op verzoek regelen wij een onafhankelijke aankoopkeuring ter plaatse. U beslist pas als het rapport groen licht geeft.</p></div>
+      <div class="step rv"><span class="dot"></span><span class="k">Stap 04</span><h3>Onderhandelen &amp; aankopen</h3><p>Wij onderhandelen namens u, op basis van marktkennis en keuringsresultaten. U beslist. Wij regelen de volledige overdracht.</p></div>
+      <div class="step rv"><span class="dot"></span><span class="k">Stap 05</span><h3>Import, BPM &amp; aflevering</h3><p>Volledige importafhandeling, RDW-keuring en kentekenmontage aan huis. U rijdt pas als alles klopt.</p></div>
     </div>
-    <!-- Porsche sleutels foto -->
+
+    <!--
+      Sleuteloverdracht foto — Porsche sleutels
+      Sjieker alternatief: Unsplash luxury car key / Porsche key
+    -->
     <div class="sleutels-wrap rv">
       <img
-        src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_900,q_60,f_auto/v1786121230/porsche_ky_cfv9w5.jpg"
-        alt="Sleuteloverdracht — APEXclusive" loading="lazy" decoding="async">
+        src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=900&q=65&auto=format"
+        alt="Sleuteloverdracht — APEXclusive"
+        loading="lazy" decoding="async">
       <div class="sleutels-quote">
         <p>"Van eerste gesprek tot het moment waarop de sleutel wordt overhandigd — alles geregeld, niets vergeten."</p>
         <cite>— Martijn Puts · Founder APEXclusive</cite>
@@ -675,32 +702,38 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 <section style="background:var(--ink2)">
   <div class="wrap">
     <div class="head rv">
-      <p class="ey">Waarom APEXclusive</p>
+      <p class="ey">
+        <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
+        Waarom APEXclusive
+      </p>
       <h2>Vier redenen om te kiezen voor zekerheid.</h2>
     </div>
     <div class="r-grid">
       <div class="reason rv"><span class="big">01</span><h3>Persoonlijke begeleiding</h3><p>Elke opdracht begint met een persoonlijk gesprek. Uw wensen staan centraal — niet een aanbod uit de voorraad.</p></div>
       <div class="reason rv"><span class="big">02</span><h3>Volledig onafhankelijk</h3><p>Geen voorraad, geen dealerbelang. Alleen advies dat uitsluitend uw belang dient — met een transparant honorarium dat u vooraf kent.</p></div>
       <div class="reason rv"><span class="big">03</span><h3>Europese marktkennis</h3><p>Wij kennen de markt in Duitsland, België, Italië, Spanje en meer. De mooiste auto's staan zelden in Nederland.</p></div>
-      <div class="reason rv"><span class="big">04</span><h3>Nul zorgen, A tot Z</h3><p>Van eerste zoektocht tot rijklare aflevering aan huis — alles geregeld. U hoeft niets te doen, behalve instappen.</p></div>
+      <div class="reason rv"><span class="big">04</span><h3>Nul zorgen, A tot Z</h3><p>Van eerste zoektocht tot rijklare aflevering aan huis. U hoeft niets te doen, behalve instappen.</p></div>
     </div>
   </div>
 </section>
 
-<!-- ══ TARIEVEN (compact) ══ -->
+<!-- ══ TARIEVEN ══ -->
 <section id="tarieven">
   <div class="wrap">
     <div class="split" style="align-items:start">
       <div class="rv">
-        <p class="ey">Tarieven</p>
+        <p class="ey">
+          <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
+          Tarieven
+        </p>
         <h2>Investeren in zekerheid</h2>
         <div class="rule"></div>
-        <p style="margin-top:1.25rem;max-width:38ch">Het honorarium verdient zichzelf terug via een scherpere aankoopprijs en vermeden risico's.</p>
+        <p style="margin-top:1.25rem;max-width:38ch;color:var(--mt)">Het honorarium verdient zichzelf terug via een scherpere aankoopprijs, vermeden risico's en de zekerheid dat u precies de juiste auto rijdt.</p>
       </div>
       <div class="rv">
         <div class="tar-wrap">
-          <p class="lead" style="margin-bottom:1.35rem">APEXclusive werkt op basis van een transparant honorarium, afgestemd op de omvang van uw opdracht. Geen vaste pakketprijzen — wel een eerlijk gesprek vooraf.</p>
-          <p style="margin-bottom:1.85rem">Ons tarief staat altijd in verhouding tot de tijd, expertise en het netwerk dat wij voor u inzetten. U weet vooraf waar u aan toe bent.</p>
+          <p class="lead" style="margin-bottom:1.35rem">APEXclusive werkt op basis van een transparant honorarium, afgestemd op de omvang van uw opdracht. Geen vaste pakketprijzen — wel een eerlijk gesprek vooraf over wat u kunt verwachten.</p>
+          <p style="margin-bottom:1.85rem;color:var(--mt)">U weet vooraf waar u aan toe bent. Geen verborgen kosten, geen verrassingen. Alleen een helder tarief dat in verhouding staat tot de expertise en het netwerk dat wij voor u inzetten.</p>
           <a href="#contact" class="btn"><span>Tarieven bespreken</span></a>
         </div>
       </div>
@@ -712,11 +745,12 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 <section id="over" style="background:var(--ink2)">
   <div class="wrap">
     <div class="about-cards">
-      <div class="ac rv"><span class="tag">100% Onafhankelijk</span><h4>Volledig in uw belang.</h4><p>Geen dealerbelangen, geen provisies van verkopers. Uitsluitend werkend voor u.</p></div>
-      <div class="ac rv"><span class="tag">EU-breed netwerk</span><h4>Heel Europa als zoekgebied.</h4><p>Duitsland, België, Italië, Spanje, Zweden — waar de mooiste exemplaren staan.</p></div>
-      <div class="ac rv"><span class="tag">Luchtvaartnorm</span><h4>Precisie is een gewoonte.</h4><p>Als professioneel piloot zijn voorbereiding en oog voor detail geen eigenschap — het zijn gewoontes.</p></div>
+      <div class="ac rv"><span class="tag">100% Onafhankelijk</span><h4>Volledig in uw belang.</h4><p>Geen dealerbelangen, geen provisies van verkopers. Uitsluitend werkend voor u — met een tarief dat u vooraf kent.</p></div>
+      <div class="ac rv"><span class="tag">EU-breed netwerk</span><h4>Heel Europa als zoekgebied.</h4><p>Duitsland, België, Italië, Spanje, Zweden — waar de mooiste exemplaren staan, zijn wij actief.</p></div>
+      <div class="ac rv"><span class="tag">Luchtvaartnorm</span><h4>Precisie is een gewoonte.</h4><p>Als professioneel piloot zijn voorbereiding, checklist-denken en oog voor detail geen eigenschap — het zijn gewoontes.</p></div>
       <div class="ac rv"><span class="tag">A–Z ontzorgd</span><h4>U doet niets, wij doen alles.</h4><p>Van eerste gesprek tot rijklare aflevering aan huis. U stapt in — wij hebben de rest geregeld.</p></div>
     </div>
+
     <div class="split">
       <div class="portrait rv">
         <img
@@ -726,12 +760,33 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         <div class="portrait-fade"></div>
       </div>
       <div class="rv">
-        <p class="ey">De oprichter</p>
+        <p class="ey">
+          <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
+          De oprichter
+        </p>
         <h2>Precisie uit de luchtvaart. Passie voor uitzonderlijke auto's.</h2>
         <div class="rule" style="margin-bottom:1.75rem"></div>
+
         <p style="margin-bottom:1.1rem">APEXclusive is ontstaan vanuit een eenvoudige overtuiging: wie investeert in een bijzonder voertuig, verdient begeleiding die daar volledig bij past.</p>
-        <p style="margin-bottom:1.1rem">Als professioneel piloot zijn precisie, voorbereiding en oog voor detail geen eigenschappen — het zijn gewoontes. Die mindset neem ik mee in elk adviestraject.</p>
-        <p>Geen standaardaanbod. Geen dealerbelang. Alleen de auto die bij u past — gevonden en gekeurd met de aandacht die u verdient.</p>
+
+        <p style="margin-bottom:1.1rem">Als professioneel piloot zijn precisie, voorbereiding en oog voor detail geen eigenschappen — het zijn gewoontes. Die mindset neem ik mee in elk adviestraject: niets wordt aan het toeval overgelaten.</p>
+
+        <p style="margin-bottom:1.75rem">Wat mij onderscheidt, is dat ik niet alleen adviseur ben — ik ben ook liefhebber. Al meer dan tien jaar rij ik zelf exclusieve auto's: van McLaren en Lamborghini tot Porsche. Ik ken het gevoel van een perfecte match, maar ook de valkuilen van een teleurstellende aankoop. Die ervaring zet ik elke dag in voor mijn klanten.</p>
+
+        <!-- Auto-badges: 10 jaar eigen ervaring -->
+        <div style="margin-bottom:1.5rem">
+          <div style="font-family:var(--lb);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(198,203,209,.3);margin-bottom:.85rem">Eigen rijervaring — meer dan 10 jaar</div>
+          <div class="garage-row">
+            <div class="garage-badge">McLaren</div>
+            <div class="garage-badge">Lamborghini</div>
+            <div class="garage-badge">Porsche</div>
+            <div class="garage-badge">Audi RS</div>
+            <div class="garage-badge">10+ jaar</div>
+          </div>
+        </div>
+
+        <p style="color:var(--mt)">Geen standaardaanbod. Geen dealerbelang. Alleen de auto die bij u past — gevonden en gekeurd met de aandacht die u verdient.</p>
+
         <p class="sig">Martijn Puts</p>
         <p class="role">Founder &amp; Private Vehicle Advisor</p>
       </div>
@@ -743,9 +798,12 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 <section id="projecten">
   <div class="wrap">
     <div class="head rv">
-      <p class="ey">Gerealiseerde projecten</p>
+      <p class="ey">
+        <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
+        Gerealiseerde projecten
+      </p>
       <h2>Drie recente opdrachten.</h2>
-      <p class="lead">Elk voertuig persoonlijk begeleid, onafhankelijk gekeurd en rijklaar afgeleverd.</p>
+      <p class="lead">Elk voertuig persoonlijk begeleid, onafhankelijk gekeurd en rijklaar afgeleverd aan een tevreden eigenaar.</p>
     </div>
     <div class="p-grid">
       <article class="proj rv">
@@ -765,7 +823,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         <div class="cap">
           <span class="tag">Persoonlijke import · Luxemburg</span>
           <h3>Lamborghini Urus</h3>
-          <p>650 pk · V8 Twin-Turbo · Luxemburgse luxury dealer · 5 jaar Lamborghini Service Warranty · Garantie geldig t/m mei 2027.</p>
+          <p>650 pk · V8 Twin-Turbo · Luxemburgse luxury dealer · 5 jaar Lamborghini Service Warranty inclusief onderhoud.</p>
         </div>
       </article>
       <article class="proj rv">
@@ -775,7 +833,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         <div class="cap">
           <span class="tag">Aankoopbegeleiding · Duitsland</span>
           <h3>Audi RS6 Avant C8</h3>
-          <p>600 pk · V8 TFSI · Audi Approved · 24 maanden garantie · BPM-afhandeling en NL-registratie inbegrepen.</p>
+          <p>600 pk · V8 TFSI · Audi Approved · 24 maanden garantie · Volledige BPM-afhandeling en NL-registratie inbegrepen.</p>
         </div>
       </article>
     </div>
@@ -786,7 +844,11 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 <section class="quote" id="aftersales">
   <div class="q-pin">
     <div class="wrap" style="text-align:center">
-      <p class="ey c" style="margin-bottom:2.2rem">After sales</p>
+      <p class="ey c" style="margin-bottom:2.2rem">
+        <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
+        After sales
+        <span class="ey-tri-r" aria-hidden="true"><span></span><span></span><span></span></span>
+      </p>
       <blockquote id="bq">Ik bel u altijd na afloop. Niet als vinkje op een checklist — gewoon omdat ik echt wil weten hoe het voelt, rijdt en of u blij bent met uw keuze. Uw vertrouwen is niet alleen een formaliteit; het is het fundament van alles.</blockquote>
       <p class="attrib">— Martijn Puts · Founder &amp; Private Vehicle Advisor</p>
     </div>
@@ -796,7 +858,11 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 <!-- ══ CONTACT ══ -->
 <section class="contact-sec" id="contact">
   <div class="wrap rv">
-    <p class="ey c">Contact</p>
+    <p class="ey c">
+      <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
+      Contact
+      <span class="ey-tri-r" aria-hidden="true"><span></span><span></span><span></span></span>
+    </p>
     <h2>Klaar om uw droomauto te importeren?</h2>
     <p class="lead">Eén gesprek is genoeg om te bepalen of wij iets voor u kunnen betekenen. Vrijblijvend, discreet en zonder verplichtingen.</p>
     <div class="c-grid">
@@ -810,7 +876,11 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
       <a class="btn gh" href="mailto:info@apexclusive.nl"><span>Stuur een e-mail</span></a>
     </div>
     <div class="contact-promise rv">
-      <p class="ey c" style="margin-bottom:.5rem">Wat u kunt verwachten</p>
+      <p class="ey c" style="margin-bottom:.5rem">
+        <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
+        Wat u kunt verwachten
+        <span class="ey-tri-r" aria-hidden="true"><span></span><span></span><span></span></span>
+      </p>
       <div class="cp-items">
         <div class="cp-item"><span class="cp-dot"></span>Reactie doorgaans binnen 24 uur</div>
         <div class="cp-item"><span class="cp-dot"></span>Volledig discreet en vertrouwelijk</div>
@@ -860,11 +930,16 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 document.getElementById('yr').textContent = new Date().getFullYear();
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 let stimer;
-addEventListener('scroll',()=>{document.body.classList.add('scrolling');clearTimeout(stimer);stimer=setTimeout(()=>document.body.classList.remove('scrolling'),150);},{passive:true});
+addEventListener('scroll',()=>{
+  document.body.classList.add('scrolling');
+  clearTimeout(stimer);
+  stimer=setTimeout(()=>document.body.classList.remove('scrolling'),150);
+},{passive:true});
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 
+/* ── H2 split words ── */
 if(!reduced){
-  document.querySelectorAll('section h2').forEach(h=>{
+  document.querySelectorAll('section h2, header h1').forEach(h=>{
     [...h.childNodes].forEach(node=>{
       if(node.nodeType!==3||!node.textContent.trim())return;
       const frag=document.createDocumentFragment();
@@ -880,6 +955,7 @@ if(!reduced){
   });
 }
 
+/* ── Quote words ── */
 const bq=document.getElementById('bq');
 let qwords=[];
 if(!reduced){
@@ -892,6 +968,7 @@ if(!reduced){
   qwords=[...bq.querySelectorAll('.qw')];
 }
 
+/* ── Mobile menu ── */
 const nav=document.getElementById('nav');
 const burger=document.getElementById('burger');
 const mmenu=document.getElementById('mm');
@@ -905,34 +982,62 @@ const toggleMenu=open=>{
 burger.addEventListener('click',()=>toggleMenu(!mmenu.classList.contains('open')));
 mmenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>toggleMenu(false)));
 
+/* ══════════════════════════════════════════════════
+   REVEAL OBSERVER
+   — .rv elementen fade in
+   — .veil foto-curtain
+   — section h2 word-reveal
+   — .ey tricolore animatie: class 'tri-in' triggert width
+══════════════════════════════════════════════════ */
 const io=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(!e.isIntersecting)return;
     io.unobserve(e.target);
+
+    /* veil foto reveal */
     const img=e.target.classList.contains('veil')?e.target.querySelector('img'):null;
     if(img&&!img.complete){
       img.addEventListener('load', ()=>e.target.classList.add('in'),{once:true});
       img.addEventListener('error',()=>e.target.classList.add('in'),{once:true});
-    }else e.target.classList.add('in');
-  });
-},{threshold:.07,rootMargin:'0px 0px -4% 0px'});
+    }else{
+      e.target.classList.add('in');
+    }
 
+    /* Tricolore eyebrow animatie */
+    if(e.target.classList.contains('ey')){
+      e.target.classList.add('tri-in');
+    }
+    /* Als het een container is, ook geneste .ey activeren */
+    e.target.querySelectorAll&&e.target.querySelectorAll('.ey').forEach(ey=>{
+      setTimeout(()=>ey.classList.add('tri-in'),200);
+    });
+  });
+},{threshold:.08,rootMargin:'0px 0px -4% 0px'});
+
+/* Stagger binnen grids */
 document.querySelectorAll('.svc-grid,.r-grid,.steps,.p-grid,.tgrid,.about-cards,.c-grid,.fear-grid').forEach(g=>{
   [...g.children].forEach((el,i)=>el.style.transitionDelay=Math.min(i,5)*85+'ms');
 });
-document.querySelectorAll('.rv,.step,.veil,section h2').forEach(el=>io.observe(el));
 
+/* Observeer alles */
+document.querySelectorAll('.rv,.step,.veil,section h2,.ey').forEach(el=>io.observe(el));
+
+/* ── Scrollspy ── */
 const links=[...document.querySelectorAll('#navlinks a')];
 const spy=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{if(e.isIntersecting)links.forEach(a=>a.classList.toggle('active',a.hash==='#'+e.target.id));});
+  entries.forEach(e=>{
+    if(e.isIntersecting)
+      links.forEach(a=>a.classList.toggle('active',a.hash==='#'+e.target.id));
+  });
 },{rootMargin:'-40% 0px -55% 0px'});
 links.forEach(a=>{const t=document.querySelector(a.hash);if(t)spy.observe(t);});
 
-const bar=document.getElementById('progress');
-const heroC=document.getElementById('heroContent');
-const cue=document.getElementById('cue');
-const steps=document.getElementById('steps');
-const quote=document.querySelector('.quote');
+/* ── Main rAF loop ── */
+const bar   =document.getElementById('progress');
+const heroC =document.getElementById('heroContent');
+const cue   =document.getElementById('cue');
+const steps =document.getElementById('steps');
+const quote =document.querySelector('.quote');
 let navY=scrollY;
 
 function frame(){
@@ -946,14 +1051,18 @@ function frame(){
   if(!reduced){
     const hp=clamp(y/vh,0,1);
     heroC.style.transform=`translateY(${hp*95}px)`;
-    heroC.style.opacity=1-hp*1.35;
-    cue.style.opacity=1-hp*3;
-    if(steps){const r=steps.getBoundingClientRect();steps.style.setProperty('--tp',clamp((vh*.7-r.top)/r.height,0,1).toFixed(3));}
+    heroC.style.opacity  =1-hp*1.35;
+    cue.style.opacity    =1-hp*3;
+    if(steps){
+      const r=steps.getBoundingClientRect();
+      steps.style.setProperty('--tp',clamp((vh*.7-r.top)/r.height,0,1).toFixed(3));
+    }
     if(qwords.length){
-      const r=quote.getBoundingClientRect();
+      const r =quote.getBoundingClientRect();
       const pr=clamp(-r.top/(r.height-vh),0,1);
-      const n=qwords.length;
-      for(let i=0;i<n;i++)qwords[i].style.opacity=clamp((pr*(n+8)-i)/5,.1,1).toFixed(2);
+      const n =qwords.length;
+      for(let i=0;i<n;i++)
+        qwords[i].style.opacity=clamp((pr*(n+8)-i)/5,.1,1).toFixed(2);
     }
   }
   requestAnimationFrame(frame);
