@@ -582,6 +582,35 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 
 <div id="progress"></div>
 
+<button class="apex-bubble" type="button" onclick="apexToggle()" aria-label="Open chat">
+  <span class="apex-bubble-dot"></span>
+  Chat met ons
+</button>
+
+<div class="apex-chat-win" id="apex-chat-win" aria-live="polite">
+  <div class="chat-hdr">
+    <div class="chat-hdr-av" aria-hidden="true">A</div>
+    <div>
+      <div class="chat-hdr-name">APEXclusive Adviseur</div>
+      <div class="chat-hdr-status">Online — reageert direct</div>
+    </div>
+    <button class="chat-x" type="button" onclick="apexToggle()" aria-label="Sluit chat">✕</button>
+  </div>
+  <div id="apex-msgs" class="chat-msgs"></div>
+  <div id="apex-quick" class="chat-quick">
+    <button class="chat-qbtn" type="button" onclick="apexQuick('BPM kosten')">BPM kosten</button>
+    <button class="chat-qbtn" type="button" onclick="apexQuick('Importproces')">Importproces</button>
+    <button class="chat-qbtn" type="button" onclick="apexQuick('Bijkomende kosten')">Bijkomende kosten</button>
+    <button class="chat-qbtn" type="button" onclick="apexQuick('Taxatie')">Taxatie</button>
+    <button class="chat-qbtn" type="button" onclick="apexQuick('Over APEXclusive')">Over APEXclusive</button>
+  </div>
+  <div class="chat-inp-row">
+    <input id="apex-inp" class="chat-inp" type="text" placeholder="Typ uw vraag..." autocomplete="off">
+    <button id="apex-send" class="chat-send-btn" type="button" onclick="apexSend()" aria-label="Verstuur bericht">→</button>
+  </div>
+  <div class="chat-foot">APEXclusive · Maastricht · AI Adviseur · Geen financieel advies</div>
+</div>
+
 <!-- ══ NAV ══ -->
 <nav id="nav">
   <a href="#top" class="brand">
@@ -1144,6 +1173,119 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 </footer>
 
 <script>
+/* ══════════════════════════════════════
+   APEX CHAT
+══════════════════════════════════════ */
+const _CHAT_API = '/api/chat';
+let _msgs       = [];
+let _open       = false;
+let _busy       = false;
+
+const WELKOM =
+  'Goedag! Ik ben de digitale adviseur van APEXclusive. ' +
+  'Ik help u graag met vragen over premium auto import, ' +
+  'BPM-berekeningen of supercar advies. ' +
+  'Wat kan ik voor u betekenen?';
+
+function apexToggle(){
+  _open = !_open;
+  const win = document.getElementById('apex-chat-win');
+  if(_open){
+    win.classList.add('open');
+    if(_msgs.length === 0) _addMsg('bot', WELKOM);
+    setTimeout(()=>document.getElementById('apex-inp').focus(), 250);
+  } else {
+    win.classList.remove('open');
+  }
+}
+
+function apexQuick(tekst){
+  document.getElementById('apex-quick').style.display = 'none';
+  document.getElementById('apex-inp').value = tekst;
+  apexSend();
+}
+
+async function apexSend(){
+  const inp = document.getElementById('apex-inp');
+  const msg = inp.value.trim();
+  if(!msg || _busy) return;
+
+  inp.value = '';
+  _addMsg('user', msg);
+  _msgs.push({ role:'user', content:msg });
+  document.getElementById('apex-quick').style.display = 'none';
+
+  _busy = true;
+  document.getElementById('apex-send').disabled = true;
+  const typer = _showTyping();
+
+  try {
+    const res  = await fetch(_CHAT_API, {
+      method:  'POST',
+      headers: { 'Content-Type':'application/json' },
+      body:    JSON.stringify({ messages: _msgs })
+    });
+    const data = await res.json();
+    typer.remove();
+
+    if(data.error){
+      _addMsg('bot', '⚠️ ' + data.error);
+    } else {
+      _msgs.push({ role:'assistant', content:data.reply });
+      _addMsg('bot', data.reply);
+    }
+  } catch(e){
+    typer.remove();
+    _addMsg('bot',
+      'Verbindingsfout. Probeer het opnieuw of neem contact ' +
+      'op via apexclusive.nl/#contact'
+    );
+  }
+
+  _busy = false;
+  document.getElementById('apex-send').disabled = false;
+  inp.focus();
+}
+
+function _addMsg(rol, tekst){
+  const wrap = document.getElementById('apex-msgs');
+  const div  = document.createElement('div');
+  div.className = 'cmsg ' + rol;
+
+  if(rol === 'bot'){
+    const lbl = document.createElement('div');
+    lbl.className = 'cmsg-lbl';
+    lbl.textContent = 'APEXclusive Adviseur';
+    div.appendChild(lbl);
+  }
+
+  const p = document.createElement('div');
+  p.innerHTML = _fmt(tekst);
+  div.appendChild(p);
+  wrap.appendChild(div);
+  wrap.scrollTop = wrap.scrollHeight;
+}
+
+function _fmt(t){
+  return t
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g,'<em>$1</em>')
+    .replace(/\n/g,'<br>');
+}
+
+function _showTyping(){
+  const wrap = document.getElementById('apex-msgs');
+  const div  = document.createElement('div');
+  div.className = 'chat-typing';
+  div.innerHTML = '<span></span><span></span><span></span>';
+  wrap.appendChild(div);
+  wrap.scrollTop = wrap.scrollHeight;
+  return div;
+}
+
 document.getElementById('yr').textContent = new Date().getFullYear();
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 let stimer;
