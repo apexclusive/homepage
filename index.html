@@ -34,56 +34,26 @@ a{color:inherit;text-decoration:none}
 ::-webkit-scrollbar{width:5px}
 ::-webkit-scrollbar-track{background:var(--ink)}
 ::-webkit-scrollbar-thumb{background:linear-gradient(to bottom,var(--ig) 33%,rgba(198,203,209,.5) 33% 66%,var(--ir) 66%)}
-section{padding:clamp(5rem,10vw,9rem) var(--pd);position:relative}
+section{padding:clamp(4.5rem,9vw,8rem) var(--pd);position:relative}
 .wrap{max-width:1160px;margin:0 auto;position:relative;z-index:1}
-.head{max-width:60ch;margin-bottom:clamp(2.75rem,5.5vw,4.5rem)}
+.head{max-width:60ch;margin-bottom:clamp(2.5rem,5vw,4rem)}
 .rule{width:56px;height:2px;background:var(--ch);margin-top:1.5rem}
 
-/* ══════════════════════════════════════════════
-   TRICOLORE EYEBROW — geanimeerde Italiaanse vlag
-   boven elke sectietitel
-══════════════════════════════════════════════ */
-.ey{
-  font-family:var(--lb);font-size:.66rem;letter-spacing:.38em;text-transform:uppercase;
-  color:var(--pt);font-weight:400;margin-bottom:1.4rem;
-  display:flex;align-items:center;gap:.9rem;
-}
-/* Tricolore animatiebalk links van de eyebrow */
-.ey-tri{
-  display:flex;
-  flex-direction:row;
-  gap:0;
-  flex-shrink:0;
-  overflow:hidden;
-  height:14px;
-  width:0;
-  transition:width .8s cubic-bezier(.2,.7,.3,1);
-}
-.ey-tri span{
-  display:block;
-  flex:1;
-  min-width:0;
-}
+/* ══ TRICOLORE EYEBROW ══ */
+.ey{font-family:var(--lb);font-size:.66rem;letter-spacing:.38em;text-transform:uppercase;color:var(--pt);font-weight:400;margin-bottom:1.4rem;display:flex;align-items:center;gap:.9rem}
+.ey-tri,.ey-tri-r{display:flex;flex-direction:row;gap:0;flex-shrink:0;overflow:hidden;height:12px;width:0;transition:width .85s cubic-bezier(.2,.7,.3,1)}
+.ey-tri-r{transition-delay:.12s}
+.ey-tri span,.ey-tri-r span{display:block;flex:1;min-width:0}
 .ey-tri span:nth-child(1){background:var(--ig)}
-.ey-tri span:nth-child(2){background:#ffffff}
+.ey-tri span:nth-child(2){background:#fff}
 .ey-tri span:nth-child(3){background:var(--ir)}
-/* Wanneer sectie in beeld: balk schuift open */
-.ey.tri-in .ey-tri{width:48px}
-
-/* Center variant */
+.ey-tri-r span:nth-child(1){background:var(--ir)}
+.ey-tri-r span:nth-child(2){background:#fff}
+.ey-tri-r span:nth-child(3){background:var(--ig)}
+.ey.tri-in .ey-tri,.ey.tri-in .ey-tri-r{width:44px}
 .ey.c{justify-content:center}
-.ey.c .ey-tri-r{
-  display:flex;flex-direction:row;gap:0;flex-shrink:0;
-  overflow:hidden;height:14px;width:0;
-  transition:width .8s .15s cubic-bezier(.2,.7,.3,1);
-}
-.ey.c .ey-tri-r span{display:block;flex:1;min-width:0}
-.ey.c .ey-tri-r span:nth-child(1){background:var(--ir)}
-.ey.c .ey-tri-r span:nth-child(2){background:#ffffff}
-.ey.c .ey-tri-r span:nth-child(3){background:var(--ig)}
-.ey.tri-in .ey-tri-r{width:48px}
 
-/* type */
+/* ══ TYPE ══ */
 h1,h2,h3,h4{font-family:var(--sf);font-weight:300;line-height:1.1;letter-spacing:.01em}
 h2{font-size:clamp(2rem,4.4vw,3.3rem);margin-bottom:1.1rem}
 h3{font-size:1.4rem;margin-bottom:.6rem}
@@ -92,10 +62,9 @@ p{color:var(--mt);font-size:.93rem}
 h2 .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.1em;margin-bottom:-.1em}
 h2 .w i{display:inline-block;font-style:inherit;transform:translateY(115%);transition:transform .95s cubic-bezier(.2,.7,.3,1)}
 h2.in .w i{transform:none}
-
 #progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:200;background:var(--pt-s);transform-origin:left;transform:scaleX(0)}
 
-/* ── LOGO ── */
+/* ══ LOGO ══ */
 .brand{font-family:var(--sf);letter-spacing:.18em;text-transform:uppercase;white-space:nowrap;display:inline-flex;align-items:center;gap:0;text-decoration:none;color:var(--tx)}
 .brand-apex{font-weight:600;color:var(--pt);letter-spacing:.22em}
 .brand-sep{display:inline-flex;flex-direction:column;gap:2px;margin:0 8px;flex-shrink:0}
@@ -105,26 +74,26 @@ h2.in .w i{transform:none}
 .brand-sep span:nth-child(3){height:5px;background:var(--ir)}
 .brand-excl{font-weight:300;color:rgba(198,203,209,.42);letter-spacing:.22em}
 
-/* ── NAV ── */
+/* ══ NAV ══ */
 nav{position:fixed;inset:0 0 auto;z-index:100;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;padding:1.4rem var(--pd);transition:background .4s,padding .4s,border-color .4s,transform .5s cubic-bezier(.2,.7,.3,1);border-bottom:1px solid transparent}
 nav.stuck{background:rgba(8,8,8,.94);backdrop-filter:blur(22px);-webkit-backdrop-filter:blur(22px);padding:.85rem var(--pd);border-bottom-color:var(--ln)}
 nav.hide{transform:translateY(-105%)}
-.navlinks{display:flex;gap:2.2rem;font-family:var(--lb);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase}
+.navlinks{display:flex;gap:2rem;font-family:var(--lb);font-size:.68rem;letter-spacing:.18em;text-transform:uppercase}
 .navlinks a{color:#aaa;position:relative;padding-bottom:4px;transition:color .3s}
 .navlinks a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--tf);transition:width .4s cubic-bezier(.2,.7,.3,1)}
 .navlinks a:hover,.navlinks a.active{color:#fff}
 .navlinks a:hover::after,.navlinks a.active::after{width:100%}
 .brand{font-size:1.3rem}
 
-/* ── BUTTONS ── */
-.btn{display:inline-flex;align-items:center;justify-content:center;gap:.65rem;padding:.95rem 2rem;font-family:var(--lb);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;border:1px solid var(--pt);color:var(--pt);font-weight:400;background:transparent;cursor:pointer;position:relative;overflow:hidden;transition:color .4s,border-color .4s;white-space:nowrap}
+/* ══ BUTTONS ══ */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:.65rem;padding:.9rem 1.9rem;font-family:var(--lb);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;border:1px solid var(--pt);color:var(--pt);font-weight:400;background:transparent;cursor:pointer;position:relative;overflow:hidden;transition:color .4s;white-space:nowrap}
 .btn::before{content:'';position:absolute;inset:0;background:var(--ch);background-size:220% 100%;background-position:100% 0;transform:translateY(101%);transition:transform .4s cubic-bezier(.2,.7,.3,1);z-index:-1}
 .btn:hover{color:var(--ink)}.btn:hover::before{transform:translateY(0)}
 .btn.gh{border-color:rgba(255,255,255,.18);color:#ccc}.btn.gh::before{background:rgba(255,255,255,.95)}.btn.gh:hover{color:var(--ink)}
-.btn.sm{padding:.65rem 1.4rem}
+.btn.sm{padding:.6rem 1.3rem}
 .cta-row{display:flex;gap:1rem;flex-wrap:wrap}
 
-/* ── BURGER ── */
+/* ══ BURGER ══ */
 #burger{display:none;flex-direction:column;gap:6px;background:none;border:0;cursor:pointer;padding:8px;z-index:160}
 #burger span{display:block;width:24px;height:1px;background:var(--pt);transition:transform .4s,opacity .3s}
 #burger.open span:nth-child(1){transform:translateY(7px) rotate(45deg)}
@@ -137,14 +106,14 @@ nav.hide{transform:translateY(-105%)}
 #mm a:hover{color:var(--pt)}
 @media(max-width:900px){.navlinks,nav .btn{display:none}#burger{display:flex}}
 
-/* ── HERO ── */
+/* ══ HERO ══ */
 .hero{min-height:100svh;display:flex;flex-direction:column;justify-content:flex-end;padding-top:8rem;padding-bottom:6.5rem;overflow:hidden}
 .hero-bg{position:absolute;inset:0;z-index:-2}
 .hero .livery{position:absolute;top:0;bottom:0;left:0;width:4px;z-index:1;background:var(--tr);opacity:0;animation:lvin .9s .6s cubic-bezier(.2,.7,.3,1) forwards}
 @keyframes lvin{to{opacity:.88}}
 .hero-bg img{width:100%;height:100%;object-fit:cover;object-position:center 38%;transform:scale(1.06);animation:drift 26s ease-in-out infinite alternate}
 @keyframes drift{to{transform:scale(1.06) translate3d(-1.5%,-1%,0)}}
-.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(8,8,8,.96) 0%,rgba(8,8,8,.65) 45%,rgba(8,8,8,.25) 100%),linear-gradient(to top,var(--ink) 0%,transparent 42%)}
+.hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(8,8,8,.96) 0%,rgba(8,8,8,.65) 45%,rgba(8,8,8,.22) 100%),linear-gradient(to top,var(--ink) 0%,transparent 42%)}
 .hero-inner{max-width:1160px;margin:0 auto;width:100%}
 .hero-content{max-width:72ch}
 .hero .sub{font-family:var(--lb);font-size:.68rem;letter-spacing:.4em;text-transform:uppercase;color:#bbb;margin-bottom:2.2rem;display:flex;align-items:center;gap:1rem}
@@ -156,14 +125,31 @@ nav.hide{transform:translateY(-105%)}
 .hero .sub,.hero h1,.hero .lead,.hero .cta-row{opacity:0;animation:rise .9s cubic-bezier(.2,.7,.3,1) forwards}
 .hero h1{animation-delay:.12s}.hero .lead{animation-delay:.25s}.hero .cta-row{animation-delay:.38s}
 @keyframes rise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:none}}
-.scrollcue{position:absolute;left:var(--pd);bottom:2.2rem;font-family:var(--lb);font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:#4a4a4a;display:flex;align-items:center;gap:.8rem}
+.scrollcue{position:absolute;left:var(--pd);bottom:2.2rem;font-family:var(--lb);font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:#444;display:flex;align-items:center;gap:.8rem}
 .scrollcue i{display:block;width:40px;height:1px;background:linear-gradient(to right,var(--pt),transparent);animation:pull 2.2s ease-in-out infinite}
 @keyframes pull{50%{transform:scaleX(.4);transform-origin:left}}
 
-/* ── FEAR BREAKER ── */
-.fear{background:var(--ink2);border-top:1px solid var(--ln);border-bottom:1px solid var(--ln);padding:clamp(3rem,6vw,5rem) var(--pd)}
+/* ══ TRUST STRIP (krant + stats) ══ */
+.trust{background:var(--ink2);border-top:1px solid var(--ln);border-bottom:1px solid var(--ln);padding:0 var(--pd)}
+.trust-inner{max-width:1160px;margin:0 auto;display:flex;align-items:stretch;gap:0;background:var(--ln)}
+.trust-item{flex:1;background:var(--ink2);padding:1.6rem 1.75rem;display:flex;align-items:center;gap:1rem;transition:background .3s;position:relative}
+.trust-item:hover{background:var(--ink3)}
+.trust-item::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+.trust-item:nth-child(1)::before{background:var(--ig)}
+.trust-item:nth-child(2)::before{background:var(--pt)}
+.trust-item:nth-child(3)::before{background:var(--pt)}
+.trust-item:nth-child(4)::before{background:var(--ir)}
+.trust-item:hover::before{transform:scaleX(1)}
+.trust-num{font-family:var(--sf);font-size:2.2rem;font-weight:300;color:var(--pt);line-height:1;white-space:nowrap}
+.trust-lbl{font-family:var(--lb);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;color:var(--mt);line-height:1.5}
+.trust-press{font-family:var(--sf);font-style:italic;font-size:.92rem;color:rgba(198,203,209,.45);line-height:1.5}
+.trust-press strong{color:rgba(198,203,209,.7);font-style:normal;font-weight:400}
+@media(max-width:760px){.trust-inner{flex-direction:column}.trust-item{flex:none}}
+
+/* ══ FEAR BREAKER ══ */
+.fear{background:var(--ink);padding:clamp(4rem,8vw,7rem) var(--pd)}
 .fear-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(240px,100%),1fr));gap:1px;background:var(--ln);max-width:1160px;margin:0 auto}
-.fear-item{background:var(--ink2);padding:2.2rem 2rem;position:relative;transition:background .35s}
+.fear-item{background:var(--ink);padding:2rem 1.85rem;position:relative;transition:background .35s}
 .fear-item:hover{background:var(--ink3)}
 .fear-item::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
 .fear-item:nth-child(1)::before{background:var(--ig)}
@@ -171,231 +157,234 @@ nav.hide{transform:translateY(-105%)}
 .fear-item:nth-child(3)::before{background:var(--pt)}
 .fear-item:nth-child(4)::before{background:var(--ir)}
 .fear-item:hover::before{transform:scaleX(1)}
-.fear-icon{width:36px;height:36px;border:1px solid var(--ln);display:flex;align-items:center;justify-content:center;margin-bottom:1.2rem;transition:border-color .4s}
-.fear-item:hover .fear-icon{border-color:rgba(198,203,209,.35)}
-.fear-icon svg{width:16px;height:16px;stroke:var(--mt);fill:none;stroke-width:1.5;transition:stroke .4s}
+.fear-icon{width:34px;height:34px;border:1px solid var(--ln);display:flex;align-items:center;justify-content:center;margin-bottom:1.1rem;transition:border-color .4s}
+.fear-item:hover .fear-icon{border-color:rgba(198,203,209,.32)}
+.fear-icon svg{width:15px;height:15px;stroke:var(--mt);fill:none;stroke-width:1.5;transition:stroke .4s}
 .fear-item:hover .fear-icon svg{stroke:var(--pt)}
-.fear-q{font-family:var(--sf);font-size:1.05rem;font-style:italic;color:rgba(198,203,209,.55);margin-bottom:.55rem;line-height:1.45}
-.fear-a{font-size:.82rem;color:var(--mt);line-height:1.7}
+.fear-q{font-family:var(--sf);font-size:1.02rem;font-style:italic;color:rgba(198,203,209,.52);margin-bottom:.5rem;line-height:1.42}
+.fear-a{font-size:.8rem;color:var(--mt);line-height:1.68}
 
-/* ── TOOLS ── */
-.tools-sec{background:var(--ink);padding:clamp(5rem,10vw,9rem) var(--pd)}
-.tools-intro{text-align:center;max-width:640px;margin:0 auto clamp(2.5rem,5vw,4rem)}
-.tools-banner{background:var(--ink3);border:1px solid var(--ln);padding:1rem 1.75rem;margin-bottom:2.5rem;display:flex;align-items:center;gap:1rem;position:relative;overflow:hidden}
-.tools-banner::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--tr);opacity:.6}
-.tools-banner-dot{width:8px;height:8px;border-radius:50%;background:var(--ig);flex-shrink:0;animation:pulse 2s ease-in-out infinite}
-@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,146,70,.4)}50%{box-shadow:0 0 0 6px rgba(0,146,70,0)}}
-.tools-banner p{font-size:.78rem;color:#ccc;font-family:var(--lb);letter-spacing:.08em}
-.tools-banner p strong{color:var(--pt)}
+/* ══ TOOLS ══ */
+.tools-sec{background:var(--ink2);padding:clamp(4.5rem,9vw,8rem) var(--pd)}
+.tools-intro{text-align:center;max-width:600px;margin:0 auto clamp(2.25rem,4.5vw,3.5rem)}
+.tip-bar{background:var(--ink3);border:1px solid var(--ln);padding:.9rem 1.6rem;margin-bottom:2.25rem;display:flex;align-items:center;gap:.9rem;position:relative;overflow:hidden}
+.tip-bar::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--tr);opacity:.55}
+.tip-dot{width:7px;height:7px;border-radius:50%;background:var(--ig);flex-shrink:0;animation:pulse 2s ease-in-out infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(0,146,70,.4)}50%{box-shadow:0 0 0 5px rgba(0,146,70,0)}}
+.tip-bar p{font-size:.76rem;color:#ccc;font-family:var(--lb);letter-spacing:.08em}
+.tip-bar p strong{color:var(--pt)}
 .tgrid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln)}
-@media(max-width:860px){.tgrid{grid-template-columns:1fr}}
-.tc{display:flex;flex-direction:column;background:var(--ink);position:relative;overflow:hidden;transition:background .4s;text-decoration:none;color:inherit}
+@media(max-width:820px){.tgrid{grid-template-columns:1fr}}
+.tc{display:flex;flex-direction:column;background:var(--ink2);position:relative;overflow:hidden;transition:background .4s;text-decoration:none;color:inherit}
 .tc:hover{background:var(--ink3)}
-.tc-photo{width:100%;height:220px;overflow:hidden;position:relative;flex-shrink:0;background:var(--ink3)}
+.tc-photo{width:100%;height:200px;overflow:hidden;position:relative;flex-shrink:0;background:var(--ink3)}
 .tc-photo img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:brightness(.28) saturate(.45);transition:filter .65s,transform .85s}
 .tc-photo img.img-contain{object-fit:contain;padding:1.5rem;filter:brightness(.62) saturate(.28);background:var(--ink3)}
 .tc-photo img.img-logo{object-fit:contain;padding:2.25rem;filter:brightness(.55) saturate(.1) contrast(1.1);background:var(--ink3)}
 .tc:hover .tc-photo img{filter:brightness(.48) saturate(.7);transform:scale(1.04)}
 .tc:hover .tc-photo img.img-contain{filter:brightness(.82) saturate(.5);transform:none}
 .tc:hover .tc-photo img.img-logo{filter:brightness(.78) saturate(.25);transform:none}
-.tc-photo-fade{position:absolute;inset:0;background:linear-gradient(to top,var(--ink) 0%,transparent 55%);z-index:1;pointer-events:none}
+.tc-fade{position:absolute;inset:0;background:linear-gradient(to top,var(--ink2) 0%,transparent 55%);z-index:1;pointer-events:none}
 .tc-photo::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;z-index:2;transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
 .tc:nth-child(1) .tc-photo::after{background:var(--ig)}
 .tc:nth-child(2) .tc-photo::after{background:var(--pt)}
 .tc:nth-child(3) .tc-photo::after{background:var(--ir)}
 .tc:hover .tc-photo::after{transform:scaleX(1)}
-.tc-body{padding:1.6rem 1.85rem 1.85rem;display:flex;flex-direction:column;flex:1}
-.tc-body .num{font-family:var(--sf);font-size:.82rem;color:var(--pt);letter-spacing:.2em;opacity:.55;margin-bottom:.5rem}
-.tc-body h3{font-size:1.42rem;margin-bottom:.45rem}
-.tc-body p{font-size:.83rem;margin-bottom:1.25rem;flex:1}
-.tc-perk{font-family:var(--lb);font-size:.6rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(198,203,209,.35);margin-bottom:1.1rem;display:flex;align-items:center;gap:.5rem}
+.tc-body{padding:1.5rem 1.75rem 1.75rem;display:flex;flex-direction:column;flex:1}
+.tc-body .num{font-family:var(--sf);font-size:.8rem;color:var(--pt);letter-spacing:.2em;opacity:.55;margin-bottom:.45rem}
+.tc-body h3{font-size:1.38rem;margin-bottom:.42rem}
+.tc-body p{font-size:.82rem;margin-bottom:1.1rem;flex:1}
+.tc-perk{font-family:var(--lb);font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:rgba(198,203,209,.32);margin-bottom:1rem;display:flex;align-items:center;gap:.45rem}
 .tc-perk::before{content:'';width:4px;height:4px;border-radius:50%;flex-shrink:0}
 .tc:nth-child(1) .tc-perk::before{background:var(--ig)}
 .tc:nth-child(2) .tc-perk::before{background:var(--pt)}
 .tc:nth-child(3) .tc-perk::before{background:var(--ir)}
-.tc-go{font-family:var(--lb);font-size:.64rem;letter-spacing:.2em;text-transform:uppercase;color:var(--pt);display:inline-flex;align-items:center;gap:.55rem;font-weight:500;margin-top:auto}
-.tc-go i{width:16px;height:1px;background:var(--pt);transition:width .4s;display:block}
-.tc:hover .tc-go i{width:30px}
+.tc-go{font-family:var(--lb);font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--pt);display:inline-flex;align-items:center;gap:.5rem;font-weight:500;margin-top:auto}
+.tc-go i{width:14px;height:1px;background:var(--pt);transition:width .4s;display:block}
+.tc:hover .tc-go i{width:28px}
+/* CTA onder tools */
+.tools-cta{text-align:center;margin-top:2.5rem;padding:2.25rem 2rem;background:var(--ink3);border:1px solid var(--ln);position:relative;overflow:hidden;max-width:1160px;margin-left:auto;margin-right:auto}
+.tools-cta::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--tr);opacity:.4}
+.tools-cta h3{font-size:1.45rem;margin-bottom:.6rem}
+.tools-cta p{max-width:420px;margin:0 auto 1.5rem}
 
-/* ── IMPORT ── */
-.imp-sec{background:var(--ink2);padding:clamp(5rem,10vw,9rem) var(--pd)}
+/* ══ IMPORT ══ */
 .imp-grid{display:grid;grid-template-columns:.88fr 1fr;gap:clamp(2.5rem,5.5vw,5rem);align-items:center}
-@media(max-width:860px){.imp-grid{grid-template-columns:1fr}}
+@media(max-width:820px){.imp-grid{grid-template-columns:1fr}}
 .imp-visual{position:relative}
-.imp-img{position:relative;height:560px;overflow:hidden;border:1px solid var(--ln)}
+.imp-img{position:relative;height:540px;overflow:hidden;border:1px solid var(--ln)}
 .imp-img::before{content:'';position:absolute;top:-12px;left:-12px;right:12px;bottom:12px;border:1px solid rgba(198,203,209,.08);z-index:2;pointer-events:none}
 .imp-strip{position:absolute;top:-12px;left:-12px;bottom:12px;width:2px;display:flex;flex-direction:column;z-index:3}
 .imp-strip span{flex:1;display:block}
 .imp-strip span:nth-child(1){background:var(--ig);opacity:.75}
 .imp-strip span:nth-child(2){background:rgba(198,203,209,.45)}
 .imp-strip span:nth-child(3){background:var(--ir);opacity:.75}
-.imp-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.68) saturate(.6);display:block;transition:filter .8s,transform 1s}
-.imp-img:hover img{filter:brightness(.8) saturate(.75);transform:scale(1.02)}
-.imp-card{position:absolute;bottom:0;left:0;right:0;background:rgba(8,8,8,.92);backdrop-filter:blur(18px);padding:16px 22px;border-top:1px solid var(--ln);z-index:4}
-.imp-card-lbl{font-size:.52rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(198,203,209,.38);margin-bottom:9px;font-family:var(--lb)}
-.imp-countries{display:flex;flex-wrap:wrap;gap:5px 10px}
-.ic{display:flex;align-items:center;gap:4px;font-size:.73rem;color:rgba(198,203,209,.5);font-family:var(--lb);letter-spacing:.04em}
+.imp-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.65) saturate(.58);display:block;transition:filter .8s,transform 1s}
+.imp-img:hover img{filter:brightness(.78) saturate(.72);transform:scale(1.02)}
+.imp-card{position:absolute;bottom:0;left:0;right:0;background:rgba(8,8,8,.92);backdrop-filter:blur(18px);padding:14px 20px;border-top:1px solid var(--ln);z-index:4}
+.imp-card-lbl{font-size:.5rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(198,203,209,.36);margin-bottom:8px;font-family:var(--lb)}
+.imp-countries{display:flex;flex-wrap:wrap;gap:4px 9px}
+.ic{display:flex;align-items:center;gap:4px;font-size:.71rem;color:rgba(198,203,209,.48);font-family:var(--lb);letter-spacing:.04em}
 .ic-dot{width:4px;height:4px;border-radius:50%}
 .ic:nth-child(3n+1) .ic-dot{background:var(--ig)}
 .ic:nth-child(3n+2) .ic-dot{background:rgba(198,203,209,.55)}
 .ic:nth-child(3n) .ic-dot{background:var(--ir)}
-.imp-steps{margin-top:2.25rem}
-.imp-step{display:flex;gap:1.35rem;padding:1.1rem 0;border-bottom:1px solid var(--hr)}
+.imp-steps{margin-top:2rem}
+.imp-step{display:flex;gap:1.25rem;padding:1rem 0;border-bottom:1px solid var(--hr)}
 .imp-step:first-child{border-top:1px solid var(--hr)}
-.imp-step-n{font-family:var(--sf);font-size:.82rem;color:var(--pt);opacity:.38;padding-top:2px;min-width:20px}
-.imp-step-t{font-size:.84rem;font-weight:500;color:var(--tx);margin-bottom:2px}
-.imp-step-d{font-size:.76rem;color:var(--mt);line-height:1.6}
+.imp-step-n{font-family:var(--sf);font-size:.8rem;color:var(--pt);opacity:.36;padding-top:2px;min-width:18px}
+.imp-step-t{font-size:.83rem;font-weight:500;color:var(--tx);margin-bottom:1px}
+.imp-step-d{font-size:.75rem;color:var(--mt);line-height:1.58}
 
-/* ── DIENSTEN ── */
-.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(270px,100%),1fr));gap:2.75rem 2.5rem}
-.svc{padding-top:1.6rem;border-top:1px solid var(--hr);position:relative}
+/* ══ DIENSTEN compact ══ */
+.svc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(260px,100%),1fr));gap:2.5rem 2.25rem}
+.svc{padding-top:1.5rem;border-top:1px solid var(--hr);position:relative}
 .svc::before{content:'';position:absolute;left:0;top:-1px;height:2px;width:0;background:var(--tr);transition:width .5s cubic-bezier(.2,.7,.3,1)}
 .svc:hover::before{width:100%}
-.svc .n{font-family:var(--sf);font-size:.78rem;color:var(--pt);letter-spacing:.18em;display:block;margin-bottom:.9rem;opacity:.65}
-.svc h3{font-size:1.25rem}
-.svc a.il{color:var(--ig);border-bottom:1px solid rgba(0,146,70,.28);transition:border-color .3s}
+.svc .n{font-family:var(--sf);font-size:.76rem;color:var(--pt);letter-spacing:.18em;display:block;margin-bottom:.8rem;opacity:.6}
+.svc h3{font-size:1.2rem}
+.svc a.il{color:var(--ig);border-bottom:1px solid rgba(0,146,70,.25);transition:border-color .3s}
 .svc a.il:hover{border-bottom-color:var(--ig)}
 
-/* ── REDENEN ── */
-.r-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(230px,100%),1fr));gap:3rem 2.5rem}
-.reason .big{font-family:var(--sf);font-size:3.4rem;line-height:1;color:transparent;-webkit-text-stroke:1px var(--pt);display:block;margin-bottom:1rem;opacity:.4;transition:color .45s,opacity .45s}
-.reason:hover .big{color:var(--pt);opacity:.85}
-
-/* ── WERKWIJZE ── */
-.steps{position:relative;max-width:800px;--tp:0}
-.steps::before{content:'';position:absolute;left:10px;top:8px;bottom:8px;width:1px;background:rgba(198,203,209,.08)}
-.steps::after{content:'';position:absolute;left:10px;top:8px;bottom:8px;width:1px;background:linear-gradient(to bottom,var(--ig),var(--pt),var(--ir));transform:scaleY(var(--tp));transform-origin:top;will-change:transform}
-.step{position:relative;padding:0 0 3rem 3.5rem}
+/* ══ WERKWIJZE compact ══ */
+.steps{position:relative;max-width:760px;--tp:0}
+.steps::before{content:'';position:absolute;left:10px;top:6px;bottom:6px;width:1px;background:rgba(198,203,209,.08)}
+.steps::after{content:'';position:absolute;left:10px;top:6px;bottom:6px;width:1px;background:linear-gradient(to bottom,var(--ig),var(--pt),var(--ir));transform:scaleY(var(--tp));transform-origin:top;will-change:transform}
+.step{position:relative;padding:0 0 2.5rem 3.25rem}
 .step:last-child{padding-bottom:0}
-.step .dot{position:absolute;left:3px;top:5px;width:15px;height:15px;border-radius:50%;border:1px solid var(--pt);background:var(--ink);z-index:1}
-.step .dot::after{content:'';position:absolute;inset:4px;border-radius:50%;background:var(--pt);transform:scale(0);transition:transform .5s .2s}
+.step .dot{position:absolute;left:3px;top:5px;width:14px;height:14px;border-radius:50%;border:1px solid var(--pt);background:var(--ink);z-index:1}
+.step .dot::after{content:'';position:absolute;inset:3px;border-radius:50%;background:var(--pt);transform:scale(0);transition:transform .5s .2s}
 .step.in .dot::after{transform:scale(1)}
-.step .k{font-family:var(--lb);font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--pt);opacity:.7}
-.step h3{font-size:1.32rem;margin:.45rem 0 .4rem}
-.step p{max-width:54ch}
+.step .k{font-family:var(--lb);font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--pt);opacity:.65}
+.step h3{font-size:1.25rem;margin:.4rem 0 .35rem}
+.step p{max-width:52ch}
 
 /* Sleuteloverdracht foto */
-.sleutels-wrap{margin-top:3rem;position:relative;max-width:700px;overflow:hidden;border:1px solid var(--ln)}
-.sleutels-wrap img{width:100%;height:360px;object-fit:cover;object-position:center 40%;display:block;filter:brightness(.52) saturate(.48);transition:filter .8s,transform 1s}
-.sleutels-wrap:hover img{filter:brightness(.65) saturate(.62);transform:scale(1.02)}
-.sleutels-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--tr);z-index:2;opacity:.7}
-.sleutels-quote{position:absolute;bottom:0;left:0;right:0;padding:2.75rem 2rem 1.5rem;background:linear-gradient(to top,rgba(8,8,8,.96) 0%,rgba(8,8,8,.45) 65%,transparent 100%);z-index:1}
-.sleutels-quote p{font-family:var(--sf);font-style:italic;font-size:1.05rem;color:rgba(198,203,209,.58);line-height:1.6}
-.sleutels-quote cite{display:block;margin-top:.65rem;font-family:var(--lb);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(198,203,209,.3);font-style:normal}
+.sleutels-wrap{margin-top:2.75rem;position:relative;max-width:680px;overflow:hidden;border:1px solid var(--ln)}
+.sleutels-wrap img{width:100%;height:300px;object-fit:cover;object-position:center 40%;display:block;filter:brightness(.5) saturate(.45);transition:filter .8s,transform 1s}
+.sleutels-wrap:hover img{filter:brightness(.62) saturate(.58);transform:scale(1.02)}
+.sleutels-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:var(--tr);z-index:2;opacity:.65}
+.sleutels-quote{position:absolute;bottom:0;left:0;right:0;padding:2.5rem 1.85rem 1.35rem;background:linear-gradient(to top,rgba(8,8,8,.96) 0%,rgba(8,8,8,.4) 65%,transparent 100%);z-index:1}
+.sleutels-quote p{font-family:var(--sf);font-style:italic;font-size:1rem;color:rgba(198,203,209,.55);line-height:1.58}
+.sleutels-quote cite{display:block;margin-top:.55rem;font-family:var(--lb);font-size:.55rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(198,203,209,.28);font-style:normal}
 
-/* ── OVER ONS ── */
-.about-cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(220px,100%),1fr));gap:1.35rem;margin-bottom:clamp(2.75rem,5.5vw,4.25rem)}
-.ac{background:var(--ink3);border:1px solid var(--ln);padding:1.85rem 1.65rem;transition:transform .4s,background .4s,border-color .4s;position:relative;overflow:hidden}
-.ac::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--ch);opacity:0;transition:opacity .4s}
-.ac:hover{background:var(--ink4);transform:translateY(-3px)}.ac:hover::before{opacity:1}
-.ac .tag{font-family:var(--lb);font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--pt);margin-bottom:.85rem;display:block;opacity:.75}
-.ac h4{font-size:1.08rem;margin-bottom:.45rem;font-weight:400}
-.ac p{font-size:.82rem}
-
-/* Garage row — auto's die Martijn heeft gereden */
-.garage-row{display:flex;gap:10px;flex-wrap:wrap;margin:2rem 0 2.5rem}
-.garage-badge{
-  font-family:var(--lb);font-size:.6rem;letter-spacing:.18em;text-transform:uppercase;
-  padding:.45rem 1rem;border:1px solid var(--ln);color:rgba(198,203,209,.45);
-  position:relative;overflow:hidden;transition:border-color .4s,color .4s;
-}
-.garage-badge::before{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;transform:scaleX(0);transform-origin:left;transition:transform .45s cubic-bezier(.2,.7,.3,1)}
-.garage-badge:nth-child(1)::before{background:var(--ig)}
-.garage-badge:nth-child(2)::before{background:var(--pt)}
-.garage-badge:nth-child(3)::before{background:var(--pt)}
-.garage-badge:nth-child(4)::before{background:var(--ir)}
-.garage-badge:nth-child(5)::before{background:var(--pt)}
-.garage-badge:hover{border-color:rgba(198,203,209,.28);color:var(--pt)}
-.garage-badge:hover::before{transform:scaleX(1)}
-
-.split{display:grid;grid-template-columns:.82fr 1fr;gap:clamp(2.5rem,5.5vw,5rem);align-items:center}
-@media(max-width:860px){.split{grid-template-columns:1fr}}
+/* ══ OVER ONS ══ */
+.about-grid{display:grid;grid-template-columns:.82fr 1fr;gap:clamp(2.5rem,5.5vw,5rem);align-items:start}
+@media(max-width:820px){.about-grid{grid-template-columns:1fr}}
 .portrait{position:relative;margin:12px 12px 12px 0}
 .portrait::after{content:'';position:absolute;inset:12px -12px -12px 12px;border:1px solid var(--ln);z-index:-1}
-.portrait::before{content:'';position:absolute;top:-12px;left:-12px;bottom:12px;width:2px;background:linear-gradient(to bottom,var(--ig) 33%,#fff 33% 66%,var(--ir) 66%);opacity:.65;z-index:3}
-.portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 12%;filter:grayscale(.45) contrast(1.06);display:block;transition:filter .8s}
+.portrait::before{content:'';position:absolute;top:-12px;left:-12px;bottom:12px;width:2px;background:linear-gradient(to bottom,var(--ig) 33%,#fff 33% 66%,var(--ir) 66%);opacity:.62;z-index:3}
+.portrait img{width:100%;aspect-ratio:4/5;object-fit:cover;object-position:center 12%;filter:grayscale(.4) contrast(1.06);display:block;transition:filter .8s}
 .portrait:hover img{filter:grayscale(0) contrast(1)}
-.portrait-fade{position:absolute;top:0;right:0;bottom:0;width:28%;background:linear-gradient(to left,var(--ink2) 0%,rgba(13,13,13,.82) 45%,transparent 100%);z-index:2;pointer-events:none}
-.sig{font-family:var(--sf);font-style:italic;font-size:1.65rem;color:var(--pt);margin-top:1.75rem}
-.role{font-family:var(--lb);font-size:.62rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mt);margin-top:.3rem}
+.portrait-fade{position:absolute;top:0;right:0;bottom:0;width:28%;background:linear-gradient(to left,var(--ink2) 0%,rgba(13,13,13,.8) 45%,transparent 100%);z-index:2;pointer-events:none}
+.sig{font-family:var(--sf);font-style:italic;font-size:1.6rem;color:var(--pt);margin-top:1.6rem}
+.role{font-family:var(--lb);font-size:.6rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mt);margin-top:.28rem}
 
-/* ── PROJECTEN ── */
-.p-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr));gap:1.75rem}
+/* Eigen garage — horizontale scroll auto-foto's */
+.garage-section{margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--hr)}
+.garage-label{font-family:var(--lb);font-size:.58rem;letter-spacing:.24em;text-transform:uppercase;color:rgba(198,203,209,.28);margin-bottom:1rem}
+.garage-scroll{display:flex;gap:10px;overflow-x:auto;padding-bottom:8px;scrollbar-width:thin;scrollbar-color:rgba(198,203,209,.15) transparent}
+.garage-scroll::-webkit-scrollbar{height:3px}
+.garage-scroll::-webkit-scrollbar-thumb{background:linear-gradient(to right,var(--ig),var(--pt),var(--ir));border-radius:2px}
+.garage-card{flex-shrink:0;position:relative;width:200px;height:130px;overflow:hidden;border:1px solid var(--hr);transition:border-color .4s}
+.garage-card:hover{border-color:var(--ln)}
+.garage-card img{width:100%;height:100%;object-fit:cover;filter:brightness(.62) saturate(.55);transition:filter .6s,transform .8s;display:block}
+.garage-card:hover img{filter:brightness(.78) saturate(.72);transform:scale(1.05)}
+.garage-card-lbl{position:absolute;bottom:0;left:0;right:0;padding:.5rem .7rem;background:linear-gradient(to top,rgba(8,8,8,.92) 0%,transparent 100%);font-family:var(--lb);font-size:.54rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(198,203,209,.55)}
+
+/* Press badge */
+.press-badge{
+  display:inline-flex;align-items:center;gap:.7rem;
+  background:var(--ink3);border:1px solid var(--ln);
+  padding:.6rem 1rem;margin-top:1.5rem;
+  font-family:var(--lb);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;
+  color:rgba(198,203,209,.4);transition:border-color .3s,color .3s;
+  text-decoration:none;
+}
+.press-badge:hover{border-color:rgba(198,203,209,.28);color:rgba(198,203,209,.65)}
+.press-badge svg{width:13px;height:13px;fill:none;stroke:rgba(198,203,209,.35);stroke-width:1.5;flex-shrink:0}
+.press-badge strong{color:rgba(198,203,209,.6)}
+
+/* ══ PROJECTEN ══ */
+.p-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr));gap:1.6rem}
 .proj{position:relative;overflow:hidden;background:var(--ink3);border:1px solid var(--hr);transition:border-color .5s}
 .proj:hover{border-color:var(--ln)}
 .proj .imgwrap{overflow:hidden;position:relative}
-.proj img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:brightness(.72) saturate(.6);transition:transform .9s,filter .9s;display:block}
-.proj:hover img{transform:scale(1.05);filter:brightness(.52) saturate(.48)}
+.proj img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:brightness(.7) saturate(.58);transition:transform .9s,filter .9s;display:block}
+.proj:hover img{transform:scale(1.05);filter:brightness(.5) saturate(.46)}
 .proj .imgwrap::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:2px;background:var(--tr);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.3,1);z-index:3}
 .proj:hover .imgwrap::after{transform:scaleX(1)}
-.proj .cap{padding:1.6rem 1.5rem 1.85rem}
-.proj .tag{font-family:var(--lb);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--pt);opacity:.7}
-.proj h3{font-size:1.25rem;margin:.55rem 0 .45rem}
-.proj p{font-size:.8rem;line-height:1.7}
+.proj .cap{padding:1.5rem 1.4rem 1.7rem}
+.proj .tag{font-family:var(--lb);font-size:.57rem;letter-spacing:.22em;text-transform:uppercase;color:var(--pt);opacity:.65}
+.proj h3{font-size:1.2rem;margin:.5rem 0 .4rem}
+.proj p{font-size:.79rem;line-height:1.68}
 .veil{position:relative;overflow:hidden}
 .veil::before{content:'';position:absolute;inset:0;z-index:2;background:var(--ink3);transform:scaleX(1);transform-origin:right;transition:transform .9s cubic-bezier(.75,0,.25,1)}
 .veil.in::before{transform:scaleX(0)}
 
-/* ── QUOTE ── */
-.quote{height:220vh;padding:0;background:var(--ink)}
+/* ══ QUOTE ══ */
+.quote{height:200vh;padding:0;background:var(--ink)}
 .q-pin{position:sticky;top:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:0 var(--pd)}
-.quote blockquote{max-width:68ch;margin:0 auto;text-align:center;border:0;font-family:var(--sf);font-size:clamp(1.3rem,2.8vw,1.82rem);font-style:italic;line-height:1.72;color:#ccc}
-.quote blockquote::before{content:'\201C';display:block;font-size:4.2rem;line-height:.6;background:var(--cs);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:normal;margin-bottom:1.5rem;opacity:.85}
+.quote blockquote{max-width:64ch;margin:0 auto;text-align:center;border:0;font-family:var(--sf);font-size:clamp(1.28rem,2.7vw,1.78rem);font-style:italic;line-height:1.72;color:#ccc}
+.quote blockquote::before{content:'\201C';display:block;font-size:4rem;line-height:.6;background:var(--cs);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:normal;margin-bottom:1.4rem;opacity:.85}
 .quote blockquote .qw{opacity:.1;transition:opacity .18s linear}
-.quote .attrib{margin-top:2rem;font-family:var(--lb);font-size:.64rem;letter-spacing:.26em;text-transform:uppercase;color:var(--pt)}
+.quote .attrib{margin-top:1.85rem;font-family:var(--lb);font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--pt)}
 
-/* ── TARIEVEN ── */
-.tar-wrap{background:var(--ink3);border:1px solid var(--ln);padding:2.75rem;position:relative;overflow:hidden;margin-top:1.75rem}
-.tar-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--ch);opacity:.38}
-.tar-wrap::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--ig),rgba(198,203,209,.35),var(--ir));opacity:.28}
+/* ══ TARIEVEN ══ */
+.tar-wrap{background:var(--ink3);border:1px solid var(--ln);padding:2.5rem;position:relative;overflow:hidden}
+.tar-wrap::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--ch);opacity:.35}
+.tar-wrap::after{content:'';position:absolute;bottom:0;left:0;right:0;height:1px;background:linear-gradient(90deg,var(--ig),rgba(198,203,209,.32),var(--ir));opacity:.26}
 
-/* ── CONTACT ── */
-.contact-sec{text-align:center;background:radial-gradient(ellipse at 50% 0%,rgba(198,203,209,.065),transparent 58%),var(--ink2);padding:clamp(5rem,10vw,9rem) var(--pd)}
-.contact-sec h2{font-size:clamp(2.2rem,5vw,3.8rem)}
-.contact-sec .lead{margin:0 auto 2.75rem}
+/* ══ CONTACT ══ */
+.contact-sec{text-align:center;background:radial-gradient(ellipse at 50% 0%,rgba(198,203,209,.055),transparent 55%),var(--ink2);padding:clamp(4.5rem,9vw,8rem) var(--pd)}
+.contact-sec h2{font-size:clamp(2.1rem,4.8vw,3.6rem)}
+.contact-sec .lead{margin:0 auto 2.5rem}
 .contact-sec .cta-row{justify-content:center}
-.c-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(210px,100%),1fr));gap:1.25rem;max-width:880px;margin:0 auto clamp(2.5rem,4.5vw,3.25rem)}
-.cc{background:var(--ink3);padding:1.75rem 1.5rem;text-align:left;border:1px solid var(--ln);position:relative;overflow:hidden;transition:border-color .4s,background .4s}
+/* 3 kaarten naast elkaar */
+.c-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln);max-width:820px;margin:0 auto 2.5rem}
+@media(max-width:640px){.c-grid{grid-template-columns:1fr}}
+.cc{background:var(--ink3);padding:1.65rem 1.4rem;text-align:left;position:relative;overflow:hidden;transition:background .4s}
 .cc::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--cs);opacity:0;transition:opacity .4s}
-.cc:hover{background:var(--ink4);border-color:rgba(198,203,209,.26)}.cc:hover::before{opacity:1}
-.cc .tag{font-family:var(--lb);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:var(--pt);margin-bottom:.8rem;display:block;opacity:.75}
-.cc p{font-size:.85rem;color:#c5c5c5;line-height:1.7}
+.cc:hover{background:var(--ink4)}.cc:hover::before{opacity:1}
+.cc .tag{font-family:var(--lb);font-size:.57rem;letter-spacing:.22em;text-transform:uppercase;color:var(--pt);margin-bottom:.75rem;display:block;opacity:.72}
+.cc p{font-size:.83rem;color:#c2c2c2;line-height:1.68}
 .cc a{color:inherit;border-bottom:1px solid var(--ln);transition:color .3s,border-color .3s}
 .cc a:hover{color:var(--pt);border-color:var(--pt)}
-.contact-promise{max-width:560px;margin:2.5rem auto 0;padding:2rem;background:var(--ink3);border:1px solid var(--ln);position:relative}
-.contact-promise::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--tr);opacity:.45}
-.cp-items{display:flex;flex-direction:column;gap:.7rem;margin-top:.5rem}
-.cp-item{display:flex;align-items:center;gap:.75rem;font-size:.8rem;color:rgba(198,203,209,.45);font-family:var(--lb);letter-spacing:.06em}
+.cp-box{max-width:500px;margin:2.25rem auto 0;padding:1.75rem;background:var(--ink3);border:1px solid var(--ln);position:relative}
+.cp-box::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--tr);opacity:.4}
+.cp-items{display:flex;flex-direction:column;gap:.6rem;margin-top:.35rem}
+.cp-item{display:flex;align-items:center;gap:.7rem;font-size:.78rem;color:rgba(198,203,209,.42);font-family:var(--lb);letter-spacing:.05em}
 .cp-dot{width:5px;height:5px;border-radius:50%;flex-shrink:0}
 .cp-item:nth-child(3n+1) .cp-dot{background:var(--ig)}
-.cp-item:nth-child(3n+2) .cp-dot{background:rgba(198,203,209,.5)}
+.cp-item:nth-child(3n+2) .cp-dot{background:rgba(198,203,209,.48)}
 .cp-item:nth-child(3n) .cp-dot{background:var(--ir)}
 
-/* ── FOOTER ── */
+/* ══ FOOTER ══ */
 footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
-.fg{max-width:1160px;margin:0 auto;padding:3.5rem 0 2.75rem;display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.75rem 2.25rem}
-@media(max-width:720px){.fg{grid-template-columns:1fr}}
-.fg .brand{font-size:1.12rem}
-.fg p{font-size:.78rem;margin-top:.9rem;max-width:36ch}
-.fh{font-family:var(--lb);font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--pt);margin-bottom:1.1rem;font-weight:500;opacity:.75}
-.fl{list-style:none;display:flex;flex-direction:column;gap:.62rem;font-size:.8rem;color:var(--mt)}
+.fg{max-width:1160px;margin:0 auto;padding:3.25rem 0 2.5rem;display:grid;grid-template-columns:2fr 1fr 1fr;gap:2.5rem 2rem}
+@media(max-width:680px){.fg{grid-template-columns:1fr}}
+.fg .brand{font-size:1.1rem}
+.fg p{font-size:.77rem;margin-top:.85rem;max-width:34ch;color:var(--mt)}
+.fh{font-family:var(--lb);font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--pt);margin-bottom:1rem;font-weight:500;opacity:.72}
+.fl{list-style:none;display:flex;flex-direction:column;gap:.58rem;font-size:.79rem;color:var(--mt)}
 .fl a{transition:color .3s,padding-left .3s}
-.fl a:hover{color:var(--pt);padding-left:5px}
-.fb{max-width:1160px;margin:0 auto;padding:1.35rem 0;border-top:1px solid var(--hr);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-family:var(--lb);font-size:.65rem;color:#3e3e3e;letter-spacing:.05em}
-.fb .tric{display:inline-block;width:30px;height:2px;background:var(--tr);vertical-align:middle;margin:0 .5rem;opacity:.75}
+.fl a:hover{color:var(--pt);padding-left:4px}
+.fb{max-width:1160px;margin:0 auto;padding:1.25rem 0;border-top:1px solid var(--hr);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-family:var(--lb);font-size:.63rem;color:#3a3a3a;letter-spacing:.05em}
+.fb .tric{display:inline-block;width:28px;height:2px;background:var(--tr);vertical-align:middle;margin:0 .45rem;opacity:.7}
 
-/* ── REVEAL ── */
-.rv{opacity:0;transform:translateY(24px);transition:opacity .85s cubic-bezier(.2,.7,.3,1),transform .85s cubic-bezier(.2,.7,.3,1)}
+/* ══ REVEAL ══ */
+.rv{opacity:0;transform:translateY(22px);transition:opacity .85s cubic-bezier(.2,.7,.3,1),transform .85s cubic-bezier(.2,.7,.3,1)}
 .rv.in{opacity:1;transform:none}
 
 @media(prefers-reduced-motion:reduce){
   .rv,.hero .sub,.hero h1,.hero .lead,.hero .cta-row{opacity:1;transform:none;transition:none;animation:none}
   .hero-bg img,.scrollcue i,.hero h1 em{animation:none}
-  h2 .w i,.ey-tri,.ey.c .ey-tri-r{transform:none;transition:none;width:48px!important}
+  h2 .w i{transform:none;transition:none}
+  .ey-tri,.ey-tri-r{width:44px!important;transition:none}
   .veil::before{display:none}
   .steps::after{transform:none}
   .step .dot::after{transform:scale(1)}
-  .quote{height:auto;padding:clamp(5rem,10vw,9rem) var(--pd)}
+  .quote{height:auto;padding:clamp(4.5rem,9vw,8rem) var(--pd)}
   .q-pin{position:static;min-height:0;padding:0}
   .quote blockquote .qw{opacity:1;transition:none}
   html{scroll-behavior:auto}
@@ -406,6 +395,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 
 <div id="progress"></div>
 
+<!-- ══ NAV ══ -->
 <nav id="nav">
   <a href="#top" class="brand">
     <span class="brand-apex">APEX</span>
@@ -416,9 +406,9 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
     <a href="#tools">Tools</a>
     <a href="#import">Import</a>
     <a href="#diensten">Diensten</a>
-    <a href="#werkwijze">Werkwijze</a>
     <a href="#over">Over ons</a>
     <a href="#projecten">Projecten</a>
+    <a href="#contact">Contact</a>
   </div>
   <a href="#contact" class="btn sm"><span>Gesprek plannen</span></a>
   <button id="burger" aria-label="Menu" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -428,21 +418,20 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   <a href="#tools"     style="transition-delay:.05s">Tools</a>
   <a href="#import"    style="transition-delay:.1s">Import</a>
   <a href="#diensten"  style="transition-delay:.15s">Diensten</a>
-  <a href="#werkwijze" style="transition-delay:.2s">Werkwijze</a>
-  <a href="#over"      style="transition-delay:.25s">Over ons</a>
-  <a href="#projecten" style="transition-delay:.3s">Projecten</a>
-  <a href="#contact"   style="transition-delay:.35s;color:var(--pt)">Contact</a>
+  <a href="#over"      style="transition-delay:.2s">Over ons</a>
+  <a href="#projecten" style="transition-delay:.25s">Projecten</a>
+  <a href="#contact"   style="transition-delay:.3s;color:var(--pt)">Contact</a>
 </div>
 
 <!-- ══ HERO ══ -->
 <header class="hero" id="top">
   <div class="hero-bg">
     <img
-      src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_1600,q_55,f_auto/v1786112048/Lamborghini_cockpit_zw7pmk.jpg"
+      src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_1600,q_52,f_auto/v1786112048/Lamborghini_cockpit_zw7pmk.jpg"
       srcset="
-        https://res.cloudinary.com/sfd8ohjz/image/upload/w_800,q_55,f_auto/v1786112048/Lamborghini_cockpit_zw7pmk.jpg 800w,
-        https://res.cloudinary.com/sfd8ohjz/image/upload/w_1200,q_55,f_auto/v1786112048/Lamborghini_cockpit_zw7pmk.jpg 1200w,
-        https://res.cloudinary.com/sfd8ohjz/image/upload/w_1600,q_55,f_auto/v1786112048/Lamborghini_cockpit_zw7pmk.jpg 1600w"
+        https://res.cloudinary.com/sfd8ohjz/image/upload/w_768,q_52,f_auto/v1786112048/Lamborghini_cockpit_zw7pmk.jpg 768w,
+        https://res.cloudinary.com/sfd8ohjz/image/upload/w_1200,q_52,f_auto/v1786112048/Lamborghini_cockpit_zw7pmk.jpg 1200w,
+        https://res.cloudinary.com/sfd8ohjz/image/upload/w_1600,q_52,f_auto/v1786112048/Lamborghini_cockpit_zw7pmk.jpg 1600w"
       sizes="100vw" alt="Lamborghini cockpit" fetchpriority="high" decoding="async">
   </div>
   <div class="livery" aria-hidden="true"></div>
@@ -450,15 +439,44 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
     <div class="hero-content" id="heroContent">
       <p class="sub">Automotive Advisory · Maastricht</p>
       <h1>Uw droomauto,<br><em>zonder risico geïmporteerd.</em></h1>
-      <p class="lead">Wij sporen uitzonderlijke auto's op in heel Europa, beoordelen ze volledig onafhankelijk en regelen alles — van eerste gesprek tot sleuteloverdracht.</p>
+      <p class="lead">Wij sporen uitzonderlijke auto's op in heel Europa, beoordelen ze volledig onafhankelijk en regelen alles van eerste gesprek tot sleuteloverdracht.</p>
       <div class="cta-row">
         <a href="#contact" class="btn"><span>Vrijblijvend gesprek</span></a>
-        <a href="#tools"   class="btn gh"><span>Gratis tools gebruiken</span></a>
+        <a href="#tools"   class="btn gh"><span>Bekijk onze tools</span></a>
       </div>
     </div>
   </div>
   <div class="scrollcue" id="cue"><i></i> Scroll</div>
 </header>
+
+<!-- ══ TRUST STRIP ══ -->
+<div class="trust">
+  <div class="trust-inner">
+    <div class="trust-item rv">
+      <div>
+        <div class="trust-num">EU</div>
+        <div class="trust-lbl">Zoekgebied<br>heel Europa</div>
+      </div>
+    </div>
+    <div class="trust-item rv">
+      <div>
+        <div class="trust-num">100%</div>
+        <div class="trust-lbl">Onafhankelijk<br>geen dealerbelang</div>
+      </div>
+    </div>
+    <div class="trust-item rv">
+      <div>
+        <div class="trust-num">A–Z</div>
+        <div class="trust-lbl">Volledig geregeld<br>tot aan de deur</div>
+      </div>
+    </div>
+    <div class="trust-item rv">
+      <div>
+        <div class="trust-press"><strong>Zoals vermeld in</strong><br>De Limburger</div>
+      </div>
+    </div>
+  </div>
+</div>
 
 <!-- ══ ANGST-BREAKER ══ -->
 <div class="fear">
@@ -466,12 +484,12 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
     <div class="fear-item rv">
       <div class="fear-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
       <div class="fear-q">"Stel dat ik een auto koop met verborgen schade?"</div>
-      <div class="fear-a">U koopt niets zonder groen licht. Een onafhankelijke aankoopkeuring regelen wij, indien gewenst, ter plaatse in het land van herkomst — professioneel en volledig objectief.</div>
+      <div class="fear-a">U koopt niets zonder zekerheid. Op verzoek regelen wij een onafhankelijke aankoopkeuring ter plaatse bij de verkoper — professioneel en volledig objectief.</div>
     </div>
     <div class="fear-item rv">
       <div class="fear-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
       <div class="fear-q">"Is de BPM niet veel duurder dan ik denk?"</div>
-      <div class="fear-a">Gebruik onze gratis BPM Calculator voor een directe indicatie. Bij import regelen wij de officiële taxatie via erkende partners — transparant en zonder verrassingen achteraf.</div>
+      <div class="fear-a">Bereken het direct met onze BPM Calculator. Bij import regelen wij de officiële taxatie via erkende partners — transparant, geen verrassingen achteraf.</div>
     </div>
     <div class="fear-item rv">
       <div class="fear-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
@@ -481,7 +499,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
     <div class="fear-item rv">
       <div class="fear-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
       <div class="fear-q">"De papieren en registratie zijn te ingewikkeld."</div>
-      <div class="fear-a">RDW-keuring, kentekenregistratie en kentekenmontage aan huis. U rijdt pas als alles klopt — en dat regelen wij volledig voor u.</div>
+      <div class="fear-a">RDW-keuring, kentekenregistratie en montage aan huis. U rijdt pas als alles klopt — en dat regelen wij volledig voor u.</div>
     </div>
   </div>
 </div>
@@ -490,75 +508,60 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 <section class="tools-sec" id="tools">
   <div class="wrap">
     <div class="tools-intro rv">
-      <!-- Geanimeerde tricolore eyebrow -->
       <p class="ey c">
         <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
-        Gratis instrumenten
+        Instrumenten
         <span class="ey-tri-r" aria-hidden="true"><span></span><span></span><span></span></span>
       </p>
-      <h2>Bereken, controleer &amp; analyseer — voordat u beslist.</h2>
-      <p class="lead">Drie tools die wij zelf dagelijks gebruiken. Gratis, direct, zonder registratie. Zo komt u beter voorbereid het gesprek in — of beslist u om het volledig aan ons uit te besteden.</p>
+      <h2>Doe de check — voordat u beslist.</h2>
+      <p class="lead">Drie instrumenten die wij zelf dagelijks inzetten. Direct beschikbaar, zonder registratie. Zo stapt u beter voorbereid het aankooptraject in.</p>
     </div>
 
-    <div class="tools-banner rv">
-      <div class="tools-banner-dot"></div>
-      <p><strong>Tip van Martijn:</strong> Begin altijd met de kentekencheck en BPM Calculator voordat u een bod uitbrengt op een buitenlandse auto. Het kan u duizenden euro's schelen.</p>
+    <div class="tip-bar rv">
+      <div class="tip-dot"></div>
+      <p><strong>Tip van Martijn:</strong> Voer altijd eerst de kentekencheck en BPM-berekening uit voordat u een bod uitbrengt op een buitenlandse auto. Het kan u duizenden euro's schelen.</p>
     </div>
 
     <div class="tgrid rv">
 
-      <!-- 01 BPM Calculator -->
       <a class="tc" href="https://bpm.apexclusive.nl">
         <div class="tc-photo">
-          <!--
-            Luxe rekenmachine / financieel dashboard foto
-            Unsplash premium finance/luxury look
-          -->
-          <img
-            src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=700&q=60&auto=format"
-            alt="BPM Calculator" loading="lazy" decoding="async">
-          <div class="tc-photo-fade"></div>
+          <!-- Luxe finance/berekening foto -->
+          <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=650&q=58&auto=format" alt="BPM Calculator" loading="lazy" decoding="async">
+          <div class="tc-fade"></div>
         </div>
         <div class="tc-body">
           <span class="num">01</span>
           <h3>BPM Calculator</h3>
-          <p>Weet exact wat de import u kost voordat u een bod uitbrengt. Bereken de resterende BPM op basis van leeftijd, cataloguswaarde en brandstoftype.</p>
-          <div class="tc-perk">Gratis · Geen registratie · Directe uitkomst</div>
+          <p>Bereken de resterende BPM op basis van leeftijd, cataloguswaarde en brandstoftype. Weet precies wat de import u kost voordat u een bod uitbrengt.</p>
+          <div class="tc-perk">Direct resultaat · Geen registratie</div>
           <span class="tc-go">Berekenen <i></i></span>
         </div>
       </a>
 
-      <!-- 02 Kentekencheck -->
       <a class="tc" href="https://kentekencheck.apexclusive.nl">
         <div class="tc-photo">
-          <img
-            src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_700,q_60,f_auto/v1786120828/Nederlands_Kenteken_Sticker_gfmewm.png"
-            alt="Nederlands kenteken" loading="lazy" decoding="async"
-            class="img-contain">
-          <div class="tc-photo-fade"></div>
+          <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_650,q_58,f_auto/v1786120828/Nederlands_Kenteken_Sticker_gfmewm.png" alt="Kentekencheck" loading="lazy" decoding="async" class="img-contain">
+          <div class="tc-fade"></div>
         </div>
         <div class="tc-body">
           <span class="num">02</span>
           <h3>Kentekencheck</h3>
-          <p>Controleer APK-historie, tellerstandverloop, tenaamstellingen en milieuklasse via officiële RDW-data. Vertrouw nooit een verkoper op zijn woord.</p>
+          <p>APK-historie, tellerstandverloop, tenaamstellingen en milieuklasse via officiële RDW-data. Vertrouw nooit een verkoper op zijn woord — controleer zelf.</p>
           <div class="tc-perk">RDW-data · APK-historie · Tellerstand</div>
           <span class="tc-go">Controleren <i></i></span>
         </div>
       </a>
 
-      <!-- 03 Advertentie Analyse -->
       <a class="tc" href="https://carrapport.apexclusive.nl">
         <div class="tc-photo">
-          <img
-            src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_700,q_60,f_auto/v1786118058/mobile-de-seeklogo_z1hb8f.png"
-            alt="Advertentie analyse" loading="lazy" decoding="async"
-            class="img-logo">
-          <div class="tc-photo-fade"></div>
+          <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_650,q_58,f_auto/v1786118058/mobile-de-seeklogo_z1hb8f.png" alt="Advertentie analyse" loading="lazy" decoding="async" class="img-logo">
+          <div class="tc-fade"></div>
         </div>
         <div class="tc-body">
           <span class="num">03</span>
           <h3>Advertentie Analyse</h3>
-          <p>Plak een link van Mobile.de, AutoScout24 of Marktplaats. U krijgt direct een objectieve prijsbeoordeling en koopadvies. Is dit de eerlijke prijs?</p>
+          <p>Plak een link van Mobile.de, AutoScout24 of Marktplaats. U krijgt direct een objectieve prijsbeoordeling. Is dit de eerlijke prijs — of betaalt u te veel?</p>
           <div class="tc-perk">Mobile.de · AutoScout24 · Marktplaats</div>
           <span class="tc-go">Analyseren <i></i></span>
         </div>
@@ -566,32 +569,26 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 
     </div>
 
-    <!-- CTA onder tools -->
-    <div class="rv" style="text-align:center;margin-top:3rem;padding:2.5rem;background:var(--ink3);border:1px solid var(--ln);position:relative;overflow:hidden">
-      <div style="position:absolute;top:0;left:0;right:0;height:1px;background:var(--tr);opacity:.45"></div>
+    <div class="tools-cta rv">
       <p class="ey c">
         <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
         Liever alles uitbesteden?
         <span class="ey-tri-r" aria-hidden="true"><span></span><span></span><span></span></span>
       </p>
-      <h3 style="font-size:1.55rem;margin-bottom:.75rem">Wij doen het voor u — van A tot Z.</h3>
-      <p style="max-width:480px;margin:0 auto 1.75rem;color:var(--mt)">Geen zin in tools, formulieren en risico's? Dat begrijpen wij. Plan een vrijblijvend gesprek en wij nemen het volledig over.</p>
-      <a href="#contact" class="btn"><span>Vrijblijvend gesprek plannen</span></a>
+      <h3>Wij nemen het volledig van u over — van A tot Z.</h3>
+      <p>Geen zin in zelf uitzoeken? Plan een vrijblijvend gesprek. Wij regelen alles.</p>
+      <a href="#contact" class="btn" style="margin-top:1.5rem"><span>Vrijblijvend gesprek plannen</span></a>
     </div>
-
   </div>
 </section>
 
 <!-- ══ IMPORT ══ -->
-<section class="imp-sec" id="import">
+<section id="import" style="background:var(--ink2)">
   <div class="wrap">
     <div class="imp-grid">
       <div class="imp-visual rv">
         <div class="imp-img">
-          <!-- Europa dots kaart -->
-          <img
-            src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_900,q_60,f_auto/v1786120997/Europa_dots_kunp9q.jpg"
-            alt="Europa — uw zoekgebied" loading="lazy" decoding="async">
+          <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_850,q_58,f_auto/v1786120997/Europa_dots_kunp9q.jpg" alt="Europa zoekgebied" loading="lazy" decoding="async">
           <div class="imp-strip"><span></span><span></span><span></span></div>
           <div class="imp-card">
             <div class="imp-card-lbl">Actief zoekgebied</div>
@@ -613,33 +610,21 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
           Importbegeleiding
         </p>
         <h2>Europa is uw showroom. Wij zijn uw gids.</h2>
-        <p class="lead" style="margin-bottom:1.35rem">De mooiste exemplaren staan zelden bij een Nederlandse dealer. Wij doorzoeken heel Europa — en regelen het volledige importtraject van A tot Z, zonder dat u er wakker van hoeft te liggen.</p>
+        <p class="lead" style="margin-bottom:1.35rem">De mooiste exemplaren staan zelden bij een Nederlandse dealer. Wij doorzoeken heel Europa en regelen het volledige importtraject — zonder dat u er wakker van hoeft te liggen.</p>
         <div class="imp-steps">
-          <div class="imp-step">
-            <div class="imp-step-n">01</div>
-            <div><div class="imp-step-t">Voertuig opsporen</div><div class="imp-step-d">Wij doorzoeken ons Europese netwerk op voertuigen die voldoen aan uw exacte wensen en budget.</div></div>
-          </div>
-          <div class="imp-step">
-            <div class="imp-step-n">02</div>
-            <div><div class="imp-step-t">Onafhankelijke keuring ter plaatse</div><div class="imp-step-d">Op verzoek regelen wij een aankoopkeuring ter plaatse in het land van herkomst. Volledig objectief, door een erkende specialist.</div></div>
-          </div>
-          <div class="imp-step">
-            <div class="imp-step-n">03</div>
-            <div><div class="imp-step-t">BPM-taxatie &amp; importafhandeling</div><div class="imp-step-d">Coördinatie van de volledige importafhandeling via erkende partners. Transparant, geen verrassingen.</div></div>
-          </div>
-          <div class="imp-step">
-            <div class="imp-step-n">04</div>
-            <div><div class="imp-step-t">Rijklaar afgeleverd aan huis</div><div class="imp-step-d">RDW-keuring, kenteken en montage bij u thuis. U stapt in — wij hebben de rest geregeld.</div></div>
-          </div>
+          <div class="imp-step"><div class="imp-step-n">01</div><div><div class="imp-step-t">Voertuig opsporen</div><div class="imp-step-d">Wij doorzoeken ons Europese netwerk op voertuigen die voldoen aan uw wensen en budget.</div></div></div>
+          <div class="imp-step"><div class="imp-step-n">02</div><div><div class="imp-step-t">Keuring ter plaatse (op verzoek)</div><div class="imp-step-d">Op verzoek regelen wij een onafhankelijke aankoopkeuring bij de verkoper. U beslist pas na groen licht.</div></div></div>
+          <div class="imp-step"><div class="imp-step-n">03</div><div><div class="imp-step-t">BPM-taxatie &amp; importafhandeling</div><div class="imp-step-d">Volledige coördinatie via erkende partners. Transparant, geen verrassingen.</div></div></div>
+          <div class="imp-step"><div class="imp-step-n">04</div><div><div class="imp-step-t">Rijklaar afgeleverd aan huis</div><div class="imp-step-d">RDW-keuring, kenteken en montage bij u thuis. U stapt in — klaar.</div></div></div>
         </div>
-        <div style="margin-top:2.25rem"><a href="#contact" class="btn"><span>Import bespreken</span></a></div>
+        <div style="margin-top:2rem"><a href="#contact" class="btn"><span>Import bespreken</span></a></div>
       </div>
     </div>
   </div>
 </section>
 
 <!-- ══ DIENSTEN ══ -->
-<section id="diensten" style="background:var(--ink2)">
+<section id="diensten">
   <div class="wrap">
     <div class="head rv">
       <p class="ey">
@@ -647,23 +632,21 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         Diensten
       </p>
       <h2>Alles onder één dak.</h2>
-      <p class="lead">Van zoektocht tot sleuteloverdracht — elke stap professioneel begeleid, niets over het hoofd gezien.</p>
+      <p class="lead">Van zoektocht tot sleuteloverdracht — elke stap professioneel begeleid.</p>
     </div>
     <div class="svc-grid">
-      <div class="svc rv"><span class="n">01</span><h3>Aankoopbegeleiding</h3><p>Onafhankelijk zoeken, historie beoordelen, technische staat controleren — volledig in uw belang.</p></div>
-      <div class="svc rv"><span class="n">02</span><h3>Technische Keuring</h3><p>Op verzoek regelen wij een aankoopkeuring ter plaatse door een erkende specialist. U koopt met zekerheid.</p></div>
-      <div class="svc rv"><span class="n">03</span><h3>Onderhandeling</h3><p>Scherpe onderhandeling op basis van marktkennis. U betaalt de juiste prijs — nooit meer.</p></div>
-      <div class="svc rv"><span class="n">04</span><h3>Importbegeleiding</h3><p>Volledig importtraject inclusief BPM-taxatie, registratie en documentatie. <a class="il" href="https://bpm.apexclusive.nl">BPM berekenen →</a></p></div>
-      <div class="svc rv"><span class="n">05</span><h3>Taxatie</h3><p>Onafhankelijke taxatie door een gecertificeerde expert, op locatie naar keuze.</p></div>
-      <div class="svc rv"><span class="n">06</span><h3>BPM-afhandeling</h3><p>Volledige BPM-afhandeling en Nederlandse registratie via erkende partners.</p></div>
-      <div class="svc rv"><span class="n">07</span><h3>RDW-keuring aan huis</h3><p>Verplichte RDW-keuring direct na aflevering, bij u thuis. U hoeft nergens voor te rijden.</p></div>
-      <div class="svc rv"><span class="n">08</span><h3>Kenteken aan huis</h3><p>Kenteken afgeleverd en professioneel gemonteerd. De laatste stap, perfect afgerond.</p></div>
+      <div class="svc rv"><span class="n">01</span><h3>Aankoopbegeleiding</h3><p>Onafhankelijk zoeken, historie beoordelen, technische staat controleren.</p></div>
+      <div class="svc rv"><span class="n">02</span><h3>Keuring ter plaatse</h3><p>Op verzoek regelen wij een aankoopkeuring ter plaatse bij de verkoper, door een erkende specialist.</p></div>
+      <div class="svc rv"><span class="n">03</span><h3>Onderhandeling</h3><p>Scherpe onderhandeling op basis van marktkennis. U betaalt de juiste prijs, nooit meer.</p></div>
+      <div class="svc rv"><span class="n">04</span><h3>Importbegeleiding</h3><p>Volledig importtraject inclusief BPM-taxatie en registratie. <a class="il" href="https://bpm.apexclusive.nl">BPM berekenen →</a></p></div>
+      <div class="svc rv"><span class="n">05</span><h3>Taxatie</h3><p>Onafhankelijke taxatie door een gecertificeerde expert op locatie naar keuze.</p></div>
+      <div class="svc rv"><span class="n">06</span><h3>RDW &amp; kenteken aan huis</h3><p>RDW-keuring en kentekenmontage direct bij u thuis. U hoeft nergens voor te rijden.</p></div>
     </div>
   </div>
 </section>
 
 <!-- ══ WERKWIJZE ══ -->
-<section id="werkwijze">
+<section id="werkwijze" style="background:var(--ink2)">
   <div class="wrap">
     <div class="head rv">
       <p class="ey">
@@ -671,25 +654,19 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         Werkwijze
       </p>
       <h2>Van eerste gesprek tot sleuteloverdracht.</h2>
-      <p class="lead">Transparant van start tot finish. Persoonlijk. Volledig op maat.</p>
     </div>
     <div class="steps" id="steps">
-      <div class="step rv"><span class="dot"></span><span class="k">Stap 01</span><h3>Intake &amp; wensen</h3><p>Een persoonlijk gesprek over uw wensen, budget en rijervaring. Zonder verplichtingen.</p></div>
-      <div class="step rv"><span class="dot"></span><span class="k">Stap 02</span><h3>Zoeken &amp; screenen</h3><p>Wij doorzoeken netwerk en markt op voertuigen die exact passen. Inclusief buitenlandse bronnen waar anderen niet kijken.</p></div>
-      <div class="step rv"><span class="dot"></span><span class="k">Stap 03</span><h3>Keuring &amp; advies</h3><p>Op verzoek regelen wij een onafhankelijke aankoopkeuring ter plaatse. U beslist pas als het rapport groen licht geeft.</p></div>
-      <div class="step rv"><span class="dot"></span><span class="k">Stap 04</span><h3>Onderhandelen &amp; aankopen</h3><p>Wij onderhandelen namens u, op basis van marktkennis en keuringsresultaten. U beslist. Wij regelen de volledige overdracht.</p></div>
-      <div class="step rv"><span class="dot"></span><span class="k">Stap 05</span><h3>Import, BPM &amp; aflevering</h3><p>Volledige importafhandeling, RDW-keuring en kentekenmontage aan huis. U rijdt pas als alles klopt.</p></div>
+      <div class="step rv"><span class="dot"></span><span class="k">Stap 01</span><h3>Intake &amp; wensen</h3><p>Persoonlijk gesprek over uw wensen, budget en rijervaring. Zonder verplichtingen.</p></div>
+      <div class="step rv"><span class="dot"></span><span class="k">Stap 02</span><h3>Zoeken &amp; screenen</h3><p>Wij doorzoeken netwerk en Europese markt op voertuigen die exact passen.</p></div>
+      <div class="step rv"><span class="dot"></span><span class="k">Stap 03</span><h3>Keuring &amp; advies</h3><p>Op verzoek regelen wij een onafhankelijke keuring ter plaatse. U beslist pas na groen licht.</p></div>
+      <div class="step rv"><span class="dot"></span><span class="k">Stap 04</span><h3>Onderhandelen &amp; aankopen</h3><p>Wij onderhandelen namens u. U beslist. Wij regelen de overdracht.</p></div>
+      <div class="step rv"><span class="dot"></span><span class="k">Stap 05</span><h3>Import, BPM &amp; aflevering</h3><p>Volledige importafhandeling, RDW-keuring en kentekenmontage aan uw deur.</p></div>
     </div>
-
-    <!--
-      Sleuteloverdracht foto — Porsche sleutels
-      Sjieker alternatief: Unsplash luxury car key / Porsche key
-    -->
+    <!-- Luxe sleuteloverdracht foto -->
     <div class="sleutels-wrap rv">
       <img
-        src="https://images.unsplash.com/photo-1449965408869-eaa3f722e40d?w=900&q=65&auto=format"
-        alt="Sleuteloverdracht — APEXclusive"
-        loading="lazy" decoding="async">
+        src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=800,q_58,auto=format"
+        alt="Sleuteloverdracht" loading="lazy" decoding="async">
       <div class="sleutels-quote">
         <p>"Van eerste gesprek tot het moment waarop de sleutel wordt overhandigd — alles geregeld, niets vergeten."</p>
         <cite>— Martijn Puts · Founder APEXclusive</cite>
@@ -698,94 +675,85 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   </div>
 </section>
 
-<!-- ══ REDENEN ══ -->
-<section style="background:var(--ink2)">
-  <div class="wrap">
-    <div class="head rv">
-      <p class="ey">
-        <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
-        Waarom APEXclusive
-      </p>
-      <h2>Vier redenen om te kiezen voor zekerheid.</h2>
-    </div>
-    <div class="r-grid">
-      <div class="reason rv"><span class="big">01</span><h3>Persoonlijke begeleiding</h3><p>Elke opdracht begint met een persoonlijk gesprek. Uw wensen staan centraal — niet een aanbod uit de voorraad.</p></div>
-      <div class="reason rv"><span class="big">02</span><h3>Volledig onafhankelijk</h3><p>Geen voorraad, geen dealerbelang. Alleen advies dat uitsluitend uw belang dient — met een transparant honorarium dat u vooraf kent.</p></div>
-      <div class="reason rv"><span class="big">03</span><h3>Europese marktkennis</h3><p>Wij kennen de markt in Duitsland, België, Italië, Spanje en meer. De mooiste auto's staan zelden in Nederland.</p></div>
-      <div class="reason rv"><span class="big">04</span><h3>Nul zorgen, A tot Z</h3><p>Van eerste zoektocht tot rijklare aflevering aan huis. U hoeft niets te doen, behalve instappen.</p></div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ TARIEVEN ══ -->
-<section id="tarieven">
-  <div class="wrap">
-    <div class="split" style="align-items:start">
-      <div class="rv">
-        <p class="ey">
-          <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
-          Tarieven
-        </p>
-        <h2>Investeren in zekerheid</h2>
-        <div class="rule"></div>
-        <p style="margin-top:1.25rem;max-width:38ch;color:var(--mt)">Het honorarium verdient zichzelf terug via een scherpere aankoopprijs, vermeden risico's en de zekerheid dat u precies de juiste auto rijdt.</p>
-      </div>
-      <div class="rv">
-        <div class="tar-wrap">
-          <p class="lead" style="margin-bottom:1.35rem">APEXclusive werkt op basis van een transparant honorarium, afgestemd op de omvang van uw opdracht. Geen vaste pakketprijzen — wel een eerlijk gesprek vooraf over wat u kunt verwachten.</p>
-          <p style="margin-bottom:1.85rem;color:var(--mt)">U weet vooraf waar u aan toe bent. Geen verborgen kosten, geen verrassingen. Alleen een helder tarief dat in verhouding staat tot de expertise en het netwerk dat wij voor u inzetten.</p>
-          <a href="#contact" class="btn"><span>Tarieven bespreken</span></a>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
 <!-- ══ OVER ONS ══ -->
-<section id="over" style="background:var(--ink2)">
+<section id="over">
   <div class="wrap">
-    <div class="about-cards">
-      <div class="ac rv"><span class="tag">100% Onafhankelijk</span><h4>Volledig in uw belang.</h4><p>Geen dealerbelangen, geen provisies van verkopers. Uitsluitend werkend voor u — met een tarief dat u vooraf kent.</p></div>
-      <div class="ac rv"><span class="tag">EU-breed netwerk</span><h4>Heel Europa als zoekgebied.</h4><p>Duitsland, België, Italië, Spanje, Zweden — waar de mooiste exemplaren staan, zijn wij actief.</p></div>
-      <div class="ac rv"><span class="tag">Luchtvaartnorm</span><h4>Precisie is een gewoonte.</h4><p>Als professioneel piloot zijn voorbereiding, checklist-denken en oog voor detail geen eigenschap — het zijn gewoontes.</p></div>
-      <div class="ac rv"><span class="tag">A–Z ontzorgd</span><h4>U doet niets, wij doen alles.</h4><p>Van eerste gesprek tot rijklare aflevering aan huis. U stapt in — wij hebben de rest geregeld.</p></div>
-    </div>
-
-    <div class="split">
+    <div class="about-grid">
       <div class="portrait rv">
         <img
-          src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_800,q_65,f_auto/v1786112744/8A26E528-46F4-471D-856C-7D4210809521_1_105_c_uguopr.jpg"
-          alt="Martijn Puts — Founder APEXclusive"
-          loading="lazy" decoding="async">
+          src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_750,q_62,f_auto/v1786112744/8A26E528-46F4-471D-856C-7D4210809521_1_105_c_uguopr.jpg"
+          alt="Martijn Puts — Founder APEXclusive" loading="lazy" decoding="async">
         <div class="portrait-fade"></div>
       </div>
+
       <div class="rv">
         <p class="ey">
           <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
-          De oprichter
+          Over de oprichter
         </p>
-        <h2>Precisie uit de luchtvaart. Passie voor uitzonderlijke auto's.</h2>
-        <div class="rule" style="margin-bottom:1.75rem"></div>
+        <h2>Piloot. Autofanaat. Meer dan tien jaar liefhebber van uitzonderlijke auto's.</h2>
+        <div class="rule" style="margin-bottom:1.65rem"></div>
 
-        <p style="margin-bottom:1.1rem">APEXclusive is ontstaan vanuit een eenvoudige overtuiging: wie investeert in een bijzonder voertuig, verdient begeleiding die daar volledig bij past.</p>
+        <p style="margin-bottom:1rem">APEXclusive is ontstaan vanuit een eenvoudige overtuiging: wie investeert in een bijzonder voertuig, verdient begeleiding die daar volledig bij past.</p>
 
-        <p style="margin-bottom:1.1rem">Als professioneel piloot zijn precisie, voorbereiding en oog voor detail geen eigenschappen — het zijn gewoontes. Die mindset neem ik mee in elk adviestraject: niets wordt aan het toeval overgelaten.</p>
+        <p style="margin-bottom:1rem">Als professioneel piloot zijn precisie, voorbereiding en oog voor detail geen eigenschappen — het zijn gewoontes die ik elke dag meeneem in elk adviestraject.</p>
 
-        <p style="margin-bottom:1.75rem">Wat mij onderscheidt, is dat ik niet alleen adviseur ben — ik ben ook liefhebber. Al meer dan tien jaar rij ik zelf exclusieve auto's: van McLaren en Lamborghini tot Porsche. Ik ken het gevoel van een perfecte match, maar ook de valkuilen van een teleurstellende aankoop. Die ervaring zet ik elke dag in voor mijn klanten.</p>
+        <p style="margin-bottom:1.6rem">Wat mij onderscheidt: ik ben niet alleen adviseur, maar ook liefhebber. Meer dan tien jaar rij ik zelf in exclusieve auto's — van een McLaren 650S Spyder en Lamborghini Huracán tot Porsche 911 Turbo en diverse RS-modellen van Audi. Ik ken het gevoel van een perfecte match, maar ook de valkuilen van een teleurstellende aankoop. Mijn eerste McLaren werd geïmporteerd uit België — en precies die ervaring deed mij beseffen hoe het beter kon. Sindsdien doe ik het zelf, en heb ik de expertise en het netwerk opgebouwd om andere liefhebbers te begeleiden.</p>
 
-        <!-- Auto-badges: 10 jaar eigen ervaring -->
-        <div style="margin-bottom:1.5rem">
-          <div style="font-family:var(--lb);font-size:.58rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(198,203,209,.3);margin-bottom:.85rem">Eigen rijervaring — meer dan 10 jaar</div>
-          <div class="garage-row">
-            <div class="garage-badge">McLaren</div>
-            <div class="garage-badge">Lamborghini</div>
-            <div class="garage-badge">Porsche</div>
-            <div class="garage-badge">Audi RS</div>
-            <div class="garage-badge">10+ jaar</div>
+        <!-- Eigen auto-galerij: horizontaal scrollbaar -->
+        <div class="garage-section">
+          <div class="garage-label">Eigen rijervaring — selectie uit de garage</div>
+          <div class="garage-scroll">
+
+            <div class="garage-card">
+              <!-- Lamborghini Huracán — geïmporteerd -->
+              <img
+                src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_320,q_55,f_auto/v1786123838/WhatsApp_Image_2025-05-20_at_01.01.02_nh95ep.jpg"
+                alt="Lamborghini Huracán" loading="lazy" decoding="async">
+              <div class="garage-card-lbl">Lamborghini Huracán · Import</div>
+            </div>
+
+            <div class="garage-card">
+              <!-- McLaren 650S Spyder — import uit België -->
+              <img
+                src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_320,q_55,f_auto/v1786123971/Scherm_afbeelding_2026-08-07_om_19.32.35_jnsz99.jpg"
+                alt="McLaren 650S Spyder" loading="lazy" decoding="async">
+              <div class="garage-card-lbl">McLaren 650S · Import België</div>
+            </div>
+
+            <div class="garage-card">
+              <!-- Porsche 911 Turbo -->
+              <img
+                src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_320,q_55,f_auto/v1786124284/IMG_7402_rmzafp.jpg"
+                alt="Porsche 911 Turbo" loading="lazy" decoding="async">
+              <div class="garage-card-lbl">Porsche 911 Turbo</div>
+            </div>
+
+            <div class="garage-card">
+              <!-- BMW M4 -->
+              <img
+                src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_320,q_55,f_auto/v1786124284/IMG_3419_tszyzk.jpg"
+                alt="BMW M4" loading="lazy" decoding="async">
+              <div class="garage-card-lbl">BMW M4</div>
+            </div>
+
+            <div class="garage-card">
+              <!-- Porsche Macan Turbo -->
+              <img
+                src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_320,q_55,f_auto/v1786124459/IMG_5245_f3sxrk.jpg"
+                alt="Porsche Macan Turbo" loading="lazy" decoding="async">
+              <div class="garage-card-lbl">Porsche Macan Turbo</div>
+            </div>
+
           </div>
         </div>
 
-        <p style="color:var(--mt)">Geen standaardaanbod. Geen dealerbelang. Alleen de auto die bij u past — gevonden en gekeurd met de aandacht die u verdient.</p>
+        <!-- Krant badge -->
+        <a href="https://www.limburger.nl/regio/roermond/autofanaat-martijn-37-uit-roermond-is-gek-op-snelle-sportauto-s-en-laat-anderen-graag-meegenieten-van-zijn-passie/22277510.html"
+           class="press-badge" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 0-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8z"/></svg>
+          <span>Zoals vermeld in <strong>De Limburger</strong> · Roermond</span>
+        </a>
 
         <p class="sig">Martijn Puts</p>
         <p class="role">Founder &amp; Private Vehicle Advisor</p>
@@ -795,7 +763,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 </section>
 
 <!-- ══ PROJECTEN ══ -->
-<section id="projecten">
+<section id="projecten" style="background:var(--ink2)">
   <div class="wrap">
     <div class="head rv">
       <p class="ey">
@@ -803,12 +771,12 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         Gerealiseerde projecten
       </p>
       <h2>Drie recente opdrachten.</h2>
-      <p class="lead">Elk voertuig persoonlijk begeleid, onafhankelijk gekeurd en rijklaar afgeleverd aan een tevreden eigenaar.</p>
+      <p class="lead">Elk voertuig persoonlijk begeleid, onafhankelijk gekeurd en rijklaar afgeleverd.</p>
     </div>
     <div class="p-grid">
       <article class="proj rv">
         <div class="imgwrap veil">
-          <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_800,q_60,f_auto/v1786111924/5D3019CA-22AA-4240-B1C7-8C11D4005F8B_1_105_c_lxanhh.jpg" alt="Lamborghini Huracán LP610 Spyder" loading="lazy" decoding="async">
+          <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_750,q_58,f_auto/v1786123838/WhatsApp_Image_2025-05-20_at_01.01.02_nh95ep.jpg" alt="Lamborghini Huracán LP610 Spyder" loading="lazy" decoding="async">
         </div>
         <div class="cap">
           <span class="tag">Persoonlijke import · Zweden</span>
@@ -818,7 +786,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
       </article>
       <article class="proj rv">
         <div class="imgwrap veil">
-          <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_800,q_60,f_auto/v1786111940/987D691B-FFBF-4137-9766-15DEF62F5CD4_1_201_a_k1eyvp.jpg" alt="Lamborghini Urus aflevering" loading="lazy" decoding="async">
+          <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_750,q_58,f_auto/v1786111940/987D691B-FFBF-4137-9766-15DEF62F5CD4_1_201_a_k1eyvp.jpg" alt="Lamborghini Urus" loading="lazy" decoding="async">
         </div>
         <div class="cap">
           <span class="tag">Persoonlijke import · Luxemburg</span>
@@ -828,12 +796,12 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
       </article>
       <article class="proj rv">
         <div class="imgwrap veil">
-          <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_800,q_60,f_auto/v1786112182/8112FE63-03BD-4C6D-9A40-1217FCD5910F_1_201_a_vbazdb.heic" alt="Audi RS6 Avant C8" loading="lazy" decoding="async">
+          <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_750,q_58,f_auto/v1786112182/8112FE63-03BD-4C6D-9A40-1217FCD5910F_1_201_a_vbazdb.heic" alt="Audi RS6 Avant C8" loading="lazy" decoding="async">
         </div>
         <div class="cap">
           <span class="tag">Aankoopbegeleiding · Duitsland</span>
           <h3>Audi RS6 Avant C8</h3>
-          <p>600 pk · V8 TFSI · Audi Approved · 24 maanden garantie · Volledige BPM-afhandeling en NL-registratie inbegrepen.</p>
+          <p>600 pk · V8 TFSI · Audi Approved · 24 maanden garantie · BPM-afhandeling en NL-registratie inbegrepen.</p>
         </div>
       </article>
     </div>
@@ -844,13 +812,35 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 <section class="quote" id="aftersales">
   <div class="q-pin">
     <div class="wrap" style="text-align:center">
-      <p class="ey c" style="margin-bottom:2.2rem">
+      <p class="ey c" style="margin-bottom:2rem">
         <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
         After sales
         <span class="ey-tri-r" aria-hidden="true"><span></span><span></span><span></span></span>
       </p>
       <blockquote id="bq">Ik bel u altijd na afloop. Niet als vinkje op een checklist — gewoon omdat ik echt wil weten hoe het voelt, rijdt en of u blij bent met uw keuze. Uw vertrouwen is niet alleen een formaliteit; het is het fundament van alles.</blockquote>
       <p class="attrib">— Martijn Puts · Founder &amp; Private Vehicle Advisor</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ TARIEVEN ══ -->
+<section id="tarieven">
+  <div class="wrap">
+    <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(2.5rem,5vw,5rem);align-items:start" class="rv">
+      <div>
+        <p class="ey">
+          <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
+          Tarieven
+        </p>
+        <h2>Investeren in zekerheid</h2>
+        <div class="rule"></div>
+        <p style="margin-top:1.1rem;color:var(--mt)">Het honorarium verdient zichzelf terug via een scherpere aankoopprijs, vermeden risico's en de zekerheid dat u de juiste auto rijdt.</p>
+      </div>
+      <div class="tar-wrap">
+        <p class="lead" style="margin-bottom:1.2rem">APEXclusive werkt op basis van een transparant honorarium, afgestemd op de omvang van uw opdracht. Geen vaste pakketprijzen — wel een eerlijk gesprek vooraf.</p>
+        <p style="margin-bottom:1.75rem;color:var(--mt)">U weet vooraf waar u aan toe bent. Geen verborgen kosten, geen verrassingen — alleen een helder tarief dat in verhouding staat tot de expertise en het netwerk dat wij voor u inzetten.</p>
+        <a href="#contact" class="btn"><span>Tarieven bespreken</span></a>
+      </div>
     </div>
   </div>
 </section>
@@ -864,30 +854,36 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
       <span class="ey-tri-r" aria-hidden="true"><span></span><span></span><span></span></span>
     </p>
     <h2>Klaar om uw droomauto te importeren?</h2>
-    <p class="lead">Eén gesprek is genoeg om te bepalen of wij iets voor u kunnen betekenen. Vrijblijvend, discreet en zonder verplichtingen.</p>
+    <p class="lead">Eén gesprek is genoeg. Vrijblijvend, discreet en zonder verplichtingen.</p>
+
+    <!-- 3 contactkaarten — email + WhatsApp samengevoegd -->
     <div class="c-grid">
-      <div class="cc rv"><span class="tag">◆ Locatie</span><p>Maastricht, Nederland<br>Actief in heel Europa</p></div>
-      <div class="cc rv"><span class="tag">◆ E-mail</span><p><a href="mailto:info@apexclusive.nl">info@apexclusive.nl</a></p></div>
-      <div class="cc rv"><span class="tag">◆ Telefoon &amp; WhatsApp</span><p><a href="tel:+31624735939">+31 6 24 73 59 39</a><br><a href="https://wa.me/31624735939">WhatsApp openen</a></p></div>
-      <div class="cc rv"><span class="tag">◆ Reactietijd</span><p>Doorgaans binnen 24 uur.<br>Persoonlijk contact met de oprichter.</p></div>
-    </div>
-    <div class="cta-row" style="justify-content:center">
-      <a class="btn"    href="https://wa.me/31624735939"><span>WhatsApp +31 6 24 73 59 39</span></a>
-      <a class="btn gh" href="mailto:info@apexclusive.nl"><span>Stuur een e-mail</span></a>
-    </div>
-    <div class="contact-promise rv">
-      <p class="ey c" style="margin-bottom:.5rem">
-        <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
-        Wat u kunt verwachten
-        <span class="ey-tri-r" aria-hidden="true"><span></span><span></span><span></span></span>
-      </p>
-      <div class="cp-items">
-        <div class="cp-item"><span class="cp-dot"></span>Reactie doorgaans binnen 24 uur</div>
-        <div class="cp-item"><span class="cp-dot"></span>Volledig discreet en vertrouwelijk</div>
-        <div class="cp-item"><span class="cp-dot"></span>Geen verplichtingen na het eerste gesprek</div>
-        <div class="cp-item"><span class="cp-dot"></span>Persoonlijk contact met Martijn Puts</div>
-        <div class="cp-item"><span class="cp-dot"></span>Transparant honorarium, vooraf besproken</div>
+      <div class="cc rv">
+        <span class="tag">◆ Locatie</span>
+        <p>Maastricht, Nederland<br><span style="font-size:.78rem;color:#666">Actief in heel Europa</span></p>
       </div>
+      <div class="cc rv">
+        <span class="tag">◆ E-mail &amp; WhatsApp</span>
+        <p>
+          <a href="mailto:info@apexclusive.nl">info@apexclusive.nl</a><br>
+          <a href="https://wa.me/31624735939">WhatsApp: +31 6 24 73 59 39</a><br>
+          <a href="tel:+31624735939" style="font-size:.78rem;color:#666">+31 6 24 73 59 39</a>
+        </p>
+      </div>
+      <div class="cc rv">
+        <span class="tag">◆ Wat u kunt verwachten</span>
+        <p style="font-size:.8rem;line-height:1.8;color:#888">
+          Reactie binnen 24 uur<br>
+          Persoonlijk contact met Martijn<br>
+          Volledig discreet &amp; vertrouwelijk<br>
+          Transparant honorarium vooraf
+        </p>
+      </div>
+    </div>
+
+    <div class="cta-row">
+      <a class="btn"    href="https://wa.me/31624735939"><span>WhatsApp +31 6 24 73 59 39</span></a>
+      <a class="btn gh" href="mailto:info@apexclusive.nl"><span>E-mail sturen</span></a>
     </div>
   </div>
 </section>
@@ -904,7 +900,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
       <p>Private vehicle advisory vanuit Maastricht. Onafhankelijke aankoopbegeleiding en import van uitzonderlijke auto's in heel Europa.</p>
     </div>
     <div>
-      <p class="fh">Gratis tools</p>
+      <p class="fh">Instrumenten</p>
       <ul class="fl">
         <li><a href="https://bpm.apexclusive.nl">BPM Calculator</a></li>
         <li><a href="https://kentekencheck.apexclusive.nl">Kentekencheck</a></li>
@@ -937,9 +933,9 @@ addEventListener('scroll',()=>{
 },{passive:true});
 const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
 
-/* ── H2 split words ── */
+/* H2 split */
 if(!reduced){
-  document.querySelectorAll('section h2, header h1').forEach(h=>{
+  document.querySelectorAll('section h2,header h1').forEach(h=>{
     [...h.childNodes].forEach(node=>{
       if(node.nodeType!==3||!node.textContent.trim())return;
       const frag=document.createDocumentFragment();
@@ -951,13 +947,13 @@ if(!reduced){
       });
       h.replaceChild(frag,node);
     });
-    h.querySelectorAll('.w i').forEach((el,i)=>el.style.transitionDelay=75+i*50+'ms');
+    h.querySelectorAll('.w i').forEach((el,i)=>el.style.transitionDelay=70+i*48+'ms');
   });
 }
 
-/* ── Quote words ── */
+/* Quote words */
 const bq=document.getElementById('bq');
-let qwords=[];
+let qw=[];
 if(!reduced){
   const words=bq.textContent.trim().split(/\s+/);
   bq.textContent='';
@@ -965,10 +961,10 @@ if(!reduced){
     const s=document.createElement('span');s.className='qw';s.textContent=word;
     bq.append(s,' ');
   });
-  qwords=[...bq.querySelectorAll('.qw')];
+  qw=[...bq.querySelectorAll('.qw')];
 }
 
-/* ── Mobile menu ── */
+/* Mobile menu */
 const nav=document.getElementById('nav');
 const burger=document.getElementById('burger');
 const mmenu=document.getElementById('mm');
@@ -982,57 +978,41 @@ const toggleMenu=open=>{
 burger.addEventListener('click',()=>toggleMenu(!mmenu.classList.contains('open')));
 mmenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>toggleMenu(false)));
 
-/* ══════════════════════════════════════════════════
-   REVEAL OBSERVER
-   — .rv elementen fade in
-   — .veil foto-curtain
-   — section h2 word-reveal
-   — .ey tricolore animatie: class 'tri-in' triggert width
-══════════════════════════════════════════════════ */
+/* Reveal + tricolore eyebrow trigger */
 const io=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
     if(!e.isIntersecting)return;
     io.unobserve(e.target);
-
-    /* veil foto reveal */
+    /* veil curtain */
     const img=e.target.classList.contains('veil')?e.target.querySelector('img'):null;
     if(img&&!img.complete){
       img.addEventListener('load', ()=>e.target.classList.add('in'),{once:true});
       img.addEventListener('error',()=>e.target.classList.add('in'),{once:true});
-    }else{
-      e.target.classList.add('in');
-    }
-
-    /* Tricolore eyebrow animatie */
-    if(e.target.classList.contains('ey')){
-      e.target.classList.add('tri-in');
-    }
-    /* Als het een container is, ook geneste .ey activeren */
+    }else e.target.classList.add('in');
+    /* tricolore trigger */
+    if(e.target.classList.contains('ey')) e.target.classList.add('tri-in');
     e.target.querySelectorAll&&e.target.querySelectorAll('.ey').forEach(ey=>{
-      setTimeout(()=>ey.classList.add('tri-in'),200);
+      setTimeout(()=>ey.classList.add('tri-in'),180);
     });
   });
-},{threshold:.08,rootMargin:'0px 0px -4% 0px'});
+},{threshold:.07,rootMargin:'0px 0px -3% 0px'});
 
-/* Stagger binnen grids */
-document.querySelectorAll('.svc-grid,.r-grid,.steps,.p-grid,.tgrid,.about-cards,.c-grid,.fear-grid').forEach(g=>{
-  [...g.children].forEach((el,i)=>el.style.transitionDelay=Math.min(i,5)*85+'ms');
+/* Stagger grids */
+document.querySelectorAll('.svc-grid,.r-grid,.steps,.p-grid,.tgrid,.c-grid,.fear-grid').forEach(g=>{
+  [...g.children].forEach((el,i)=>el.style.transitionDelay=Math.min(i,5)*80+'ms');
 });
-
-/* Observeer alles */
 document.querySelectorAll('.rv,.step,.veil,section h2,.ey').forEach(el=>io.observe(el));
 
-/* ── Scrollspy ── */
+/* Scrollspy */
 const links=[...document.querySelectorAll('#navlinks a')];
 const spy=new IntersectionObserver(entries=>{
   entries.forEach(e=>{
-    if(e.isIntersecting)
-      links.forEach(a=>a.classList.toggle('active',a.hash==='#'+e.target.id));
+    if(e.isIntersecting)links.forEach(a=>a.classList.toggle('active',a.hash==='#'+e.target.id));
   });
 },{rootMargin:'-40% 0px -55% 0px'});
 links.forEach(a=>{const t=document.querySelector(a.hash);if(t)spy.observe(t);});
 
-/* ── Main rAF loop ── */
+/* Main loop */
 const bar   =document.getElementById('progress');
 const heroC =document.getElementById('heroContent');
 const cue   =document.getElementById('cue');
@@ -1045,24 +1025,20 @@ function frame(){
   const total=document.documentElement.scrollHeight-vh;
   bar.style.transform=`scaleX(${total>0?y/total:0})`;
   nav.classList.toggle('stuck',y>40);
-  if(y>navY+6&&y>280&&!mmenu.classList.contains('open'))nav.classList.add('hide');
-  else if(y<navY-6||y<=280)nav.classList.remove('hide');
+  if(y>navY+6&&y>260&&!mmenu.classList.contains('open'))nav.classList.add('hide');
+  else if(y<navY-6||y<=260)nav.classList.remove('hide');
   navY=y;
   if(!reduced){
     const hp=clamp(y/vh,0,1);
-    heroC.style.transform=`translateY(${hp*95}px)`;
-    heroC.style.opacity  =1-hp*1.35;
+    heroC.style.transform=`translateY(${hp*90}px)`;
+    heroC.style.opacity  =1-hp*1.3;
     cue.style.opacity    =1-hp*3;
-    if(steps){
-      const r=steps.getBoundingClientRect();
-      steps.style.setProperty('--tp',clamp((vh*.7-r.top)/r.height,0,1).toFixed(3));
-    }
-    if(qwords.length){
+    if(steps){const r=steps.getBoundingClientRect();steps.style.setProperty('--tp',clamp((vh*.68-r.top)/r.height,0,1).toFixed(3));}
+    if(qw.length){
       const r =quote.getBoundingClientRect();
       const pr=clamp(-r.top/(r.height-vh),0,1);
-      const n =qwords.length;
-      for(let i=0;i<n;i++)
-        qwords[i].style.opacity=clamp((pr*(n+8)-i)/5,.1,1).toFixed(2);
+      const n =qw.length;
+      for(let i=0;i<n;i++)qw[i].style.opacity=clamp((pr*(n+8)-i)/5,.1,1).toFixed(2);
     }
   }
   requestAnimationFrame(frame);
