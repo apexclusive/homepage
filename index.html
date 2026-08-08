@@ -1146,16 +1146,18 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
     splash.classList.add('hide');
     setTimeout(function(){
       splash.classList.add('force-hide');
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
       initQuoteWords();
     }, 900);
   }
-  setTimeout(hideSplash, 2000);
+  setTimeout(hideSplash, 1500);
   setTimeout(function(){
     if (!splash.classList.contains('force-hide')) {
       splash.classList.add('force-hide');
+      window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
       initQuoteWords();
     }
-  }, 3500);
+  }, 2500);
 })();
 
 /* ══ FEAR ACCORDION ══ */
