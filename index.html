@@ -72,24 +72,26 @@ h2.in .w i{transform:none}
   background:rgba(0,0,0,1);
   display:flex;align-items:center;justify-content:center;
   opacity:1;
-  transform:translateY(0);
-  transition:opacity 1.2s cubic-bezier(.25,.46,.45,.94), filter 1.2s ease-out;
-  will-change:opacity, filter;
+  transform:translateY(0) scale(1);
+  transition:opacity 1.6s cubic-bezier(.16,.7,.33,1), filter 1.6s ease-out, transform 1.6s cubic-bezier(.16,.7,.33,1);
+  will-change:opacity, filter, transform;
 }
 #splash.splash-exit{
   opacity:0;
-  filter:blur(4px);
+  filter:blur(8px) brightness(.85);
+  transform:scale(.96);
   pointer-events:none;
 }
 #splash.force-hide{display:none!important;visibility:hidden!important;pointer-events:none!important}
 .splash-inner{
   display:flex;flex-direction:column;align-items:center;
-  transition:transform .55s ease-out, opacity .55s ease-out, filter .55s ease-out;
+  transition:transform .8s cubic-bezier(.16,.7,.33,1), opacity .8s cubic-bezier(.16,.7,.33,1), filter .8s ease-out;
 }
 #splash.splash-exit .splash-inner{
   opacity:0;
-  filter:blur(3px);
-  transition:opacity 1.2s cubic-bezier(.25,.46,.45,.94), filter 1.2s ease-out;
+  filter:blur(6px);
+  transform:scale(.94);
+  transition:opacity 1.6s cubic-bezier(.16,.7,.33,1), filter 1.6s ease-out, transform 1.6s cubic-bezier(.16,.7,.33,1);
 }
 .splash-brand{
   font-family:'Cormorant Garamond',serif;
@@ -335,7 +337,7 @@ nav.hide{transform:translateY(-105%)}
 .tip-bar p{font-size:clamp(.8rem,1.8vw,.85rem);color:#d0d0d0;font-family:var(--lb);letter-spacing:.05em;line-height:1.65}
 .tip-bar p strong{color:#f0f0f0}
 .tgrid{
-  display:grid;grid-template-columns:repeat(3,1fr);gap:1.5px;background:var(--ln);
+  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:1.5px;background:var(--ln);
   max-width:1160px;margin:0 auto;
   border:1px solid var(--ln);
   box-shadow:0 0 0 1px rgba(198,203,209,.06),0 24px 80px rgba(0,0,0,.35);
@@ -422,7 +424,7 @@ nav.hide{transform:translateY(-105%)}
 .press-badge svg{width:12px;height:12px;fill:none;stroke:rgba(198,203,209,.35);stroke-width:1.5;flex-shrink:0}
 .press-badge strong{color:rgba(198,203,209,.62)}
 .about-body-text{font-size:clamp(.92rem,2.2vw,.97rem);color:#b8b8b8;line-height:1.84;margin-bottom:1.1rem}
-.about-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:28px;padding:2.1rem;box-shadow:0 18px 36px rgba(0,0,0,.18);overflow:hidden}
+.about-card{background:transparent;border:none;border-radius:0;padding:0;box-shadow:none;overflow:visible}
 .founder-block{display:flex;align-items:center;gap:.85rem;margin-top:1.6rem;flex-wrap:wrap;max-width:100%}
 .founder-thumb{width:44px;height:44px}
 .founder-copy{min-width:0;flex:1;max-width:calc(100% - 56px)}
@@ -463,7 +465,7 @@ nav.hide{transform:translateY(-105%)}
 .proj-story-inner .story-tag::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--pt);flex-shrink:0}
 
 /* ══ QUOTE ══ */
-.quote{height:140vh;padding:0;background:#040404}
+.quote{height:110vh;padding:0;background:#040404}
 .q-pin{position:sticky;top:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:0 var(--pd)}
 .q-pin::before{content:'';position:absolute;inset:0;background:radial-gradient(ellipse 55% 40% at 50% 50%,rgba(198,203,209,.025) 0%,transparent 70%);pointer-events:none}
 .quote blockquote{max-width:60ch;margin:0 auto;text-align:center;border:0;font-family:var(--sf);font-size:clamp(1.2rem,2.8vw,1.75rem);font-style:italic;line-height:1.82;color:#ccc;position:relative;z-index:1}
@@ -708,6 +710,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
   </a>
   <div class="navlinks" id="navlinks">
     <a href="#tools">Tools</a>
+    <a href="/verzekeringen.html">Verzekering</a>
     <a href="#werkwijze">Werkwijze</a>
     <a href="#over">Over ons</a>
     <a href="#projecten">Projecten</a>
@@ -721,10 +724,11 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
 <div id="mm" role="dialog" aria-label="Navigatiemenu" aria-modal="true">
   <span id="mm-brand" aria-hidden="true">APEXclusive</span>
   <a href="#tools"     style="transition-delay:.08s" onclick="closeMM()">Tools</a>
-  <a href="#werkwijze" style="transition-delay:.14s" onclick="closeMM()">Werkwijze</a>
-  <a href="#over"      style="transition-delay:.20s" onclick="closeMM()">Over ons</a>
-  <a href="#projecten" style="transition-delay:.26s" onclick="closeMM()">Projecten</a>
-  <a href="#contact"   style="transition-delay:.32s;color:var(--pt)" onclick="closeMM()">Contact</a>
+  <a href="/verzekeringen.html" style="transition-delay:.14s" onclick="closeMM()">Verzekering</a>
+  <a href="#werkwijze" style="transition-delay:.20s" onclick="closeMM()">Werkwijze</a>
+  <a href="#over"      style="transition-delay:.26s" onclick="closeMM()">Over ons</a>
+  <a href="#projecten" style="transition-delay:.32s" onclick="closeMM()">Projecten</a>
+  <a href="#contact"   style="transition-delay:.38s;color:var(--pt)" onclick="closeMM()">Contact</a>
   <div id="mm-foot">Maastricht &middot; Private Vehicle Advisory</div>
 </div>
 
@@ -808,10 +812,10 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
         Doe de check
         <span class="ey-tri-r" aria-hidden="true"><span></span><span></span><span></span></span>
       </p>
-      <h2>Drie instrumenten.<br>Gebruik ze &mdash; v&oacute;&oacute;r u beslist.</h2>
-      <p class="lead">Wij gebruiken ze dagelijks. Nu ook beschikbaar voor u &mdash; direct, gratis, zonder registratie. Zo begint elke slimme auto-aankoop.</p>
+      <h2>Zeven instrumenten.<br>Gebruik ze &mdash; v&oacute;&oacute;r u beslist.</h2>
+      <p class="lead">Wij gebruiken ze dagelijks. Nu ook beschikbaar voor u &mdash; direct, gratis, zonder registratie. Alles wat u nodig hebt: van check tot financiering tot verkoop van uw huidige auto.</p>
     </div>
-    <div class="tools-badge rv">3 gratis instrumenten &middot; direct beschikbaar &middot; geen registratie</div>
+    <div class="tools-badge rv">7 gratis instrumenten &middot; direct beschikbaar &middot; geen registratie</div>
     <div class="tip-bar rv">
       <div class="tip-dot"></div>
       <p><strong>Tip van Martijn:</strong> Voer altijd eerst de kentekencheck en BPM-berekening uit voordat u een bod uitbrengt op een buitenlandse auto. Het kan u duizenden euro&rsquo;s schelen.</p>
@@ -869,6 +873,78 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
         <div class="tc-body">
           <p>Plak een link van Mobile.de, AutoScout24 of Marktplaats en ontvang direct een objectieve prijsbeoordeling. Betaalt u de eerlijke prijs?</p>
           <span class="tc-go">Analyseer nu <i></i></span>
+        </div>
+      </a>
+
+      <a class="tc" href="/waarde.html">
+        <div class="tc-top">
+          <span class="num">04</span>
+          <div class="tc-top-text">
+            <h3>Auto Waarde</h3>
+            <div class="tc-perk">Inruilwaarde &middot; Marktplaatsprijs &middot; Handelaarsprijs</div>
+          </div>
+        </div>
+        <div class="tc-photo">
+          <img src="https://images.unsplash.com/photo-1609950348147-acbdb7d8c4a5?w=620&q=55&auto=format" alt="Auto waarde calculator" loading="lazy" decoding="async">
+          <div class="tc-fade"></div>
+        </div>
+        <div class="tc-body">
+          <p>Bepaal precies wat uw huidige auto waard is. Drie waardepeilen: inruilwaarde, handelaarsprijs en private sale marktplaats.</p>
+          <span class="tc-go">Bereken waarde <i></i></span>
+        </div>
+      </a>
+
+      <a class="tc" href="/verzekeringen.html">
+        <div class="tc-top">
+          <span class="num">05</span>
+          <div class="tc-top-text">
+            <h3>Verzekering Vergelijken</h3>
+            <div class="tc-perk">WA &middot; Casco &middot; Maatwerk</div>
+          </div>
+        </div>
+        <div class="tc-photo">
+          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=620&q=55&auto=format" alt="Verzekeringen" loading="lazy" decoding="async">
+          <div class="tc-fade"></div>
+        </div>
+        <div class="tc-body">
+          <p>Vergelijk autoverzekeringstarieve van de beste Nederlandse verzekaars. WA, Beperkt Casco of Volledig Casco &mdash; direct inzicht in uw options.</p>
+          <span class="tc-go">Vergelijk nu <i></i></span>
+        </div>
+      </a>
+
+      <a class="tc" href="/lening.html">
+        <div class="tc-top">
+          <span class="num">06</span>
+          <div class="tc-top-text">
+            <h3>Auto Lening</h3>
+            <div class="tc-perk">Maandlast &middot; Rentes &middot; Bankenvergelijking</div>
+          </div>
+        </div>
+        <div class="tc-photo">
+          <img src="https://images.unsplash.com/photo-1560707303-4e980ce876ad?w=620&q=55&auto=format" alt="Auto lening calculator" loading="lazy" decoding="async">
+          <div class="tc-fade"></div>
+        </div>
+        <div class="tc-body">
+          <p>Bereken uw maandelijkse auto-lening en vergelijk rentes van Rabobank, ING en ABN AMRO. Financiering made simple.</p>
+          <span class="tc-go">Bereken lening <i></i></span>
+        </div>
+      </a>
+
+      <a class="tc" href="/occasion.html">
+        <div class="tc-top">
+          <span class="num">07</span>
+          <div class="tc-top-text">
+            <h3>Occasion Tips</h3>
+            <div class="tc-perk">Marktplaats &middot; Adverteerderschecklist &middot; Prijsstrategie</div>
+          </div>
+        </div>
+        <div class="tc-photo">
+          <img src="https://images.unsplash.com/photo-1552317051-dcc60b0ce1e5?w=620&q=55&auto=format" alt="Occasion tips" loading="lazy" decoding="async">
+          <div class="tc-fade"></div>
+        </div>
+        <div class="tc-body">
+          <p>Verkoop uw auto sneller en voor meer geld. Checklist voor foto's, beschrijving, prijs en veiligheid bij Marktplaats verkoop.</p>
+          <span class="tc-go">Lees tips <i></i></span>
         </div>
       </a>
 
@@ -1146,6 +1222,18 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
         <li><a href="https://kentekencheck.apexclusive.nl">Kentekencheck</a></li>
         <li><a href="https://bpm.apexclusive.nl">BPM Calculator</a></li>
         <li><a href="https://carrapport.apexclusive.nl">Advertentie Analyse</a></li>
+        <li><a href="/waarde.html">Auto Waarde</a></li>
+        <li><a href="/verzekeringen.html">Verzekering</a></li>
+        <li><a href="/lening.html">Auto Lening</a></li>
+        <li><a href="/occasion.html">Occasion Tips</a></li>
+      </ul>
+    </div>
+    <div>
+      <p class="fh">Juridisch</p>
+      <ul class="fl">
+        <li><a href="/algemenevoorwaarden.html">Algemene Voorwaarden</a></li>
+        <li><a href="#top">Privacy Policy</a></li>
+        <li><a href="#top">Disclaimers</a></li>
       </ul>
     </div>
     <div>
