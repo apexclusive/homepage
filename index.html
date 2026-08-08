@@ -493,7 +493,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   scrollbar-width:thin;
   scrollbar-color:rgba(198,203,209,.18) transparent;
   background:rgba(255,255,255,.02);
-  border-radius:1.35rem;
+  border-radius:1.35rem 1.35rem 0 0;
 }
 .chat-msgs::-webkit-scrollbar{width:6px}
 .chat-msgs::-webkit-scrollbar-thumb{
@@ -554,9 +554,9 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 
 .chat-inp-row{
   display:flex;gap:0;
-  border-top:1px solid rgba(198,203,209,.08);
+  border-top:none;
   background:transparent;
-  padding:0;
+  padding:.85rem 1rem;
   border-bottom-left-radius:1rem;
   border-bottom-right-radius:1rem;
 }
@@ -606,7 +606,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   transform:translateY(-1px);
 }
 .chat-toast{
-  display:flex;
+  display:none;
   align-items:center;
   justify-content:center;
   min-height:44px;
@@ -626,6 +626,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   transition:opacity .28s ease,transform .28s ease;
 }
 .chat-toast.visible{
+  display:flex;
   opacity:1;
   transform:translateY(0);
 }
@@ -709,8 +710,8 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
     <div class="chat-hdr-av" aria-hidden="true">A</div>
     <div>
       <div class="chat-hdr-name">APEXclusive Adviseur</div>
-      <div class="chat-hdr-status">Discreet & persoonlijk advies</div>
-      <div class="chat-hdr-badge">Persoonlijk advies</div>
+      <div class="chat-hdr-status">Discreet, direct en verfijnd advies</div>
+      <div class="chat-hdr-badge">Maastricht · Premium service</div>
     </div>
     <button class="chat-x" type="button" onclick="apexToggle()" aria-label="Sluit chat">✕</button>
   </div>
@@ -1079,7 +1080,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 
         <p style="margin-bottom:1rem">Als professioneel piloot zijn precisie, voorbereiding en oog voor detail geen eigenschappen — het zijn gewoontes die ik elke dag meeneem in elk adviestraject.</p>
 
-        <p style="margin-bottom:1.65rem">Wat mij onderscheidt is dat ik niet alleen adviseur ben, maar zelf liefhebber. Meer dan tien jaar rij ik in exclusieve auto's — van een McLaren 650S Spyder en Lamborghini Huracán tot Porsche 911 Turbo en Audi RS-modellen. Mijn eerste McLaren werd geïmporteerd uit België. Precies die ervaring deed mij beseffen hoe het beter kon — en sindsdien doe ik het zelf. Die kennis en dat netwerk zet ik nu in voor mijn klanten.</p>
+        <p style="margin-bottom:1.65rem">Wat mij onderscheidt is dat ik niet alleen adviseur ben, maar zelf liefhebber én importeur. In meer dan tien jaar heb ik unieke auto's persoonlijk uit heel Europa naar Nederland gehaald — van een McLaren 650S Spyder uit België en een Lamborghini Huracán uit Zweden tot een Audi RS6 uit Duitsland. Die directe ervaring vormt de basis van het service‑niveau dat ik mijn klanten bied: discreet, zorgeloos en altijd met oog voor detail.</p>
 
         <div class="garage-section">
           <div class="garage-label">Eigen rijervaring — selectie uit de garage</div>
@@ -1144,6 +1145,10 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
           <span class="tag">Persoonlijke import · Zweden</span>
           <h3>Lamborghini Huracán LP610 Spyder</h3>
           <p>610 pk · V10 · Eerste eigenaar · Volledig PPF · Titanium F1-uitlaat · Ingeruild tegen McLaren 650S Spyder.</p>
+          <div class="proj-more">Klik voor case story</div>
+        </div>
+        <div class="proj-details">
+          <p>Deze Huracán kwam uit Zweden, één eigenaar, en stond te koop in Noord-Duitsland. Hij werd persoonlijk geselecteerd in het veld en vervolgens rechtstreeks naar Nederland gebracht via een veilige importroute met volledige RDW- en BPM-afhandeling.</p>
         </div>
       </article>
       <article class="proj rv">
@@ -1154,6 +1159,10 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
           <span class="tag">Persoonlijke import · Luxemburg</span>
           <h3>Lamborghini Urus</h3>
           <p>650 pk · V8 Twin-Turbo · Luxemburgse luxury dealer · 5 jaar Lamborghini Service Warranty inclusief onderhoud.</p>
+          <div class="proj-more">Klik voor case story</div>
+        </div>
+        <div class="proj-details">
+          <p>Deze Urus kocht ik bij een zeer exclusieve dealer in Luxemburg. Hij kwam per gesloten transport naar Nederland, waarna ter plekke de taxatie, RDW-keuring en luxe kentekenafhandeling zijn gedaan — inclusief snelle levering van de nummerplaten na afronden van het BPM-proces.</p>
         </div>
       </article>
       <article class="proj rv">
@@ -1164,6 +1173,10 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
           <span class="tag">Aankoopbegeleiding · Duitsland</span>
           <h3>Audi RS6 Avant C8</h3>
           <p>600 pk · V8 TFSI · Audi Approved · 24 maanden garantie · BPM-afhandeling en NL-registratie inbegrepen.</p>
+          <div class="proj-more">Klik voor case story</div>
+        </div>
+        <div class="proj-details">
+          <p>Deze RS6 kwam rechtstreeks uit Duitsland van een fysiotherapeut met één eigenaar. De auto werd altijd op tijd vervangen via een leasecontract, was perfect onderhouden met weinig kilometers en werd geleverd met 12 maanden Audi-garantie.</p>
         </div>
       </article>
     </div>
@@ -1785,6 +1798,19 @@ const toggleMenu = open => {
 };
 burger.addEventListener('click', () => toggleMenu(!mmenu.classList.contains('open')));
 mmenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
+
+document.addEventListener('click', e => {
+  const win = document.getElementById('apex-chat-win');
+  const bubble = document.querySelector('.apex-bubble');
+  if (!_open || !win || !bubble) return;
+  if (win.contains(e.target) || bubble.contains(e.target)) return;
+  _open = false;
+  win.classList.remove('open');
+});
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape' && _open) apexToggle();
+});
 
 /* Reveal + tricolore + veil */
 const io = new IntersectionObserver(entries => {
