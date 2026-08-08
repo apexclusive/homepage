@@ -69,19 +69,29 @@ h2.in .w i{transform:none}
 /* ══ SPLASH ══ */
 #splash{
   position:fixed;inset:0;z-index:9999;
-  background:#000;
+  background:rgba(0,0,0,1);
   display:flex;align-items:center;justify-content:center;
   opacity:1;
-  transition:opacity .38s ease-out, visibility .38s ease-out;
-  will-change:opacity;
+  transform:translateY(0);
+  transition:opacity .55s ease-out, transform .55s ease-out, filter .55s ease-out;
+  will-change:opacity, transform, filter;
 }
 #splash.splash-exit{
   opacity:0;
-  visibility:hidden;
+  transform:translateY(-22px);
+  filter:blur(2px);
   pointer-events:none;
 }
 #splash.force-hide{display:none!important;visibility:hidden!important;pointer-events:none!important}
-.splash-inner{display:flex;flex-direction:column;align-items:center}
+.splash-inner{
+  display:flex;flex-direction:column;align-items:center;
+  transition:transform .55s ease-out, opacity .55s ease-out, filter .55s ease-out;
+}
+#splash.splash-exit .splash-inner{
+  opacity:0;
+  transform:translateY(-16px) scale(0.98);
+  filter:blur(2px);
+}
 .splash-brand{
   font-family:'Cormorant Garamond',serif;
   font-size:clamp(1.8rem,8vw,4.8rem);
@@ -1172,7 +1182,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
     splash.classList.add('splash-exit');
     setTimeout(function(){
       finalizeSplashHide(document.getElementById('splash'));
-    }, 580);
+    }, 640);
   }
   function scheduleHide() {
     setTimeout(hideSplash, 1500);
