@@ -402,10 +402,8 @@ nav.hide{transform:translateY(-105%)}
 
 /* ══ OVER ONS ══ */
 .about-grid{display:grid;grid-template-columns:1fr;gap:clamp(2rem,5vw,5rem);align-items:start}
-.founder-nameline{display:flex;align-items:center;gap:1.1rem;margin-top:1.5rem}
 .founder-thumb{width:50px;height:50px;border-radius:50%;overflow:hidden;flex-shrink:0;border:1px solid var(--ln)}
 .founder-thumb img{width:100%;height:100%;object-fit:cover;object-position:center 12%;filter:grayscale(.3);display:block}
-.founder-nameblock{display:flex;flex-direction:column;gap:.2rem}
 .sig{font-family:var(--sf);font-style:italic;font-size:clamp(1.25rem,3vw,1.45rem);color:var(--pt)}
 .role{font-family:var(--lb);font-size:clamp(.54rem,.8vw,.59rem);letter-spacing:.22em;text-transform:uppercase;color:#8a8a8a}
 .garage-section{margin-top:1.75rem;padding-top:1.5rem;border-top:1px solid var(--hr)}
@@ -424,17 +422,18 @@ nav.hide{transform:translateY(-105%)}
 .press-badge strong{color:rgba(198,203,209,.62)}
 .about-body-text{font-size:clamp(.92rem,2.2vw,.97rem);color:#b8b8b8;line-height:1.84;margin-bottom:1.1rem}
 .about-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:28px;padding:2.1rem;box-shadow:0 18px 36px rgba(0,0,0,.18);overflow:hidden}
-.founder-block{display:flex;align-items:center;gap:1rem;margin-top:1.75rem;flex-wrap:wrap}
-.founder-copy{min-width:0;flex:1;}
-.founder-copy .sig{font-size:clamp(.92rem,2.3vw,1rem);margin-bottom:.18rem}
-.founder-copy .role{font-size:.68rem;letter-spacing:.18em}
+.founder-block{display:flex;align-items:center;gap:.85rem;margin-top:1.6rem;flex-wrap:wrap;max-width:100%}
+.founder-thumb{width:44px;height:44px}
+.founder-copy{min-width:0;flex:1;max-width:calc(100% - 56px)}
+.founder-copy .sig{font-size:clamp(.8rem,2vw,.94rem);margin-bottom:.18rem}
+.founder-copy .role{font-size:.66rem;letter-spacing:.18em;margin-top:-.1rem}
 @media(max-width:600px){
-  .about-card{padding:1.35rem;}
-  .founder-block{gap:.85rem;margin-top:1.35rem}
-  .founder-thumb{width:42px;height:42px}
-  .founder-copy .sig{font-size:.92rem}
-  .founder-copy .role{font-size:.68rem}
-  .garage-scroll{padding-left:0;margin-left:0;width:100%}
+  .about-card{padding:1.3rem;}
+  .founder-block{gap:.8rem;margin-top:1.25rem}
+  .founder-thumb{width:38px;height:38px}
+  .founder-copy{max-width:100%}
+  .founder-copy .sig{font-size:.88rem}
+  .founder-copy .role{font-size:.66rem}
 }
 
 /* ══ PROJECTEN ══ */
@@ -529,11 +528,6 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
   .about-grid{gap:1.25rem}
   .about-grid > div{width:100%}
   .about-body-text{font-size:.92rem}
-  .garage-section{margin-top:1.35rem;padding-top:1.25rem}
-  .garage-scroll{gap:9px;padding-left:0;margin-left:0;width:100%}
-  .garage-card{width:min(46vw,146px);height:82px;border-radius:18px}
-  .garage-card img{transition:none}
-  .garage-card-lbl{font-size:.42rem;padding:.28rem .45rem}
   .press-badge{display:inline-flex;flex-wrap:wrap;gap:.45rem;max-width:100%;white-space:normal;padding:.55rem .85rem}
 }
 @media(max-width:375px){
@@ -646,7 +640,6 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
   .quote blockquote .qw{opacity:1!important;transition:none}
   .quote .attrib{opacity:.52!important}
   html{scroll-behavior:auto}
-  #splash{display:none!important}
 }
 </style>
 </head>
@@ -976,17 +969,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
         <div class="rule" style="margin-bottom:1.6rem"></div>
         <p class="about-body-text">APEXclusive is ontstaan vanuit een eenvoudige overtuiging: wie investeert in een bijzonder voertuig, verdient begeleiding die daar volledig bij past &mdash; discreet, doordacht en zonder compromissen.</p>
         <p class="about-body-text">Als professioneel piloot zijn precisie, voorbereiding en oog voor detail geen kwaliteiten &mdash; het zijn gewoontes. Die breng ik mee in elk adviestraject.</p>
-        <p class="about-body-text" style="margin-bottom:1.65rem">Ik importeer al meer dan tien jaar exclusieve auto&rsquo;s voor mezelf. Van een <em>McLaren 650S Spyder</em> uit Belgi&euml; tot een <em>Lamborghini Hurac&aacute;n LP610</em> uit Zweden en een <em>Lamborghini Urus</em> rechtstreeks van een Luxemburgse dealerpartner &mdash; elke aankoop was een leermoment. Die kennis, dat netwerk en die directe marktervaring zet ik nu volledig in voor mijn klanten.</p>
-        <div class="garage-section">
-          <div class="garage-label">Persoonlijke rijervaring &mdash; een selectie</div>
-          <div class="garage-scroll">
-            <div class="garage-card"><img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_300,q_52,f_auto/v1786123838/WhatsApp_Image_2025-05-20_at_01.01.02_nh95ep.jpg" alt="Lamborghini Hurac&aacute;n" loading="lazy" decoding="async"><div class="garage-card-lbl">Hurac&aacute;n &middot; Import Zweden</div></div>
-            <div class="garage-card"><img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_300,q_52,f_auto/v1786123971/Scherm_afbeelding_2026-08-07_om_19.32.35_jnsz99.jpg" alt="McLaren 650S Spyder" loading="lazy" decoding="async"><div class="garage-card-lbl">McLaren 650S &middot; Belgi&euml;</div></div>
-            <div class="garage-card"><img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_300,q_52,f_auto/v1786124284/IMG_7402_rmzafp.jpg" alt="Porsche 911 Turbo" loading="lazy" decoding="async"><div class="garage-card-lbl">Porsche 911 Turbo</div></div>
-            <div class="garage-card"><img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_300,q_52,f_auto/v1786124284/IMG_3419_tszyzk.jpg" alt="BMW M4" loading="lazy" decoding="async"><div class="garage-card-lbl">BMW M4</div></div>
-            <div class="garage-card"><img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_300,q_52,f_auto/v1786124459/IMG_5245_f3sxrk.jpg" alt="Porsche Macan Turbo" loading="lazy" decoding="async"><div class="garage-card-lbl">Macan Turbo</div></div>
-          </div>
-        </div>
+        <p class="about-body-text" style="margin-bottom:1.65rem">Ik importeer al meer dan tien jaar exclusieve auto’s voor mijzelf en voor opdrachtgevers. Die ervaring gebruik ik nu om ervaren kopers te begeleiden met rust, zekerheid en een scherp oog voor waarde.</p>
         <a href="https://www.limburger.nl/regio/roermond/autofanaat-martijn-37-uit-roermond-is-gek-op-snelle-sportauto-s-en-laat-anderen-graag-meegenieten-van-zijn-passie/22277510.html" class="press-badge" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 0-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8z"/></svg>
           <span>Zoals vermeld in <strong>De Limburger</strong> &mdash; lees het artikel</span>
@@ -995,7 +978,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
           <div class="founder-thumb">
             <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_120,q_70,f_auto/v1786112744/8A26E528-46F4-471D-856C-7D4210809521_1_105_c_uguopr.jpg" alt="Martijn Puts" loading="lazy" decoding="async">
           </div>
-          <div class="founder-copy">
+          <div class="founder-nameblock">
             <p class="sig">Martijn Puts</p>
             <p class="role">Founder &amp; Private Vehicle Advisor · Maastricht</p>
           </div>
