@@ -72,17 +72,16 @@ h2.in .w i{transform:none}
   background:#000;
   display:flex;align-items:center;justify-content:center;
   opacity:1;
-  transition:opacity .28s ease-out;
-  animation: splashAutoHide .28s ease-out 1.5s forwards;
+  transition:opacity .28s ease-out, visibility .28s ease-out;
   will-change:opacity;
 }
-#splash.hide{opacity:0;visibility:hidden;pointer-events:none}
-#splash.force-hide{display:none!important;visibility:hidden!important;pointer-events:none!important}
-
-@keyframes splashAutoHide{
-  0%{opacity:1;visibility:visible;pointer-events:auto}
-  100%{opacity:0;visibility:hidden;pointer-events:none}
+#splash.hide,
+#splash.splash-exit{
+  opacity:0!important;
+  visibility:hidden!important;
+  pointer-events:none!important;
 }
+#splash.force-hide{display:none!important;visibility:hidden!important;pointer-events:none!important}
 .splash-inner{display:flex;flex-direction:column;align-items:center}
 .splash-brand{
   font-family:'Cormorant Garamond',serif;
@@ -1149,19 +1148,14 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
   var splash = document.getElementById('splash');
   if (!splash) return;
   function finalizeSplashHide(element) {
-    if (!element) return;
-    element.classList.add('hide', 'force-hide');
-    element.style.transition = 'opacity .24s ease-out, visibility .24s ease-out';
-    Object.assign(element.style, {
-      display: 'none',
-      visibility: 'hidden',
-      opacity: '0',
-      pointerEvents: 'none',
-      zIndex: '-1',
-      width: '0',
-      height: '0',
-      background: 'transparent'
-    });
+    if (!element || element.dataset.splashHidden==='true') return;
+    element.dataset.splashHidden='true';
+    element.classList.add('splash-exit', 'force-hide');
+    element.style.display = 'none';
+    element.style.visibility = 'hidden';
+    element.style.opacity = '0';
+    element.style.pointerEvents = 'none';
+    element.style.zIndex = '-1';
     document.documentElement.style.overflow = '';
     document.body.style.overflow = '';
     if (element.parentNode) element.parentNode.removeChild(element);
@@ -1169,28 +1163,23 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
     initQuoteWords();
   }
   function hideSplash() {
-    splash.classList.add('hide');
-    splash.style.transition = 'opacity .24s ease-out, visibility .24s ease-out';
+    if (splash.dataset.splashHidden==='true') return;
+    splash.classList.add('splash-exit');
     splash.style.opacity = '0';
     splash.style.visibility = 'hidden';
     splash.style.pointerEvents = 'none';
-    requestAnimationFrame(function(){
-      setTimeout(function(){
-        finalizeSplashHide(document.getElementById('splash'));
-      }, 240);
-    });
+    setTimeout(function(){
+      finalizeSplashHide(document.getElementById('splash'));
+    }, 260);
   }
   function scheduleHide() {
     setTimeout(hideSplash, 1500);
     setTimeout(function(){
       finalizeSplashHide(document.getElementById('splash'));
-    }, 2250);
+    }, 2500);
   }
-  if (document.readyState === 'loading') {
-    document.addEventListener('DOMContentLoaded', scheduleHide);
-  } else {
-    scheduleHide();
-  }
+  window.addEventListener('load', scheduleHide);
+  if (document.readyState !== 'loading') scheduleHide();
 })();
 
 /* ══ FEAR ACCORDION ══ */
