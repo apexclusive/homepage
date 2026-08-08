@@ -1304,16 +1304,18 @@ async function apexSend() {
       return;
     }
 
-    // Stream lezen
+    // Stream lezen met buffer voor gebroken regels
     const reader = res.body.getReader();
     const decoder = new TextDecoder();
+    let buffer = '';
 
     while (true) {
       const { done, value } = await reader.read();
       if (done) break;
 
-      const chunk = decoder.decode(value);
-      const lines = chunk.split('\n');
+      buffer += decoder.decode(value, { stream: true });
+      const lines = buffer.split('\n');
+      buffer = lines.pop();
 
       for (const line of lines) {
         if (!line.startsWith('data: ')) continue;
@@ -1329,6 +1331,22 @@ async function apexSend() {
             wrap.scrollTop = wrap.scrollHeight;
           }
           // Fout via stream
+          if (parsed.error) {
+            contentDiv.innerHTML = _fmt('⚠️ ' + parsed.error);
+          }
+        } catch(e) {}
+      }
+    }
+
+    if (buffer.startsWith('data: ')) {
+      const data = buffer.slice(6);
+      if (data !== '[DONE]') {
+        try {
+          const parsed = JSON.parse(data);
+          if (parsed.token) {
+            fullReply += parsed.token;
+            contentDiv.innerHTML = _fmt(fullReply);
+          }
           if (parsed.error) {
             contentDiv.innerHTML = _fmt('⚠️ ' + parsed.error);
           }
@@ -1406,7 +1424,7 @@ function _fmt(t) {
     .replace(/>/g, '&gt;')
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.*?)\*/g, '<em>$1</em>')
-    .replace(/$$(.*?)$$$(https?:\/\/[^$]+)$/g,
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
       '<a href="$2" target="_blank" rel="noopener" style="color:var(--pt);border-bottom:1px solid var(--ln)">$1</a>')
     .replace(/(https?:\/\/[^\s<]+)/g,
       '<a href="$1" target="_blank" rel="noopener" style="color:var(--pt);border-bottom:1px solid var(--ln)">$1</a>')
