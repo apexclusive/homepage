@@ -1293,8 +1293,6 @@ function apexSubmitContact(){
   var n=document.getElementById('apex-contact-name').value.trim();
   var e=document.getElementById('apex-contact-email').value.trim();
   var p=document.getElementById('apex-contact-phone').value.trim();
-  if(!n&&!e
-Model: ```javascript
   if(!n&&!e&&!p){alert('Vul ten minste één veld in.');return;}
   document.getElementById('apex-contact-form').classList.remove('open');
   var msg=[n&&'Naam: '+n,e&&'E-mail: '+e,p&&'06: '+p].filter(Boolean).join(' · ');
