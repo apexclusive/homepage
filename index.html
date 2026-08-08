@@ -535,6 +535,41 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   border-top:1px solid rgba(198,203,209,.18);
   background:rgba(198,203,209,.18);
 }
+.chat-contact-form{
+  display:flex;flex-wrap:wrap;gap:.55rem;
+  padding:.85rem 1.1rem .75rem;
+  border-top:1px solid rgba(198,203,209,.06);
+  background:#0a0a0a;
+}
+.chat-contact-input{
+  flex:1 1 100%;
+  min-width:0;
+  background:#131313;
+  border:1px solid rgba(198,203,209,.12);
+  border-radius:.35rem;
+  padding:.75rem 1rem;
+  color:#e4e4e4;
+  font-family:'Montserrat',sans-serif;
+  font-size:.8rem;
+}
+.chat-contact-btn{
+  flex:1 1 100%;
+  border:none;
+  border-radius:.35rem;
+  background:linear-gradient(90deg,#009246,#CE2B37);
+  color:#080808;
+  font-family:'Oswald',sans-serif;
+  font-size:.72rem;
+  text-transform:uppercase;
+  letter-spacing:.12em;
+  padding:.85rem 1rem;
+  cursor:pointer;
+  transition:opacity .25s,transform .25s;
+}
+.chat-contact-btn:hover{
+  opacity:.9;
+  transform:translateY(-1px);
+}
 .chat-inp{
   flex:1;background:#131313;
   border:none;outline:none;
@@ -613,6 +648,12 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
     <button class="chat-qbtn" type="button" onclick="apexQuick('Bijkomende kosten')">Bijkomende kosten</button>
     <button class="chat-qbtn" type="button" onclick="apexQuick('Taxatie')">Taxatie</button>
     <button class="chat-qbtn" type="button" onclick="apexQuick('Over APEXclusive')">Over APEXclusive</button>
+  </div>
+  <div class="chat-contact-form">
+    <input id="apex-contact-name" class="chat-contact-input" type="text" placeholder="Naam">
+    <input id="apex-contact-email" class="chat-contact-input" type="email" placeholder="E-mail">
+    <input id="apex-contact-phone" class="chat-contact-input" type="tel" placeholder="06-nummer">
+    <button class="chat-contact-btn" type="button" onclick="apexSubmitContact()">Verstuur contactgegevens</button>
   </div>
   <div class="chat-inp-row">
     <input id="apex-inp" class="chat-inp" type="text" placeholder="Typ uw vraag..." autocomplete="off">
@@ -1317,8 +1358,8 @@ const _contextWelkom = {
   werkwijze: 'U bekijkt onze werkwijze — heeft u vragen over hoe een traject verloopt, of wilt u weten wat wij voor uw specifieke situatie kunnen betekenen?',
   over:      'Goedag! Fijn dat u meer wilt weten over APEXclusive. Heeft u een vraag voor Martijn, of kan ik u ergens mee helpen?',
   projecten: 'U bekijkt onze gerealiseerde projecten. Heeft u zelf een droomauto in gedachten? Ik vertel u graag wat wij voor u kunnen betekenen.',
-  contact:   'U wilt contact opnemen — prachtig. Laat uw naam, telefoonnummer en e-mailadres achter, dan neemt Martijn persoonlijk binnen 24 uur contact met u op. Uw gegevens worden veilig behandeld.',
-  home:      'Goedag! Ik ben de digitale adviseur van **APEXclusive**. Ik help u graag met vragen over premium auto import, BPM-berekeningen of aankoopbegeleiding. Laat uw naam en contactgegevens achter, dan zorgt Martijn voor persoonlijk vervolg.'
+  contact:   'U wilt contact opnemen — prachtig. Laat uw naam, e-mail en 06 achter, dan neemt een adviseur van APEXclusive binnen 24 uur contact met u op. Uw gegevens worden veilig behandeld.',
+  home:      'Goedag! Ik ben de digitale adviseur van **APEXclusive**. Ik help u graag met vragen over premium auto import, BPM-berekeningen of aankoopbegeleiding. Laat uw naam, e-mail en 06 achter, dan neemt een adviseur van APEXclusive contact met u op.'
 };
 
 _loadLeadData();
@@ -1353,6 +1394,43 @@ function _renderHistory() {
     if (m.role === 'user') _addMsg('user', m.content, true);
     if (m.role === 'assistant') _addMsg('bot', m.content, true);
   });
+}
+
+function _validateEmail(email) {
+  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+}
+
+function _validatePhone(phone) {
+  return /^(?:\+31|0)[\s.-]*6[\s.-]*\d{8}$/.test(phone);
+}
+
+function apexSubmitContact() {
+  const name = document.getElementById('apex-contact-name').value.trim();
+  const email = document.getElementById('apex-contact-email').value.trim();
+  const phone = document.getElementById('apex-contact-phone').value.trim();
+
+  if (!name && !email && !phone) {
+    alert('Vul ten minste één contactgegeven in.');
+    return;
+  }
+
+  if (email && !_validateEmail(email)) {
+    alert('Voer een geldig e-mailadres in.');
+    return;
+  }
+
+  if (phone && !_validatePhone(phone)) {
+    alert('Voer een geldig 06-nummer in. Bijvoorbeeld 06xxxxxxxx.');
+    return;
+  }
+
+  const values = [];
+  if (name) values.push(`Naam: ${name}`);
+  if (email) values.push(`E-mail: ${email}`);
+  if (phone) values.push(`06: ${phone}`);
+
+  document.getElementById('apex-inp').value = values.join(' | ');
+  apexSend();
 }
 
 /* ── Quick buttons ── */
