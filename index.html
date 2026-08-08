@@ -556,7 +556,17 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   color:#c6cbd1;background:#181818;
 }
 .chat-send-btn:disabled{opacity:.3;cursor:not-allowed}
-
+/* Knipperende cursor tijdens streaming */
+.chat-cursor {
+  display: inline-block;
+  animation: blink .7s step-end infinite;
+  color: var(--pt);
+  font-size: .7rem;
+}
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
 .chat-foot{
   padding:.45rem 1.1rem;
   background:#0a0a0a;
@@ -1172,208 +1182,335 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   </div>
 </footer>
 
-<script>
+
 /* ══════════════════════════════════════
-   APEX CHAT
+   APEX CHAT — volledig verbeterd
+   - Streaming antwoorden (woord voor woord)
+   - Context-bewust welkom
+   - Lead opvang
+   - Gespreksgeschiedenis (localStorage)
+   - Enter om te versturen
 ══════════════════════════════════════ */
 const _CHAT_API = '/api/chat';
-let _msgs       = [];
-let _open       = false;
-let _busy       = false;
+let _msgs  = [];
+let _open  = false;
+let _busy  = false;
 
-const WELKOM =
-  'Goedag! Ik ben de digitale adviseur van APEXclusive. ' +
-  'Ik help u graag met vragen over premium auto import, ' +
-  'BPM-berekeningen of supercar advies. ' +
-  'Wat kan ik voor u betekenen?';
+/* ── Gespreksgeschiedenis laden ── */
+try {
+  const saved = localStorage.getItem('apex_chat_v1');
+  if (saved) _msgs = JSON.parse(saved);
+} catch(e) { _msgs = []; }
 
-function apexToggle(){
+function _saveHistory() {
+  try {
+    // Maximaal 20 berichten bewaren
+    const toSave = _msgs.slice(-20);
+    localStorage.setItem('apex_chat_v1', JSON.stringify(toSave));
+  } catch(e) {}
+}
+
+/* ── Context detectie ── */
+function _getContext() {
+  const sections = ['contact','projecten','over','werkwijze','import','tools'];
+  for (const id of sections) {
+    const el = document.getElementById(id);
+    if (el) {
+      const r = el.getBoundingClientRect();
+      if (r.top < window.innerHeight && r.bottom > 0) return id;
+    }
+  }
+  return 'home';
+}
+
+const _contextWelkom = {
+  tools:     'Ik zie dat u onze tools bekijkt. Heeft u een specifieke auto in gedachten waarvoor u de **BPM** wilt berekenen of een advertentie wilt laten analyseren?',
+  import:    'Interessant dat u kijkt naar onze importdienst. Heeft u al een specifiek **merk, model of land** in gedachten?',
+  werkwijze: 'U bekijkt onze werkwijze — heeft u vragen over hoe een traject verloopt, of wilt u weten wat wij voor uw specifieke situatie kunnen betekenen?',
+  over:      'Goedag! Fijn dat u meer wilt weten over APEXclusive. Heeft u een vraag voor Martijn, of kan ik u ergens mee helpen?',
+  projecten: 'U bekijkt onze gerealiseerde projecten. Heeft u zelf een droomauto in gedachten? Ik vertel u graag wat wij voor u kunnen betekenen.',
+  contact:   'U wilt contact opnemen — uitstekend. U kunt direct appen via **WhatsApp +31 6 24 73 59 39**, of ik help u graag verder via deze chat.',
+  home:      'Goedag! Ik ben de digitale adviseur van **APEXclusive**. Ik help u graag met vragen over premium auto import, BPM-berekeningen of aankoopbegeleiding. Wat kan ik voor u betekenen?'
+};
+
+/* ── Toggle chat venster ── */
+function apexToggle() {
   _open = !_open;
   const win = document.getElementById('apex-chat-win');
-  if(_open){
+  if (_open) {
     win.classList.add('open');
-    if(_msgs.length === 0) _addMsg('bot', WELKOM);
-    setTimeout(()=>document.getElementById('apex-inp').focus(), 250);
+    // Eerste keer openen: welkomstbericht
+    if (_msgs.length === 0) {
+      const ctx = _getContext();
+      _addMsg('bot', _contextWelkom[ctx] || _contextWelkom.home);
+    } else {
+      // Geschiedenis herladen in UI als die leeg is
+      const wrap = document.getElementById('apex-msgs');
+      if (wrap.children.length === 0) _renderHistory();
+    }
+    setTimeout(() => document.getElementById('apex-inp').focus(), 250);
   } else {
     win.classList.remove('open');
   }
 }
 
-function apexQuick(tekst){
+/* ── Geschiedenis opnieuw renderen ── */
+function _renderHistory() {
+  _msgs.forEach(m => {
+    if (m.role === 'user') _addMsg('user', m.content, true);
+    if (m.role === 'assistant') _addMsg('bot', m.content, true);
+  });
+}
+
+/* ── Quick buttons ── */
+function apexQuick(tekst) {
   document.getElementById('apex-quick').style.display = 'none';
   document.getElementById('apex-inp').value = tekst;
   apexSend();
 }
 
-async function apexSend(){
+/* ── Bericht versturen met streaming ── */
+async function apexSend() {
   const inp = document.getElementById('apex-inp');
   const msg = inp.value.trim();
-  if(!msg || _busy) return;
+  if (!msg || _busy) return;
 
   inp.value = '';
   _addMsg('user', msg);
-  _msgs.push({ role:'user', content:msg });
+  _msgs.push({ role: 'user', content: msg });
+  _saveHistory();
   document.getElementById('apex-quick').style.display = 'none';
 
   _busy = true;
   document.getElementById('apex-send').disabled = true;
-  const typer = _showTyping();
+
+  // Maak lege bot bubble aan voor streaming
+  const botDiv = _createBotBubble();
+  const contentDiv = botDiv.querySelector('.cmsg-content');
+  let fullReply = '';
 
   try {
-    const res  = await fetch(_CHAT_API, {
-      method:  'POST',
-      headers: { 'Content-Type':'application/json' },
-      body:    JSON.stringify({ messages: _msgs })
+    const res = await fetch(_CHAT_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: _msgs })
     });
-    const data = await res.json();
-    typer.remove();
 
-    if(data.error){
-      _addMsg('bot', '⚠️ ' + data.error);
-    } else {
-      _msgs.push({ role:'assistant', content:data.reply });
-      _addMsg('bot', data.reply);
+    if (!res.ok) {
+      const data = await res.json().catch(() => ({}));
+      contentDiv.innerHTML = _fmt('⚠️ ' + (data.error || 'Er ging iets mis.'));
+      _busy = false;
+      document.getElementById('apex-send').disabled = false;
+      return;
     }
-  } catch(e){
-    typer.remove();
-    _addMsg('bot',
-      'Verbindingsfout. Probeer het opnieuw of neem contact ' +
-      'op via apexclusive.nl/#contact'
+
+    // Stream lezen
+    const reader = res.body.getReader();
+    const decoder = new TextDecoder();
+
+    while (true) {
+      const { done, value } = await reader.read();
+      if (done) break;
+
+      const chunk = decoder.decode(value);
+      const lines = chunk.split('\n');
+
+      for (const line of lines) {
+        if (!line.startsWith('data: ')) continue;
+        const data = line.slice(6);
+        if (data === '[DONE]') continue;
+        try {
+          const parsed = JSON.parse(data);
+          if (parsed.token) {
+            fullReply += parsed.token;
+            contentDiv.innerHTML = _fmt(fullReply);
+            // Scroll mee
+            const wrap = document.getElementById('apex-msgs');
+            wrap.scrollTop = wrap.scrollHeight;
+          }
+          // Fout via stream
+          if (parsed.error) {
+            contentDiv.innerHTML = _fmt('⚠️ ' + parsed.error);
+          }
+        } catch(e) {}
+      }
+    }
+
+    // Opslaan in geschiedenis
+    if (fullReply) {
+      _msgs.push({ role: 'assistant', content: fullReply });
+      _saveHistory();
+    }
+
+  } catch(e) {
+    contentDiv.innerHTML = _fmt(
+      'Verbindingsfout. Probeer opnieuw of neem contact op via ' +
+      '**WhatsApp +31 6 24 73 59 39**'
     );
   }
 
   _busy = false;
   document.getElementById('apex-send').disabled = false;
-  inp.focus();
+  document.getElementById('apex-inp').focus();
 }
 
-function _addMsg(rol, tekst){
+/* ── Bot bubble aanmaken voor streaming ── */
+function _createBotBubble() {
+  const wrap = document.getElementById('apex-msgs');
+  const div  = document.createElement('div');
+  div.className = 'cmsg bot';
+
+  const lbl = document.createElement('div');
+  lbl.className = 'cmsg-lbl';
+  lbl.textContent = 'APEXclusive Adviseur';
+  div.appendChild(lbl);
+
+  const content = document.createElement('div');
+  content.className = 'cmsg-content';
+  // Toon knipperende cursor tijdens laden
+  content.innerHTML = '<span class="chat-cursor">▋</span>';
+  div.appendChild(content);
+
+  wrap.appendChild(div);
+  wrap.scrollTop = wrap.scrollHeight;
+  return div;
+}
+
+/* ── Bericht toevoegen (voor user en geschiedenis) ── */
+function _addMsg(rol, tekst, silent = false) {
   const wrap = document.getElementById('apex-msgs');
   const div  = document.createElement('div');
   div.className = 'cmsg ' + rol;
 
-  if(rol === 'bot'){
+  if (rol === 'bot') {
     const lbl = document.createElement('div');
     lbl.className = 'cmsg-lbl';
     lbl.textContent = 'APEXclusive Adviseur';
     div.appendChild(lbl);
   }
 
-  const p = document.createElement('div');
-  p.innerHTML = _fmt(tekst);
-  div.appendChild(p);
+  const content = document.createElement('div');
+  content.className = 'cmsg-content';
+  content.innerHTML = _fmt(tekst);
+  div.appendChild(content);
+
   wrap.appendChild(div);
-  wrap.scrollTop = wrap.scrollHeight;
+  if (!silent) wrap.scrollTop = wrap.scrollHeight;
 }
 
-function _fmt(t){
+/* ── Tekst formatteren ── */
+function _fmt(t) {
   return t
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
-    .replace(/\*(.*?)\*/g,'<em>$1</em>')
-    .replace(/\n/g,'<br>');
+    .replace(/&/g, '&amp;')
+    .replace(/</g, '&lt;')
+    .replace(/>/g, '&gt;')
+    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g, '<em>$1</em>')
+    .replace(/$$(.*?)$$$(https?:\/\/[^$]+)$/g,
+      '<a href="$2" target="_blank" rel="noopener" style="color:var(--pt);border-bottom:1px solid var(--ln)">$1</a>')
+    .replace(/(https?:\/\/[^\s<]+)/g,
+      '<a href="$1" target="_blank" rel="noopener" style="color:var(--pt);border-bottom:1px solid var(--ln)">$1</a>')
+    .replace(/\n/g, '<br>');
 }
-document.getElementById('apex-inp').addEventListener('keydown', function(e){
-  if(e.key === 'Enter' && !e.shiftKey) {
+
+/* ── Enter om te versturen ── */
+document.getElementById('apex-inp').addEventListener('keydown', function(e) {
+  if (e.key === 'Enter' && !e.shiftKey) {
     e.preventDefault();
     apexSend();
   }
 });
-function _showTyping(){
-  const wrap = document.getElementById('apex-msgs');
-  const div  = document.createElement('div');
-  div.className = 'chat-typing';
-  div.innerHTML = '<span></span><span></span><span></span>';
-  wrap.appendChild(div);
-  wrap.scrollTop = wrap.scrollHeight;
-  return div;
-}
 
+/* ══════════════════════════════════════
+   PAGINA LOGICA (ongewijzigd)
+══════════════════════════════════════ */
 document.getElementById('yr').textContent = new Date().getFullYear();
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
 let stimer;
-addEventListener('scroll',()=>{
+addEventListener('scroll', () => {
   document.body.classList.add('scrolling');
   clearTimeout(stimer);
-  stimer=setTimeout(()=>document.body.classList.remove('scrolling'),150);
-},{passive:true});
-const clamp=(v,a,b)=>Math.max(a,Math.min(b,v));
+  stimer = setTimeout(() => document.body.classList.remove('scrolling'), 150);
+}, { passive: true });
+const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
 /* H2 word split */
-if(!reduced){
-  document.querySelectorAll('section h2,header h1').forEach(h=>{
-    [...h.childNodes].forEach(node=>{
-      if(node.nodeType!==3||!node.textContent.trim())return;
-      const frag=document.createDocumentFragment();
-      node.textContent.split(/(\s+)/).forEach(tk=>{
-        if(!tk.trim()){frag.append(tk);return;}
-        const w=document.createElement('span');w.className='w';
-        const i=document.createElement('i');i.textContent=tk;
-        w.append(i);frag.append(w);
+if (!reduced) {
+  document.querySelectorAll('section h2,header h1').forEach(h => {
+    [...h.childNodes].forEach(node => {
+      if (node.nodeType !== 3 || !node.textContent.trim()) return;
+      const frag = document.createDocumentFragment();
+      node.textContent.split(/(\s+)/).forEach(tk => {
+        if (!tk.trim()) { frag.append(tk); return; }
+        const w = document.createElement('span'); w.className = 'w';
+        const i = document.createElement('i'); i.textContent = tk;
+        w.append(i); frag.append(w);
       });
-      h.replaceChild(frag,node);
+      h.replaceChild(frag, node);
     });
-    h.querySelectorAll('.w i').forEach((el,i)=>el.style.transitionDelay=70+i*48+'ms');
+    h.querySelectorAll('.w i').forEach((el, i) => el.style.transitionDelay = 70 + i * 48 + 'ms');
   });
 }
 
 /* Quote words */
-const bq=document.getElementById('bq');
-let qw=[];
-if(!reduced){
-  const words=bq.textContent.trim().split(/\s+/);
-  bq.textContent='';
-  words.forEach(word=>{
-    const s=document.createElement('span');s.className='qw';s.textContent=word;
-    bq.append(s,' ');
+const bq = document.getElementById('bq');
+let qw = [];
+if (!reduced) {
+  const words = bq.textContent.trim().split(/\s+/);
+  bq.textContent = '';
+  words.forEach(word => {
+    const s = document.createElement('span'); s.className = 'qw'; s.textContent = word;
+    bq.append(s, ' ');
   });
-  qw=[...bq.querySelectorAll('.qw')];
+  qw = [...bq.querySelectorAll('.qw')];
 }
 
 /* Mobile menu */
-const nav=document.getElementById('nav');
-const burger=document.getElementById('burger');
-const mmenu=document.getElementById('mm');
-const toggleMenu=open=>{
-  burger.classList.toggle('open',open);
-  mmenu.classList.toggle('open',open);
-  burger.setAttribute('aria-expanded',open);
-  document.body.style.overflow=open?'hidden':'';
-  if(open)nav.classList.remove('hide');
+const nav    = document.getElementById('nav');
+const burger = document.getElementById('burger');
+const mmenu  = document.getElementById('mm');
+const toggleMenu = open => {
+  burger.classList.toggle('open', open);
+  mmenu.classList.toggle('open', open);
+  burger.setAttribute('aria-expanded', open);
+  document.body.style.overflow = open ? 'hidden' : '';
+  if (open) nav.classList.remove('hide');
 };
-burger.addEventListener('click',()=>toggleMenu(!mmenu.classList.contains('open')));
-mmenu.querySelectorAll('a').forEach(a=>a.addEventListener('click',()=>toggleMenu(false)));
+burger.addEventListener('click', () => toggleMenu(!mmenu.classList.contains('open')));
+mmenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
 
 /* Reveal + tricolore + veil */
-const io=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(!e.isIntersecting)return;
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (!e.isIntersecting) return;
     io.unobserve(e.target);
-    const img=e.target.classList.contains('veil')?e.target.querySelector('img'):null;
-    if(img&&!img.complete){
-      img.addEventListener('load', ()=>e.target.classList.add('in'),{once:true});
-      img.addEventListener('error',()=>e.target.classList.add('in'),{once:true});
-    }else e.target.classList.add('in');
-    if(e.target.classList.contains('ey'))e.target.classList.add('tri-in');
-    e.target.querySelectorAll&&e.target.querySelectorAll('.ey').forEach(ey=>setTimeout(()=>ey.classList.add('tri-in'),160));
+    const img = e.target.classList.contains('veil') ? e.target.querySelector('img') : null;
+    if (img && !img.complete) {
+      img.addEventListener('load',  () => e.target.classList.add('in'), { once: true });
+      img.addEventListener('error', () => e.target.classList.add('in'), { once: true });
+    } else e.target.classList.add('in');
+    if (e.target.classList.contains('ey')) e.target.classList.add('tri-in');
+    e.target.querySelectorAll && e.target.querySelectorAll('.ey').forEach(ey =>
+      setTimeout(() => ey.classList.add('tri-in'), 160)
+    );
   });
-},{threshold:.06,rootMargin:'0px 0px -3% 0px'});
+}, { threshold: .06, rootMargin: '0px 0px -3% 0px' });
 
-document.querySelectorAll('.p-grid,.tgrid,.c-grid,.fear-grid').forEach(g=>{
-  [...g.children].forEach((el,i)=>el.style.transitionDelay=Math.min(i,4)*75+'ms');
+document.querySelectorAll('.p-grid,.tgrid,.c-grid,.fear-grid').forEach(g => {
+  [...g.children].forEach((el, i) => el.style.transitionDelay = Math.min(i, 4) * 75 + 'ms');
 });
-document.querySelectorAll('.rv,.step,.veil,section h2,.ey').forEach(el=>io.observe(el));
+document.querySelectorAll('.rv,.step,.veil,section h2,.ey').forEach(el => io.observe(el));
 
 /* Scrollspy */
-const links=[...document.querySelectorAll('#navlinks a')];
-const spy=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting)links.forEach(a=>a.classList.toggle('active',a.hash==='#'+e.target.id));
+const links = [...document.querySelectorAll('#navlinks a')];
+const spy = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) links.forEach(a =>
+      a.classList.toggle('active', a.hash === '#' + e.target.id)
+    );
   });
-},{rootMargin:'-40% 0px -55% 0px'});
-links.forEach(a=>{const t=document.querySelector(a.hash);if(t)spy.observe(t);});
+}, { rootMargin: '-40% 0px -55% 0px' });
+links.forEach(a => { const t = document.querySelector(a.hash); if (t) spy.observe(t); });
 
 /* Main rAF loop */
 const bar   = document.getElementById('progress');
@@ -1383,34 +1520,34 @@ const steps = document.getElementById('steps');
 const quote = document.querySelector('.quote');
 let navY = scrollY;
 
-function frame(){
-  const y=scrollY,vh=innerHeight;
-  const total=document.documentElement.scrollHeight-vh;
-  bar.style.transform=`scaleX(${total>0?y/total:0})`;
-  nav.classList.toggle('stuck',y>40);
-  if(y>navY+6&&y>260&&!mmenu.classList.contains('open'))nav.classList.add('hide');
-  else if(y<navY-6||y<=260)nav.classList.remove('hide');
-  navY=y;
-  if(!reduced){
-    const hp=clamp(y/vh,0,1);
-    heroC.style.transform=`translateY(${hp*88}px)`;
-    heroC.style.opacity  =1-hp*1.3;
-    cue.style.opacity    =1-hp*3;
-    if(steps){
-      const r=steps.getBoundingClientRect();
-      steps.style.setProperty('--tp',clamp((vh*.68-r.top)/r.height,0,1).toFixed(3));
+function frame() {
+  const y = scrollY, vh = innerHeight;
+  const total = document.documentElement.scrollHeight - vh;
+  bar.style.transform = `scaleX(${total > 0 ? y / total : 0})`;
+  nav.classList.toggle('stuck', y > 40);
+  if (y > navY + 6 && y > 260 && !mmenu.classList.contains('open')) nav.classList.add('hide');
+  else if (y < navY - 6 || y <= 260) nav.classList.remove('hide');
+  navY = y;
+  if (!reduced) {
+    const hp = clamp(y / vh, 0, 1);
+    heroC.style.transform = `translateY(${hp * 88}px)`;
+    heroC.style.opacity   = 1 - hp * 1.3;
+    cue.style.opacity     = 1 - hp * 3;
+    if (steps) {
+      const r = steps.getBoundingClientRect();
+      steps.style.setProperty('--tp', clamp((vh * .68 - r.top) / r.height, 0, 1).toFixed(3));
     }
-    if(qw.length){
-      const r =quote.getBoundingClientRect();
-      const pr=clamp(-r.top/(r.height-vh),0,1);
-      const n =qw.length;
-      for(let i=0;i<n;i++)
-        qw[i].style.opacity=clamp((pr*(n+8)-i)/5,.1,1).toFixed(2);
+    if (qw.length) {
+      const r  = quote.getBoundingClientRect();
+      const pr = clamp(-r.top / (r.height - vh), 0, 1);
+      const n  = qw.length;
+      for (let i = 0; i < n; i++)
+        qw[i].style.opacity = clamp((pr * (n + 8) - i) / 5, .1, 1).toFixed(2);
     }
   }
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
-</script>
+      </script>
 </body>
 </html>
