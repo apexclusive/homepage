@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>APEXclusive — Private Vehicle Advisory | Auto import &amp; aankoopbegeleiding Maastricht</title>
+<title>APEXclusive — Private Vehicle Advisory | Auto import & aankoopbegeleiding Maastricht</title>
 <meta name="description" content="Droomauto uit Europa importeren zonder risico? APEXclusive begeleidt u van zoektocht tot sleuteloverdracht. Onafhankelijk, discreet, A tot Z geregeld.">
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="%230a0a0a"/><text x="32" y="46" font-family="Georgia,serif" font-size="42" fill="%23c6cbd1" text-anchor="middle">A</text></svg>'>
 <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -38,6 +38,86 @@ section{padding:clamp(4.5rem,9vw,8rem) var(--pd);position:relative}
 .wrap{max-width:1160px;margin:0 auto;position:relative;z-index:1}
 .head{max-width:58ch;margin-bottom:clamp(2.5rem,5vw,3.75rem)}
 .rule{width:56px;height:2px;background:var(--ch);margin-top:1.5rem}
+
+/* ══ INTRO SPLASH ══ */
+#splash{
+  position:fixed;inset:0;z-index:9999;
+  background:#000;
+  display:flex;align-items:center;justify-content:center;
+  pointer-events:all;
+}
+#splash.hide{
+  animation:splashFade .7s .2s cubic-bezier(.4,0,.2,1) forwards;
+}
+@keyframes splashFade{
+  0%{opacity:1;transform:none}
+  100%{opacity:0;transform:scale(1.03)}
+}
+.splash-inner{
+  display:flex;flex-direction:column;align-items:center;gap:0;
+  overflow:hidden;
+}
+.splash-brand{
+  font-family:'Cormorant Garamond',serif;
+  font-size:clamp(2.2rem,7vw,4.8rem);
+  font-weight:300;
+  letter-spacing:.32em;
+  text-transform:uppercase;
+  color:#fff;
+  display:flex;align-items:center;gap:0;
+  opacity:0;
+  transform:translateY(-28px);
+  animation:splashDrop .9s .18s cubic-bezier(.2,.7,.3,1) forwards;
+}
+.splash-brand-apex{
+  font-weight:600;
+  background:linear-gradient(100deg,#8a9099 0%,#d4d8dc 40%,#fff 50%,#d4d8dc 60%,#8a9099 100%);
+  background-size:220% auto;
+  -webkit-background-clip:text;background-clip:text;color:transparent;
+  animation:splashShine 2.2s .9s ease-in-out forwards;
+  letter-spacing:.28em;
+}
+@keyframes splashShine{
+  0%{background-position:0% center}
+  60%{background-position:100% center}
+  100%{background-position:60% center}
+}
+.splash-brand-excl{
+  font-weight:300;
+  color:rgba(198,203,209,.45);
+  letter-spacing:.28em;
+}
+@keyframes splashDrop{
+  from{opacity:0;transform:translateY(-28px)}
+  to{opacity:1;transform:none}
+}
+.splash-sub{
+  font-family:'Oswald',sans-serif;
+  font-size:clamp(.5rem,.9vw,.68rem);
+  letter-spacing:.48em;
+  text-transform:uppercase;
+  color:rgba(198,203,209,.28);
+  margin-top:.85rem;
+  opacity:0;
+  animation:splashFadeIn .7s .88s cubic-bezier(.2,.7,.3,1) forwards;
+}
+@keyframes splashFadeIn{from{opacity:0}to{opacity:1}}
+.splash-line{
+  width:0;height:1px;
+  background:linear-gradient(90deg,transparent,rgba(198,203,209,.35),transparent);
+  margin-top:1.15rem;
+  animation:splashLine .7s 1.05s cubic-bezier(.2,.7,.3,1) forwards;
+}
+@keyframes splashLine{to{width:220px}}
+.splash-sep{
+  display:flex;flex-direction:row;gap:0;margin:0 14px;flex-shrink:0;
+  opacity:0;
+  animation:splashFadeIn .5s .55s forwards;
+}
+.splash-sep span{display:block;width:4px;border-radius:1px}
+.splash-sep span:nth-child(1){height:7px;background:#009246}
+.splash-sep span:nth-child(2){height:7px;background:#fff}
+.splash-sep span:nth-child(3){height:7px;background:#CE2B37}
 
 /* ══ TRICOLORE EYEBROW ══ */
 .ey{font-family:var(--lb);font-size:.65rem;letter-spacing:.38em;text-transform:uppercase;color:var(--pt);font-weight:400;margin-bottom:1.35rem;display:flex;align-items:center;gap:.85rem}
@@ -135,29 +215,33 @@ nav.hide{transform:translateY(-105%)}
 .ti-num{font-family:var(--sf);font-size:2rem;font-weight:300;color:var(--pt);line-height:1;white-space:nowrap}
 .ti-lbl{font-family:var(--lb);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mt);line-height:1.55}
 
-/* ══ FEAR BREAKER ══ */
+/* ══ FEAR BREAKER — 3 items ══ */
 .fear{background:var(--ink);padding:clamp(3.75rem,7.5vw,6.5rem) var(--pd)}
-.fear-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1px;background:var(--ln);max-width:1160px;margin:0 auto}
-@media(max-width:900px){
-  .fear-grid{grid-template-columns:repeat(2,1fr)}
-}
-@media(max-width:500px){
-  .fear-grid{grid-template-columns:1fr}
-}
-.fi-item{background:var(--ink);padding:1.85rem 1.75rem;position:relative;transition:background .35s}
+.fear-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln);max-width:1160px;margin:0 auto}
+@media(max-width:820px){.fear-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:500px){.fear-grid{grid-template-columns:1fr}}
+.fi-item{background:var(--ink);padding:2.1rem 1.85rem;position:relative;transition:background .35s}
 .fi-item:hover{background:var(--ink3)}
 .fi-item::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
 .fi-item:nth-child(1)::before{background:var(--ig)}
 .fi-item:nth-child(2)::before{background:var(--pt)}
-.fi-item:nth-child(3)::before{background:var(--pt)}
-.fi-item:nth-child(4)::before{background:var(--ir)}
+.fi-item:nth-child(3)::before{background:var(--ir)}
 .fi-item:hover::before{transform:scaleX(1)}
-.fi-icon{width:32px;height:32px;border:1px solid var(--ln);display:flex;align-items:center;justify-content:center;margin-bottom:1rem;transition:border-color .4s}
-.fi-item:hover .fi-icon{border-color:rgba(198,203,209,.3)}
-.fi-icon svg{width:14px;height:14px;stroke:var(--mt);fill:none;stroke-width:1.5;transition:stroke .4s}
-.fi-item:hover .fi-icon svg{stroke:var(--pt)}
-.fi-q{font-family:var(--sf);font-size:1rem;font-style:italic;color:rgba(198,203,209,.5);margin-bottom:.45rem;line-height:1.42}
-.fi-a{font-size:.78rem;color:var(--mt);line-height:1.68}
+/* Vervangen pictogrammen door strakke nummerering */
+.fi-num{
+  font-family:var(--sf);
+  font-size:3.2rem;
+  font-weight:300;
+  color:rgba(198,203,209,.06);
+  line-height:1;
+  margin-bottom:.9rem;
+  letter-spacing:-.02em;
+  transition:color .4s;
+  user-select:none;
+}
+.fi-item:hover .fi-num{color:rgba(198,203,209,.12)}
+.fi-q{font-family:var(--sf);font-size:1.05rem;font-style:italic;color:rgba(198,203,209,.55);margin-bottom:.55rem;line-height:1.45}
+.fi-a{font-size:.8rem;color:var(--mt);line-height:1.72}
 
 /* ══ TOOLS ══ */
 .tools-sec{background:var(--ink2);padding:clamp(4.5rem,9vw,8rem) var(--pd)}
@@ -172,16 +256,26 @@ nav.hide{transform:translateY(-105%)}
 @media(max-width:780px){.tgrid{grid-template-columns:1fr}}
 .tc{display:flex;flex-direction:column;background:var(--ink2);position:relative;overflow:hidden;transition:background .4s;text-decoration:none;color:inherit}
 .tc:hover{background:var(--ink3)}
-/* Uniform photo height for all tool cards */
+
+/* Kenteken foto — groter logo */
 .tc-photo{width:100%;height:195px;overflow:hidden;position:relative;flex-shrink:0;background:var(--ink3);display:flex;align-items:center;justify-content:center}
 .tc-photo img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:brightness(.26) saturate(.4);transition:filter .65s,transform .85s}
 .tc-photo img.img-contain{object-fit:contain;padding:1.4rem;filter:brightness(.6) saturate(.25);background:var(--ink3)}
+/* Kenteken logo groter, zelfde als mobile logo */
+.tc-photo img.img-logo-kenteken{
+  object-fit:contain;
+  padding:.6rem;
+  filter:brightness(.62) saturate(.14) contrast(1.15);
+  background:var(--ink3);
+  width:100%;height:100%;
+}
 .tc-photo img.img-logo{object-fit:contain;padding:2rem;filter:brightness(.52) saturate(.08) contrast(1.1);background:var(--ink3);width:100%;height:100%}
 .tc:hover .tc-photo img{filter:brightness(.46) saturate(.65);transform:scale(1.04)}
 .tc:hover .tc-photo img.img-contain{filter:brightness(.8) saturate(.45);transform:none}
-.tc:hover .tc-photo img.img-logo{filter:brightness(.76) saturate(.22);transform:none}
+.tc:hover .tc-photo img.img-logo,.tc:hover .tc-photo img.img-logo-kenteken{filter:brightness(.78) saturate(.22);transform:none}
 .tc-fade{position:absolute;inset:0;background:linear-gradient(to top,var(--ink2) 0%,transparent 55%);z-index:1;pointer-events:none}
 .tc-photo::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;z-index:2;transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+/* Tool card volgorde: 1=Kentekencheck, 2=Calculator, 3=Analyse */
 .tc:nth-child(1) .tc-photo::after{background:var(--ig)}
 .tc:nth-child(2) .tc-photo::after{background:var(--pt)}
 .tc:nth-child(3) .tc-photo::after{background:var(--ir)}
@@ -229,32 +323,49 @@ nav.hide{transform:translateY(-105%)}
 /* ══ OVER ONS ══ */
 .about-grid{display:grid;grid-template-columns:.85fr 1fr;gap:clamp(2.5rem,5.5vw,5rem);align-items:start}
 @media(max-width:820px){.about-grid{grid-template-columns:1fr}}
+
+/* Founder portrait — smal, naast naam */
+.founder-nameline{
+  display:flex;align-items:center;gap:1.1rem;
+  margin-top:1.5rem;
+}
+.founder-thumb{
+  width:48px;height:48px;border-radius:50%;
+  overflow:hidden;flex-shrink:0;
+  border:1px solid var(--ln);
+}
+.founder-thumb img{
+  width:100%;height:100%;object-fit:cover;object-position:center 12%;
+  filter:grayscale(.3);
+  display:block;
+}
+.founder-nameblock{display:flex;flex-direction:column;gap:.18rem}
+.sig{font-family:var(--sf);font-style:italic;font-size:1.45rem;color:var(--pt)}
+.role{font-family:var(--lb);font-size:.59rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mt)}
+
+/* Portrait groot (links) — verborgen op mobiel */
 .portrait{position:relative;margin:12px 12px 12px 0}
 .portrait::after{content:'';position:absolute;inset:12px -12px -12px 12px;border:1px solid var(--ln);z-index:-1}
 .portrait::before{content:'';position:absolute;top:-12px;left:-12px;bottom:12px;width:2px;background:linear-gradient(to bottom,var(--ig) 33%,#fff 33% 66%,var(--ir) 66%);opacity:.6;z-index:3}
 .portrait img{
-  width:100%;
-  aspect-ratio:3/4;
-  object-fit:cover;
-  object-position:center 12%;
-  filter:grayscale(.38) contrast(1.06);
-  display:block;
-  transition:filter .8s;
+  width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 12%;
+  filter:grayscale(.38) contrast(1.06);display:block;transition:filter .8s;
 }
 .portrait:hover img{filter:grayscale(0) contrast(1)}
 .portrait-fade{position:absolute;top:0;right:0;bottom:0;width:18%;background:linear-gradient(to left,var(--ink2) 0%,rgba(13,13,13,.6) 45%,transparent 100%);z-index:2;pointer-events:none}
-.sig{font-family:var(--sf);font-style:italic;font-size:1.55rem;color:var(--pt);margin-top:1.5rem}
-.role{font-family:var(--lb);font-size:.59rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mt);margin-top:.28rem}
-.garage-section{margin-top:2.25rem;padding-top:1.85rem;border-top:1px solid var(--hr)}
-.garage-label{font-family:var(--lb);font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(198,203,209,.26);margin-bottom:.85rem}
-.garage-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin;scrollbar-color:rgba(198,203,209,.12) transparent}
+
+/* Garage sectie — compacter, minder prominent */
+.garage-section{margin-top:1.75rem;padding-top:1.55rem;border-top:1px solid var(--hr)}
+.garage-label{font-family:var(--lb);font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(198,203,209,.22);margin-bottom:.75rem}
+.garage-scroll{display:flex;gap:7px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin;scrollbar-color:rgba(198,203,209,.1) transparent}
 .garage-scroll::-webkit-scrollbar{height:2px}
 .garage-scroll::-webkit-scrollbar-thumb{background:linear-gradient(to right,var(--ig),var(--pt),var(--ir))}
-.garage-card{flex-shrink:0;position:relative;width:185px;height:118px;overflow:hidden;border:1px solid var(--hr);transition:border-color .4s}
+.garage-card{flex-shrink:0;position:relative;width:155px;height:98px;overflow:hidden;border:1px solid var(--hr);transition:border-color .4s}
 .garage-card:hover{border-color:var(--ln)}
-.garage-card img{width:100%;height:100%;object-fit:cover;filter:brightness(.58) saturate(.5);transition:filter .55s,transform .75s;display:block}
-.garage-card:hover img{filter:brightness(.75) saturate(.68);transform:scale(1.05)}
-.garage-card-lbl{position:absolute;bottom:0;left:0;right:0;padding:.42rem .6rem;background:linear-gradient(to top,rgba(8,8,8,.92) 0%,transparent 100%);font-family:var(--lb);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(198,203,209,.5)}
+.garage-card img{width:100%;height:100%;object-fit:cover;filter:brightness(.52) saturate(.45);transition:filter .55s,transform .75s;display:block}
+.garage-card:hover img{filter:brightness(.72) saturate(.62);transform:scale(1.05)}
+.garage-card-lbl{position:absolute;bottom:0;left:0;right:0;padding:.38rem .55rem;background:linear-gradient(to top,rgba(8,8,8,.92) 0%,transparent 100%);font-family:var(--lb);font-size:.46rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(198,203,209,.45)}
+
 .press-badge{display:inline-flex;align-items:center;gap:.65rem;background:var(--ink3);border:1px solid var(--ln);padding:.55rem .95rem;margin-top:1.35rem;font-family:var(--lb);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(198,203,209,.38);transition:border-color .3s,color .3s;text-decoration:none}
 .press-badge:hover{border-color:rgba(198,203,209,.26);color:rgba(198,203,209,.6)}
 .press-badge svg{width:12px;height:12px;fill:none;stroke:rgba(198,203,209,.32);stroke-width:1.5;flex-shrink:0}
@@ -337,6 +448,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   .quote blockquote .qw{opacity:1;transition:none}
   html{scroll-behavior:auto}
   .proj-story{max-height:none}
+  #splash{display:none}
 }
 
 /* ══ CHAT BUBBLE ══ */
@@ -517,6 +629,19 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 </head>
 <body>
 
+<!-- ══ SPLASH SCREEN ══ -->
+<div id="splash" role="presentation" aria-hidden="true">
+  <div class="splash-inner">
+    <div class="splash-brand">
+      <span class="splash-brand-apex">APEX</span>
+      <span class="splash-sep"><span></span><span></span><span></span></span>
+      <span class="splash-brand-excl">exclusive</span>
+    </div>
+    <div class="splash-sub">Private Vehicle Advisory · Maastricht</div>
+    <div class="splash-line"></div>
+  </div>
+</div>
+
 <div id="progress"></div>
 
 <!-- Chat bubble -->
@@ -610,7 +735,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   <div class="scrollcue" id="cue"><i></i> Scroll</div>
 </header>
 
-<!-- TRUST STRIP — 3 items, zonder De Limburger -->
+<!-- TRUST STRIP -->
 <div class="trust">
   <div class="trust-inner">
     <div class="ti rv">
@@ -628,33 +753,32 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   </div>
 </div>
 
-<!-- FEAR BREAKER -->
+<!-- FEAR BREAKER — 3 items, geen icoontjes -->
 <div class="fear">
   <div class="fear-grid">
+
     <div class="fi-item rv">
-      <div class="fi-icon"><svg viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+      <div class="fi-num">01</div>
       <div class="fi-q">"Stel dat ik een auto koop met verborgen schade?"</div>
-      <div class="fi-a">U koopt niets zonder zekerheid. Op verzoek regelen wij een onafhankelijke aankoopkeuring ter plaatse bij de verkoper — professioneel en volledig objectief.</div>
+      <div class="fi-a">U koopt niets zonder zekerheid. Op verzoek regelen wij een onafhankelijke aankoopkeuring ter plaatse bij de verkoper — professioneel en volledig objectief. Geen groen licht? Dan koopt u niet.</div>
     </div>
+
     <div class="fi-item rv">
-      <div class="fi-icon"><svg viewBox="0 0 24 24"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></div>
-      <div class="fi-q">"Is de BPM niet veel duurder dan ik verwacht?"</div>
-      <div class="fi-a">Bereken het direct met onze BPM Calculator. Bij import regelen wij de officiële taxatie via erkende partners — transparant, geen verrassingen achteraf.</div>
+      <div class="fi-num">02</div>
+      <div class="fi-q">"Is de BPM niet veel duurder dan ik verwacht — en spreek ik de taal niet eens?"</div>
+      <div class="fi-a">Bereken het direct met onze BPM Calculator. Wij regelen de officiële taxatie via erkende partners — transparant, geen verrassingen. En voor communicatie, onderhandeling en lokale inspecties in Duitsland, Italië, België of Spanje: wij zijn uw verlengde arm.</div>
     </div>
+
     <div class="fi-item rv">
-      <div class="fi-icon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><path d="M2 12h20M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/></svg></div>
-      <div class="fi-q">"Ik spreek de taal niet en ken de markt niet."</div>
-      <div class="fi-a">Wij zijn uw verlengde arm in Duitsland, Italië, België en Spanje. Communicatie, onderhandeling en lokale inspecties — wij regelen het alsof het onze eigen auto betreft.</div>
-    </div>
-    <div class="fi-item rv">
-      <div class="fi-icon"><svg viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/></svg></div>
+      <div class="fi-num">03</div>
       <div class="fi-q">"Papieren en registratie zijn te ingewikkeld."</div>
-      <div class="fi-a">RDW-keuring, kentekenregistratie en montage aan huis. U rijdt pas als alles klopt — wij regelen het volledig voor u.</div>
+      <div class="fi-a">RDW-keuring, kentekenregistratie en montage aan huis. U rijdt pas als alles klopt — wij regelen het volledig voor u, van import tot platen op de auto.</div>
     </div>
+
   </div>
 </div>
 
-<!-- TOOLS -->
+<!-- TOOLS — volgorde: 1 Kentekencheck, 2 Calculator, 3 Analyse -->
 <section class="tools-sec" id="tools">
   <div class="wrap">
     <div class="tools-intro rv">
@@ -671,32 +795,38 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
       <p><strong>Tip van Martijn:</strong> Voer altijd eerst de kentekencheck en BPM-berekening uit voordat u een bod uitbrengt op een buitenlandse auto. Het kan u duizenden euro's schelen.</p>
     </div>
     <div class="tgrid rv">
-      <a class="tc" href="https://bpm.apexclusive.nl">
+
+      <!-- 1: Kentekencheck — EERST -->
+      <a class="tc" href="https://kentekencheck.apexclusive.nl">
         <div class="tc-photo">
-          <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=620&q=55&auto=format" alt="BPM Calculator" loading="lazy" decoding="async">
+          <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_620,q_55,f_auto/v1786120828/Nederlands_Kenteken_Sticker_gfmewm.png" alt="Kentekencheck" loading="lazy" decoding="async" class="img-logo-kenteken">
           <div class="tc-fade"></div>
         </div>
         <div class="tc-body">
           <span class="num">1</span>
-          <h3>BPM Calculator</h3>
-          <p>Weet precies wat de import u kost voordat u een bod uitbrengt. Bereken de resterende BPM op basis van leeftijd, cataloguswaarde en brandstoftype.</p>
-          <div class="tc-perk">Direct resultaat · Geen registratie</div>
-          <span class="tc-go">Berekenen <i></i></span>
-        </div>
-      </a>
-      <a class="tc" href="https://kentekencheck.apexclusive.nl">
-        <div class="tc-photo">
-          <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_620,q_55,f_auto/v1786120828/Nederlands_Kenteken_Sticker_gfmewm.png" alt="Kentekencheck" loading="lazy" decoding="async" class="img-contain">
-          <div class="tc-fade"></div>
-        </div>
-        <div class="tc-body">
-          <span class="num">2</span>
           <h3>Kentekencheck</h3>
           <p>APK-historie, tellerstandverloop en tenaamstellingen via officiële RDW-data. Vertrouw nooit een verkoper op zijn woord — controleer zelf.</p>
           <div class="tc-perk">RDW-data · APK-historie · Tellerstand</div>
           <span class="tc-go">Controleren <i></i></span>
         </div>
       </a>
+
+      <!-- 2: BPM Calculator — TWEEDE -->
+      <a class="tc" href="https://bpm.apexclusive.nl">
+        <div class="tc-photo">
+          <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=620&q=55&auto=format" alt="BPM Calculator" loading="lazy" decoding="async">
+          <div class="tc-fade"></div>
+        </div>
+        <div class="tc-body">
+          <span class="num">2</span>
+          <h3>BPM Calculator</h3>
+          <p>Weet precies wat de import u kost voordat u een bod uitbrengt. Bereken de resterende BPM op basis van leeftijd, cataloguswaarde en brandstoftype.</p>
+          <div class="tc-perk">Direct resultaat · Geen registratie</div>
+          <span class="tc-go">Berekenen <i></i></span>
+        </div>
+      </a>
+
+      <!-- 3: Analyse — DERDE -->
       <a class="tc" href="https://carrapport.apexclusive.nl">
         <div class="tc-photo">
           <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_620,q_55,f_auto/v1786118058/mobile-de-seeklogo_z1hb8f.png" alt="Advertentie analyse" loading="lazy" decoding="async" class="img-logo">
@@ -710,6 +840,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
           <span class="tc-go">Analyseren <i></i></span>
         </div>
       </a>
+
     </div>
     <div class="tools-cta rv">
       <p class="ey c">
@@ -814,18 +945,19 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 
         <p style="margin-bottom:1.1rem;color:#bbb;font-size:.9rem;line-height:1.82">Als professioneel piloot zijn precisie, voorbereiding en oog voor detail geen kwaliteiten — het zijn gewoontes. Die breng ik mee in elk adviestraject.</p>
 
-        <p style="margin-bottom:1.65rem;color:#bbb;font-size:.9rem;line-height:1.82">Ik importeer al meer dan tien jaar exclusieve auto's voor mezelf. Van een <em>McLaren 650S Spyder</em> uit België tot een <em>Lamborghini Huracán LP610</em> uit Zweden en een <em>Lamborghini Urus</em> rechtstreeks van een Luxemburgse dealerpartner — elke aankoop was een leermoment. Die kennis, dat netwerk en die directe marktervaring zet ik nu volledig in voor mijn klanten. Zonder tussenmarges. Zonder verborgen belangen.</p>
+        <p style="margin-bottom:1.65rem;color:#bbb;font-size:.9rem;line-height:1.82">Ik importeer al meer dan tien jaar exclusieve auto's voor mezelf. Van een <em>McLaren 650S Spyder</em> uit België tot een <em>Lamborghini Huracán LP610</em> uit Zweden en een <em>Lamborghini Urus</em> rechtstreeks van een Luxemburgse dealerpartner — elke aankoop was een leermoment. Die kennis, dat netwerk en die directe marktervaring zet ik nu volledig in voor mijn klanten.</p>
 
+        <!-- Garage — compacter, meer als bewijs dan showreel -->
         <div class="garage-section">
-          <div class="garage-label">Eigen rijervaring — een selectie uit de garage</div>
+          <div class="garage-label">Persoonlijke rijervaring — een selectie</div>
           <div class="garage-scroll">
             <div class="garage-card">
               <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_300,q_52,f_auto/v1786123838/WhatsApp_Image_2025-05-20_at_01.01.02_nh95ep.jpg" alt="Lamborghini Huracán" loading="lazy" decoding="async">
-              <div class="garage-card-lbl">Lamborghini Huracán · Import Zweden</div>
+              <div class="garage-card-lbl">Huracán · Import Zweden</div>
             </div>
             <div class="garage-card">
               <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_300,q_52,f_auto/v1786123971/Scherm_afbeelding_2026-08-07_om_19.32.35_jnsz99.jpg" alt="McLaren 650S Spyder" loading="lazy" decoding="async">
-              <div class="garage-card-lbl">McLaren 650S · Import België</div>
+              <div class="garage-card-lbl">McLaren 650S · België</div>
             </div>
             <div class="garage-card">
               <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_300,q_52,f_auto/v1786124284/IMG_7402_rmzafp.jpg" alt="Porsche 911 Turbo" loading="lazy" decoding="async">
@@ -837,7 +969,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
             </div>
             <div class="garage-card">
               <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_300,q_52,f_auto/v1786124459/IMG_5245_f3sxrk.jpg" alt="Porsche Macan Turbo" loading="lazy" decoding="async">
-              <div class="garage-card-lbl">Porsche Macan Turbo</div>
+              <div class="garage-card-lbl">Macan Turbo</div>
             </div>
           </div>
         </div>
@@ -848,8 +980,19 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
           <span>Zoals vermeld in <strong>De Limburger</strong> — lees het artikel</span>
         </a>
 
-        <p class="sig">Martijn Puts</p>
-        <p class="role">Founder &amp; Private Vehicle Advisor · Maastricht</p>
+        <!-- Founder naam + kleine foto -->
+        <div class="founder-nameline">
+          <div class="founder-thumb">
+            <img
+              src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_120,q_70,f_auto/v1786112744/8A26E528-46F4-471D-856C-7D4210809521_1_105_c_uguopr.jpg"
+              alt="Martijn Puts" loading="lazy" decoding="async">
+          </div>
+          <div class="founder-nameblock">
+            <p class="sig">Martijn Puts</p>
+            <p class="role">Founder &amp; Private Vehicle Advisor · Maastricht</p>
+          </div>
+        </div>
+
       </div>
     </div>
   </div>
@@ -868,7 +1011,6 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
     </div>
     <div class="p-grid">
 
-      <!-- Project 1 -->
       <article class="proj rv" onclick="projToggle(this)">
         <div class="imgwrap veil">
           <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_720,q_55,f_auto/v1786123838/WhatsApp_Image_2025-05-20_at_01.01.02_nh95ep.jpg" alt="Lamborghini Huracán LP610 Spyder" loading="lazy" decoding="async">
@@ -884,7 +1026,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         </div>
         <div class="proj-story">
           <div class="proj-story-inner">
-            <p>Deze Huracán LP610 Spyder had zijn leven begonnen in Zweden — één eigenaar, perfecte onderhoudshistorie en voorzien van een volledig PPF-folie en een titanium F1-uitlaat. Na de nodige research stond hij te koop bij een privéverkoper in Noord-Duitsland. Ter plaatse persoonlijk beoordeeld, onderhandeld en aangeschaft. De McLaren 650S Spyder die ervoor ingeleverd werd, was zelf ooit geïmporteerd uit België. Zo werkt de cirkel van passie en kennis.</p>
+            <p>Deze Huracán LP610 Spyder had zijn leven begonnen in Zweden — één eigenaar, perfecte onderhoudshistorie en voorzien van een volledig PPF-folie en een titanium F1-uitlaat. Na de nodige research stond hij te koop bij een privéverkoper in Noord-Duitsland. Ter plaatse persoonlijk beoordeeld, onderhandeld en aangeschaft.</p>
             <div class="story-meta">
               <span class="story-tag">Import uit Noord-Duitsland</span>
               <span class="story-tag">Oorsprong Zweden · 1 eigenaar</span>
@@ -896,7 +1038,6 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         </div>
       </article>
 
-      <!-- Project 2 -->
       <article class="proj rv" onclick="projToggle(this)">
         <div class="imgwrap veil">
           <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_720,q_55,f_auto/v1786111940/987D691B-FFBF-4137-9766-15DEF62F5CD4_1_201_a_k1eyvp.jpg" alt="Lamborghini Urus" loading="lazy" decoding="async">
@@ -912,7 +1053,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         </div>
         <div class="proj-story">
           <div class="proj-story-inner">
-            <p>Deze Urus werd aangekocht bij een zeer exclusieve Lamborghini-dealer in Luxemburg — een partner waarmee een vertrouwensrelatie bestaat. Het voertuig werd per gesloten transport naar Nederland gebracht. Ter plaatse, aan huis, vonden de BPM-taxatie en de RDW-keuring plaats. De luxe kentekenplaten werden kort na het afronden van het BPM-proces geleverd. Een volledig zorgeloos traject — precies zoals het hoort.</p>
+            <p>Deze Urus werd aangekocht bij een zeer exclusieve Lamborghini-dealer in Luxemburg. Het voertuig werd per gesloten transport naar Nederland gebracht. Ter plaatse, aan huis, vonden de BPM-taxatie en de RDW-keuring plaats. Een volledig zorgeloos traject — precies zoals het hoort.</p>
             <div class="story-meta">
               <span class="story-tag">Luxemburgse premium dealer</span>
               <span class="story-tag">Gesloten transport naar Nederland</span>
@@ -924,7 +1065,6 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         </div>
       </article>
 
-      <!-- Project 3 -->
       <article class="proj rv" onclick="projToggle(this)">
         <div class="imgwrap veil">
           <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_720,q_55,f_auto/v1786112182/8112FE63-03BD-4C6D-9A40-1217FCD5910F_1_201_a_vbazdb.heic" alt="Audi RS6 Avant C8" loading="lazy" decoding="async">
@@ -940,7 +1080,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         </div>
         <div class="proj-story">
           <div class="proj-story-inner">
-            <p>Een zeldzame vondst: deze RS6 C8 was eigendom van een fysiotherapeut die iedere drie jaar via een leasecontract een nieuwe RS6 ontving. Eén eigenaar, perfect onderhouden, weinig kilometers — en geleverd met 12 maanden Audi-garantie via het Audi Approved-programma. Gevonden in Duitsland, volledig begeleid aangekocht en inclusief BPM-afhandeling en NL-registratie naar Nederland gebracht.</p>
+            <p>Een zeldzame vondst: deze RS6 C8 was eigendom van een fysiotherapeut die iedere drie jaar via een leasecontract een nieuwe RS6 ontving. Eén eigenaar, perfect onderhouden, weinig kilometers — geleverd met 12 maanden Audi-garantie via het Audi Approved-programma.</p>
             <div class="story-meta">
               <span class="story-tag">1 eigenaar · Fysiotherapeut</span>
               <span class="story-tag">Lease-auto · Altijd vervangen na 3 jaar</span>
@@ -1045,8 +1185,8 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
     <div>
       <p class="fh">Instrumenten</p>
       <ul class="fl">
-        <li><a href="https://bpm.apexclusive.nl">BPM Calculator</a></li>
         <li><a href="https://kentekencheck.apexclusive.nl">Kentekencheck</a></li>
+        <li><a href="https://bpm.apexclusive.nl">BPM Calculator</a></li>
         <li><a href="https://carrapport.apexclusive.nl">Advertentie Analyse</a></li>
       </ul>
     </div>
@@ -1066,6 +1206,18 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 </footer>
 
 <script>
+/* ══ SPLASH ══ */
+(function(){
+  const splash = document.getElementById('splash');
+  if(!splash) return;
+  // Totale splash-duur: ~1.05s animaties + korte hold = 1.55s
+  setTimeout(function(){
+    splash.classList.add('hide');
+    // Na fade-out: verwijder uit DOM zodat het site-scrollen niet blokkeert
+    setTimeout(function(){ splash.style.display='none'; }, 900);
+  }, 1550);
+})();
+
 /* ══ PROJECT TOGGLE ══ */
 function projToggle(el) {
   const isOpen = el.classList.contains('open');
@@ -1100,9 +1252,9 @@ function _getContext() {
 const _contextWelkom = {
   tools:     'Ik zie dat u onze tools bekijkt. Heeft u een specifieke auto in gedachten waarvoor u de **BPM** wilt berekenen?',
   werkwijze: 'U bekijkt onze werkwijze — heeft u een vraag over hoe een traject verloopt?',
-  over:      'Goedag! Fijn dat u meer wilt weten over APEXclusive en Martijn. Waarmee kan ik u helpen?',
+  over:      'Goedag! Fijn dat u meer wilt weten over APEXclusive. Waarmee kan ik u helpen?',
   projecten: 'U bekijkt onze gerealiseerde projecten. Heeft u zelf een droomauto in gedachten?',
-  contact:   'U wilt contact opnemen — uitstekend. Laat gerust uw naam en 06-nummer achter, dan neemt Martijn persoonlijk contact op.',
+  contact:   'U wilt contact opnemen — uitstekend. Laat gerust uw naam en 06-nummer achter, dan neemt een van onze adviseurs persoonlijk contact op.',
   home:      'Goedag! Ik ben de digitale adviseur van **APEXclusive** in Maastricht. Waarmee kan ik u helpen?'
 };
 
@@ -1141,7 +1293,7 @@ function apexQuick(tekst) {
 
 function apexRequestTransfer() {
   document.getElementById('apex-quick').style.display = 'none';
-  _addMsg('bot', 'Uiteraard. Laat uw naam, e-mailadres en 06-nummer achter — Martijn neemt persoonlijk contact op.');
+  _addMsg('bot', 'Uiteraard. Laat uw naam, e-mailadres en 06-nummer achter — één van onze APEXclusive adviseurs neemt zo spoedig mogelijk persoonlijk contact met u op.');
   document.getElementById('apex-contact-form').classList.add('open');
 }
 
