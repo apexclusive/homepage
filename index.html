@@ -1148,44 +1148,43 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
 (function(){
   var splash = document.getElementById('splash');
   if (!splash) return;
+  function finalizeSplashHide(element) {
+    if (!element) return;
+    element.classList.add('hide', 'force-hide');
+    element.style.transition = 'opacity .24s ease-out, visibility .24s ease-out';
+    Object.assign(element.style, {
+      display: 'none',
+      visibility: 'hidden',
+      opacity: '0',
+      pointerEvents: 'none',
+      zIndex: '-1',
+      width: '0',
+      height: '0',
+      background: 'transparent'
+    });
+    document.documentElement.style.overflow = '';
+    document.body.style.overflow = '';
+    if (element.parentNode) element.parentNode.removeChild(element);
+    window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
+    initQuoteWords();
+  }
   function hideSplash() {
-    splash.style.transition = 'opacity .32s ease-out, visibility .32s ease-out';
+    splash.classList.add('hide');
+    splash.style.transition = 'opacity .24s ease-out, visibility .24s ease-out';
     splash.style.opacity = '0';
     splash.style.visibility = 'hidden';
     splash.style.pointerEvents = 'none';
     requestAnimationFrame(function(){
       setTimeout(function(){
-        if (!splash.classList.contains('force-hide')) {
-          splash.classList.add('force-hide');
-          splash.style.display = 'none';
-          splash.style.visibility = 'hidden';
-          splash.style.opacity = '0';
-          splash.style.pointerEvents = 'none';
-          document.documentElement.style.overflow = '';
-          document.body.style.overflow = '';
-          if (splash.parentNode) splash.parentNode.removeChild(splash);
-          window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-          initQuoteWords();
-        }
-      }, 320);
+        finalizeSplashHide(document.getElementById('splash'));
+      }, 240);
     });
   }
   function scheduleHide() {
     setTimeout(hideSplash, 1500);
     setTimeout(function(){
-      if (!splash.classList.contains('force-hide')) {
-        splash.classList.add('force-hide');
-        splash.style.display = 'none';
-        splash.style.visibility = 'hidden';
-        splash.style.opacity = '0';
-        splash.style.pointerEvents = 'none';
-        document.documentElement.style.overflow = '';
-        document.body.style.overflow = '';
-        if (splash.parentNode) splash.parentNode.removeChild(splash);
-        window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
-        initQuoteWords();
-      }
-    }, 2500);
+      finalizeSplashHide(document.getElementById('splash'));
+    }, 2250);
   }
   if (document.readyState === 'loading') {
     document.addEventListener('DOMContentLoaded', scheduleHide);
