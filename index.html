@@ -72,7 +72,7 @@ h2.in .w i{transform:none}
   background:#000;
   display:flex;align-items:center;justify-content:center;
   opacity:1;
-  transition:opacity .6s cubic-bezier(.4,0,.2,1);
+  transition:opacity .28s ease-out;
   will-change:opacity;
 }
 #splash.hide{opacity:0;pointer-events:none}
@@ -1148,7 +1148,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
       splash.classList.add('force-hide');
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
       initQuoteWords();
-    }, 900);
+    }, 260);
   }
   setTimeout(hideSplash, 1500);
   setTimeout(function(){
