@@ -1396,16 +1396,35 @@ function _addMsg(rol, tekst, silent = false) {
 
 /* ── Tekst formatteren ── */
 function _fmt(t) {
-  return t
+  const escapeHtml = text => String(text)
     .replace(/&/g, '&amp;')
     .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;')
+    .replace(/>/g, '&gt;');
+
+  const sanitizeUrl = url => {
+    try {
+      const parsed = new URL(url);
+      return (parsed.protocol === 'http:' || parsed.protocol === 'https:') ? parsed.toString() : '';
+    } catch (e) {
+      return '';
+    }
+  };
+
+  const sanitized = escapeHtml(t);
+
+  const withLinks = sanitized.replace(/\[([^\]]+?)\]\((https?:\/\/[^\s)]+)\)/g, (_, text, url) => {
+    const cleanUrl = sanitizeUrl(url);
+    const cleanText = escapeHtml(text.trim().replace(/^"|"$/g, ''));
+    return cleanUrl
+      ? `<a href="${cleanUrl}" target="_blank" rel="noopener" style="color:var(--pt);border-bottom:1px solid var(--ln)">${cleanText}</a>`
+      : escapeHtml(text);
+  });
+
+  return withLinks
+    .replace(/(https?:\/\/[^\s<>"']+)/g,
+      '<a href="$1" target="_blank" rel="noopener" style="color:var(--pt);border-bottom:1px solid var(--ln)">$1</a>')
     .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
     .replace(/\*(.*?)\*/g, '<em>$1</em>')
-    .replace(/\[([^\]]+)\]\((https?:\/\/[^\s)]+)\)/g,
-      '<a href="$2" target="_blank" rel="noopener" style="color:var(--pt);border-bottom:1px solid var(--ln)">$1</a>')
-    .replace(/(https?:\/\/[^\s<]+)/g,
-      '<a href="$1" target="_blank" rel="noopener" style="color:var(--pt);border-bottom:1px solid var(--ln)">$1</a>')
     .replace(/\n/g, '<br>');
 }
 
