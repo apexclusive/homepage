@@ -521,6 +521,15 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
   .splash-brand{font-size:1.6rem;letter-spacing:.14em}
 }
 
+@media(max-width:600px){
+  .founder-nameline{flex-wrap:wrap;align-items:flex-start;gap:.75rem}
+  .founder-nameblock{min-width:0;flex:1}
+  .founder-thumb{width:54px;height:54px}
+  .press-badge{display:inline-flex;flex-wrap:wrap;gap:.5rem;max-width:100%;white-space:normal}
+  .garage-scroll{gap:10px}
+  .about-body-text{font-size:.95rem}
+}
+
 /* ══ CHAT BUBBLE ══ */
 .apex-bubble{
   position:fixed;bottom:max(1.5rem,env(safe-area-inset-bottom,1.5rem));right:1.5rem;z-index:9998;
@@ -612,7 +621,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
 
 /* ══ REDUCED MOTION ══ */
 @media(prefers-reduced-motion:reduce){
-  .rv,.hero .sub,.hero h1,.hero .lead,.hero .cta-row{opacity:1;transform:none;transition:none;animation:none}
+  .hero .sub,.hero h1,.hero .lead,.hero .cta-row{opacity:1;transform:none;transition:none;animation:none}
   .hero-bg img,.scrollcue i,.hero h1 em{animation:none}
   h2 .w i{transform:none;transition:none}
   .ey-tri,.ey-tri-r{width:38px!important;transition:none}
