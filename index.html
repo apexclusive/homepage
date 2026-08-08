@@ -1275,7 +1275,12 @@ function _fmt(t){
     .replace(/\*(.*?)\*/g,'<em>$1</em>')
     .replace(/\n/g,'<br>');
 }
-
+document.getElementById('apex-inp').addEventListener('keydown', function(e){
+  if(e.key === 'Enter' && !e.shiftKey) {
+    e.preventDefault();
+    apexSend();
+  }
+});
 function _showTyping(){
   const wrap = document.getElementById('apex-msgs');
   const div  = document.createElement('div');
