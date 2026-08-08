@@ -35,7 +35,7 @@
   --tf:linear-gradient(90deg,transparent 0%,var(--ig) 15% 33.33%,#fff 33.33% 66.66%,var(--ir) 66.66% 85%,transparent 100%);
 }
 *{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth;scroll-padding-top:80px}
+html{scroll-behavior:smooth;scroll-padding-top:80px;overflow-x:hidden}
 body{
   background:var(--ink);color:var(--tx);
   font-family:var(--ss),system-ui,sans-serif;
@@ -423,6 +423,19 @@ nav.hide{transform:translateY(-105%)}
 .press-badge svg{width:12px;height:12px;fill:none;stroke:rgba(198,203,209,.35);stroke-width:1.5;flex-shrink:0}
 .press-badge strong{color:rgba(198,203,209,.62)}
 .about-body-text{font-size:clamp(.92rem,2.2vw,.97rem);color:#b8b8b8;line-height:1.84;margin-bottom:1.1rem}
+.about-card{background:rgba(255,255,255,.03);border:1px solid rgba(255,255,255,.08);border-radius:28px;padding:2.1rem;box-shadow:0 18px 36px rgba(0,0,0,.18);overflow:hidden}
+.founder-block{display:flex;align-items:center;gap:1rem;margin-top:1.75rem;flex-wrap:wrap}
+.founder-copy{min-width:0;flex:1;}
+.founder-copy .sig{font-size:clamp(.92rem,2.3vw,1rem);margin-bottom:.18rem}
+.founder-copy .role{font-size:.68rem;letter-spacing:.18em}
+@media(max-width:600px){
+  .about-card{padding:1.35rem;}
+  .founder-block{gap:.85rem;margin-top:1.35rem}
+  .founder-thumb{width:42px;height:42px}
+  .founder-copy .sig{font-size:.92rem}
+  .founder-copy .role{font-size:.68rem}
+  .garage-scroll{padding-left:0;margin-left:0;width:100%}
+}
 
 /* ══ PROJECTEN ══ */
 .p-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(280px,100%),1fr));gap:1.25rem;align-items:start}
@@ -515,14 +528,9 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
   #tarieven .rv{grid-template-columns:1fr!important}
   .about-grid{gap:1.25rem}
   .about-grid > div{width:100%}
-  .founder-nameline{flex-wrap:wrap;align-items:flex-start;gap:.75rem;margin-top:1rem}
-  .founder-nameblock{min-width:0;flex:1}
-  .founder-thumb{width:48px;height:48px}
-  .founder-nameblock .sig{font-size:1.1rem}
-  .founder-nameblock .role{font-size:.78rem}
   .about-body-text{font-size:.92rem}
   .garage-section{margin-top:1.35rem;padding-top:1.25rem}
-  .garage-scroll{gap:9px;padding-left:.25rem;margin-left:-.25rem}
+  .garage-scroll{gap:9px;padding-left:0;margin-left:0;width:100%}
   .garage-card{width:min(46vw,146px);height:82px;border-radius:18px}
   .garage-card img{transition:none}
   .garage-card-lbl{font-size:.42rem;padding:.28rem .45rem}
@@ -959,7 +967,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
   <div class="lux-corner tr" aria-hidden="true"></div>
   <div class="wrap">
     <div class="about-grid">
-      <div class="rv">
+      <div class="rv about-card">
         <p class="ey">
           <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
           Over de oprichter
@@ -983,13 +991,13 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
           <svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 0-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8z"/></svg>
           <span>Zoals vermeld in <strong>De Limburger</strong> &mdash; lees het artikel</span>
         </a>
-        <div class="founder-nameline">
+        <div class="founder-block">
           <div class="founder-thumb">
             <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_120,q_70,f_auto/v1786112744/8A26E528-46F4-471D-856C-7D4210809521_1_105_c_uguopr.jpg" alt="Martijn Puts" loading="lazy" decoding="async">
           </div>
-          <div class="founder-nameblock">
+          <div class="founder-copy">
             <p class="sig">Martijn Puts</p>
-            <p class="role">Founder &amp; Private Vehicle Advisor &middot; Maastricht</p>
+            <p class="role">Founder &amp; Private Vehicle Advisor · Maastricht</p>
           </div>
         </div>
       </div>
