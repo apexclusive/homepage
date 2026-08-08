@@ -552,78 +552,14 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   30%{transform:translateY(-5px)}
 }
 
-.chat-quick{
-  padding:.6rem 1rem .55rem;
-  display:none;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:.45rem;
-  border-top:1px solid rgba(198,203,209,.08);
-  background:rgba(20,20,20,.92);
-  backdrop-filter:blur(18px);
-}
-.chat-quick.visible{
-  display:grid;
-}
-.chat-qbtn{
-  font-family:'Oswald',sans-serif;
-  font-size:.56rem;letter-spacing:.12em;
-  text-transform:uppercase;
-  color:rgba(198,203,209,.72);
-  border:1px solid rgba(198,203,209,.14);
-  background:rgba(255,255,255,.05);
-  padding:.45rem .65rem;
-  cursor:pointer;
-  transition:border-color .25s,color .25s,background .25s,transform .25s;
-  white-space:normal;
-  border-radius:.55rem;
-  min-height:40px;
-}
-.chat-qbtn:hover{
-  border-color:rgba(198,203,209,.35);
-  color:#fff;
-  background:rgba(255,255,255,.14);
-  transform:translateY(-1px);
-}
 .chat-inp-row{
-  display:flex;gap:1px;
-  border-top:1px solid rgba(198,203,209,.12);
-  background:rgba(255,255,255,.05);
-  padding:.55rem;
+  display:flex;gap:0;
+  border-top:1px solid rgba(198,203,209,.08);
+  background:transparent;
+  padding:0;
   border-bottom-left-radius:1rem;
   border-bottom-right-radius:1rem;
 }
-.chat-toolbar{
-  display:grid;
-  grid-template-columns:repeat(2,minmax(0,1fr));
-  gap:.55rem;
-  padding:.75rem 1.05rem .85rem;
-  border-top:1px solid rgba(198,203,209,.08);
-  background:rgba(255,255,255,.04);
-}
-.chat-tip{
-  display:none;
-  padding:.65rem 1.05rem;
-  font-size:.74rem;
-  color:rgba(198,203,209,.78);
-  border-top:1px solid rgba(198,203,209,.08);
-  background:rgba(255,255,255,.04);
-  letter-spacing:.01em;
-  border-left:3px solid rgba(0,146,70,.45);
-}
-.chat-tip.visible{
-  display:block;
-}
-.chat-transfer-btn{
-  flex:1 1 100%;border:none;border-radius:.55rem;
-  background:linear-gradient(135deg,#11181a,#232a2d);
-  color:#f2f4f6;
-  font-family:'Oswald',sans-serif;font-size:.72rem;
-  text-transform:uppercase;letter-spacing:.12em;
-  padding:.8rem .9rem;cursor:pointer;
-  transition:background .25s,transform .25s,box-shadow .25s;
-  box-shadow:0 10px 24px rgba(0,0,0,.16);
-}
-.chat-transfer-btn:hover{background:linear-gradient(135deg,#141d21,#2b3236);text-decoration:none;transform:translateY(-1px)}
 .chat-contact-form{
   display:none;flex-wrap:wrap;gap:.6rem;
   padding:.95rem 1.1rem .75rem;
@@ -780,17 +716,6 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   </div>
   <div id="apex-msgs" class="chat-msgs"></div>
   <div id="apex-toast" class="chat-toast" aria-live="polite"></div>
-  <div class="chat-quick" id="apex-quick" style="display:none;">
-    <button class="chat-qbtn" type="button" onclick="apexQuick('BPM kosten')">BPM kosten</button>
-    <button class="chat-qbtn" type="button" onclick="apexQuick('Importproces')">Importproces</button>
-    <button class="chat-qbtn" type="button" onclick="apexQuick('Bijkomende kosten')">Bijkomende kosten</button>
-    <button class="chat-qbtn" type="button" onclick="apexQuick('Taxatie')">Taxatie</button>
-  </div>
-  <div class="chat-toolbar">
-    <button class="chat-contact-btn" type="button" onclick="apexShowContactForm()">Contactgegevens</button>
-    <button class="chat-transfer-btn" type="button" onclick="apexRequestTransfer()">Adviseur spreken</button>
-  </div>
-  <div id="apex-chat-tip" class="chat-tip" style="display:none;">Stel eerst uw vraag. Als het nodig is vraag ik om uw contactgegevens. Voor persoonlijk advies kiest u “Adviseur spreken”.</div>
   <div class="chat-contact-form" id="apex-contact-form">
     <input id="apex-contact-name" class="chat-contact-input" type="text" placeholder="Naam">
     <input id="apex-contact-email" class="chat-contact-input" type="email" placeholder="E-mail">
@@ -1513,8 +1438,6 @@ function apexToggle() {
   if (_open) {
     win.classList.add('open');
     document.getElementById('apex-contact-form').classList.remove('open');
-    document.getElementById('apex-quick').classList.remove('visible');
-    document.getElementById('apex-chat-tip').classList.remove('visible');
     // Eerste keer openen: welkomstbericht
     if (_msgs.length === 0) {
       const ctx = _getContext();
@@ -1550,17 +1473,14 @@ function _validatePhone(phone) {
 }
 
 function apexShowContactForm() {
-  document.getElementById('apex-quick').classList.remove('visible');
   const form = document.getElementById('apex-contact-form');
   form.classList.add('open');
-  document.getElementById('apex-chat-tip').classList.add('visible');
   document.getElementById('apex-contact-name').focus();
 }
 
 function apexHideContactForm() {
   const form = document.getElementById('apex-contact-form');
   form.classList.remove('open');
-  document.getElementById('apex-chat-tip').classList.remove('visible');
 }
 
 function apexToast(message) {
@@ -1607,7 +1527,6 @@ function apexSubmitContact() {
 
 function apexRequestTransfer() {
   const transferText = 'Ik wil graag met een medewerker of adviseur spreken.';
-  document.getElementById('apex-quick').classList.remove('visible');
   _addMsg('user', transferText);
   _msgs.push({ role: 'user', content: transferText });
   _leadData = { ..._leadData, ..._extractLeadData(transferText) };
@@ -1621,13 +1540,6 @@ function apexRequestTransfer() {
 
 function _isHumanRequest(text) {
   return /\b(medewerker|adviseur|persoonlijk|mens|spreken met|telefonisch|bellen|contact opnemen|ik wil graag spreken|direct contact)\b/i.test(text);
-}
-
-/* ── Quick buttons ── */
-function apexQuick(tekst) {
-  document.getElementById('apex-quick').style.display = 'none';
-  document.getElementById('apex-inp').value = tekst;
-  apexSend();
 }
 
 /* ── Bericht versturen ── */
@@ -1644,7 +1556,6 @@ async function apexSend() {
   _saveHistory();
   apexHideContactForm();
   void _tryNotifyLead();
-  document.getElementById('apex-quick').style.display = 'none';
 
   _busy = true;
   document.getElementById('apex-send').disabled = true;
