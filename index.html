@@ -6,7 +6,6 @@
 <title>APEXclusive — Private Vehicle Advisory | Auto import & aankoopbegeleiding Maastricht</title>
 <meta name="description" content="Droomauto uit Europa importeren zonder risico? APEXclusive begeleidt u van zoektocht tot sleuteloverdracht. Onafhankelijk, discreet, A tot Z geregeld.">
 
-<!-- Performance: preload kritieke assets -->
 <link rel="preload" as="image"
   href="https://res.cloudinary.com/sfd8ohjz/image/upload/w_1200,q_50,f_auto/v1786112048/Lamborghini_cockpit_zw7pmk.jpg"
   imagesrcset="
@@ -14,13 +13,10 @@
     https://res.cloudinary.com/sfd8ohjz/image/upload/w_1200,q_50,f_auto/v1786112048/Lamborghini_cockpit_zw7pmk.jpg 1200w"
   imagesizes="100vw">
 
-<!-- DNS prefetch voor externe domeinen -->
 <link rel="dns-prefetch" href="https://res.cloudinary.com">
 <link rel="dns-prefetch" href="https://images.unsplash.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-
-<!-- Font met display=swap voor sneller renderen -->
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all'">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=Montserrat:wght@300;400;500;600&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
 
@@ -37,42 +33,14 @@
   --ss:'Montserrat',sans-serif;
   --lb:'Oswald',sans-serif;
   --pd:clamp(1.25rem,5vw,4rem);
-
-  /* ══ VERFIJND METALEN EFFECT — platina/goud tint, geen kruisboog ══ */
-  --ch:linear-gradient(
-    105deg,
-    #3a3d42 0%,
-    #7a8088 12%,
-    #b8bec6 26%,
-    #dde2e8 38%,
-    #f5f6f7 50%,
-    #dde2e8 62%,
-    #b8bec6 74%,
-    #7a8088 88%,
-    #3a3d42 100%
-  );
-  --cs:linear-gradient(
-    105deg,
-    #4a4e54 0%,
-    #9aa0a8 30%,
-    #e8ecf0 50%,
-    #9aa0a8 70%,
-    #4a4e54 100%
-  );
-
+  --ch:linear-gradient(105deg,#3a3d42 0%,#7a8088 12%,#b8bec6 26%,#dde2e8 38%,#f5f6f7 50%,#dde2e8 62%,#b8bec6 74%,#7a8088 88%,#3a3d42 100%);
+  --cs:linear-gradient(105deg,#4a4e54 0%,#9aa0a8 30%,#e8ecf0 50%,#9aa0a8 70%,#4a4e54 100%);
   --tr:linear-gradient(90deg,var(--ig) 0 33.33%,#fff 33.33% 66.66%,var(--ir) 66.66% 100%);
   --tf:linear-gradient(90deg,transparent 0%,var(--ig) 15% 33.33%,#fff 33.33% 66.66%,var(--ir) 66.66% 85%,transparent 100%);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
-body{
-  background:var(--ink);color:var(--tx);
-  font-family:var(--ss),system-ui,sans-serif;
-  font-weight:300;line-height:1.75;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-  text-rendering:optimizeSpeed;
-}
+body{background:var(--ink);color:var(--tx);font-family:var(--ss),system-ui,sans-serif;font-weight:300;line-height:1.75;-webkit-font-smoothing:antialiased;overflow-x:hidden;text-rendering:optimizeSpeed}
 img{display:block;max-width:100%}
 a{color:inherit;text-decoration:none}
 ::selection{background:var(--pt);color:var(--ink)}
@@ -84,91 +52,44 @@ section{padding:clamp(4.5rem,9vw,8rem) var(--pd);position:relative}
 .head{max-width:58ch;margin-bottom:clamp(2.5rem,5vw,3.75rem)}
 .rule{width:56px;height:2px;background:var(--ch);margin-top:1.5rem}
 
-/* Content-visibility voor zware secties buiten viewport */
-#over,#projecten,#tarieven{content-visibility:auto;contain-intrinsic-size:0 600px}
+/* ══ LUXURY DETAIL LINE ══ */
+.lux-line{
+  display:flex;align-items:center;gap:1.2rem;
+  margin:2.5rem 0;
+}
+.lux-line::before,.lux-line::after{
+  content:'';flex:1;height:1px;
+  background:linear-gradient(to right,transparent,rgba(198,203,209,.15),transparent);
+}
+.lux-line-diamond{
+  width:5px;height:5px;
+  background:var(--pt);
+  transform:rotate(45deg);
+  opacity:.4;
+  flex-shrink:0;
+}
 
 /* ══ INTRO SPLASH ══ */
-#splash{
-  position:fixed;inset:0;z-index:9999;
-  background:#000;
-  display:flex;align-items:center;justify-content:center;
-  pointer-events:all;
-}
-#splash.hide{
-  animation:splashFade .7s .2s cubic-bezier(.4,0,.2,1) forwards;
-  pointer-events:none;
-}
-@keyframes splashFade{
-  0%{opacity:1;transform:none}
-  100%{opacity:0;transform:scale(1.03)}
-}
-.splash-inner{
-  display:flex;flex-direction:column;align-items:center;gap:0;
-  overflow:hidden;
-}
-.splash-brand{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(2.2rem,7vw,4.8rem);
-  font-weight:300;
-  letter-spacing:.32em;
-  text-transform:uppercase;
-  color:#fff;
-  display:flex;align-items:center;gap:0;
-  opacity:0;
-  transform:translateY(-28px);
-  animation:splashDrop .9s .18s cubic-bezier(.2,.7,.3,1) forwards;
-}
-.splash-brand-apex{
-  font-weight:600;
-  background:var(--cs);
-  background-size:220% auto;
-  -webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:splashShine 2.2s .9s ease-in-out forwards;
-  letter-spacing:.28em;
-}
-@keyframes splashShine{
-  0%{background-position:0% center}
-  60%{background-position:100% center}
-  100%{background-position:60% center}
-}
-.splash-brand-excl{
-  font-weight:300;
-  color:rgba(198,203,209,.45);
-  letter-spacing:.28em;
-}
-@keyframes splashDrop{
-  from{opacity:0;transform:translateY(-28px)}
-  to{opacity:1;transform:none}
-}
-.splash-sub{
-  font-family:'Oswald',sans-serif;
-  font-size:clamp(.5rem,.9vw,.68rem);
-  letter-spacing:.48em;
-  text-transform:uppercase;
-  color:rgba(198,203,209,.28);
-  margin-top:.85rem;
-  opacity:0;
-  animation:splashFadeIn .7s .88s cubic-bezier(.2,.7,.3,1) forwards;
-}
+#splash{position:fixed;inset:0;z-index:9999;background:#000;display:flex;align-items:center;justify-content:center;pointer-events:all}
+#splash.hide{animation:splashFade .7s .2s cubic-bezier(.4,0,.2,1) forwards;pointer-events:none}
+@keyframes splashFade{0%{opacity:1;transform:none}100%{opacity:0;transform:scale(1.03)}}
+.splash-inner{display:flex;flex-direction:column;align-items:center;gap:0;overflow:hidden}
+.splash-brand{font-family:'Cormorant Garamond',serif;font-size:clamp(2.2rem,7vw,4.8rem);font-weight:300;letter-spacing:.32em;text-transform:uppercase;color:#fff;display:flex;align-items:center;gap:0;opacity:0;transform:translateY(-28px);animation:splashDrop .9s .18s cubic-bezier(.2,.7,.3,1) forwards}
+.splash-brand-apex{font-weight:600;background:var(--cs);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:splashShine 2.2s .9s ease-in-out forwards;letter-spacing:.28em}
+@keyframes splashShine{0%{background-position:0% center}60%{background-position:100% center}100%{background-position:60% center}}
+.splash-brand-excl{font-weight:300;color:rgba(198,203,209,.45);letter-spacing:.28em}
+@keyframes splashDrop{from{opacity:0;transform:translateY(-28px)}to{opacity:1;transform:none}}
+.splash-sub{font-family:'Oswald',sans-serif;font-size:clamp(.5rem,.9vw,.68rem);letter-spacing:.48em;text-transform:uppercase;color:rgba(198,203,209,.28);margin-top:.85rem;opacity:0;animation:splashFadeIn .7s .88s cubic-bezier(.2,.7,.3,1) forwards}
 @keyframes splashFadeIn{from{opacity:0}to{opacity:1}}
-.splash-line{
-  width:0;height:1px;
-  background:linear-gradient(90deg,transparent,rgba(198,203,209,.35),transparent);
-  margin-top:1.15rem;
-  animation:splashLine .7s 1.05s cubic-bezier(.2,.7,.3,1) forwards;
-}
+.splash-line{width:0;height:1px;background:linear-gradient(90deg,transparent,rgba(198,203,209,.35),transparent);margin-top:1.15rem;animation:splashLine .7s 1.05s cubic-bezier(.2,.7,.3,1) forwards}
 @keyframes splashLine{to{width:220px}}
-.splash-sep{
-  display:flex;flex-direction:row;gap:0;margin:0 14px;flex-shrink:0;
-  opacity:0;
-  animation:splashFadeIn .5s .55s forwards;
-}
+.splash-sep{display:flex;flex-direction:row;gap:0;margin:0 14px;flex-shrink:0;opacity:0;animation:splashFadeIn .5s .55s forwards}
 .splash-sep span{display:block;width:4px;border-radius:1px}
 .splash-sep span:nth-child(1){height:7px;background:#009246}
 .splash-sep span:nth-child(2){height:7px;background:#fff}
 .splash-sep span:nth-child(3){height:7px;background:#CE2B37}
 
-/* ══ TRICOLORE EYEBROW ══ */
+/* ══ EYEBROW ══ */
 .ey{font-family:var(--lb);font-size:.65rem;letter-spacing:.38em;text-transform:uppercase;color:var(--pt);font-weight:400;margin-bottom:1.35rem;display:flex;align-items:center;gap:.85rem}
 .ey-tri,.ey-tri-r{display:flex;flex-direction:row;gap:0;flex-shrink:0;overflow:hidden;height:11px;width:0;transition:width .85s cubic-bezier(.2,.7,.3,1)}
 .ey-tri-r{transition-delay:.12s}
@@ -209,8 +130,6 @@ nav.hide{transform:translateY(-105%)}
 .navlinks a:hover,.navlinks a.active{color:#fff}
 .navlinks a:hover::after,.navlinks a.active::after{width:100%}
 .brand{font-size:1.3rem}
-
-/* ══ BUTTON — platina hover effect ══ */
 .btn{display:inline-flex;align-items:center;justify-content:center;gap:.65rem;padding:.9rem 1.9rem;font-family:var(--lb);font-size:.68rem;letter-spacing:.22em;text-transform:uppercase;border:1px solid var(--pt);color:var(--pt);font-weight:400;background:transparent;cursor:pointer;position:relative;overflow:hidden;transition:color .4s;white-space:nowrap}
 .btn::before{content:'';position:absolute;inset:0;background:var(--ch);background-size:220% 100%;background-position:100% 0;transform:translateY(101%);transition:transform .4s cubic-bezier(.2,.7,.3,1);z-index:-1}
 .btn:hover{color:var(--ink)}.btn:hover::before{transform:translateY(0)}
@@ -263,30 +182,113 @@ nav.hide{transform:translateY(-105%)}
 .ti:nth-child(2)::before{background:var(--pt)}
 .ti:nth-child(3)::before{background:var(--pt)}
 .ti:hover::before{transform:scaleX(1)}
-.ti-num{
-  font-family:var(--sf);font-size:2rem;font-weight:300;
-  color:var(--pt);line-height:1;white-space:nowrap;
-  transition:transform .3s cubic-bezier(.2,.7,.3,1);
-}
+.ti-num{font-family:var(--sf);font-size:2rem;font-weight:300;color:var(--pt);line-height:1;white-space:nowrap;transition:transform .3s cubic-bezier(.2,.7,.3,1)}
 .ti:hover .ti-num{transform:scale(1.08)}
 .ti-lbl{font-family:var(--lb);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mt);line-height:1.55}
 
-/* ══ FEAR BREAKER ══ */
+/* ══ FEAR BREAKER — accordion stijl ══ */
 .fear{background:var(--ink);padding:clamp(3.75rem,7.5vw,6.5rem) var(--pd)}
-.fear-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln);max-width:1160px;margin:0 auto}
-@media(max-width:820px){.fear-grid{grid-template-columns:repeat(2,1fr)}}
-@media(max-width:500px){.fear-grid{grid-template-columns:1fr}}
-.fi-item{background:var(--ink);padding:2.1rem 1.85rem;position:relative;transition:background .35s}
-.fi-item:hover{background:var(--ink3)}
-.fi-item::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
+.fear-grid{max-width:1160px;margin:0 auto;display:flex;flex-direction:column;gap:1px;background:var(--ln)}
+
+.fi-item{
+  background:var(--ink);
+  position:relative;
+  cursor:pointer;
+  overflow:hidden;
+  transition:background .35s;
+}
+.fi-item:hover{background:rgba(19,19,19,.9)}
+.fi-item.open{background:var(--ink3)}
+
+/* Linker kleur-indicator balk */
+.fi-item::before{
+  content:'';
+  position:absolute;
+  top:0;left:0;bottom:0;
+  width:2px;
+  transform:scaleY(0);
+  transform-origin:top;
+  transition:transform .5s cubic-bezier(.2,.7,.3,1);
+}
 .fi-item:nth-child(1)::before{background:var(--ig)}
 .fi-item:nth-child(2)::before{background:var(--pt)}
 .fi-item:nth-child(3)::before{background:var(--ir)}
-.fi-item:hover::before{transform:scaleX(1)}
-.fi-num{font-family:var(--sf);font-size:3.2rem;font-weight:300;color:rgba(198,203,209,.06);line-height:1;margin-bottom:.9rem;letter-spacing:-.02em;transition:color .4s;user-select:none}
-.fi-item:hover .fi-num{color:rgba(198,203,209,.12)}
-.fi-q{font-family:var(--sf);font-size:1.05rem;font-style:italic;color:rgba(198,203,209,.55);margin-bottom:.55rem;line-height:1.45}
-.fi-a{font-size:.8rem;color:var(--mt);line-height:1.72}
+.fi-item:hover::before,.fi-item.open::before{transform:scaleY(1)}
+
+/* Header van accordion */
+.fi-header{
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  padding:1.85rem 2.2rem;
+  gap:1.5rem;
+  position:relative;
+}
+.fi-question{
+  font-family:var(--sf);
+  font-size:clamp(1.2rem,2.2vw,1.68rem);
+  font-weight:300;
+  font-style:italic;
+  color:#d8dce2;
+  line-height:1.28;
+  letter-spacing:.008em;
+  flex:1;
+  transition:color .35s;
+}
+.fi-item:hover .fi-question,.fi-item.open .fi-question{color:#f0f2f5}
+
+/* Plus/min icoon */
+.fi-icon{
+  width:32px;height:32px;
+  flex-shrink:0;
+  border:1px solid rgba(198,203,209,.16);
+  border-radius:50%;
+  display:flex;align-items:center;justify-content:center;
+  transition:transform .45s cubic-bezier(.2,.7,.3,1),border-color .35s,background .35s;
+  position:relative;
+}
+.fi-icon::before,.fi-icon::after{
+  content:'';
+  position:absolute;
+  background:rgba(198,203,209,.55);
+  border-radius:2px;
+  transition:transform .45s cubic-bezier(.2,.7,.3,1),opacity .35s,background .35s;
+}
+.fi-icon::before{width:12px;height:1px}
+.fi-icon::after{width:1px;height:12px}
+.fi-item.open .fi-icon{
+  transform:rotate(45deg);
+  border-color:rgba(198,203,209,.28);
+  background:rgba(198,203,209,.05);
+}
+.fi-item.open .fi-icon::before,.fi-item.open .fi-icon::after{background:var(--pt)}
+.fi-item:hover .fi-icon{border-color:rgba(198,203,209,.26)}
+
+/* Uitklapbare antwoord-inhoud */
+.fi-body{
+  max-height:0;
+  overflow:hidden;
+  transition:max-height .58s cubic-bezier(.2,.7,.3,1);
+}
+.fi-item.open .fi-body{max-height:280px}
+.fi-inner{
+  padding:0 2.2rem 1.85rem 2.2rem;
+  padding-left:calc(2.2rem + 2px); /* uitgelijnd met tekst, voorbij de balk */
+}
+.fi-inner p{
+  font-size:.88rem;
+  color:#7a7a7a;
+  line-height:1.82;
+  max-width:72ch;
+}
+.fi-item.open .fi-inner p{color:#909090}
+
+/* Subtiele separator lijn boven antwoord */
+.fi-divider{
+  width:100%;height:1px;
+  background:linear-gradient(to right,transparent,rgba(198,203,209,.08) 20%,rgba(198,203,209,.08) 80%,transparent);
+  margin-bottom:1.35rem;
+}
 
 /* ══ TOOLS ══ */
 .tools-sec{background:var(--ink2);padding:clamp(4.5rem,9vw,8rem) var(--pd)}
@@ -302,14 +304,14 @@ nav.hide{transform:translateY(-105%)}
 .tc{display:flex;flex-direction:column;background:var(--ink2);position:relative;overflow:hidden;transition:background .4s;text-decoration:none;color:inherit}
 .tc:hover{background:var(--ink3)}
 
-/* ══ TOOL CARD FOTO — uniforme logo behandeling ══ */
+/* Tool foto containers — uniforme hoogte */
 .tc-photo{
   width:100%;height:195px;overflow:hidden;position:relative;
   flex-shrink:0;background:var(--ink3);
   display:flex;align-items:center;justify-content:center;
 }
 
-/* Basis foto (BPM Calculator) */
+/* Basis foto (BPM) */
 .tc-photo img{
   width:100%;height:100%;
   object-fit:cover;object-position:center;display:block;
@@ -317,26 +319,35 @@ nav.hide{transform:translateY(-105%)}
   transition:filter .65s,transform .85s;
 }
 
-/* Uniform logo-formaat: beide logo's zelfde behandeling */
-.tc-photo img.img-logo-kenteken,
-.tc-photo img.img-logo{
-  object-fit:contain;
-  /* Zelfde padding zodat ze visueel gelijke ruimte innemen */
-  padding:1.8rem;
-  width:100%;
-  height:100%;
-  /* Geen border/kadertje meer — gelijke filter */
-  filter:brightness(.58) saturate(.12) contrast(1.18);
+/* Kentekencheck — iets ingezoomd, meer zichtbaar */
+.tc-photo img.img-logo-kenteken{
+  object-fit:cover;
+  object-position:center center;
+  padding:0;
+  width:100%;height:100%;
+  filter:brightness(.55) saturate(.2) contrast(1.22);
   background:var(--ink3);
-  transform:none;
+  transform:scale(1.12); /* licht ingezoomd */
 }
 
-/* Hover states */
+/* Mobile.de logo — kleiner, meer padding */
+.tc-photo img.img-logo{
+  object-fit:contain;
+  padding:2.8rem 3.2rem; /* meer ruimte = kleiner logo */
+  width:100%;height:100%;
+  filter:brightness(.52) saturate(.08) contrast(1.08);
+  background:var(--ink3);
+}
+
+/* Hover */
 .tc:hover .tc-photo img{filter:brightness(.46) saturate(.65);transform:scale(1.04)}
-.tc:hover .tc-photo img.img-logo-kenteken,
+.tc:hover .tc-photo img.img-logo-kenteken{
+  filter:brightness(.72) saturate(.32) contrast(1.15);
+  transform:scale(1.16);
+}
 .tc:hover .tc-photo img.img-logo{
-  filter:brightness(.82) saturate(.28) contrast(1.1);
-  transform:scale(1.02);
+  filter:brightness(.72) saturate(.2) contrast(1.05);
+  transform:none;
 }
 
 .tc-fade{position:absolute;inset:0;background:linear-gradient(to top,var(--ink2) 0%,transparent 55%);z-index:1;pointer-events:none}
@@ -375,6 +386,21 @@ nav.hide{transform:translateY(-105%)}
 .step .dot::after{content:'';position:absolute;inset:3px;border-radius:50%;background:var(--pt);transform:scale(0);transition:transform .5s .2s}
 .step.in .dot::after{transform:scale(1)}
 .step .k{font-family:var(--lb);font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--pt);opacity:.65}
+
+/* Tricolore accent op stap-label */
+.step .k-tri{
+  display:inline-flex;flex-direction:row;gap:0;
+  overflow:hidden;height:8px;width:0;
+  vertical-align:middle;margin-right:.5rem;
+  transition:width .65s cubic-bezier(.2,.7,.3,1);
+  border-radius:1px;
+}
+.step.in .k-tri{width:22px}
+.step .k-tri span{display:block;flex:1}
+.step .k-tri span:nth-child(1){background:var(--ig)}
+.step .k-tri span:nth-child(2){background:#fff}
+.step .k-tri span:nth-child(3){background:var(--ir)}
+
 .step h3{font-size:1.22rem;margin:.38rem 0 .32rem}
 .step p{max-width:50ch;font-size:.82rem}
 .sleutels-wrap{margin-top:2.5rem;position:relative;overflow:hidden;border:1px solid var(--ln)}
@@ -385,21 +411,27 @@ nav.hide{transform:translateY(-105%)}
 .sleutels-quote p{font-family:var(--sf);font-style:italic;font-size:.98rem;color:rgba(198,203,229,.52);line-height:1.55}
 .sleutels-quote cite{display:block;margin-top:.5rem;font-family:var(--lb);font-size:.54rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(198,203,209,.26);font-style:normal}
 
-/* ══ OVER ONS ══ */
-.about-grid{display:grid;grid-template-columns:.85fr 1fr;gap:clamp(2.5rem,5.5vw,5rem);align-items:start}
-@media(max-width:820px){.about-grid{grid-template-columns:1fr}}
-.founder-nameline{display:flex;align-items:center;gap:1.1rem;margin-top:1.5rem}
-.founder-thumb{width:48px;height:48px;border-radius:50%;overflow:hidden;flex-shrink:0;border:1px solid var(--ln)}
-.founder-thumb img{width:100%;height:100%;object-fit:cover;object-position:center 12%;filter:grayscale(.3);display:block}
+/* ══ OVER ONS — foto verplaatst naar naast naam ══ */
+.about-grid{display:grid;grid-template-columns:1fr;gap:clamp(2.5rem,5.5vw,5rem);align-items:start}
+
+/* Founder nameline — foto naast naam, ónder garage scroll */
+.founder-nameline{
+  display:flex;align-items:center;gap:1.1rem;
+  margin-top:1.5rem;
+}
+.founder-thumb{
+  width:48px;height:48px;border-radius:50%;
+  overflow:hidden;flex-shrink:0;
+  border:1px solid var(--ln);
+}
+.founder-thumb img{
+  width:100%;height:100%;object-fit:cover;object-position:center 12%;
+  filter:grayscale(.3);display:block;
+}
 .founder-nameblock{display:flex;flex-direction:column;gap:.18rem}
 .sig{font-family:var(--sf);font-style:italic;font-size:1.45rem;color:var(--pt)}
 .role{font-family:var(--lb);font-size:.59rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mt)}
-.portrait{position:relative;margin:12px 12px 12px 0}
-.portrait::after{content:'';position:absolute;inset:12px -12px -12px 12px;border:1px solid var(--ln);z-index:-1}
-.portrait::before{content:'';position:absolute;top:-12px;left:-12px;bottom:12px;width:2px;background:linear-gradient(to bottom,var(--ig) 33%,#fff 33% 66%,var(--ir) 66%);opacity:.6;z-index:3}
-.portrait img{width:100%;aspect-ratio:3/4;object-fit:cover;object-position:center 12%;filter:grayscale(.38) contrast(1.06);display:block;transition:filter .8s}
-.portrait:hover img{filter:grayscale(0) contrast(1)}
-.portrait-fade{position:absolute;top:0;right:0;bottom:0;width:18%;background:linear-gradient(to left,var(--ink2) 0%,rgba(13,13,13,.6) 45%,transparent 100%);z-index:2;pointer-events:none}
+
 .garage-section{margin-top:1.75rem;padding-top:1.55rem;border-top:1px solid var(--hr)}
 .garage-label{font-family:var(--lb);font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(198,203,209,.22);margin-bottom:.75rem}
 .garage-scroll{display:flex;gap:7px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin;scrollbar-color:rgba(198,203,209,.1) transparent}
@@ -410,6 +442,7 @@ nav.hide{transform:translateY(-105%)}
 .garage-card img{width:100%;height:100%;object-fit:cover;filter:brightness(.52) saturate(.45);transition:filter .55s,transform .75s;display:block}
 .garage-card:hover img{filter:brightness(.72) saturate(.62);transform:scale(1.05)}
 .garage-card-lbl{position:absolute;bottom:0;left:0;right:0;padding:.38rem .55rem;background:linear-gradient(to top,rgba(8,8,8,.92) 0%,transparent 100%);font-family:var(--lb);font-size:.46rem;letter-spacing:.12em;text-transform:uppercase;color:rgba(198,203,209,.45)}
+
 .press-badge{display:inline-flex;align-items:center;gap:.65rem;background:var(--ink3);border:1px solid var(--ln);padding:.55rem .95rem;margin-top:1.35rem;font-family:var(--lb);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(198,203,209,.38);transition:border-color .3s,color .3s;text-decoration:none}
 .press-badge:hover{border-color:rgba(198,203,209,.26);color:rgba(198,203,209,.6)}
 .press-badge svg{width:12px;height:12px;fill:none;stroke:rgba(198,203,209,.32);stroke-width:1.5;flex-shrink:0}
@@ -432,7 +465,7 @@ nav.hide{transform:translateY(-105%)}
 .proj:hover .proj-toggle,.proj.open .proj-toggle{color:var(--pt)}
 .proj-toggle-arrow{display:inline-block;transition:transform .45s cubic-bezier(.2,.7,.3,1);font-size:.7rem}
 .proj.open .proj-toggle-arrow{transform:rotate(180deg)}
-.proj-story{max-height:0;overflow:hidden;transition:max-height .65s cubic-bezier(.2,.7,.3,1),padding .45s}
+.proj-story{max-height:0;overflow:hidden;transition:max-height .65s cubic-bezier(.2,.7,.3,1)}
 .proj.open .proj-story{max-height:600px}
 .proj-story-inner{padding:1.25rem 1.35rem 1.55rem;border-top:1px solid var(--hr);background:rgba(255,255,255,.02)}
 .proj-story-inner p{font-size:.8rem;line-height:1.78;color:#aaa}
@@ -440,15 +473,53 @@ nav.hide{transform:translateY(-105%)}
 .proj-story-inner .story-tag{font-family:var(--lb);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(198,203,209,.35);display:flex;align-items:center;gap:.35rem}
 .proj-story-inner .story-tag::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--pt);flex-shrink:0}
 
-/* ══ QUOTE / AFTERSALES ══ */
-.quote{height:200vh;padding:0;background:var(--ink)}
-.q-pin{position:sticky;top:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:0 var(--pd)}
-.quote blockquote{max-width:62ch;margin:0 auto;text-align:center;border:0;font-family:var(--sf);font-size:clamp(1.25rem,2.6vw,1.75rem);font-style:italic;line-height:1.72;color:#ccc}
-.quote blockquote::before{content:'\201C';display:block;font-size:3.8rem;line-height:.6;background:var(--cs);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:normal;margin-bottom:1.35rem;opacity:.82}
-/* Elk woord begint dimmed, licht op bij scrollen */
-.quote blockquote .qw{opacity:.08;transition:opacity .22s linear;display:inline}
-.quote .attrib{margin-top:1.75rem;font-family:var(--lb);font-size:.62rem;letter-spacing:.26em;text-transform:uppercase;color:var(--pt);opacity:.1;transition:opacity .4s}
-.quote.words-active .attrib{opacity:1}
+/* ══ QUOTE / AFTERSALES — donker, geen metallic ══ */
+.quote{height:200vh;padding:0;background:#050505}
+.q-pin{
+  position:sticky;top:0;min-height:100vh;
+  display:flex;align-items:center;justify-content:center;
+  padding:0 var(--pd);
+}
+/* Subtiele radiale gloed — niet metallic */
+.q-pin::before{
+  content:'';
+  position:absolute;inset:0;
+  background:
+    radial-gradient(ellipse 60% 45% at 50% 50%, rgba(198,203,209,.03) 0%, transparent 70%);
+  pointer-events:none;
+}
+.quote blockquote{
+  max-width:62ch;margin:0 auto;text-align:center;border:0;
+  font-family:var(--sf);
+  font-size:clamp(1.25rem,2.6vw,1.75rem);
+  font-style:italic;line-height:1.82;color:#ccc;
+  position:relative;z-index:1;
+}
+.quote blockquote::before{
+  content:'\201C';display:block;
+  font-size:4.2rem;line-height:.5;
+  color:rgba(198,203,209,.1);
+  font-style:normal;margin-bottom:1.55rem;
+  font-family:var(--sf);
+  letter-spacing:-.02em;
+}
+/* Woorden dimmed, lichten op via JS */
+.quote blockquote .qw{
+  opacity:.07;
+  transition:opacity .22s linear;
+  display:inline;
+}
+.quote .attrib{
+  margin-top:1.75rem;
+  font-family:var(--lb);font-size:.62rem;
+  letter-spacing:.26em;text-transform:uppercase;
+  color:var(--pt);
+  opacity:.08;
+  transition:opacity .6s ease;
+  position:relative;z-index:1;
+}
+/* Attrib licht op als de quote bijna klaar is */
+.quote.words-done .attrib{opacity:.55}
 
 /* ══ CONTACT ══ */
 .contact-sec{text-align:center;background:radial-gradient(ellipse at 50% 0%,rgba(198,203,209,.055),transparent 55%),var(--ink2);padding:clamp(4.5rem,9vw,8rem) var(--pd)}
@@ -481,62 +552,61 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 .rv{opacity:0;transform:translateY(22px);transition:opacity .85s cubic-bezier(.2,.7,.3,1),transform .85s cubic-bezier(.2,.7,.3,1)}
 .rv.in{opacity:1;transform:none}
 
-/* ══ TARIEVEN ══ */
-@media(max-width:820px){#tarieven [style*="grid-template-columns"]{grid-template-columns:1fr!important}}
+/* ══ LUXURY EXTRAS ══ */
+/* Subtiele corner-accenten op secties */
+.lux-corner{
+  position:absolute;
+  width:22px;height:22px;
+  opacity:.18;
+  pointer-events:none;
+}
+.lux-corner::before,.lux-corner::after{
+  content:'';position:absolute;background:var(--pt);
+}
+.lux-corner::before{width:100%;height:1px;top:0;left:0}
+.lux-corner::after{width:1px;height:100%;top:0;left:0}
+.lux-corner.tr{top:2rem;right:var(--pd);transform:rotate(90deg)}
+.lux-corner.bl{bottom:2rem;left:var(--pd);transform:rotate(-90deg)}
+.lux-corner.tl{top:2rem;left:var(--pd)}
+.lux-corner.br{bottom:2rem;right:var(--pd);transform:rotate(180deg)}
+
+/* Ambient glow op hover voor cards */
+.tc::after{
+  content:'';
+  position:absolute;inset:0;
+  background:radial-gradient(circle at 50% 0%,rgba(198,203,209,.04),transparent 60%);
+  opacity:0;transition:opacity .5s;
+  pointer-events:none;
+  z-index:0;
+}
+.tc:hover::after{opacity:1}
 
 @media(prefers-reduced-motion:reduce){
   .rv,.hero .sub,.hero h1,.hero .lead,.hero .cta-row{opacity:1;transform:none;transition:none;animation:none}
   .hero-bg img,.scrollcue i,.hero h1 em{animation:none}
   h2 .w i{transform:none;transition:none}
   .ey-tri,.ey-tri-r{width:42px!important;transition:none}
-  .veil::before{display:none}
   .steps::after{transform:none}
   .step .dot::after{transform:scale(1)}
+  .step .k-tri{width:22px!important;transition:none}
   .quote{height:auto;padding:clamp(4.5rem,9vw,8rem) var(--pd)}
   .q-pin{position:static;min-height:0;padding:0}
   .quote blockquote .qw{opacity:1!important;transition:none}
-  .quote .attrib{opacity:1!important}
+  .quote .attrib{opacity:.55!important}
   html{scroll-behavior:auto}
   .proj-story{max-height:none}
   #splash{display:none}
+  .fi-item.open .fi-body{max-height:280px}
 }
 
 /* ══ CHAT BUBBLE ══ */
-.apex-bubble{
-  position:fixed;bottom:2rem;right:2rem;z-index:9999;
-  display:flex;align-items:center;gap:.55rem;
-  background:rgba(255,255,255,.92);
-  color:#080808;
-  padding:.75rem 1.25rem .75rem 1rem;
-  border-radius:999px;
-  cursor:pointer;
-  box-shadow:0 8px 32px rgba(0,0,0,.22);
-  font-family:'Oswald',sans-serif;
-  font-size:.72rem;letter-spacing:.16em;
-  text-transform:uppercase;
-  border:none;outline:none;
-  -webkit-backdrop-filter:blur(16px);
-  backdrop-filter:blur(16px);
-  transition:transform .3s,box-shadow .3s;
-}
+.apex-bubble{position:fixed;bottom:2rem;right:2rem;z-index:9999;display:flex;align-items:center;gap:.55rem;background:rgba(255,255,255,.92);color:#080808;padding:.75rem 1.25rem .75rem 1rem;border-radius:999px;cursor:pointer;box-shadow:0 8px 32px rgba(0,0,0,.22);font-family:'Oswald',sans-serif;font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;border:none;outline:none;-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);transition:transform .3s,box-shadow .3s}
 .apex-bubble:hover{transform:translateY(-2px);box-shadow:0 14px 42px rgba(0,0,0,.28)}
 .apex-bubble-dot{width:8px;height:8px;border-radius:50%;background:#009246;flex-shrink:0;animation:bdot 2s ease-in-out infinite}
 @keyframes bdot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
 
 /* ══ CHAT WINDOW ══ */
-.apex-chat-win{
-  position:fixed;bottom:5.5rem;right:2rem;
-  z-index:9999;width:360px;
-  max-width:calc(100vw - 2rem);
-  background:rgba(13,13,13,.97);
-  border:1px solid rgba(255,255,255,.09);
-  border-radius:20px;
-  -webkit-backdrop-filter:blur(28px);
-  backdrop-filter:blur(28px);
-  box-shadow:0 32px 80px rgba(0,0,0,.45);
-  display:none;flex-direction:column;
-  overflow:hidden;
-}
+.apex-chat-win{position:fixed;bottom:5.5rem;right:2rem;z-index:9999;width:360px;max-width:calc(100vw - 2rem);background:rgba(13,13,13,.97);border:1px solid rgba(255,255,255,.09);border-radius:20px;-webkit-backdrop-filter:blur(28px);backdrop-filter:blur(28px);box-shadow:0 32px 80px rgba(0,0,0,.45);display:none;flex-direction:column;overflow:hidden}
 .apex-chat-win.open{display:flex;animation:chatwin .28s cubic-bezier(.2,.7,.3,1)}
 @keyframes chatwin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 .chat-hdr{background:rgba(19,19,19,.99);border-bottom:1px solid rgba(255,255,255,.07);padding:1rem 1.1rem .85rem;display:flex;align-items:center;gap:.85rem;position:relative}
@@ -557,11 +627,6 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 .cmsg.bot{background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-left:2px solid rgba(198,203,209,.35);color:rgba(198,203,209,.82);align-self:flex-start;border-radius:0 10px 10px 10px}
 .cmsg.user{background:rgba(198,203,209,.07);border:1px solid rgba(198,203,209,.1);color:#e4e4e4;align-self:flex-end;border-radius:10px 0 10px 10px}
 .cmsg-lbl{font-family:'Oswald',sans-serif;font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(198,203,209,.22);margin-bottom:.28rem}
-.chat-typing{display:flex;align-items:center;gap:4px;padding:.6rem .85rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-left:2px solid rgba(198,203,209,.35);align-self:flex-start;border-radius:0 10px 10px 10px}
-.chat-typing span{width:5px;height:5px;border-radius:50%;background:rgba(198,203,209,.3);animation:tybounce .9s ease-in-out infinite}
-.chat-typing span:nth-child(2){animation-delay:.15s}
-.chat-typing span:nth-child(3){animation-delay:.3s}
-@keyframes tybounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
 .chat-quick{padding:.55rem 1rem;display:flex;flex-wrap:wrap;gap:.35rem;border-top:1px solid rgba(255,255,255,.05)}
 .chat-qbtn{font-family:'Oswald',sans-serif;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(198,203,209,.4);border:1px solid rgba(198,203,209,.12);border-radius:999px;background:transparent;padding:.3rem .65rem;cursor:pointer;transition:border-color .25s,color .25s,background .25s;white-space:nowrap}
 .chat-qbtn:hover{border-color:rgba(198,203,209,.28);color:#c6cbd1;background:rgba(198,203,209,.04)}
@@ -592,7 +657,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 </head>
 <body>
 
-<!-- ══ SPLASH SCREEN ══ -->
+<!-- SPLASH -->
 <div id="splash" role="presentation" aria-hidden="true">
   <div class="splash-inner">
     <div class="splash-brand">
@@ -716,24 +781,49 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   </div>
 </div>
 
-<!-- FEAR BREAKER -->
+<!-- FEAR BREAKER — accordion -->
 <div class="fear">
-  <div class="fear-grid">
-    <div class="fi-item rv">
-      <div class="fi-num">01</div>
-      <div class="fi-q">"Stel dat ik een auto koop met verborgen schade?"</div>
-      <div class="fi-a">U koopt niets zonder zekerheid. Op verzoek regelen wij een onafhankelijke aankoopkeuring ter plaatse bij de verkoper — professioneel en volledig objectief. Geen groen licht? Dan koopt u niet.</div>
+  <div class="fear-grid rv">
+
+    <div class="fi-item" onclick="fearToggle(this)" role="button" tabindex="0" aria-expanded="false">
+      <div class="fi-header">
+        <div class="fi-question">"Stel dat ik een auto koop met verborgen schade?"</div>
+        <div class="fi-icon" aria-hidden="true"></div>
+      </div>
+      <div class="fi-body">
+        <div class="fi-inner">
+          <div class="fi-divider"></div>
+          <p>U koopt niets zonder zekerheid. Op verzoek regelen wij een onafhankelijke aankoopkeuring ter plaatse bij de verkoper — professioneel en volledig objectief. Geen groen licht? Dan koopt u niet.</p>
+        </div>
+      </div>
     </div>
-    <div class="fi-item rv">
-      <div class="fi-num">02</div>
-      <div class="fi-q">"Is de BPM niet veel duurder dan ik verwacht — en spreek ik de taal niet eens?"</div>
-      <div class="fi-a">Bereken het direct met onze BPM Calculator. Wij regelen de officiële taxatie via erkende partners — transparant, geen verrassingen. En voor communicatie, onderhandeling en lokale inspecties in Duitsland, Italië, België of Spanje: wij zijn uw verlengde arm.</div>
+
+    <div class="fi-item" onclick="fearToggle(this)" role="button" tabindex="0" aria-expanded="false">
+      <div class="fi-header">
+        <div class="fi-question">"Is de BPM niet veel duurder dan ik verwacht — en spreek ik de taal niet eens?"</div>
+        <div class="fi-icon" aria-hidden="true"></div>
+      </div>
+      <div class="fi-body">
+        <div class="fi-inner">
+          <div class="fi-divider"></div>
+          <p>Bereken het direct met onze BPM Calculator. Wij regelen de officiële taxatie via erkende partners — transparant, geen verrassingen. En voor communicatie, onderhandeling en lokale inspecties in Duitsland, Italië, België of Spanje: wij zijn uw verlengde arm.</p>
+        </div>
+      </div>
     </div>
-    <div class="fi-item rv">
-      <div class="fi-num">03</div>
-      <div class="fi-q">"Papieren en registratie zijn te ingewikkeld."</div>
-      <div class="fi-a">RDW-keuring, kentekenregistratie en montage aan huis. U rijdt pas als alles klopt — wij regelen het volledig voor u, van import tot platen op de auto.</div>
+
+    <div class="fi-item" onclick="fearToggle(this)" role="button" tabindex="0" aria-expanded="false">
+      <div class="fi-header">
+        <div class="fi-question">"Papieren en registratie zijn te ingewikkeld."</div>
+        <div class="fi-icon" aria-hidden="true"></div>
+      </div>
+      <div class="fi-body">
+        <div class="fi-inner">
+          <div class="fi-divider"></div>
+          <p>RDW-keuring, kentekenregistratie en montage aan huis. U rijdt pas als alles klopt — wij regelen het volledig voor u, van import tot platen op de auto.</p>
+        </div>
+      </div>
     </div>
+
   </div>
 </div>
 
@@ -824,6 +914,8 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 
 <!-- WERKWIJZE -->
 <section id="werkwijze">
+  <div class="lux-corner tl" aria-hidden="true"></div>
+  <div class="lux-corner br" aria-hidden="true"></div>
   <div class="wrap">
     <div class="ww-layout">
       <div class="ww-sticky rv">
@@ -845,42 +937,67 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
       </div>
       <div class="rv">
         <div class="steps" id="steps">
+
           <div class="step rv">
             <span class="dot"></span>
-            <span class="k">Stap 1</span>
+            <span class="k">
+              <span class="k-tri" aria-hidden="true"><span></span><span></span><span></span></span>
+              Stap 1
+            </span>
             <h3>Intake &amp; wensen</h3>
             <p>Persoonlijk gesprek over uw wensen, budget en rijervaring. Zonder verplichtingen, zonder haast.</p>
           </div>
+
           <div class="step rv">
             <span class="dot"></span>
-            <span class="k">Stap 2</span>
+            <span class="k">
+              <span class="k-tri" aria-hidden="true"><span></span><span></span><span></span></span>
+              Stap 2
+            </span>
             <h3>Europa doorzoeken</h3>
             <p>Wij doorzoeken ons netwerk en de volledige Europese markt — inclusief bronnen waar anderen niet kijken.</p>
           </div>
+
           <div class="step rv">
             <span class="dot"></span>
-            <span class="k">Stap 3</span>
+            <span class="k">
+              <span class="k-tri" aria-hidden="true"><span></span><span></span><span></span></span>
+              Stap 3
+            </span>
             <h3>Keuring ter plaatse</h3>
             <p>Op verzoek regelen wij een onafhankelijke aankoopkeuring bij de verkoper, waar in Europa ook. U beslist pas na groen licht.</p>
           </div>
+
           <div class="step rv">
             <span class="dot"></span>
-            <span class="k">Stap 4</span>
+            <span class="k">
+              <span class="k-tri" aria-hidden="true"><span></span><span></span><span></span></span>
+              Stap 4
+            </span>
             <h3>Onderhandelen &amp; aankopen</h3>
             <p>Scherpe onderhandeling op basis van marktkennis en keuringsresultaten. U beslist — wij regelen de overdracht.</p>
           </div>
+
           <div class="step rv">
             <span class="dot"></span>
-            <span class="k">Stap 5</span>
+            <span class="k">
+              <span class="k-tri" aria-hidden="true"><span></span><span></span><span></span></span>
+              Stap 5
+            </span>
             <h3>BPM-taxatie &amp; import</h3>
             <p>Volledige importafhandeling via erkende partners. Transparant, zonder onverwachte kosten.</p>
           </div>
+
           <div class="step rv">
             <span class="dot"></span>
-            <span class="k">Stap 6</span>
+            <span class="k">
+              <span class="k-tri" aria-hidden="true"><span></span><span></span><span></span></span>
+              Stap 6
+            </span>
             <h3>RDW-keuring &amp; kenteken aan huis</h3>
             <p>Verplichte RDW-keuring en kentekenmontage direct bij u thuis. U rijdt pas als alles klopt — en de platen hangen er al op.</p>
           </div>
+
         </div>
         <div style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--hr)">
           <a href="#contact" class="btn"><span>Gesprek plannen</span></a>
@@ -890,16 +1007,11 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   </div>
 </section>
 
-<!-- OVER ONS -->
+<!-- OVER ONS — foto nu naast naam, NIET links van tekst -->
 <section id="over" style="background:var(--ink2)">
+  <div class="lux-corner tr" aria-hidden="true"></div>
   <div class="wrap">
     <div class="about-grid">
-      <div class="portrait rv">
-        <img
-          src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_720,q_60,f_auto/v1786112744/8A26E528-46F4-471D-856C-7D4210809521_1_105_c_uguopr.jpg"
-          alt="Martijn Puts — Founder APEXclusive" loading="lazy" decoding="async">
-        <div class="portrait-fade"></div>
-      </div>
       <div class="rv">
         <p class="ey">
           <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
@@ -907,9 +1019,14 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         </p>
         <h2>Piloot. Importeur. Meer dan tien jaar achter het stuur van het uitzonderlijke.</h2>
         <div class="rule" style="margin-bottom:1.6rem"></div>
+
         <p style="margin-bottom:1.1rem;color:#bbb;font-size:.9rem;line-height:1.82">APEXclusive is ontstaan vanuit een eenvoudige overtuiging: wie investeert in een bijzonder voertuig, verdient begeleiding die daar volledig bij past — discreet, doordacht en zonder compromissen.</p>
+
         <p style="margin-bottom:1.1rem;color:#bbb;font-size:.9rem;line-height:1.82">Als professioneel piloot zijn precisie, voorbereiding en oog voor detail geen kwaliteiten — het zijn gewoontes. Die breng ik mee in elk adviestraject.</p>
+
         <p style="margin-bottom:1.65rem;color:#bbb;font-size:.9rem;line-height:1.82">Ik importeer al meer dan tien jaar exclusieve auto's voor mezelf. Van een <em>McLaren 650S Spyder</em> uit België tot een <em>Lamborghini Huracán LP610</em> uit Zweden en een <em>Lamborghini Urus</em> rechtstreeks van een Luxemburgse dealerpartner — elke aankoop was een leermoment. Die kennis, dat netwerk en die directe marktervaring zet ik nu volledig in voor mijn klanten.</p>
+
+        <!-- Garage scroll — boven de nameline -->
         <div class="garage-section">
           <div class="garage-label">Persoonlijke rijervaring — een selectie</div>
           <div class="garage-scroll">
@@ -935,11 +1052,14 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
             </div>
           </div>
         </div>
+
         <a href="https://www.limburger.nl/regio/roermond/autofanaat-martijn-37-uit-roermond-is-gek-op-snelle-sportauto-s-en-laat-anderen-graag-meegenieten-van-zijn-passie/22277510.html"
            class="press-badge" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 0-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8z"/></svg>
           <span>Zoals vermeld in <strong>De Limburger</strong> — lees het artikel</span>
         </a>
+
+        <!-- Founder naam + foto NAAST naam, ónder garage -->
         <div class="founder-nameline">
           <div class="founder-thumb">
             <img
@@ -951,6 +1071,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
             <p class="role">Founder &amp; Private Vehicle Advisor · Maastricht</p>
           </div>
         </div>
+
       </div>
     </div>
   </div>
@@ -1048,7 +1169,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 <!-- QUOTE / AFTERSALES -->
 <section class="quote" id="aftersales">
   <div class="q-pin">
-    <div class="wrap" style="text-align:center">
+    <div class="wrap" style="text-align:center;position:relative;z-index:1">
       <p class="ey c" style="margin-bottom:1.85rem">
         <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
         After sales
@@ -1157,394 +1278,189 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 <script>
 /* ══ SPLASH ══ */
 (function(){
-  const splash = document.getElementById('splash');
+  var splash = document.getElementById('splash');
   if(!splash) return;
   setTimeout(function(){
     splash.classList.add('hide');
     setTimeout(function(){
-      splash.style.display = 'none';
-      // Initialiseer quote-woorden NA splash, zodat DOM klaar is
+      splash.style.display='none';
       initQuoteWords();
     }, 900);
   }, 1550);
 })();
 
-/* ══ QUOTE WOORDEN ANIMATIE — aparte init functie ══ */
-let qw = [];
-let quoteEl = null;
+/* ══ FEAR ACCORDION ══ */
+function fearToggle(el) {
+  var isOpen = el.classList.contains('open');
+  document.querySelectorAll('.fi-item.open').forEach(function(item){
+    item.classList.remove('open');
+    item.setAttribute('aria-expanded','false');
+  });
+  if (!isOpen) {
+    el.classList.add('open');
+    el.setAttribute('aria-expanded','true');
+  }
+}
+/* Keyboard support */
+document.querySelectorAll('.fi-item').forEach(function(item){
+  item.addEventListener('keydown', function(e){
+    if(e.key === 'Enter' || e.key === ' '){ e.preventDefault(); fearToggle(item); }
+  });
+});
+
+/* ══ PROJECT TOGGLE ══ */
+function projToggle(el) {
+  var isOpen = el.classList.contains('open');
+  document.querySelectorAll('.proj.open').forEach(function(p){ p.classList.remove('open'); });
+  if (!isOpen) el.classList.add('open');
+}
+
+/* ══ QUOTE WOORDEN ══ */
+var qw = [];
+var quoteSection = null;
 
 function initQuoteWords() {
-  const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-  const bq = document.getElementById('bq');
-  if (!bq || reduced) {
-    if (bq) {
-      bq.querySelectorAll('.qw').forEach(w => { w.style.opacity = '1'; });
-    }
-    const attrib = document.getElementById('bq-attrib');
-    if (attrib) attrib.style.opacity = '1';
+  var reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var bq = document.getElementById('bq');
+  if (!bq) return;
+  if (reduced) {
+    bq.querySelectorAll('.qw').forEach(function(w){ w.style.opacity='1'; });
+    var att = document.getElementById('bq-attrib');
+    if(att) att.style.opacity='.55';
     return;
   }
-
-  // Bouw woord-spans op
-  const rawText = bq.textContent.trim();
-  const words = rawText.split(/\s+/);
+  var rawText = bq.textContent.trim();
+  var words = rawText.split(/\s+/);
   bq.textContent = '';
-  words.forEach(function(word) {
-    const s = document.createElement('span');
+  words.forEach(function(word){
+    var s = document.createElement('span');
     s.className = 'qw';
     s.textContent = word;
     bq.appendChild(s);
     bq.appendChild(document.createTextNode(' '));
   });
   qw = Array.from(bq.querySelectorAll('.qw'));
-  quoteEl = document.querySelector('.quote');
+  quoteSection = document.querySelector('.quote');
 }
 
-/* ══ PROJECT TOGGLE ══ */
-function projToggle(el) {
-  const isOpen = el.classList.contains('open');
-  document.querySelectorAll('.proj.open').forEach(function(p){ p.classList.remove('open'); });
-  if (!isOpen) el.classList.add('open');
+/* ══ CHAT ══ */
+var _CHAT_API='/api/chat';
+var _msgs=[];var _open=false;var _busy=false;
+try{var saved=localStorage.getItem('apex_chat_v1');if(saved)_msgs=JSON.parse(saved);}catch(e){_msgs=[];}
+function _saveHistory(){try{localStorage.setItem('apex_chat_v1',JSON.stringify(_msgs.slice(-20)));}catch(e){}}
+function _getContext(){
+  var sections=['contact','projecten','over','werkwijze','tools'];
+  for(var i=0;i<sections.length;i++){var el=document.getElementById(sections[i]);if(el){var r=el.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)return sections[i];}}
+  return'home';
 }
-
-/* ══ APEX CHAT ══ */
-const _CHAT_API = '/api/chat';
-let _msgs = [];
-let _open = false;
-let _busy = false;
-
-try {
-  const saved = localStorage.getItem('apex_chat_v1');
-  if (saved) _msgs = JSON.parse(saved);
-} catch(e) { _msgs = []; }
-
-function _saveHistory() {
-  try { localStorage.setItem('apex_chat_v1', JSON.stringify(_msgs.slice(-20))); } catch(e) {}
+var _cw={tools:'Ik zie dat u onze tools bekijkt. Heeft u een specifieke auto in gedachten waarvoor u de **BPM** wilt berekenen?',werkwijze:'U bekijkt onze werkwijze — heeft u een vraag over hoe een traject verloopt?',over:'Goedag! Fijn dat u meer wilt weten over APEXclusive. Waarmee kan ik u helpen?',projecten:'U bekijkt onze gerealiseerde projecten. Heeft u zelf een droomauto in gedachten?',contact:'U wilt contact opnemen — uitstekend. Laat gerust uw naam en 06-nummer achter, dan neemt een van onze adviseurs persoonlijk contact op.',home:'Goedag! Ik ben de digitale adviseur van **APEXclusive** in Maastricht. Waarmee kan ik u helpen?'};
+function apexToggle(){
+  _open=!_open;var win=document.getElementById('apex-chat-win');
+  if(_open){win.classList.add('open');if(_msgs.length===0){var w=_cw[_getContext()]||_cw.home;_addMsg('bot',w);_msgs.push({role:'assistant',content:w});_saveHistory();}else{var wrap=document.getElementById('apex-msgs');if(wrap.children.length===0)_renderHistory();}setTimeout(function(){document.getElementById('apex-inp').focus();},250);}
+  else{win.classList.remove('open');}
 }
-
-function _getContext() {
-  const sections = ['contact','projecten','over','werkwijze','tools'];
-  for (var i = 0; i < sections.length; i++) {
-    const el = document.getElementById(sections[i]);
-    if (el) { const r = el.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0) return sections[i]; }
-  }
-  return 'home';
+function _renderHistory(){_msgs.forEach(function(m){if(m.role==='user')_addMsg('user',m.content,true);if(m.role==='assistant')_addMsg('bot',m.content,true);});}
+function apexQuick(t){document.getElementById('apex-quick').style.display='none';document.getElementById('apex-inp').value=t;apexSend();}
+function apexRequestTransfer(){document.getElementById('apex-quick').style.display='none';_addMsg('bot','Uiteraard. Laat uw naam, e-mailadres en 06-nummer achter — één van onze APEXclusive adviseurs neemt zo spoedig mogelijk persoonlijk contact met u op.');document.getElementById('apex-contact-form').classList.add('open');}
+function apexSubmitContact(){var n=document.getElementById('apex-contact-name').value.trim();var e=document.getElementById('apex-contact-email').value.trim();var p=document.getElementById('apex-contact-phone').value.trim();if(!n&&!e&&!p){alert('Vul ten minste één veld in.');return;}document.getElementById('apex-contact-form').classList.remove('open');var msg=[n&&'Naam: '+n,e&&'E-mail: '+e,p&&'06: '+p].filter(Boolean).join(' · ');document.getElementById('apex-inp').value=msg;apexSend();}
+async function apexSend(){
+  var inp=document.getElementById('apex-inp');var msg=inp.value.trim();if(!msg||_busy)return;
+  inp.value='';_addMsg('user',msg);_msgs.push({role:'user',content:msg});_saveHistory();
+  document.getElementById('apex-quick').style.display='none';document.getElementById('apex-contact-form').classList.remove('open');
+  _busy=true;document.getElementById('apex-send').disabled=true;
+  var botDiv=_createBotBubble();var contentDiv=botDiv.querySelector('.cmsg-content');var fullReply='';
+  try{
+    var res=await fetch(_CHAT_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:_msgs})});
+    if(!res.ok){var data=await res.json().catch(function(){return{};});contentDiv.innerHTML=_fmt('⚠️ '+(data.error||'Er ging iets mis.'));_busy=false;document.getElementById('apex-send').disabled=false;return;}
+    var ct=res.headers.get('content-type')||'';
+    if(ct.includes('text/event-stream')){
+      var reader=res.body.getReader();var decoder=new TextDecoder();
+      while(true){var{done,value}=await reader.read();if(done)break;var chunk=decoder.decode(value);
+        for(var line of chunk.split('\n')){if(!line.startsWith('data: '))continue;var d=line.slice(6);if(d==='[DONE]')continue;try{var parsed=JSON.parse(d);if(parsed.token){fullReply+=parsed.token;contentDiv.innerHTML=_fmt(fullReply);document.getElementById('apex-msgs').scrollTop=document.getElementById('apex-msgs').scrollHeight;}}catch(e){}}}
+    }else{var data=await res.json();fullReply=data.reply||data.text||data.answer||'';if(data.error)contentDiv.innerHTML=_fmt('⚠️ '+data.error);else if(fullReply)contentDiv.innerHTML=_fmt(fullReply);else contentDiv.innerHTML=_fmt('Geen antwoord ontvangen.');}
+    if(fullReply){_msgs.push({role:'assistant',content:fullReply});_saveHistory();}
+  }catch(e){contentDiv.innerHTML=_fmt('Verbindingsfout. Probeer opnieuw of neem contact op via **WhatsApp +31 6 24 73 59 39**.');}
+  _busy=false;document.getElementById('apex-send').disabled=false;document.getElementById('apex-inp').focus();
 }
+function _createBotBubble(){var wrap=document.getElementById('apex-msgs');var div=document.createElement('div');div.className='cmsg bot';var lbl=document.createElement('div');lbl.className='cmsg-lbl';lbl.textContent='APEXclusive Adviseur';div.appendChild(lbl);var c=document.createElement('div');c.className='cmsg-content';c.innerHTML='<span class="chat-cursor">▋</span>';div.appendChild(c);wrap.appendChild(div);wrap.scrollTop=wrap.scrollHeight;return div;}
+function _addMsg(rol,tekst,silent){var wrap=document.getElementById('apex-msgs');var div=document.createElement('div');div.className='cmsg '+rol;if(rol==='bot'){var lbl=document.createElement('div');lbl.className='cmsg-lbl';lbl.textContent='APEXclusive Adviseur';div.appendChild(lbl);}var c=document.createElement('div');c.className='cmsg-content';c.innerHTML=_fmt(tekst);div.appendChild(c);wrap.appendChild(div);if(!silent)wrap.scrollTop=wrap.scrollHeight;}
+function _fmt(t){return String(t).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>').replace(/\*(.*?)\*/g,'<em>$1</em>').replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g,'<a href="$2" target="_blank" rel="noopener" style="color:var(--pt)">$1</a>').replace(/(https?:\/\/[^\s<"]+)/g,'<a href="$1" target="_blank" rel="noopener" style="color:var(--pt)">$1</a>').replace(/\n/g,'<br>');}
+document.getElementById('apex-inp').addEventListener('keydown',function(e){if(e.key==='Enter'&&!e.shiftKey){e.preventDefault();apexSend();}});
+document.addEventListener('click',function(e){if(!_open)return;var win=document.getElementById('apex-chat-win');var bubble=document.querySelector('.apex-bubble');if(!win.contains(e.target)&&!bubble.contains(e.target)){_open=false;win.classList.remove('open');}});
+document.addEventListener('keydown',function(e){if(e.key==='Escape'&&_open)apexToggle();});
 
-const _contextWelkom = {
-  tools:     'Ik zie dat u onze tools bekijkt. Heeft u een specifieke auto in gedachten waarvoor u de **BPM** wilt berekenen?',
-  werkwijze: 'U bekijkt onze werkwijze — heeft u een vraag over hoe een traject verloopt?',
-  over:      'Goedag! Fijn dat u meer wilt weten over APEXclusive. Waarmee kan ik u helpen?',
-  projecten: 'U bekijkt onze gerealiseerde projecten. Heeft u zelf een droomauto in gedachten?',
-  contact:   'U wilt contact opnemen — uitstekend. Laat gerust uw naam en 06-nummer achter, dan neemt een van onze adviseurs persoonlijk contact op.',
-  home:      'Goedag! Ik ben de digitale adviseur van **APEXclusive** in Maastricht. Waarmee kan ik u helpen?'
-};
+/* ══ PAGINA ══ */
+document.getElementById('yr').textContent=new Date().getFullYear();
+var reduced=matchMedia('(prefers-reduced-motion: reduce)').matches;
 
-function apexToggle() {
-  _open = !_open;
-  const win = document.getElementById('apex-chat-win');
-  if (_open) {
-    win.classList.add('open');
-    if (_msgs.length === 0) {
-      const welcome = _contextWelkom[_getContext()] || _contextWelkom.home;
-      _addMsg('bot', welcome);
-      _msgs.push({ role: 'assistant', content: welcome });
-      _saveHistory();
-    } else {
-      const wrap = document.getElementById('apex-msgs');
-      if (wrap.children.length === 0) _renderHistory();
-    }
-    setTimeout(function(){ document.getElementById('apex-inp').focus(); }, 250);
-  } else {
-    win.classList.remove('open');
-  }
-}
-
-function _renderHistory() {
-  _msgs.forEach(function(m) {
-    if (m.role === 'user') _addMsg('user', m.content, true);
-    if (m.role === 'assistant') _addMsg('bot', m.content, true);
-  });
-}
-
-function apexQuick(tekst) {
-  document.getElementById('apex-quick').style.display = 'none';
-  document.getElementById('apex-inp').value = tekst;
-  apexSend();
-}
-
-function apexRequestTransfer() {
-  document.getElementById('apex-quick').style.display = 'none';
-  _addMsg('bot', 'Uiteraard. Laat uw naam, e-mailadres en 06-nummer achter — één van onze APEXclusive adviseurs neemt zo spoedig mogelijk persoonlijk contact met u op.');
-  document.getElementById('apex-contact-form').classList.add('open');
-}
-
-function apexSubmitContact() {
-  const name  = document.getElementById('apex-contact-name').value.trim();
-  const email = document.getElementById('apex-contact-email').value.trim();
-  const phone = document.getElementById('apex-contact-phone').value.trim();
-  if (!name && !email && !phone) { alert('Vul ten minste één veld in.'); return; }
-  document.getElementById('apex-contact-form').classList.remove('open');
-  const msg = [name && 'Naam: '+name, email && 'E-mail: '+email, phone && '06: '+phone].filter(Boolean).join(' · ');
-  document.getElementById('apex-inp').value = msg;
-  apexSend();
-}
-
-async function apexSend() {
-  const inp = document.getElementById('apex-inp');
-  const msg = inp.value.trim();
-  if (!msg || _busy) return;
-  inp.value = '';
-  _addMsg('user', msg);
-  _msgs.push({ role: 'user', content: msg });
-  _saveHistory();
-  document.getElementById('apex-quick').style.display = 'none';
-  document.getElementById('apex-contact-form').classList.remove('open');
-  _busy = true;
-  document.getElementById('apex-send').disabled = true;
-  const botDiv = _createBotBubble();
-  const contentDiv = botDiv.querySelector('.cmsg-content');
-  let fullReply = '';
-  try {
-    const res = await fetch(_CHAT_API, {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({ messages: _msgs })
-    });
-    if (!res.ok) {
-      const data = await res.json().catch(function(){ return {}; });
-      contentDiv.innerHTML = _fmt('⚠️ ' + (data.error || 'Er ging iets mis. Probeer opnieuw.'));
-      _busy = false;
-      document.getElementById('apex-send').disabled = false;
-      return;
-    }
-    const contentType = res.headers.get('content-type') || '';
-    if (contentType.includes('text/event-stream')) {
-      const reader = res.body.getReader();
-      const decoder = new TextDecoder();
-      while (true) {
-        const { done, value } = await reader.read();
-        if (done) break;
-        const chunk = decoder.decode(value);
-        for (const line of chunk.split('\n')) {
-          if (!line.startsWith('data: ')) continue;
-          const data = line.slice(6);
-          if (data === '[DONE]') continue;
-          try {
-            const parsed = JSON.parse(data);
-            if (parsed.token) {
-              fullReply += parsed.token;
-              contentDiv.innerHTML = _fmt(fullReply);
-              document.getElementById('apex-msgs').scrollTop = document.getElementById('apex-msgs').scrollHeight;
-            }
-          } catch(e) {}
-        }
-      }
-    } else {
-      const data = await res.json();
-      fullReply = data.reply || data.text || data.answer || '';
-      if (data.error) contentDiv.innerHTML = _fmt('⚠️ ' + data.error);
-      else if (fullReply) contentDiv.innerHTML = _fmt(fullReply);
-      else contentDiv.innerHTML = _fmt('Geen antwoord ontvangen. Probeer opnieuw.');
-    }
-    if (fullReply) { _msgs.push({ role: 'assistant', content: fullReply }); _saveHistory(); }
-  } catch(e) {
-    contentDiv.innerHTML = _fmt('Verbindingsfout. Probeer opnieuw of neem contact op via **WhatsApp +31 6 24 73 59 39**.');
-  }
-  _busy = false;
-  document.getElementById('apex-send').disabled = false;
-  document.getElementById('apex-inp').focus();
-}
-
-function _createBotBubble() {
-  const wrap = document.getElementById('apex-msgs');
-  const div = document.createElement('div');
-  div.className = 'cmsg bot';
-  const lbl = document.createElement('div');
-  lbl.className = 'cmsg-lbl';
-  lbl.textContent = 'APEXclusive Adviseur';
-  div.appendChild(lbl);
-  const content = document.createElement('div');
-  content.className = 'cmsg-content';
-  content.innerHTML = '<span class="chat-cursor">▋</span>';
-  div.appendChild(content);
-  wrap.appendChild(div);
-  wrap.scrollTop = wrap.scrollHeight;
-  return div;
-}
-
-function _addMsg(rol, tekst, silent) {
-  const wrap = document.getElementById('apex-msgs');
-  const div = document.createElement('div');
-  div.className = 'cmsg ' + rol;
-  if (rol === 'bot') {
-    const lbl = document.createElement('div');
-    lbl.className = 'cmsg-lbl';
-    lbl.textContent = 'APEXclusive Adviseur';
-    div.appendChild(lbl);
-  }
-  const content = document.createElement('div');
-  content.className = 'cmsg-content';
-  content.innerHTML = _fmt(tekst);
-  div.appendChild(content);
-  wrap.appendChild(div);
-  if (!silent) wrap.scrollTop = wrap.scrollHeight;
-}
-
-function _fmt(t) {
-  return String(t)
-    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
-    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
-    .replace(/\*(.*?)\*/g,'<em>$1</em>')
-    .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g,'<a href="$2" target="_blank" rel="noopener" style="color:var(--pt);border-bottom:1px solid var(--ln)">$1</a>')
-    .replace(/(https?:\/\/[^\s<"]+)/g,'<a href="$1" target="_blank" rel="noopener" style="color:var(--pt);border-bottom:1px solid var(--ln)">$1</a>')
-    .replace(/\n/g,'<br>');
-}
-
-document.getElementById('apex-inp').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); apexSend(); }
-});
-
-document.addEventListener('click', function(e) {
-  if (!_open) return;
-  const win = document.getElementById('apex-chat-win');
-  const bubble = document.querySelector('.apex-bubble');
-  if (!win.contains(e.target) && !bubble.contains(e.target)) {
-    _open = false;
-    win.classList.remove('open');
-  }
-});
-
-document.addEventListener('keydown', function(e) {
-  if (e.key === 'Escape' && _open) apexToggle();
-});
-
-/* ══ PAGINA LOGICA ══ */
-document.getElementById('yr').textContent = new Date().getFullYear();
-const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
-
-/* Woord-split voor headings */
-if (!reduced) {
-  document.querySelectorAll('section h2, header h1').forEach(function(h) {
-    Array.from(h.childNodes).forEach(function(node) {
-      if (node.nodeType !== 3 || !node.textContent.trim()) return;
-      const frag = document.createDocumentFragment();
-      node.textContent.split(/(\s+)/).forEach(function(tk) {
-        if (!tk.trim()) { frag.append(tk); return; }
-        const w = document.createElement('span'); w.className = 'w';
-        const i = document.createElement('i'); i.textContent = tk;
-        w.append(i); frag.append(w);
+/* Woord-split headings */
+if(!reduced){
+  document.querySelectorAll('section h2,header h1').forEach(function(h){
+    Array.from(h.childNodes).forEach(function(node){
+      if(node.nodeType!==3||!node.textContent.trim())return;
+      var frag=document.createDocumentFragment();
+      node.textContent.split(/(\s+)/).forEach(function(tk){
+        if(!tk.trim()){frag.append(tk);return;}
+        var w=document.createElement('span');w.className='w';
+        var i=document.createElement('i');i.textContent=tk;
+        w.append(i);frag.append(w);
       });
-      h.replaceChild(frag, node);
+      h.replaceChild(frag,node);
     });
-    h.querySelectorAll('.w i').forEach(function(el, idx) {
-      el.style.transitionDelay = (70 + idx * 48) + 'ms';
-    });
+    h.querySelectorAll('.w i').forEach(function(el,idx){el.style.transitionDelay=(70+idx*48)+'ms';});
   });
 }
 
 /* NAV */
-const nav    = document.getElementById('nav');
-const burger = document.getElementById('burger');
-const mmenu  = document.getElementById('mm');
+var nav=document.getElementById('nav');
+var burger=document.getElementById('burger');
+var mmenu=document.getElementById('mm');
+function toggleMenu(open){burger.classList.toggle('open',open);mmenu.classList.toggle('open',open);burger.setAttribute('aria-expanded',open);document.body.style.overflow=open?'hidden':'';if(open)nav.classList.remove('hide');}
+burger.addEventListener('click',function(){toggleMenu(!mmenu.classList.contains('open'));});
+mmenu.querySelectorAll('a').forEach(function(a){a.addEventListener('click',function(){toggleMenu(false);});});
 
-function toggleMenu(open) {
-  burger.classList.toggle('open', open);
-  mmenu.classList.toggle('open', open);
-  burger.setAttribute('aria-expanded', open);
-  document.body.style.overflow = open ? 'hidden' : '';
-  if (open) nav.classList.remove('hide');
-}
-burger.addEventListener('click', function(){ toggleMenu(!mmenu.classList.contains('open')); });
-mmenu.querySelectorAll('a').forEach(function(a){ a.addEventListener('click', function(){ toggleMenu(false); }); });
-
-/* IntersectionObserver voor reveal */
-const io = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (!e.isIntersecting) return;
+/* IntersectionObserver */
+var io=new IntersectionObserver(function(entries){
+  entries.forEach(function(e){
+    if(!e.isIntersecting)return;
     io.unobserve(e.target);
-    var img = e.target.classList.contains('veil') ? e.target.querySelector('img') : null;
-    if (img && !img.complete) {
-      img.addEventListener('load',  function(){ e.target.classList.add('in'); }, { once: true });
-      img.addEventListener('error', function(){ e.target.classList.add('in'); }, { once: true });
-    } else {
-      e.target.classList.add('in');
-    }
-    if (e.target.classList.contains('ey')) e.target.classList.add('tri-in');
-    if (e.target.querySelectorAll) {
-      e.target.querySelectorAll('.ey').forEach(function(ey){
-        setTimeout(function(){ ey.classList.add('tri-in'); }, 160);
-      });
-    }
+    var img=e.target.classList.contains('veil')?e.target.querySelector('img'):null;
+    if(img&&!img.complete){img.addEventListener('load',function(){e.target.classList.add('in');},{once:true});img.addEventListener('error',function(){e.target.classList.add('in');},{once:true});}
+    else{e.target.classList.add('in');}
+    if(e.target.classList.contains('ey'))e.target.classList.add('tri-in');
+    if(e.target.querySelectorAll)e.target.querySelectorAll('.ey').forEach(function(ey){setTimeout(function(){ey.classList.add('tri-in');},160);});
   });
-}, { threshold: .06, rootMargin: '0px 0px -3% 0px' });
+},{threshold:.06,rootMargin:'0px 0px -3% 0px'});
 
-/* Staggered animatie voor grids */
-document.querySelectorAll('.p-grid,.tgrid,.c-grid,.fear-grid').forEach(function(g) {
-  Array.from(g.children).forEach(function(el, i){
-    el.style.transitionDelay = Math.min(i, 4) * 75 + 'ms';
-  });
+document.querySelectorAll('.p-grid,.tgrid,.c-grid,.fear-grid').forEach(function(g){
+  Array.from(g.children).forEach(function(el,i){el.style.transitionDelay=Math.min(i,4)*75+'ms';});
 });
-
-document.querySelectorAll('.rv,.step,.veil,section h2,.ey').forEach(function(el){ io.observe(el); });
+document.querySelectorAll('.rv,.step,.veil,section h2,.ey').forEach(function(el){io.observe(el);});
 
 /* Nav spy */
-const links = Array.from(document.querySelectorAll('#navlinks a'));
-const spy = new IntersectionObserver(function(entries) {
-  entries.forEach(function(e) {
-    if (e.isIntersecting) {
-      links.forEach(function(a){
-        a.classList.toggle('active', a.hash === '#' + e.target.id);
-      });
-    }
-  });
-}, { rootMargin: '-40% 0px -55% 0px' });
-links.forEach(function(a){ const t = document.querySelector(a.hash); if (t) spy.observe(t); });
+var links=Array.from(document.querySelectorAll('#navlinks a'));
+var spy=new IntersectionObserver(function(entries){entries.forEach(function(e){if(e.isIntersecting)links.forEach(function(a){a.classList.toggle('active',a.hash==='#'+e.target.id);});});},{rootMargin:'-40% 0px -55% 0px'});
+links.forEach(function(a){var t=document.querySelector(a.hash);if(t)spy.observe(t);});
 
-/* ══ HOOFD SCROLL LOOP ══ */
-const bar    = document.getElementById('progress');
-const heroC  = document.getElementById('heroContent');
-const cue    = document.getElementById('cue');
-const steps  = document.getElementById('steps');
-const quoteSection = document.querySelector('.quote');
-const attrib = document.getElementById('bq-attrib');
-let navY = scrollY;
+/* ══ SCROLL LOOP ══ */
+var bar=document.getElementById('progress');
+var heroC=document.getElementById('heroContent');
+var cue=document.getElementById('cue');
+var steps=document.getElementById('steps');
+var quoteEl=document.querySelector('.quote');
+var attrib=document.getElementById('bq-attrib');
+var navY=scrollY;
+var wordsDone=false;
 
-function clamp(v, a, b){ return Math.max(a, Math.min(b, v)); }
+function clamp(v,a,b){return Math.max(a,Math.min(b,v));}
 
-function frame() {
-  const y = scrollY, vh = innerHeight;
-  const total = document.documentElement.scrollHeight - vh;
-
-  /* Progress bar */
-  bar.style.transform = 'scaleX(' + (total > 0 ? y / total : 0) + ')';
-
-  /* Nav sticky/hide */
-  nav.classList.toggle('stuck', y > 40);
-  if (y > navY + 6 && y > 260 && !mmenu.classList.contains('open')) nav.classList.add('hide');
-  else if (y < navY - 6 || y <= 260) nav.classList.remove('hide');
-  navY = y;
-
-  if (!reduced) {
-    /* Hero parallax */
-    const hp = clamp(y / vh, 0, 1);
-    heroC.style.transform = 'translateY(' + (hp * 88) + 'px)';
-    heroC.style.opacity   = String(1 - hp * 1.3);
-    cue.style.opacity     = String(1 - hp * 3);
-
-    /* Steps progress lijn */
-    if (steps) {
-      const r = steps.getBoundingClientRect();
-      steps.style.setProperty('--tp', clamp((vh * .68 - r.top) / r.height, 0, 1).toFixed(3));
-    }
-
-    /* Quote woorden animatie */
-    if (qw.length && quoteSection) {
-      const r  = quoteSection.getBoundingClientRect();
-      const pr = clamp(-r.top / (r.height - vh), 0, 1);
-      const n  = qw.length;
-      for (var i = 0; i < n; i++) {
-        qw[i].style.opacity = clamp((pr * (n + 8) - i) / 5
+function frame(){
+  var y=scrollY,vh=innerHeight;
+  var total=document.documentElement.scrollHeight-vh;
+  bar.style.transform='scaleX('+(total>0?y/total:0)+')';
+  nav.classList.toggle('stuck',y>40);
+  if(y>navY+6&&y>260&&!mmenu.classList.contains('open'))nav.classList.add('hide');
+  else if(y<navY-6||y<=260)nav.
 </script>
 </body>
 </html>
