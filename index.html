@@ -553,24 +553,30 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 }
 
 .chat-quick{
-  padding:.75rem 1rem .65rem;
-  display:flex;flex-wrap:wrap;gap:.5rem;
+  padding:.6rem 1rem .55rem;
+  display:none;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:.45rem;
   border-top:1px solid rgba(198,203,209,.08);
   background:rgba(20,20,20,.92);
   backdrop-filter:blur(18px);
 }
+.chat-quick.visible{
+  display:grid;
+}
 .chat-qbtn{
   font-family:'Oswald',sans-serif;
-  font-size:.55rem;letter-spacing:.12em;
+  font-size:.56rem;letter-spacing:.12em;
   text-transform:uppercase;
-  color:rgba(198,203,209,.7);
+  color:rgba(198,203,209,.72);
   border:1px solid rgba(198,203,209,.14);
-  background:rgba(255,255,255,.04);
-  padding:.45rem .85rem;
+  background:rgba(255,255,255,.05);
+  padding:.45rem .65rem;
   cursor:pointer;
   transition:border-color .25s,color .25s,background .25s,transform .25s;
-  white-space:nowrap;
-  border-radius:.45rem;
+  white-space:normal;
+  border-radius:.55rem;
+  min-height:40px;
 }
 .chat-qbtn:hover{
   border-color:rgba(198,203,209,.35);
@@ -587,26 +593,33 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   border-bottom-right-radius:1rem;
 }
 .chat-toolbar{
-  display:flex;gap:.8rem;padding:.85rem 1.1rem;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:.55rem;
+  padding:.75rem 1.05rem .85rem;
   border-top:1px solid rgba(198,203,209,.08);
   background:rgba(255,255,255,.04);
 }
 .chat-tip{
-  padding:.7rem 1.1rem;
-  font-size:.75rem;
+  display:none;
+  padding:.65rem 1.05rem;
+  font-size:.74rem;
   color:rgba(198,203,209,.78);
   border-top:1px solid rgba(198,203,209,.08);
   background:rgba(255,255,255,.04);
   letter-spacing:.01em;
   border-left:3px solid rgba(0,146,70,.45);
 }
+.chat-tip.visible{
+  display:block;
+}
 .chat-transfer-btn{
-  flex:1 1 50%;border:none;border-radius:.55rem;
+  flex:1 1 100%;border:none;border-radius:.55rem;
   background:linear-gradient(135deg,#11181a,#232a2d);
   color:#f2f4f6;
   font-family:'Oswald',sans-serif;font-size:.72rem;
   text-transform:uppercase;letter-spacing:.12em;
-  padding:.9rem 1rem;cursor:pointer;
+  padding:.8rem .9rem;cursor:pointer;
   transition:background .25s,transform .25s,box-shadow .25s;
   box-shadow:0 10px 24px rgba(0,0,0,.16);
 }
@@ -767,7 +780,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   </div>
   <div id="apex-msgs" class="chat-msgs"></div>
   <div id="apex-toast" class="chat-toast" aria-live="polite"></div>
-  <div class="chat-quick" id="apex-quick">
+  <div class="chat-quick" id="apex-quick" style="display:none;">
     <button class="chat-qbtn" type="button" onclick="apexQuick('BPM kosten')">BPM kosten</button>
     <button class="chat-qbtn" type="button" onclick="apexQuick('Importproces')">Importproces</button>
     <button class="chat-qbtn" type="button" onclick="apexQuick('Bijkomende kosten')">Bijkomende kosten</button>
@@ -777,7 +790,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
     <button class="chat-contact-btn" type="button" onclick="apexShowContactForm()">Contactgegevens</button>
     <button class="chat-transfer-btn" type="button" onclick="apexRequestTransfer()">Adviseur spreken</button>
   </div>
-  <div class="chat-tip">Stel eerst uw vraag. Als het nodig is vraag ik om uw contactgegevens. Voor persoonlijk advies kiest u “Adviseur spreken”.</div>
+  <div id="apex-chat-tip" class="chat-tip" style="display:none;">Stel eerst uw vraag. Als het nodig is vraag ik om uw contactgegevens. Voor persoonlijk advies kiest u “Adviseur spreken”.</div>
   <div class="chat-contact-form" id="apex-contact-form">
     <input id="apex-contact-name" class="chat-contact-input" type="text" placeholder="Naam">
     <input id="apex-contact-email" class="chat-contact-input" type="email" placeholder="E-mail">
@@ -1500,7 +1513,8 @@ function apexToggle() {
   if (_open) {
     win.classList.add('open');
     document.getElementById('apex-contact-form').classList.remove('open');
-    document.getElementById('apex-quick').style.display = 'flex';
+    document.getElementById('apex-quick').classList.remove('visible');
+    document.getElementById('apex-chat-tip').classList.remove('visible');
     // Eerste keer openen: welkomstbericht
     if (_msgs.length === 0) {
       const ctx = _getContext();
@@ -1536,15 +1550,17 @@ function _validatePhone(phone) {
 }
 
 function apexShowContactForm() {
-  document.getElementById('apex-quick').style.display = 'none';
+  document.getElementById('apex-quick').classList.remove('visible');
   const form = document.getElementById('apex-contact-form');
   form.classList.add('open');
+  document.getElementById('apex-chat-tip').classList.add('visible');
   document.getElementById('apex-contact-name').focus();
 }
 
 function apexHideContactForm() {
   const form = document.getElementById('apex-contact-form');
   form.classList.remove('open');
+  document.getElementById('apex-chat-tip').classList.remove('visible');
 }
 
 function apexToast(message) {
@@ -1591,7 +1607,7 @@ function apexSubmitContact() {
 
 function apexRequestTransfer() {
   const transferText = 'Ik wil graag met een medewerker of adviseur spreken.';
-  document.getElementById('apex-quick').style.display = 'none';
+  document.getElementById('apex-quick').classList.remove('visible');
   _addMsg('user', transferText);
   _msgs.push({ role: 'user', content: transferText });
   _leadData = { ..._leadData, ..._extractLeadData(transferText) };
