@@ -67,28 +67,17 @@ h2.in .w i{transform:none}
 #progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:300;background:rgba(198,203,209,.3);transform-origin:left;transform:scaleX(0);pointer-events:none}
 
 /* ══ SPLASH ══ */
-(function(){
-  var splash = document.getElementById('splash');
-  if (!splash) return;
-
-  function hideSplash() {
-    splash.classList.add('hide');
-    setTimeout(function(){
-      splash.classList.add('force-hide');
-      initQuoteWords();
-    }, 900);
-  }
-
-  /* Gewoon na 2s weggaan, ongeacht fonts */
-  setTimeout(hideSplash, 2000);
-
-  /* Harde fallback na 3s */
-  setTimeout(function(){
-    splash.classList.add('force-hide');
-    initQuoteWords();
-  }, 3000);
-})();
-
+#splash{
+  position:fixed;inset:0;z-index:9999;
+  background:#000;
+  display:flex;align-items:center;justify-content:center;
+  opacity:1;
+  transition:opacity .6s cubic-bezier(.4,0,.2,1);
+  will-change:opacity;
+}
+#splash.hide{opacity:0;pointer-events:none}
+#splash.force-hide{display:none!important}
+  
 /* ══ EYEBROW ══ */
 .ey{font-family:var(--lb);font-size:clamp(.62rem,.9vw,.68rem);letter-spacing:.28em;text-transform:uppercase;color:var(--pt);font-weight:400;margin-bottom:1.35rem;display:flex;align-items:center;gap:.85rem}
 .ey-tri,.ey-tri-r{display:flex;flex-direction:row;gap:0;flex-shrink:0;overflow:hidden;height:10px;width:0;transition:width .85s cubic-bezier(.2,.7,.3,1)}
@@ -1207,7 +1196,7 @@ try { var _s = localStorage.getItem('apex_chat_v1'); if(_s) _msgs = JSON.parse(_
 function _saveH(){ try{ localStorage.setItem('apex_chat_v1', JSON.stringify(_msgs.slice(-20))); }catch(e){} }
 function _getCtx(){
   var ss=['contact','projecten','over','werkwijze','tools'];
-  for(var i=0;i<ss.length;i++){var el=document.getElementById(ss[i]);if(el){var r=el.getBoundingClientRect();if(r.top<innerHeight&&r.bottom>0)return ss[i];}}
+  for(var i=0;i0)return ss[i];}}
   return 'home';
 }
 var _cw={
@@ -1259,33 +1248,13 @@ async function apexSend(){
   var full='';
   try{
     var res=await fetch(_CHAT_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:_msgs})});
-    if(!res.ok){var d=await res.json().catch(function(){return{};});cDiv.innerHTML=_fmt('⚠️ '+(d.error||'Er ging iets mis.'));_busy=false;document.getElementById('apex-send').disabled=false;return;}
-    var ct=res.headers.get('content-type')||'';
-    if(ct.includes('text/event-stream')){
-      var reader=res.body.getReader();var decoder=new TextDecoder();
-      while(true){
-        var{done,value}=await reader.read();if(done)break;
-        var chunk=decoder.decode(value);
-        for(var line of chunk.split('\n')){
-          if(!line.startsWith('data: '))continue;
-          var dd=line.slice(6);if(dd==='[DONE]')continue;
-          try{var pr=JSON.parse(dd);if(pr.token){full+=pr.token;cDiv.innerHTML=_fmt(full);var msgs=document.getElementById('apex-msgs');msgs.scrollTop=msgs.scrollHeight;}}catch(e){}
-        }
-      }
-    }else{
-      var d=await res.json();
-      full=d.reply||d.text||d.answer||'';
-      if(d.error)cDiv.innerHTML=_fmt('⚠️ '+d.error);
-      else if(full)cDiv.innerHTML=_fmt(full);
-      else cDiv.innerHTML=_fmt('Geen antwoord ontvangen.');
+    if(!res.ok){
+      var d=await res.json().catch(function(){return{};});
+      cDiv.innerHTML=_fmt('⚠️ '+(d.error||'Er ging iets mis.'));
+      _busy=false;
+      document.getElementById('apex-send').disabled=false;
+      return;
     }
-    if(full){_msgs.push({role:'assistant',content:full});_saveH();}
-  }catch(e){
-    cDiv.innerHTML=_fmt('Verbindingsfout. Probeer opnieuw of neem contact op via **WhatsApp +31 6 24 73 59 39**.');
-  }
-
-API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:_msgs})});
-    if(!res.ok){var d=await res.json().catch(function(){return{};});cDiv.innerHTML=_fmt('⚠️ '+(d.error||'Er ging iets mis.'));_busy=false;document.getElementById('apex-send').disabled=false;return;}
     var ct=res.headers.get('content-type')||'';
     if(ct.includes('text/event-stream')){
       var reader=res.body.getReader();var decoder=new TextDecoder();
@@ -1322,7 +1291,7 @@ function _createBot(){
   div.appendChild(lbl);
   var c=document.createElement('div');
   c.className='cmsg-content';
-  c.innerHTML='<span class="chat-cursor">▋</span>';
+  c.innerHTML='▋';
   div.appendChild(c);
   wrap.appendChild(div);
   wrap.scrollTop=wrap.scrollHeight;
@@ -1347,12 +1316,11 @@ function _addMsg(rol,tekst,silent){
 function _fmt(t){
   if(!t)return '';
   return t
-    .replace(/&/g,'&amp;')
-    .replace(/</g,'&lt;')
-    .replace(/>/g,'&gt;')
-    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
-    .replace(/\*(.+?)\*/g,'<em>$1</em>')
-    .replace(/\n/g,'<br>');
+    .replace(/&/g,'&')
+    .replace(//g,'>')
+    .replace(/\*\*(.+?)\*\*/g,'$1')
+    .replace(/\*(.+?)\*/g,'$1')
+    .replace(/\n/g,'');
 }
 
 /* ══ NAV SCROLL ══ */
