@@ -513,12 +513,37 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
   .tc-photo{height:175px}
   .tc-top{padding:1rem 1.1rem .75rem}
   #tarieven .rv{grid-template-columns:1fr!important}
+  .about-grid{gap:1.5rem}
+  .founder-nameline{flex-wrap:wrap;align-items:flex-start;gap:.75rem}
+  .founder-nameblock{min-width:0;flex:1}
+  .founder-thumb{width:52px;height:52px}
+  .press-badge{display:inline-flex;flex-wrap:wrap;gap:.5rem;max-width:100%;white-space:normal}
+  .garage-scroll{gap:10px}
+  .garage-card{width:min(52vw,170px);height:84px}
+  .about-body-text{font-size:.95rem}
 }
 @media(max-width:375px){
   :root{--pd:.9rem}
   .hero h1{font-size:2.1rem}
   .tc-photo{height:155px}
   .splash-brand{font-size:1.6rem;letter-spacing:.14em}
+}
+
+@media(max-width:600px){
+  .about-grid{gap:1.25rem}
+  .about-grid > div{width:100%}
+  .founder-nameline{flex-wrap:wrap;align-items:flex-start;gap:.75rem;margin-top:1rem}
+  .founder-thumb{width:48px;height:48px}
+  .founder-nameblock{min-width:0;flex:1}
+  .founder-nameblock .sig{font-size:1.1rem}
+  .founder-nameblock .role{font-size:.78rem}
+  .about-body-text{font-size:.92rem}
+  .garage-section{margin-top:1.35rem;padding-top:1.25rem}
+  .garage-scroll{gap:9px;padding-left:.25rem;margin-left:-.25rem}
+  .garage-card{width:min(46vw,146px);height:82px;border-radius:18px}
+  .garage-card img{transition:none}
+  .garage-card-lbl{font-size:.42rem;padding:.28rem .45rem}
+  .press-badge{display:inline-flex;flex-wrap:wrap;gap:.45rem;max-width:100%;white-space:normal;padding:.55rem .85rem}
 }
 
 @media(max-width:600px){
