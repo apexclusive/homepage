@@ -1275,8 +1275,9 @@ function apexSubmitContact(){
   var n=document.getElementById('apex-contact-name').value.trim();
   var e=document.getElementById('apex-contact-email').value.trim();
   var p=document.getElementById('apex-contact-phone').value.trim();
- 
-if(!n&&!e&&!p){alert('Vul ten minste één veld in.');return;}
+  if(!n&&!e
+Model: ```javascript
+  if(!n&&!e&&!p){alert('Vul ten minste één veld in.');return;}
   document.getElementById('apex-contact-form').classList.remove('open');
   var msg=[n&&'Naam: '+n,e&&'E-mail: '+e,p&&'06: '+p].filter(Boolean).join(' · ');
   document.getElementById('apex-inp').value=msg;
@@ -1353,7 +1354,7 @@ function _createBot(){
   div.appendChild(lbl);
   var c=document.createElement('div');
   c.className='cmsg-content';
-  c.innerHTML='▇';
+  c.innerHTML='<span class="chat-cursor">&#9607;</span>';
   div.appendChild(c);
   wrap.appendChild(div);
   wrap.scrollTop=wrap.scrollHeight;
@@ -1378,11 +1379,12 @@ function _addMsg(rol,tekst,silent){
 function _fmt(t){
   if(!t)return '';
   return t
-    .replace(/&/g,'&')
-    .replace(//g,'>')
-    .replace(/\*\*(.+?)\*\*/g,'$1')
-    .replace(/\*(.+?)\*/g,'$1')
-    .replace(/\n/g,'');
+    .replace(/&/g,'&amp;')
+    .replace(/</g,'&lt;')
+    .replace(/>/g,'&gt;')
+    .replace(/\*\*(.+?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.+?)\*/g,'<em>$1</em>')
+    .replace(/\n/g,'<br>');
 }
 
 /* ══ NAV SCROLL ══ */
@@ -1392,7 +1394,11 @@ window.addEventListener('scroll',function(){
   var y=scrollY;
   if(y>60) navEl.classList.add('stuck'); else navEl.classList.remove('stuck');
   if(y>lastY+40&&y>200) navEl.classList.add('hide');
-  else if(y0?y/h:0)+')';
+  else if(y<lastY-10) navEl.classList.remove('hide');
+  lastY=y;
+
+  var h=document.body.scrollHeight-innerHeight;
+  document.getElementById('progress').style.transform='scaleX('+(h>0?y/h:0)+')';
 
   var secs=['tools','werkwijze','over','projecten','contact'];
   var active='';
@@ -1417,7 +1423,10 @@ window.addEventListener('scroll',function(){
     var qProgress=Math.max(0,Math.min(1,(-qr.top)/(qr.height-innerHeight)));
     var reveal=Math.floor(qProgress*qw.length*1.4);
     qw.forEach(function(w,i){
-      w.style.opacity=i=qw.length) quoteSection.classList.add('words-done');
+      w.style.opacity=i<reveal?'1':'0.06';
+      w.style.transition=i<reveal?'opacity .3s':'opacity .1s';
+    });
+    if(reveal>=qw.length) quoteSection.classList.add('words-done');
     else quoteSection.classList.remove('words-done');
   }
 },{passive:true});
@@ -1486,12 +1495,6 @@ function fixTarievenGrid(){
 }
 fixTarievenGrid();
 window.addEventListener('resize',fixTarievenGrid,{passive:true});
-
-
-
-
-Caching metrics
-
-  </script>
+</script>
 </body>
 </html>
