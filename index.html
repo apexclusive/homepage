@@ -1194,6 +1194,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 const _CHAT_API = '/api/chat';
 const _SYSTEM_PROMPT = 'U bent de digitale adviseur van APEXclusive, een premium auto-import en aankoopbegeleiding service uit Maastricht. Antwoord in het Nederlands met een professionele, warme en beknopte toon. Gebruik correcte spelling en spreekwijze. Geef geen financieel of juridisch advies; verwijs bij complexe vragen naar WhatsApp +31 6 24 73 59 39. Wanneer een bezoeker zijn naam, telefoonnummer of e-mailadres deelt, reageer dan kort en discreet met een bevestiging dat de gegevens zijn ontvangen. Herhaal nooit het volledige e-mailadres of telefoonnummer letterlijk; gebruik alleen een algemene bevestiging zoals “we nemen binnenkort contact met u op via uw opgegeven contactgegevens.” Stel geen extra vragen als de bezoeker al contactgegevens heeft gegeven. Houd antwoorden onder de 120 woorden tenzij het echt nodig is.';
 const _LEAD_KEY = 'apex_chat_lead_v1';
+const _LEAD_NOTIFY_KEY = 'apex_chat_lead_notify_v1';
 let _msgs  = [];
 let _open  = false;
 let _busy  = false;
@@ -1217,6 +1218,45 @@ function _saveLeadData() {
   try {
     localStorage.setItem(_LEAD_KEY, JSON.stringify(_leadData));
   } catch(e) {}
+}
+
+function _hasLeadNotified() {
+  try {
+    return localStorage.getItem(_LEAD_NOTIFY_KEY) === '1';
+  } catch (e) {
+    return false;
+  }
+}
+
+function _markLeadNotified() {
+  try {
+    localStorage.setItem(_LEAD_NOTIFY_KEY, '1');
+  } catch (e) {}
+}
+
+async function _tryNotifyLead() {
+  if (!_leadData.email && !_leadData.phone) return;
+  if (_hasLeadNotified()) return;
+
+  try {
+    await fetch('/api/lead-notify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        lead: {
+          name: _leadData.name || null,
+          email: _leadData.email || null,
+          phone: _leadData.phone || null,
+          source: 'chat'
+        },
+        message: 'Nieuwe chat lead met contactgegevens',
+        timestamp: new Date().toISOString()
+      })
+    });
+    _markLeadNotified();
+  } catch (e) {
+    // Negeer netwerkfouten; probeer het later opnieuw bij een volgend contact.
+  }
 }
 
 function _loadLeadData() {
@@ -1246,12 +1286,12 @@ function _extractLeadData(text) {
   const emailMatch = normalized.match(/([a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})/);
   const phoneMatch = normalized.match(/(\+31|0)[\s.-]*6[\s.-]*\d{8}/);
   const nameMatch = normalized.match(/(?:mijn naam is|ik ben|ik heet|naam is|naam:)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)/i);
-  const simpleNameMatch = \!nameMatch ? normalized.match(/^([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)$/) : null;
+  const simpleNameMatch = !nameMatch ? normalized.match(/^([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)$/) : null;
 
   if (emailMatch) result.email = emailMatch[1];
   if (phoneMatch) result.phone = phoneMatch[0].replace(/[\s.-]/g, '');
   if (nameMatch) result.name = nameMatch[1];
-  else if (simpleNameMatch && \!result.name) result.name = simpleNameMatch[1];
+  else if (simpleNameMatch && !result.name) result.name = simpleNameMatch[1];
 
   return result;
 }
@@ -1269,6 +1309,7 @@ function _getContext() {
   }
   return 'home';
 }
+
 
 const _contextWelkom = {
   tools:     'Ik zie dat u onze tools bekijkt. Heeft u een specifieke auto in gedachten waarvoor u de **BPM** wilt berekenen of een advertentie wilt laten analyseren?',
@@ -1333,6 +1374,7 @@ async function apexSend() {
   _leadData = { ..._leadData, ..._extractLeadData(msg) };
   _saveLeadData();
   _saveHistory();
+  void _tryNotifyLead();
   document.getElementById('apex-quick').style.display = 'none';
 
   _busy = true;
