@@ -1210,6 +1210,12 @@ function _saveHistory() {
   } catch(e) {}
 }
 
+function _extractReply(data) {
+  return data.reply || data.text || data.answer || data.content || data.output_text ||
+    data.response || data.message?.content?.parts?.[0] ||
+    data.choices?.[0]?.message?.content || data.choices?.[0]?.delta?.content || '';
+}
+
 /* ── Context detectie ── */
 function _getContext() {
   const sections = ['contact','projecten','over','werkwijze','import','tools'];
@@ -1305,16 +1311,22 @@ async function apexSend() {
     }
 
     const contentType = res.headers.get('content-type') || '';
+    const isStream = contentType.includes('text/event-stream') ||
+                     contentType.includes('application/octet-stream') ||
+                     contentType.includes('stream');
+
     if (contentType.includes('application/json')) {
       const data = await res.json().catch(() => ({}));
-      const reply = data.reply || data.text || data.answer || data.content || '';
+      const reply = _extractReply(data);
       if (data.error) {
         contentDiv.innerHTML = _fmt('⚠️ ' + data.error);
-      } else {
+      } else if (reply) {
         contentDiv.innerHTML = _fmt(reply);
         fullReply = reply;
+      } else {
+        contentDiv.innerHTML = _fmt('⚠️ Ongeldig antwoord van de chatserver.');
       }
-    } else {
+    } else if (isStream) {
       // Stream lezen met buffer voor gebroken regels
       const reader = res.body.getReader();
       const decoder = new TextDecoder();
@@ -1335,8 +1347,10 @@ async function apexSend() {
           try {
             const parsed = JSON.parse(data);
             const token = parsed.token || parsed.text || parsed.content ||
-                          parsed.delta?.content || parsed.choices?.[0]?.delta?.content ||
-                          parsed.message?.content?.parts?.[0] || parsed.response?.output_text;
+                          parsed.output_text || parsed.delta?.content ||
+                          parsed.choices?.[0]?.delta?.content ||
+                          parsed.choices?.[0]?.message?.content ||
+                          parsed.message?.content?.parts?.[0] || '';
             if (token) {
               fullReply += token;
               contentDiv.innerHTML = _fmt(fullReply);
@@ -1357,8 +1371,10 @@ async function apexSend() {
           try {
             const parsed = JSON.parse(data);
             const token = parsed.token || parsed.text || parsed.content ||
-                          parsed.delta?.content || parsed.choices?.[0]?.delta?.content ||
-                          parsed.message?.content?.parts?.[0] || parsed.response?.output_text;
+                          parsed.output_text || parsed.delta?.content ||
+                          parsed.choices?.[0]?.delta?.content ||
+                          parsed.choices?.[0]?.message?.content ||
+                          parsed.message?.content?.parts?.[0] || '';
             if (token) {
               fullReply += token;
               contentDiv.innerHTML = _fmt(fullReply);
@@ -1368,6 +1384,14 @@ async function apexSend() {
             }
           } catch(e) {}
         }
+      }
+    } else {
+      const text = await res.text().catch(() => '');
+      if (text) {
+        contentDiv.innerHTML = _fmt(text);
+        fullReply = text;
+      } else {
+        contentDiv.innerHTML = _fmt('⚠️ Ongeldig antwoord van de chatserver.');
       }
     }
 
