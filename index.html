@@ -1185,17 +1185,19 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 <script>
 /* ══════════════════════════════════════
    APEX CHAT — volledig verbeterd
-   - Streaming antwoorden (woord voor woord)
+   - Professionele Nederlandse assistent
    - Context-bewust welkom
    - Lead opvang
    - Gespreksgeschiedenis (localStorage)
    - Enter om te versturen
 ══════════════════════════════════════ */
 const _CHAT_API = '/api/chat';
-const _SYSTEM_PROMPT = 'U bent de digitale adviseur van APEXclusive, een premium auto-import en aankoopbegeleiding service uit Maastricht. Antwoord in het Nederlands met een professionele, vriendelijke toon en gebruik correcte spelling. Geef geen financieel advies; verwijs bij complexe vragen naar WhatsApp +31 6 24 73 59 39.';
+const _SYSTEM_PROMPT = 'U bent de digitale adviseur van APEXclusive, een premium auto-import en aankoopbegeleiding service uit Maastricht. Antwoord in het Nederlands met een professionele, warme en beknopte toon. Gebruik correcte spelling en spreekwijze. Geef geen financieel of juridisch advies; verwijs bij complexe vragen naar WhatsApp +31 6 24 73 59 39. Wanneer een bezoeker zijn naam, telefoonnummer of e-mailadres deelt, reageer dan kort en discreet met een bevestiging dat de gegevens zijn ontvangen. Herhaal nooit het volledige e-mailadres of telefoonnummer letterlijk; gebruik alleen een algemene bevestiging zoals “we nemen binnenkort contact met u op via uw opgegeven contactgegevens.” Stel geen extra vragen als de bezoeker al contactgegevens heeft gegeven. Houd antwoorden onder de 120 woorden tenzij het echt nodig is.';
+const _LEAD_KEY = 'apex_chat_lead_v1';
 let _msgs  = [];
 let _open  = false;
 let _busy  = false;
+let _leadData = {};
 
 /* ── Gespreksgeschiedenis laden ── */
 try {
@@ -1211,6 +1213,19 @@ function _saveHistory() {
   } catch(e) {}
 }
 
+function _saveLeadData() {
+  try {
+    localStorage.setItem(_LEAD_KEY, JSON.stringify(_leadData));
+  } catch(e) {}
+}
+
+function _loadLeadData() {
+  try {
+    const saved = localStorage.getItem(_LEAD_KEY);
+    if (saved) _leadData = JSON.parse(saved);
+  } catch(e) { _leadData = {}; }
+}
+
 function _extractReply(data) {
   return data.reply || data.text || data.answer || data.content || data.output_text ||
     data.response || data.message?.content?.parts?.[0] ||
@@ -1218,7 +1233,31 @@ function _extractReply(data) {
     data.choices?.[0]?.message?.content?.parts?.[0] || data.choices?.[0]?.delta?.content || '';
 }
 
+function _sanitizeContactReply(text) {
+  return String(text)
+    .replace(/\b([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})\b/g, 'uw e-mailadres')
+    .replace(/\b(?:\+31|0)(?:[\s.-]*6[\s.-]*\d{8}|[\s.-]*[1-9]\d[\s.-]*\d{7,8})\b/g, 'uw telefoonnummer');
+}
+
+function _extractLeadData(text) {
+  const result = { ..._leadData };
+  const normalized = String(text).trim();
+
+  const emailMatch = normalized.match(/([a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})/);
+  const phoneMatch = normalized.match(/(\+31|0)[\s.-]*6[\s.-]*\d{8}/);
+  const nameMatch = normalized.match(/(?:mijn naam is|ik ben|ik heet|naam is|naam:)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)/i);
+  const simpleNameMatch = \!nameMatch ? normalized.match(/^([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)$/) : null;
+
+  if (emailMatch) result.email = emailMatch[1];
+  if (phoneMatch) result.phone = phoneMatch[0].replace(/[\s.-]/g, '');
+  if (nameMatch) result.name = nameMatch[1];
+  else if (simpleNameMatch && \!result.name) result.name = simpleNameMatch[1];
+
+  return result;
+}
+
 /* ── Context detectie ── */
+
 function _getContext() {
   const sections = ['contact','projecten','over','werkwijze','import','tools'];
   for (const id of sections) {
@@ -1237,9 +1276,11 @@ const _contextWelkom = {
   werkwijze: 'U bekijkt onze werkwijze — heeft u vragen over hoe een traject verloopt, of wilt u weten wat wij voor uw specifieke situatie kunnen betekenen?',
   over:      'Goedag! Fijn dat u meer wilt weten over APEXclusive. Heeft u een vraag voor Martijn, of kan ik u ergens mee helpen?',
   projecten: 'U bekijkt onze gerealiseerde projecten. Heeft u zelf een droomauto in gedachten? Ik vertel u graag wat wij voor u kunnen betekenen.',
-  contact:   'U wilt contact opnemen — prachtig. Laat uw naam en telefoonnummer achter, dan neemt Martijn persoonlijk binnen 24 uur contact met u op.',
-  home:      'Goedag! Ik ben de digitale adviseur van **APEXclusive**. Ik help u graag met vragen over premium auto import, BPM-berekeningen of aankoopbegeleiding. Wilt u dat Martijn persoonlijk contact opneemt? Laat dan uw naam en e-mailadres achter, dan regelen wij de rest.'
+  contact:   'U wilt contact opnemen — prachtig. Laat uw naam, telefoonnummer en e-mailadres achter, dan neemt Martijn persoonlijk binnen 24 uur contact met u op. Uw gegevens worden veilig behandeld.',
+  home:      'Goedag! Ik ben de digitale adviseur van **APEXclusive**. Ik help u graag met vragen over premium auto import, BPM-berekeningen of aankoopbegeleiding. Laat uw naam en contactgegevens achter, dan zorgt Martijn voor persoonlijk vervolg.'
 };
+
+_loadLeadData();
 
 /* ── Toggle chat venster ── */
 function apexToggle() {
@@ -1289,6 +1330,8 @@ async function apexSend() {
   inp.value = '';
   _addMsg('user', msg);
   _msgs.push({ role: 'user', content: msg });
+  _leadData = { ..._leadData, ..._extractLeadData(msg) };
+  _saveLeadData();
   _saveHistory();
   document.getElementById('apex-quick').style.display = 'none';
 
@@ -1321,7 +1364,8 @@ const requestMessages = [
     }
 
     const data = await res.json().catch(() => ({}));
-    const reply = _extractReply(data);
+    const rawReply = _extractReply(data);
+    const reply = _sanitizeContactReply(rawReply);
 
     if (data.error) {
       contentDiv.innerHTML = _fmt('⚠️ ' + data.error);
