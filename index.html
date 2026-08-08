@@ -337,37 +337,38 @@ nav.hide{transform:translateY(-105%)}
 .tip-bar p{font-size:clamp(.8rem,1.8vw,.85rem);color:#d0d0d0;font-family:var(--lb);letter-spacing:.05em;line-height:1.65}
 .tip-bar p strong{color:#f0f0f0}
 .tgrid{
-  display:grid;grid-template-columns:repeat(auto-fit,minmax(min(340px,100%),1fr));gap:1.5px;background:var(--ln);
+  display:flex;flex-direction:column;gap:0;background:transparent;
   max-width:1160px;margin:0 auto;
   border:1px solid var(--ln);
   box-shadow:0 0 0 1px rgba(198,203,209,.06),0 24px 80px rgba(0,0,0,.35);
 }
-@media(max-width:740px){.tgrid{grid-template-columns:1fr;gap:1px}}
-.tc{display:flex;flex-direction:column;background:var(--ink2);position:relative;overflow:hidden;transition:background .4s,box-shadow .4s;text-decoration:none;color:inherit;-webkit-tap-highlight-color:transparent;border:1px solid transparent}
-.tc:hover,.tc:active{background:var(--ink3);box-shadow:0 8px 40px rgba(0,0,0,.45);border-color:var(--ln)}
-.tc-top{padding:clamp(1.1rem,2.5vw,1.4rem) clamp(1.1rem,2.5vw,1.65rem) .85rem;display:flex;align-items:flex-start;gap:.85rem}
-.tc-top .num{font-family:var(--sf);font-size:2.4rem;font-weight:300;color:var(--pt);line-height:1;opacity:.3;flex-shrink:0;margin-top:.05rem}
-.tc-top-text{display:flex;flex-direction:column;gap:.25rem}
-.tc-top-text h3{font-size:clamp(1.2rem,2.5vw,1.38rem);margin:0;color:#f0f0f0}
-.tc-top-text .tc-perk{font-family:var(--lb);font-size:clamp(.54rem,.8vw,.58rem);letter-spacing:.12em;text-transform:uppercase;color:rgba(198,203,209,.45);margin:0;display:flex;align-items:center;gap:.42rem}
-.tc-top-text .tc-perk::before{content:'';width:4px;height:4px;border-radius:50%;flex-shrink:0}
-.tc:nth-child(1) .tc-perk::before{background:var(--ig)}.tc:nth-child(2) .tc-perk::before{background:var(--pt)}.tc:nth-child(3) .tc-perk::before{background:var(--ir)}
-.tc-photo{width:100%;height:200px;overflow:hidden;position:relative;flex-shrink:0;background:var(--ink3);border-top:1px solid var(--ln);border-bottom:1px solid var(--ln)}
-.tc-photo img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:brightness(.32) saturate(.4);transition:filter .65s,transform .85s}
-.tc-photo img.img-logo-kenteken{object-fit:contain;padding:1.8rem 2.5rem;filter:brightness(.7) saturate(.25) contrast(1.15);background:var(--ink3);transform:scale(1.2)}
-.tc-photo img.img-logo{object-fit:contain;padding:2.8rem 3.4rem;filter:brightness(.52) saturate(.08) contrast(1.08);background:var(--ink3)}
-.tc:hover .tc-photo img,.tc:active .tc-photo img{filter:brightness(.5) saturate(.65);transform:scale(1.04)}
-.tc:hover .tc-photo img.img-logo-kenteken,.tc:active .tc-photo img.img-logo-kenteken{filter:brightness(.82) saturate(.35);transform:scale(1.25)}
-.tc:hover .tc-photo img.img-logo,.tc:active .tc-photo img.img-logo{filter:brightness(.72) saturate(.2);transform:none}
-.tc-fade{position:absolute;inset:0;background:linear-gradient(to top,var(--ink2) 0%,transparent 55%);z-index:1;pointer-events:none}
-.tc-photo::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;z-index:2;transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
-.tc:nth-child(1) .tc-photo::after{background:var(--ig)}.tc:nth-child(2) .tc-photo::after{background:var(--pt)}.tc:nth-child(3) .tc-photo::after{background:var(--ir)}
-.tc:hover .tc-photo::after,.tc:active .tc-photo::after{transform:scaleX(1)}
-.tc-body{padding:clamp(1rem,2.5vw,1.35rem) clamp(1.1rem,2.5vw,1.65rem) clamp(1.25rem,3vw,1.65rem);display:flex;flex-direction:column;flex:1}
-.tc-body p{font-size:clamp(.85rem,1.9vw,.88rem);margin-bottom:1rem;flex:1;color:#b0b0b0;line-height:1.76}
-.tc-go{font-family:var(--lb);font-size:.65rem;letter-spacing:.2em;text-transform:uppercase;color:var(--pt);display:inline-flex;align-items:center;gap:.6rem;font-weight:500;margin-top:auto;padding:.5rem 0}
-.tc-go i{width:18px;height:1px;background:var(--pt);transition:width .4s;display:block}
-.tc:hover .tc-go i,.tc:active .tc-go i{width:36px}
+.tc{
+  display:flex;align-items:center;gap:clamp(1rem,3vw,1.75rem);
+  background:var(--ink2);text-decoration:none;color:inherit;
+  padding:clamp(1rem,2.5vw,1.3rem) clamp(1.25rem,3vw,2rem);
+  border-bottom:1px solid var(--ln);border-left:2px solid transparent;
+  position:relative;overflow:hidden;
+  transition:background .35s,padding-left .3s,border-left-color .3s;
+  -webkit-tap-highlight-color:transparent;
+}
+.tc:last-child{border-bottom:none}
+.tc:hover,.tc:active{background:var(--ink3);padding-left:calc(clamp(1.25rem,3vw,2rem) + 8px)}
+.tc:nth-child(1){border-left-color:var(--ig)}
+.tc:nth-child(2){border-left-color:var(--pt)}
+.tc:nth-child(3){border-left-color:var(--ir)}
+.tc:nth-child(4){border-left-color:rgba(198,203,209,.28)}
+.tc:nth-child(5){border-left-color:rgba(198,203,209,.2)}
+.tc:nth-child(6){border-left-color:rgba(198,203,209,.14)}
+.tc:nth-child(7){border-left-color:rgba(198,203,209,.08)}
+.tc-top{display:flex;align-items:center;gap:clamp(.85rem,2vw,1.35rem);flex:1;min-width:0}
+.tc-top .num{font-family:var(--sf);font-size:clamp(1.5rem,3vw,2rem);font-weight:300;color:var(--pt);line-height:1;opacity:.2;flex-shrink:0;min-width:2.4rem;text-align:right}
+.tc-top-text{display:flex;flex-direction:column;gap:.18rem;min-width:0}
+.tc-top-text h3{font-size:clamp(.92rem,1.9vw,1.05rem);margin:0;color:#e8e8e8;font-weight:300;letter-spacing:.01em;line-height:1.25}
+.tc-top-text .tc-perk{font-family:var(--lb);font-size:clamp(.5rem,.72vw,.54rem);letter-spacing:.14em;text-transform:uppercase;color:rgba(198,203,209,.35);margin:0}
+.tc-go{font-family:var(--lb);font-size:.58rem;letter-spacing:.2em;text-transform:uppercase;color:rgba(198,203,209,.3);display:inline-flex;align-items:center;gap:.55rem;flex-shrink:0;transition:color .3s;white-space:nowrap}
+.tc-go i{width:16px;height:1px;background:currentColor;transition:width .4s;display:block;flex-shrink:0}
+.tc:hover .tc-go,.tc:active .tc-go{color:var(--pt)}
+.tc:hover .tc-go i,.tc:active .tc-go i{width:32px}
 .tools-cta{text-align:center;margin-top:2rem;padding:clamp(1.5rem,3vw,2rem) clamp(1.25rem,3vw,1.75rem);background:var(--ink3);border:1px solid var(--ln);position:relative;overflow:hidden;max-width:1160px;margin-left:auto;margin-right:auto}
 .tools-cta::before{content:'';position:absolute;top:0;left:0;right:0;height:1px;background:var(--tr);opacity:.38}
 .tools-cta h3{font-size:clamp(1.2rem,2.8vw,1.38rem);margin-bottom:.5rem;color:#e8e8e8}
@@ -710,7 +711,6 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
   </a>
   <div class="navlinks" id="navlinks">
     <a href="#tools">Tools</a>
-    <a href="/verzekeringen.html">Verzekering</a>
     <a href="#werkwijze">Werkwijze</a>
     <a href="#over">Over ons</a>
     <a href="#projecten">Projecten</a>
@@ -724,11 +724,10 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
 <div id="mm" role="dialog" aria-label="Navigatiemenu" aria-modal="true">
   <span id="mm-brand" aria-hidden="true">APEXclusive</span>
   <a href="#tools"     style="transition-delay:.08s" onclick="closeMM()">Tools</a>
-  <a href="/verzekeringen.html" style="transition-delay:.14s" onclick="closeMM()">Verzekering</a>
-  <a href="#werkwijze" style="transition-delay:.20s" onclick="closeMM()">Werkwijze</a>
-  <a href="#over"      style="transition-delay:.26s" onclick="closeMM()">Over ons</a>
-  <a href="#projecten" style="transition-delay:.32s" onclick="closeMM()">Projecten</a>
-  <a href="#contact"   style="transition-delay:.38s;color:var(--pt)" onclick="closeMM()">Contact</a>
+  <a href="#werkwijze" style="transition-delay:.14s" onclick="closeMM()">Werkwijze</a>
+  <a href="#over"      style="transition-delay:.20s" onclick="closeMM()">Over ons</a>
+  <a href="#projecten" style="transition-delay:.26s" onclick="closeMM()">Projecten</a>
+  <a href="#contact"   style="transition-delay:.32s;color:var(--pt)" onclick="closeMM()">Contact</a>
   <div id="mm-foot">Maastricht &middot; Private Vehicle Advisory</div>
 </div>
 
@@ -830,14 +829,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
             <div class="tc-perk">RDW-data &middot; APK-historie &middot; Tellerstand</div>
           </div>
         </div>
-        <div class="tc-photo">
-          <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_620,q_55,f_auto/v1786120828/Nederlands_Kenteken_Sticker_gfmewm.png" alt="Kentekencheck" loading="lazy" decoding="async" class="img-logo-kenteken">
-          <div class="tc-fade"></div>
-        </div>
-        <div class="tc-body">
-          <p>APK-historie, tellerstandverloop en tenaamstellingen via offici&euml;le RDW-data. Vertrouw nooit een verkoper op zijn woord &mdash; controleer zelf.</p>
-          <span class="tc-go">Controleer nu <i></i></span>
-        </div>
+        <span class="tc-go">Controleer nu <i></i></span>
       </a>
 
       <a class="tc" href="https://bpm.apexclusive.nl">
@@ -848,14 +840,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
             <div class="tc-perk">Direct resultaat &middot; Geen registratie</div>
           </div>
         </div>
-        <div class="tc-photo">
-          <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=620&q=55&auto=format" alt="BPM Calculator" loading="lazy" decoding="async">
-          <div class="tc-fade"></div>
-        </div>
-        <div class="tc-body">
-          <p>Weet precies wat de import u kost voordat u een bod uitbrengt. Bereken de resterende BPM op basis van leeftijd, cataloguswaarde en brandstoftype.</p>
-          <span class="tc-go">Bereken nu <i></i></span>
-        </div>
+        <span class="tc-go">Bereken nu <i></i></span>
       </a>
 
       <a class="tc" href="https://carrapport.apexclusive.nl">
@@ -866,14 +851,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
             <div class="tc-perk">Mobile.de &middot; AutoScout24 &middot; Marktplaats</div>
           </div>
         </div>
-        <div class="tc-photo">
-          <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_620,q_55,f_auto/v1786118058/mobile-de-seeklogo_z1hb8f.png" alt="Advertentie analyse" loading="lazy" decoding="async" class="img-logo">
-          <div class="tc-fade"></div>
-        </div>
-        <div class="tc-body">
-          <p>Plak een link van Mobile.de, AutoScout24 of Marktplaats en ontvang direct een objectieve prijsbeoordeling. Betaalt u de eerlijke prijs?</p>
-          <span class="tc-go">Analyseer nu <i></i></span>
-        </div>
+        <span class="tc-go">Analyseer nu <i></i></span>
       </a>
 
       <a class="tc" href="/waarde.html">
@@ -884,14 +862,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
             <div class="tc-perk">Inruilwaarde &middot; Marktplaatsprijs &middot; Handelaarsprijs</div>
           </div>
         </div>
-        <div class="tc-photo">
-          <img src="https://images.unsplash.com/photo-1609950348147-acbdb7d8c4a5?w=620&q=55&auto=format" alt="Auto waarde calculator" loading="lazy" decoding="async">
-          <div class="tc-fade"></div>
-        </div>
-        <div class="tc-body">
-          <p>Bepaal precies wat uw huidige auto waard is. Drie waardepeilen: inruilwaarde, handelaarsprijs en private sale marktplaats.</p>
-          <span class="tc-go">Bereken waarde <i></i></span>
-        </div>
+        <span class="tc-go">Bereken waarde <i></i></span>
       </a>
 
       <a class="tc" href="/verzekeringen.html">
@@ -899,17 +870,10 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
           <span class="num">05</span>
           <div class="tc-top-text">
             <h3>Verzekering Vergelijken</h3>
-            <div class="tc-perk">WA &middot; Casco &middot; Maatwerk</div>
+            <div class="tc-perk">WA &middot; Beperkt Casco &middot; Volledig Casco</div>
           </div>
         </div>
-        <div class="tc-photo">
-          <img src="https://images.unsplash.com/photo-1454165804606-c3d57bc86b40?w=620&q=55&auto=format" alt="Verzekeringen" loading="lazy" decoding="async">
-          <div class="tc-fade"></div>
-        </div>
-        <div class="tc-body">
-          <p>Vergelijk autoverzekeringstarieve van de beste Nederlandse verzekaars. WA, Beperkt Casco of Volledig Casco &mdash; direct inzicht in uw options.</p>
-          <span class="tc-go">Vergelijk nu <i></i></span>
-        </div>
+        <span class="tc-go">Vergelijk nu <i></i></span>
       </a>
 
       <a class="tc" href="/lening.html">
@@ -920,14 +884,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
             <div class="tc-perk">Maandlast &middot; Rentes &middot; Bankenvergelijking</div>
           </div>
         </div>
-        <div class="tc-photo">
-          <img src="https://images.unsplash.com/photo-1560707303-4e980ce876ad?w=620&q=55&auto=format" alt="Auto lening calculator" loading="lazy" decoding="async">
-          <div class="tc-fade"></div>
-        </div>
-        <div class="tc-body">
-          <p>Bereken uw maandelijkse auto-lening en vergelijk rentes van Rabobank, ING en ABN AMRO. Financiering made simple.</p>
-          <span class="tc-go">Bereken lening <i></i></span>
-        </div>
+        <span class="tc-go">Bereken lening <i></i></span>
       </a>
 
       <a class="tc" href="/occasion.html">
@@ -938,14 +895,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
             <div class="tc-perk">Marktplaats &middot; Adverteerderschecklist &middot; Prijsstrategie</div>
           </div>
         </div>
-        <div class="tc-photo">
-          <img src="https://images.unsplash.com/photo-1552317051-dcc60b0ce1e5?w=620&q=55&auto=format" alt="Auto advertentie tips" loading="lazy" decoding="async">
-          <div class="tc-fade"></div>
-        </div>
-        <div class="tc-body">
-          <p>Verkoop uw auto sneller en voor meer geld. Checklist voor foto's, beschrijving, prijs en veiligheid bij Marktplaats verkoop.</p>
-          <span class="tc-go">Lees tips <i></i></span>
-        </div>
+        <span class="tc-go">Lees tips <i></i></span>
       </a>
 
     </div>
@@ -1200,7 +1150,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
         <span class="brand-sep" aria-hidden="true"><span></span><span></span><span></span></span>
         <span class="brand-excl">exclusive</span>
       </a>
-      <p>Private vehicle advisory vanuit Maastricht. Onafhankelijke aankoopbegeleiding en import van uitzonderlijke auto&rsquo;s in heel Europa.</p>
+      <p>Private Vehicle Advisory &middot; Maastricht</p>
     </div>
     <div>
       <p class="fh">Juridisch</p>
