@@ -1177,6 +1177,15 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
     setTimeout(function(){
       finalizeSplashHide(document.getElementById('splash'));
     }, 2500);
+    setTimeout(function(){
+      var fallback = document.getElementById('splash');
+      if (!fallback) return;
+      fallback.classList.add('splash-exit', 'force-hide');
+      fallback.style.cssText = 'display:none!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important;z-index:-1!important;';
+      if (fallback.parentNode) fallback.parentNode.removeChild(fallback);
+      document.documentElement.style.overflow = '';
+      document.body.style.overflow = '';
+    }, 2800);
   }
   window.addEventListener('load', scheduleHide);
   if (document.readyState !== 'loading') scheduleHide();
