@@ -72,14 +72,8 @@ h2.in .w i{transform:none}
   background:#000;
   display:flex;align-items:center;justify-content:center;
   opacity:1;
-  transition:opacity .28s ease-out, visibility .28s ease-out;
-  will-change:opacity;
-}
-#splash.hide,
-#splash.splash-exit{
-  opacity:0!important;
-  visibility:hidden!important;
-  pointer-events:none!important;
+  transition:none;
+  will-change:auto;
 }
 #splash.force-hide{display:none!important;visibility:hidden!important;pointer-events:none!important}
 .splash-inner{display:flex;flex-direction:column;align-items:center}
@@ -1150,7 +1144,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
   function finalizeSplashHide(element) {
     if (!element || element.dataset.splashHidden==='true') return;
     element.dataset.splashHidden='true';
-    element.classList.add('splash-exit', 'force-hide');
+    element.classList.add('force-hide');
     element.style.display = 'none';
     element.style.visibility = 'hidden';
     element.style.opacity = '0';
@@ -1164,13 +1158,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
   }
   function hideSplash() {
     if (splash.dataset.splashHidden==='true') return;
-    splash.classList.add('splash-exit');
-    splash.style.opacity = '0';
-    splash.style.visibility = 'hidden';
-    splash.style.pointerEvents = 'none';
-    setTimeout(function(){
-      finalizeSplashHide(document.getElementById('splash'));
-    }, 260);
+    finalizeSplashHide(splash);
   }
   function scheduleHide() {
     setTimeout(hideSplash, 1500);
@@ -1180,7 +1168,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
     setTimeout(function(){
       var fallback = document.getElementById('splash');
       if (!fallback) return;
-      fallback.classList.add('splash-exit', 'force-hide');
+      fallback.classList.add('force-hide');
       fallback.style.cssText = 'display:none!important;opacity:0!important;visibility:hidden!important;pointer-events:none!important;z-index:-1!important;';
       if (fallback.parentNode) fallback.parentNode.removeChild(fallback);
       document.documentElement.style.overflow = '';
