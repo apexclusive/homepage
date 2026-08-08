@@ -72,8 +72,13 @@ h2.in .w i{transform:none}
   background:#000;
   display:flex;align-items:center;justify-content:center;
   opacity:1;
-  transition:none;
-  will-change:auto;
+  transition:opacity .38s ease-out, visibility .38s ease-out;
+  will-change:opacity;
+}
+#splash.splash-exit{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
 }
 #splash.force-hide{display:none!important;visibility:hidden!important;pointer-events:none!important}
 .splash-inner{display:flex;flex-direction:column;align-items:center}
@@ -82,18 +87,24 @@ h2.in .w i{transform:none}
   font-size:clamp(1.8rem,8vw,4.8rem);
   font-weight:300;letter-spacing:.28em;text-transform:uppercase;color:#fff;
   display:flex;align-items:center;
-  opacity:0;transform:translateY(-28px);
-  animation:splashDrop .9s .18s cubic-bezier(.2,.7,.3,1) forwards;
+  opacity:0;transform:translateY(-12px);
+  animation:splashDrop .28s .12s ease-out forwards;
 }
-.splash-brand-apex{font-weight:600;background:var(--cs);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:splashShine 2.2s .9s ease-in-out forwards;letter-spacing:.24em}
-@keyframes splashShine{0%{background-position:0% center}60%{background-position:100% center}100%{background-position:60% center}}
+.splash-brand-apex{
+  font-weight:600;
+  background:var(--cs);
+  background-size:180% auto;
+  -webkit-background-clip:text;
+  background-clip:text;
+  color:transparent;
+  letter-spacing:.24em;
+}
 .splash-brand-excl{font-weight:300;color:rgba(198,203,209,.45);letter-spacing:.24em}
-@keyframes splashDrop{from{opacity:0;transform:translateY(-28px)}to{opacity:1;transform:none}}
-.splash-sub{font-family:'Oswald',sans-serif;font-size:clamp(.56rem,2vw,.68rem);letter-spacing:.32em;text-transform:uppercase;color:rgba(198,203,209,.35);margin-top:.85rem;opacity:0;animation:splashFadeIn .7s .88s forwards}
+@keyframes splashDrop{from{opacity:0;transform:translateY(-12px)}to{opacity:1;transform:none}}
 @keyframes splashFadeIn{from{opacity:0}to{opacity:1}}
-.splash-line{width:0;height:1px;background:linear-gradient(90deg,transparent,rgba(198,203,209,.35),transparent);margin-top:1.15rem;animation:splashLine .7s 1.05s cubic-bezier(.2,.7,.3,1) forwards}
+.splash-line{width:0;height:1px;background:linear-gradient(90deg,transparent,rgba(198,203,209,.35),transparent);margin-top:1.15rem;animation:splashLine .28s .2s ease-out forwards}
 @keyframes splashLine{to{width:clamp(120px,40vw,220px)}}
-.splash-sep{display:flex;flex-direction:row;gap:0;margin:0 12px;flex-shrink:0;opacity:0;animation:splashFadeIn .5s .55s forwards}
+.splash-sep{display:flex;flex-direction:row;gap:0;margin:0 12px;flex-shrink:0;opacity:0;animation:splashFadeIn .18s .16s ease-out forwards}
 .splash-sep span{display:block;width:4px;border-radius:1px}
 .splash-sep span:nth-child(1){height:7px;background:#009246}
 .splash-sep span:nth-child(2){height:7px;background:#fff}
@@ -1158,7 +1169,10 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
   }
   function hideSplash() {
     if (splash.dataset.splashHidden==='true') return;
-    finalizeSplashHide(splash);
+    splash.classList.add('splash-exit');
+    setTimeout(function(){
+      finalizeSplashHide(document.getElementById('splash'));
+    }, 420);
   }
   function scheduleHide() {
     setTimeout(hideSplash, 1500);
