@@ -67,38 +67,27 @@ h2.in .w i{transform:none}
 #progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:300;background:rgba(198,203,209,.3);transform-origin:left;transform:scaleX(0);pointer-events:none}
 
 /* ══ SPLASH ══ */
-#splash{
-  position:fixed;inset:0;z-index:9999;
-  background:#000;
-  display:flex;align-items:center;justify-content:center;
-  opacity:1;
-  transition:opacity .7s .2s cubic-bezier(.4,0,.2,1);
-  will-change:opacity;
-}
-#splash.hide{opacity:0;pointer-events:none}
-#splash.force-hide{display:none!important}
-.splash-inner{display:flex;flex-direction:column;align-items:center;gap:0}
-.splash-brand{
-  font-family:'Cormorant Garamond',serif;
-  font-size:clamp(1.8rem,8vw,4.8rem);
-  font-weight:300;letter-spacing:.28em;text-transform:uppercase;color:#fff;
-  display:flex;align-items:center;gap:0;
-  opacity:0;transform:translateY(-28px);
-  animation:splashDrop .9s .18s cubic-bezier(.2,.7,.3,1) forwards;
-}
-.splash-brand-apex{font-weight:600;background:var(--cs);background-size:220% auto;-webkit-background-clip:text;background-clip:text;color:transparent;animation:splashShine 2.2s .9s ease-in-out forwards;letter-spacing:.24em}
-@keyframes splashShine{0%{background-position:0% center}60%{background-position:100% center}100%{background-position:60% center}}
-.splash-brand-excl{font-weight:300;color:rgba(198,203,209,.45);letter-spacing:.24em}
-@keyframes splashDrop{from{opacity:0;transform:translateY(-28px)}to{opacity:1;transform:none}}
-.splash-sub{font-family:'Oswald',sans-serif;font-size:clamp(.56rem,2vw,.68rem);letter-spacing:.32em;text-transform:uppercase;color:rgba(198,203,209,.35);margin-top:.85rem;opacity:0;animation:splashFadeIn .7s .88s forwards}
-@keyframes splashFadeIn{from{opacity:0}to{opacity:1}}
-.splash-line{width:0;height:1px;background:linear-gradient(90deg,transparent,rgba(198,203,209,.35),transparent);margin-top:1.15rem;animation:splashLine .7s 1.05s cubic-bezier(.2,.7,.3,1) forwards}
-@keyframes splashLine{to{width:clamp(120px,40vw,220px)}}
-.splash-sep{display:flex;flex-direction:row;gap:0;margin:0 12px;flex-shrink:0;opacity:0;animation:splashFadeIn .5s .55s forwards}
-.splash-sep span{display:block;width:4px;border-radius:1px}
-.splash-sep span:nth-child(1){height:7px;background:#009246}
-.splash-sep span:nth-child(2){height:7px;background:#fff}
-.splash-sep span:nth-child(3){height:7px;background:#CE2B37}
+(function(){
+  var splash = document.getElementById('splash');
+  if (!splash) return;
+
+  function hideSplash() {
+    splash.classList.add('hide');
+    setTimeout(function(){
+      splash.classList.add('force-hide');
+      initQuoteWords();
+    }, 900);
+  }
+
+  /* Gewoon na 2s weggaan, ongeacht fonts */
+  setTimeout(hideSplash, 2000);
+
+  /* Harde fallback na 3s */
+  setTimeout(function(){
+    splash.classList.add('force-hide');
+    initQuoteWords();
+  }, 3000);
+})();
 
 /* ══ EYEBROW ══ */
 .ey{font-family:var(--lb);font-size:clamp(.62rem,.9vw,.68rem);letter-spacing:.28em;text-transform:uppercase;color:var(--pt);font-weight:400;margin-bottom:1.35rem;display:flex;align-items:center;gap:.85rem}
@@ -1143,10 +1132,10 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
 </footer>
 
 <script>
-/* ══ SPLASH ══ */
 (function(){
   var splash = document.getElementById('splash');
   if (!splash) return;
+
   function hideSplash() {
     splash.classList.add('hide');
     setTimeout(function(){
@@ -1154,24 +1143,13 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
       initQuoteWords();
     }, 900);
   }
-  var minTime = 1800;
-  var startTime = Date.now();
-  function tryHide() {
-    var elapsed = Date.now() - startTime;
-    var wait = Math.max(0, minTime - elapsed);
-    setTimeout(hideSplash, wait);
-  }
-  if (document.fonts && document.fonts.ready) {
-    document.fonts.ready.then(tryHide);
-  } else {
-    tryHide();
-  }
+
+  setTimeout(hideSplash, 2000);
+
   setTimeout(function(){
-    if (!splash.classList.contains('force-hide')) {
-      splash.classList.add('force-hide');
-      initQuoteWords();
-    }
-  }, 4000);
+    splash.classList.add('force-hide');
+    initQuoteWords();
+  }, 3000);
 })();
 
 /* ══ FEAR ACCORDION ══ */
