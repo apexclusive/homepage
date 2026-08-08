@@ -58,7 +58,6 @@ p{color:var(--mt);font-size:.92rem}
 h2 .w{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.1em;margin-bottom:-.1em}
 h2 .w i{display:inline-block;font-style:inherit;transform:translateY(115%);transition:transform .95s cubic-bezier(.2,.7,.3,1)}
 h2.in .w i{transform:none}
-
 #progress{position:fixed;top:0;left:0;height:2px;width:100%;z-index:200;background:var(--pt-s);transform-origin:left;transform:scaleX(0)}
 
 /* ══ LOGO ══ */
@@ -200,35 +199,7 @@ nav.hide{transform:translateY(-105%)}
 .tools-cta h3{font-size:1.38rem;margin-bottom:.5rem}
 .tools-cta p{max-width:400px;margin:0 auto 1.35rem;font-size:.82rem}
 
-/* ══ IMPORT ══ */
-.imp-grid{display:grid;grid-template-columns:.88fr 1fr;gap:clamp(2.5rem,5.5vw,5rem);align-items:center}
-@media(max-width:820px){.imp-grid{grid-template-columns:1fr}}
-.imp-visual{position:relative}
-.imp-img{position:relative;height:520px;overflow:hidden;border:1px solid var(--ln)}
-.imp-img::before{content:'';position:absolute;top:-12px;left:-12px;right:12px;bottom:12px;border:1px solid rgba(198,203,209,.08);z-index:2;pointer-events:none}
-.imp-strip{position:absolute;top:-12px;left:-12px;bottom:12px;width:2px;display:flex;flex-direction:column;z-index:3}
-.imp-strip span{flex:1;display:block}
-.imp-strip span:nth-child(1){background:var(--ig);opacity:.72}
-.imp-strip span:nth-child(2){background:rgba(198,203,209,.42)}
-.imp-strip span:nth-child(3){background:var(--ir);opacity:.72}
-.imp-img img{width:100%;height:100%;object-fit:cover;filter:brightness(.62) saturate(.55);display:block;transition:filter .8s,transform 1s}
-.imp-img:hover img{filter:brightness(.75) saturate(.68);transform:scale(1.02)}
-.imp-card{position:absolute;bottom:0;left:0;right:0;background:rgba(8,8,8,.92);backdrop-filter:blur(18px);padding:14px 20px;border-top:1px solid var(--ln);z-index:4}
-.imp-card-lbl{font-size:.5rem;letter-spacing:.26em;text-transform:uppercase;color:rgba(198,203,209,.35);margin-bottom:8px;font-family:var(--lb)}
-.imp-countries{display:flex;flex-wrap:wrap;gap:4px 9px}
-.ic{display:flex;align-items:center;gap:4px;font-size:.7rem;color:rgba(198,203,209,.46);font-family:var(--lb);letter-spacing:.04em}
-.ic-dot{width:4px;height:4px;border-radius:50%}
-.ic:nth-child(3n+1) .ic-dot{background:var(--ig)}
-.ic:nth-child(3n+2) .ic-dot{background:rgba(198,203,209,.52)}
-.ic:nth-child(3n) .ic-dot{background:var(--ir)}
-.imp-steps{margin-top:1.85rem}
-.imp-step{display:flex;gap:1.2rem;padding:.95rem 0;border-bottom:1px solid var(--hr)}
-.imp-step:first-child{border-top:1px solid var(--hr)}
-.imp-step-n{font-family:var(--sf);font-size:.78rem;color:var(--pt);opacity:.35;padding-top:1px;min-width:18px}
-.imp-step-t{font-size:.82rem;font-weight:500;color:var(--tx);margin-bottom:1px}
-.imp-step-d{font-size:.74rem;color:var(--mt);line-height:1.56}
-
-/* ══ WERKWIJZE — behoud verticale scroll-animatie ══ */
+/* ══ WERKWIJZE ══ */
 .ww-layout{display:grid;grid-template-columns:1fr 1.6fr;gap:clamp(2.5rem,6vw,5.5rem);align-items:start}
 @media(max-width:820px){.ww-layout{grid-template-columns:1fr}}
 .ww-sticky{position:sticky;top:120px}
@@ -243,8 +214,6 @@ nav.hide{transform:translateY(-105%)}
 .step .k{font-family:var(--lb);font-size:.6rem;letter-spacing:.26em;text-transform:uppercase;color:var(--pt);opacity:.65}
 .step h3{font-size:1.22rem;margin:.38rem 0 .32rem}
 .step p{max-width:50ch;font-size:.82rem}
-
-/* Sleuteloverdracht foto bij werkwijze */
 .sleutels-wrap{margin-top:2.5rem;position:relative;overflow:hidden;border:1px solid var(--ln)}
 .sleutels-wrap img{width:100%;height:280px;object-fit:cover;object-position:center 40%;display:block;filter:brightness(.48) saturate(.42);transition:filter .8s,transform 1s}
 .sleutels-wrap:hover img{filter:brightness(.6) saturate(.55);transform:scale(1.02)}
@@ -264,8 +233,6 @@ nav.hide{transform:translateY(-105%)}
 .portrait-fade{position:absolute;top:0;right:0;bottom:0;width:28%;background:linear-gradient(to left,var(--ink2) 0%,rgba(13,13,13,.78) 45%,transparent 100%);z-index:2;pointer-events:none}
 .sig{font-family:var(--sf);font-style:italic;font-size:1.55rem;color:var(--pt);margin-top:1.5rem}
 .role{font-family:var(--lb);font-size:.59rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mt);margin-top:.28rem}
-
-/* Garage scroll */
 .garage-section{margin-top:2.25rem;padding-top:1.85rem;border-top:1px solid var(--hr)}
 .garage-label{font-family:var(--lb);font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(198,203,209,.26);margin-bottom:.85rem}
 .garage-scroll{display:flex;gap:8px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin;scrollbar-color:rgba(198,203,209,.12) transparent}
@@ -276,29 +243,37 @@ nav.hide{transform:translateY(-105%)}
 .garage-card img{width:100%;height:100%;object-fit:cover;filter:brightness(.58) saturate(.5);transition:filter .55s,transform .75s;display:block}
 .garage-card:hover img{filter:brightness(.75) saturate(.68);transform:scale(1.05)}
 .garage-card-lbl{position:absolute;bottom:0;left:0;right:0;padding:.42rem .6rem;background:linear-gradient(to top,rgba(8,8,8,.92) 0%,transparent 100%);font-family:var(--lb);font-size:.5rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(198,203,209,.5)}
-
-/* Press badge */
 .press-badge{display:inline-flex;align-items:center;gap:.65rem;background:var(--ink3);border:1px solid var(--ln);padding:.55rem .95rem;margin-top:1.35rem;font-family:var(--lb);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:rgba(198,203,209,.38);transition:border-color .3s,color .3s;text-decoration:none}
 .press-badge:hover{border-color:rgba(198,203,209,.26);color:rgba(198,203,209,.6)}
 .press-badge svg{width:12px;height:12px;fill:none;stroke:rgba(198,203,209,.32);stroke-width:1.5;flex-shrink:0}
 .press-badge strong{color:rgba(198,203,209,.58)}
 
-/* ══ PROJECTEN ══ */
-.p-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr));gap:1.5rem}
-.proj{position:relative;overflow:hidden;background:var(--ink3);border:1px solid var(--hr);transition:border-color .5s}
+/* ══ PROJECTEN — uitklapbare case stories ══ */
+.p-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr));gap:1.5rem;align-items:start}
+.proj{position:relative;overflow:hidden;background:var(--ink3);border:1px solid var(--hr);transition:border-color .5s;cursor:pointer}
 .proj:hover{border-color:var(--ln)}
 .proj .imgwrap{overflow:hidden;position:relative}
 .proj img{width:100%;aspect-ratio:4/3;object-fit:cover;filter:brightness(.68) saturate(.55);transition:transform .9s,filter .9s;display:block}
 .proj:hover img{transform:scale(1.05);filter:brightness(.48) saturate(.44)}
 .proj .imgwrap::after{content:'';position:absolute;left:0;bottom:0;width:100%;height:2px;background:var(--tr);transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.3,1);z-index:3}
-.proj:hover .imgwrap::after{transform:scaleX(1)}
-.proj .cap{padding:1.45rem 1.35rem 1.65rem}
+.proj:hover .imgwrap::after,.proj.open .imgwrap::after{transform:scaleX(1)}
+.proj .cap{padding:1.45rem 1.35rem 1.2rem}
 .proj .tag{font-family:var(--lb);font-size:.55rem;letter-spacing:.22em;text-transform:uppercase;color:var(--pt);opacity:.62}
 .proj h3{font-size:1.18rem;margin:.48rem 0 .38rem}
-.proj p{font-size:.78rem;line-height:1.66}
-.veil{position:relative;overflow:hidden}
-.veil::before{content:'';position:absolute;inset:0;z-index:2;background:var(--ink3);transform:scaleX(1);transform-origin:right;transition:transform .9s cubic-bezier(.75,0,.25,1)}
-.veil.in::before{transform:scaleX(0)}
+.proj .cap > p{font-size:.78rem;line-height:1.66}
+/* toggle hint */
+.proj-toggle{display:flex;align-items:center;gap:.55rem;margin-top:.85rem;padding-top:.85rem;border-top:1px solid var(--hr);font-family:var(--lb);font-size:.56rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(198,203,209,.3);transition:color .3s}
+.proj:hover .proj-toggle,.proj.open .proj-toggle{color:var(--pt)}
+.proj-toggle-arrow{display:inline-block;transition:transform .45s cubic-bezier(.2,.7,.3,1);font-size:.7rem}
+.proj.open .proj-toggle-arrow{transform:rotate(180deg)}
+/* expandable story */
+.proj-story{max-height:0;overflow:hidden;transition:max-height .65s cubic-bezier(.2,.7,.3,1),padding .45s}
+.proj.open .proj-story{max-height:600px}
+.proj-story-inner{padding:1.25rem 1.35rem 1.55rem;border-top:1px solid var(--hr);background:rgba(255,255,255,.02)}
+.proj-story-inner p{font-size:.8rem;line-height:1.78;color:#aaa}
+.proj-story-inner .story-meta{display:flex;flex-wrap:wrap;gap:.4rem .85rem;margin-top:1rem}
+.proj-story-inner .story-tag{font-family:var(--lb);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(198,203,209,.35);display:flex;align-items:center;gap:.35rem}
+.proj-story-inner .story-tag::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--pt);flex-shrink:0}
 
 /* ══ QUOTE ══ */
 .quote{height:200vh;padding:0;background:var(--ink)}
@@ -351,347 +326,198 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   .q-pin{position:static;min-height:0;padding:0}
   .quote blockquote .qw{opacity:1;transition:none}
   html{scroll-behavior:auto}
+  .proj-story{max-height:none}
 }
+
+/* ══ CHAT BUBBLE ══ */
 .apex-bubble{
   position:fixed;bottom:2rem;right:2rem;z-index:9999;
   display:flex;align-items:center;gap:.55rem;
   background:rgba(255,255,255,.92);
   color:#080808;
-  padding:.75rem 1.05rem .75rem 1rem;
+  padding:.75rem 1.25rem .75rem 1rem;
   border-radius:999px;
   cursor:pointer;
-  box-shadow:0 22px 58px rgba(0,0,0,.24);
+  box-shadow:0 8px 32px rgba(0,0,0,.22);
   font-family:'Oswald',sans-serif;
   font-size:.72rem;letter-spacing:.16em;
   text-transform:uppercase;
-  border:1px solid rgba(255,255,255,.8);
+  border:none;outline:none;
   backdrop-filter:blur(16px);
-  transition:transform .32s,box-shadow .32s,background .32s;
+  transition:transform .3s,box-shadow .3s;
 }
-.apex-bubble:hover{
-  transform:translateY(-2px);
-  background:rgba(255,255,255,.99);
-  box-shadow:0 26px 64px rgba(0,0,0,.24);
-}
-.apex-bubble-dot{
-  width:8px;height:8px;border-radius:50%;
-  background:#009246;flex-shrink:0;
-  box-shadow:0 0 0 4px rgba(0,146,70,.12);
-  animation:bdot 2s ease-in-out infinite;
-}
-.apex-bubble-label{
-  display:inline-flex;
-  align-items:center;
-  gap:.45rem;
-  font-family:'Oswald',sans-serif;
-  font-size:.72rem;
-  color:#080808;
-  letter-spacing:.16em;
-}
-@keyframes bdot{
-  0%,100%{opacity:1;transform:scale(1)}
-  50%{opacity:.5;transform:scale(1.3)}
-}
+.apex-bubble:hover{transform:translateY(-2px);box-shadow:0 14px 42px rgba(0,0,0,.28)}
+.apex-bubble-dot{width:8px;height:8px;border-radius:50%;background:#009246;flex-shrink:0;animation:bdot 2s ease-in-out infinite}
+@keyframes bdot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
 
+/* ══ CHAT WINDOW ══ */
 .apex-chat-win{
   position:fixed;bottom:5.5rem;right:2rem;
-  z-index:9999;width:340px;
+  z-index:9999;width:360px;
   max-width:calc(100vw - 2rem);
-  background:rgba(12,12,12,.94);
-  border:1px solid rgba(255,255,255,.1);
-  border-radius:32px;
+  background:rgba(13,13,13,.97);
+  border:1px solid rgba(255,255,255,.09);
+  border-radius:20px;
   backdrop-filter:blur(28px);
-  box-shadow:0 32px 98px rgba(0,0,0,.32);
+  box-shadow:0 32px 80px rgba(0,0,0,.45);
   display:none;flex-direction:column;
   overflow:hidden;
 }
-.apex-chat-win::before{
-  content:'';
-  position:absolute;top:0;left:0;right:0;height:2px;
-  background:linear-gradient(90deg,#009246,#c6cbd1,#CE2B37);
-  opacity:.65;
-}
 .apex-chat-win.open{
   display:flex;
-  animation:chatwin .25s cubic-bezier(.2,.7,.3,1), fadeInSlide .35s ease both;
+  animation:chatwin .28s cubic-bezier(.2,.7,.3,1);
 }
-@keyframes fadeInSlide{
-  from{opacity:0;transform:translateY(12px)}
-  to{opacity:1;transform:none}
-}
-@keyframes chatwin{
-  from{opacity:0;transform:translateY(16px)}
-  to{opacity:1;transform:none}
-}
+@keyframes chatwin{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:none}}
 
+/* Chat header — clean, geen dubbele tekst */
 .chat-hdr{
-  background:rgba(19,19,19,.98);
-  border-bottom:1px solid rgba(255,255,255,.08);
-  padding:1rem 1.25rem 1rem 1.25rem;
+  background:rgba(19,19,19,.99);
+  border-bottom:1px solid rgba(255,255,255,.07);
+  padding:1rem 1.1rem .85rem;
   display:flex;align-items:center;gap:.85rem;
   position:relative;
 }
 .chat-hdr::before{
-  content:'';position:absolute;
-  top:0;left:0;right:0;height:2px;
+  content:'';position:absolute;top:0;left:0;right:0;height:2px;
   background:linear-gradient(90deg,#009246,#c6cbd1,#CE2B37);
 }
 .chat-hdr-av{
   width:36px;height:36px;border-radius:50%;
-  background:#c6cbd1;color:#080808;
-  display:flex;align-items:center;
-  justify-content:center;
+  background:linear-gradient(135deg,#c6cbd1,#e8ecf0);
+  color:#080808;
+  display:flex;align-items:center;justify-content:center;
   font-family:'Cormorant Garamond',serif;
-  font-size:1.1rem;font-weight:600;flex-shrink:0;
+  font-size:1.15rem;font-weight:600;flex-shrink:0;
 }
+.chat-hdr-info{display:flex;flex-direction:column;gap:.18rem}
 .chat-hdr-name{
   font-family:'Oswald',sans-serif;
-  font-size:.68rem;letter-spacing:.14em;
+  font-size:.7rem;letter-spacing:.16em;
   text-transform:uppercase;color:#e4e4e4;
-  margin-bottom:.15rem;
 }
-.chat-hdr-status{
-  display:flex;align-items:center;gap:.4rem;
-  font-size:.6rem;color:rgba(198,203,209,.4);
-  font-family:'Oswald',sans-serif;letter-spacing:.08em;
+.chat-hdr-sub{
+  font-family:'Cormorant Garamond',serif;
+  font-style:italic;
+  font-size:.82rem;
+  color:rgba(198,203,209,.38);
+  letter-spacing:.02em;
 }
-.chat-hdr-badge{
-  display:inline-flex;
-  padding:.25rem .6rem;
-  font-size:.58rem;
-  letter-spacing:.14em;
+.chat-online{
+  display:flex;align-items:center;gap:.38rem;
+  font-family:'Oswald',sans-serif;
+  font-size:.52rem;letter-spacing:.1em;
   text-transform:uppercase;
-  color:#e4e4e4;
-  background:linear-gradient(135deg,rgba(0,146,70,.14),rgba(255,255,255,.08),rgba(206,43,55,.14));
-  border:1px solid rgba(255,255,255,.12);
-  border-radius:999px;
+  color:rgba(198,203,209,.28);
+  margin-top:.08rem;
 }
-.chat-hdr-status::before{
-  content:'';width:6px;height:6px;
-  border-radius:50%;background:#009246;
-}
+.chat-online::before{content:'';width:5px;height:5px;border-radius:50%;background:#009246;flex-shrink:0}
 .chat-x{
-  width:28px;height:28px;margin-left:auto;
-  border:1px solid rgba(198,203,209,.15);
+  width:26px;height:26px;margin-left:auto;flex-shrink:0;
+  border:1px solid rgba(198,203,209,.12);
+  border-radius:6px;
   background:transparent;cursor:pointer;
-  display:flex;align-items:center;
-  justify-content:center;
-  color:rgba(198,203,209,.4);font-size:.85rem;
+  display:flex;align-items:center;justify-content:center;
+  color:rgba(198,203,209,.32);font-size:.8rem;
   transition:border-color .3s,color .3s;
 }
-.chat-x:hover{
-  border-color:rgba(198,203,209,.3);
-  color:#e4e4e4;
-}
+.chat-x:hover{border-color:rgba(198,203,209,.28);color:#e4e4e4}
 
+/* Chat berichten */
 .chat-msgs{
   flex:1;overflow-y:auto;
-  padding:1rem 1.1rem;
-  display:flex;flex-direction:column;
-  gap:.75rem;
-  max-height:340px;min-height:180px;
+  padding:.85rem 1rem;
+  display:flex;flex-direction:column;gap:.65rem;
+  max-height:320px;min-height:160px;
   scrollbar-width:thin;
-  scrollbar-color:rgba(198,203,209,.18) transparent;
-  background:rgba(255,255,255,.02);
-  border-radius:1.35rem 1.35rem 0 0;
+  scrollbar-color:rgba(198,203,209,.1) transparent;
 }
-.chat-msgs::-webkit-scrollbar{width:6px}
-.chat-msgs::-webkit-scrollbar-thumb{
-  background:rgba(198,203,209,.2);
-  border-radius:999px;
-}
-.chat-msgs::-webkit-scrollbar-track{
-  background:transparent;
-}
-
-.cmsg{
-  max-width:88%;font-size:.8rem;
-  line-height:1.65;padding:.65rem .9rem;
-  animation:msgin .2s ease;
-}
-@keyframes msgin{
-  from{opacity:0;transform:translateY(6px)}
-  to{opacity:1;transform:none}
-}
+.chat-msgs::-webkit-scrollbar{width:3px}
+.chat-msgs::-webkit-scrollbar-thumb{background:rgba(198,203,209,.15);border-radius:99px}
+.cmsg{max-width:88%;font-size:.8rem;line-height:1.65;padding:.6rem .85rem;animation:msgin .2s ease}
+@keyframes msgin{from{opacity:0;transform:translateY(5px)}to{opacity:1;transform:none}}
 .cmsg.bot{
-  background:#131313;
-  border:1px solid rgba(198,203,209,.18);
-  border-left:2px solid #c6cbd1;
+  background:rgba(255,255,255,.04);
+  border:1px solid rgba(255,255,255,.08);
+  border-left:2px solid rgba(198,203,209,.35);
   color:rgba(198,203,209,.82);
   align-self:flex-start;
+  border-radius:0 10px 10px 10px;
 }
 .cmsg.user{
-  background:rgba(198,203,209,.08);
-  border:1px solid rgba(198,203,209,.12);
+  background:rgba(198,203,209,.07);
+  border:1px solid rgba(198,203,209,.1);
   color:#e4e4e4;align-self:flex-end;
+  border-radius:10px 0 10px 10px;
 }
-.cmsg-lbl{
-  font-family:'Oswald',sans-serif;
-  font-size:.48rem;letter-spacing:.16em;
-  text-transform:uppercase;
-  color:rgba(198,203,209,.28);margin-bottom:.3rem;
-}
+.cmsg-lbl{font-family:'Oswald',sans-serif;font-size:.46rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(198,203,209,.22);margin-bottom:.28rem}
 
-.chat-typing{
-  display:flex;align-items:center;gap:4px;
-  padding:.65rem .9rem;
-  background:#131313;
-  border:1px solid rgba(198,203,209,.18);
-  border-left:2px solid #c6cbd1;
-  align-self:flex-start;
-}
-.chat-typing span{
-  width:5px;height:5px;border-radius:50%;
-  background:rgba(198,203,209,.35);
-  animation:tybounce .9s ease-in-out infinite;
-}
+/* Typing */
+.chat-typing{display:flex;align-items:center;gap:4px;padding:.6rem .85rem;background:rgba(255,255,255,.04);border:1px solid rgba(255,255,255,.08);border-left:2px solid rgba(198,203,209,.35);align-self:flex-start;border-radius:0 10px 10px 10px}
+.chat-typing span{width:5px;height:5px;border-radius:50%;background:rgba(198,203,209,.3);animation:tybounce .9s ease-in-out infinite}
 .chat-typing span:nth-child(2){animation-delay:.15s}
 .chat-typing span:nth-child(3){animation-delay:.3s}
-@keyframes tybounce{
-  0%,60%,100%{transform:translateY(0)}
-  30%{transform:translateY(-5px)}
-}
+@keyframes tybounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
 
+/* Quick buttons */
+.chat-quick{padding:.55rem 1rem;display:flex;flex-wrap:wrap;gap:.35rem;border-top:1px solid rgba(255,255,255,.05)}
+.chat-qbtn{font-family:'Oswald',sans-serif;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(198,203,209,.4);border:1px solid rgba(198,203,209,.12);border-radius:999px;background:transparent;padding:.3rem .65rem;cursor:pointer;transition:border-color .25s,color .25s,background .25s;white-space:nowrap}
+.chat-qbtn:hover{border-color:rgba(198,203,209,.28);color:#c6cbd1;background:rgba(198,203,209,.04)}
+
+/* Input rij — geen zwarte marge */
 .chat-inp-row{
-  display:flex;gap:0;
-  border-top:none;
-  background:transparent;
-  padding:.85rem 1rem;
-  border-bottom-left-radius:1rem;
-  border-bottom-right-radius:1rem;
-}
-.chat-contact-form{
-  display:none;flex-wrap:wrap;gap:.6rem;
-  padding:.95rem 1.1rem .75rem;
-  border-top:1px solid rgba(198,203,209,.08);
-  background:rgba(255,255,255,.03);
-}
-.chat-contact-form.open{
-  display:flex;
-}
-.chat-contact-input{
-  flex:1 1 100%;
-  min-width:0;
-  background:rgba(255,255,255,.05);
-  border:1px solid rgba(198,203,209,.12);
-  border-radius:.55rem;
-  padding:.78rem 1rem;
-  color:#f2f4f6;
-  font-family:'Montserrat',sans-serif;
-  font-size:.85rem;
-  transition:border-color .25s,box-shadow .25s,background .25s;
-}
-.chat-contact-input:focus{
-  border-color:#009246;
-  box-shadow:0 0 0 3px rgba(0,146,70,.12);
-  background:rgba(255,255,255,.1);
-}
-.chat-contact-btn{
-  flex:1 1 100%;
-  border:none;
-  border-radius:.55rem;
-  background:linear-gradient(90deg,#009246,#CE2B37);
-  color:#080808;
-  font-family:'Oswald',sans-serif;
-  font-size:.72rem;
-  text-transform:uppercase;
-  letter-spacing:.12em;
-  padding:.95rem 1rem;
-  cursor:pointer;
-  transition:opacity .25s,transform .25s,box-shadow .25s;
-  box-shadow:0 16px 36px rgba(0,0,0,.18);
-}
-.chat-contact-btn:hover{
-  opacity:.96;
-  transform:translateY(-1px);
-}
-.chat-toast{
-  display:none;
-  align-items:center;
-  justify-content:center;
-  min-height:44px;
-  margin:0 1.1rem .75rem;
-  padding:.8rem 1.05rem;
-  border-radius:999px;
-  background:rgba(255,255,255,.08);
-  border:1px solid rgba(255,255,255,.14);
-  color:#f7f8f9;
-  font-size:.84rem;
-  text-align:center;
-  letter-spacing:.01em;
-  backdrop-filter:blur(18px);
-  opacity:0;
-  transform:translateY(8px);
-  pointer-events:none;
-  transition:opacity .28s ease,transform .28s ease;
-}
-.chat-toast.visible{
-  display:flex;
-  opacity:1;
-  transform:translateY(0);
+  display:flex;align-items:center;gap:.5rem;
+  padding:.75rem 1rem;
+  border-top:1px solid rgba(255,255,255,.06);
+  background:rgba(255,255,255,.02);
 }
 .chat-inp{
-  flex:1;background:rgba(19,19,19,.96);
-  border:1px solid rgba(198,203,209,.12);
+  flex:1;
+  background:rgba(255,255,255,.05);
+  border:1px solid rgba(198,203,209,.1);
   border-radius:999px;
   outline:none;
-  padding:.92rem 1rem;
+  padding:.72rem 1rem;
   font-family:'Montserrat',sans-serif;
-  font-size:.84rem;font-weight:300;
+  font-size:.82rem;font-weight:300;
   color:#e4e4e4;
+  transition:border-color .25s,background .25s;
 }
-.chat-inp::placeholder{color:rgba(198,203,209,.35)}
+.chat-inp:focus{border-color:rgba(198,203,209,.22);background:rgba(255,255,255,.07)}
+.chat-inp::placeholder{color:rgba(198,203,209,.25)}
 .chat-send-btn{
-  width:56px;
-  min-width:56px;
-  background:rgba(255,255,255,.06);
-  border:none;
-  outline:none;
-  padding:.82rem;
-  border-radius:999px;
-  cursor:pointer;
-  color:rgba(198,203,209,.45);
+  width:38px;height:38px;flex-shrink:0;
+  background:rgba(198,203,209,.1);
+  border:1px solid rgba(198,203,209,.15);
+  border-radius:50%;
+  outline:none;cursor:pointer;
+  color:rgba(198,203,209,.55);
   transition:color .25s,background .25s,transform .25s;
   display:flex;align-items:center;justify-content:center;
+  font-size:1rem;
 }
-.chat-send-btn:hover{
-  color:#fff;
-  background:rgba(255,255,255,.16);
-  transform:translateY(-1px);
-}
-.chat-send-btn:disabled{opacity:.35;cursor:not-allowed}
-@keyframes fadein{
-  from{opacity:0;transform:translateY(6px)}
-  to{opacity:1;transform:none}
-}
-/* Knipperende cursor tijdens laden */
-.chat-cursor {
-  display: inline-block;
-  animation: blink .7s step-end infinite;
-  color: var(--pt);
-  font-size: .7rem;
-}
-@keyframes blink {
-  0%, 100% { opacity: 1; }
-  50%       { opacity: 0; }
-}
-.chat-foot{
-  padding:.45rem 1.1rem;
-  background:rgba(10,10,10,.95);
-  border-top:1px solid rgba(255,255,255,.04);
-  font-family:'Oswald',sans-serif;
-  font-size:.48rem;letter-spacing:.12em;
-  text-transform:uppercase;
-  color:rgba(198,203,209,.2);
-  text-align:center;
-}
+.chat-send-btn:hover{color:#fff;background:rgba(198,203,209,.18);transform:scale(1.05)}
+.chat-send-btn:disabled{opacity:.3;cursor:not-allowed;transform:none}
+
+/* Contact form */
+.chat-contact-form{display:none;flex-wrap:wrap;gap:.5rem;padding:.85rem 1rem .65rem;border-top:1px solid rgba(255,255,255,.05)}
+.chat-contact-form.open{display:flex}
+.chat-contact-input{flex:1 1 100%;background:rgba(255,255,255,.05);border:1px solid rgba(198,203,209,.1);border-radius:8px;padding:.65rem .9rem;color:#f2f4f6;font-family:'Montserrat',sans-serif;font-size:.82rem;outline:none;transition:border-color .25s}
+.chat-contact-input:focus{border-color:rgba(0,146,70,.4)}
+.chat-contact-btn{flex:1 1 100%;border:none;border-radius:8px;background:linear-gradient(90deg,rgba(0,146,70,.8),rgba(198,203,209,.6));color:#080808;font-family:'Oswald',sans-serif;font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;padding:.85rem 1rem;cursor:pointer;transition:opacity .25s}
+.chat-contact-btn:hover{opacity:.88}
+
+/* Toast */
+.chat-toast{display:none;align-items:center;justify-content:center;margin:.5rem 1rem;padding:.65rem 1rem;border-radius:999px;background:rgba(0,146,70,.12);border:1px solid rgba(0,146,70,.22);color:rgba(198,203,209,.7);font-size:.76rem;text-align:center;opacity:0;transform:translateY(6px);transition:opacity .28s,transform .28s}
+.chat-toast.visible{display:flex;opacity:1;transform:none}
+
+.chat-foot{padding:.4rem 1rem;background:rgba(8,8,8,.6);border-top:1px solid rgba(255,255,255,.04);font-family:'Oswald',sans-serif;font-size:.46rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(198,203,209,.15);text-align:center}
+
+/* Cursor */
+.chat-cursor{display:inline-block;animation:blink .7s step-end infinite;color:var(--pt);font-size:.7rem}
+@keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
+
 @media(max-width:480px){
-  .apex-chat-win{
-    bottom:0;right:0;left:0;
-    width:100%;max-width:100%;
-    border-left:none;border-right:none;
-    border-bottom:none;
-  }
+  .apex-chat-win{bottom:0;right:0;left:0;width:100%;max-width:100%;border-radius:20px 20px 0 0;border-left:none;border-right:none;border-bottom:none}
   .apex-bubble{bottom:1rem;right:1rem}
 }
 </style>
@@ -700,37 +526,46 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 
 <div id="progress"></div>
 
+<!-- Chat bubble -->
 <button class="apex-bubble" type="button" onclick="apexToggle()" aria-label="Open chat">
   <span class="apex-bubble-dot"></span>
-  <span class="apex-bubble-label">Chat</span>
+  Chat met ons
 </button>
 
+<!-- Chat venster -->
 <div class="apex-chat-win" id="apex-chat-win" aria-live="polite">
   <div class="chat-hdr">
     <div class="chat-hdr-av" aria-hidden="true">A</div>
-    <div>
-      <div class="chat-hdr-name">APEXclusive Adviseur</div>
-      <div class="chat-hdr-status">Discreet, direct en verfijnd advies</div>
-      <div class="chat-hdr-badge">Maastricht · Premium service</div>
+    <div class="chat-hdr-info">
+      <div class="chat-hdr-name">APEXclusive</div>
+      <div class="chat-hdr-sub">Private Vehicle Advisory</div>
+      <div class="chat-online">Online · reageert direct</div>
     </div>
     <button class="chat-x" type="button" onclick="apexToggle()" aria-label="Sluit chat">✕</button>
   </div>
   <div id="apex-msgs" class="chat-msgs"></div>
-  <div id="apex-toast" class="chat-toast" aria-live="polite"></div>
+  <div id="apex-toast" class="chat-toast"></div>
   <div class="chat-contact-form" id="apex-contact-form">
-    <input id="apex-contact-name" class="chat-contact-input" type="text" placeholder="Naam">
-    <input id="apex-contact-email" class="chat-contact-input" type="email" placeholder="E-mail">
-    <input id="apex-contact-phone" class="chat-contact-input" type="tel" placeholder="06-nummer">
-    <button class="chat-contact-btn" type="button" onclick="apexSubmitContact()">Stuur contact</button>
+    <input id="apex-contact-name"  class="chat-contact-input" type="text"  placeholder="Naam">
+    <input id="apex-contact-email" class="chat-contact-input" type="email" placeholder="E-mailadres">
+    <input id="apex-contact-phone" class="chat-contact-input" type="tel"   placeholder="06-nummer">
+    <button class="chat-contact-btn" type="button" onclick="apexSubmitContact()">Verstuur contactgegevens</button>
+  </div>
+  <div class="chat-quick" id="apex-quick">
+    <button class="chat-qbtn" type="button" onclick="apexQuick('BPM kosten')">BPM kosten</button>
+    <button class="chat-qbtn" type="button" onclick="apexQuick('Importproces')">Importproces</button>
+    <button class="chat-qbtn" type="button" onclick="apexQuick('Bijkomende kosten')">Bijkomende kosten</button>
+    <button class="chat-qbtn" type="button" onclick="apexQuick('Over APEXclusive')">Over APEXclusive</button>
+    <button class="chat-qbtn" type="button" onclick="apexRequestTransfer()">Adviseur spreken</button>
   </div>
   <div class="chat-inp-row">
-    <input id="apex-inp" class="chat-inp" type="text" placeholder="Laat uw vraag achter..." autocomplete="off">
-    <button id="apex-send" class="chat-send-btn" type="button" onclick="apexSend()" aria-label="Verstuur bericht">→</button>
+    <input id="apex-inp" class="chat-inp" type="text" placeholder="Stel uw vraag..." autocomplete="off">
+    <button id="apex-send" class="chat-send-btn" type="button" onclick="apexSend()" aria-label="Verstuur">→</button>
   </div>
   <div class="chat-foot">APEXclusive · Maastricht · AI Adviseur · Geen financieel advies</div>
 </div>
 
-<!-- ══ NAV ══ -->
+<!-- NAV -->
 <nav id="nav">
   <a href="#top" class="brand">
     <span class="brand-apex">APEX</span>
@@ -739,7 +574,6 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   </a>
   <div class="navlinks" id="navlinks">
     <a href="#tools">Tools</a>
-    <a href="#import">Import</a>
     <a href="#werkwijze">Werkwijze</a>
     <a href="#over">Over ons</a>
     <a href="#projecten">Projecten</a>
@@ -751,17 +585,13 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 
 <div id="mm">
   <a href="#tools"     style="transition-delay:.05s">Tools</a>
-  <a href="#import"    style="transition-delay:.1s">Import</a>
-  <a href="#werkwijze" style="transition-delay:.15s">Werkwijze</a>
-  <a href="#over"      style="transition-delay:.2s">Over ons</a>
-  <a href="#projecten" style="transition-delay:.25s">Projecten</a>
-  <a href="#contact"   style="transition-delay:.3s;color:var(--pt)">Contact</a>
+  <a href="#werkwijze" style="transition-delay:.1s">Werkwijze</a>
+  <a href="#over"      style="transition-delay:.15s">Over ons</a>
+  <a href="#projecten" style="transition-delay:.2s">Projecten</a>
+  <a href="#contact"   style="transition-delay:.25s;color:var(--pt)">Contact</a>
 </div>
 
-<!-- ══ 1. HERO ══
-     Eerste indruk: emotie + belofte + CTA
-     Volgorde logisch: zie wie we zijn → dan bewijs
-═════════════════════════════════════════ -->
+<!-- HERO -->
 <header class="hero" id="top">
   <div class="hero-bg">
     <img
@@ -775,9 +605,9 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   <div class="livery" aria-hidden="true"></div>
   <div class="hero-inner">
     <div class="hero-content" id="heroContent">
-      <p class="sub">Automotive Advisory · Maastricht</p>
+      <p class="sub">Private Vehicle Advisory · Maastricht</p>
       <h1>Uw droomauto,<br><em>zonder risico geïmporteerd.</em></h1>
-      <p class="lead">Wij sporen uitzonderlijke auto's op in heel Europa, beoordelen ze volledig onafhankelijk en regelen alles — van eerste gesprek tot sleuteloverdracht.</p>
+      <p class="lead">Wij sporen uitzonderlijke voertuigen op door heel Europa, beoordelen ze volledig onafhankelijk en regelen alles — van eerste gesprek tot sleuteloverdracht aan huis.</p>
       <div class="cta-row">
         <a href="#contact" class="btn"><span>Vrijblijvend gesprek</span></a>
         <a href="#tools"   class="btn gh"><span>Bekijk onze tools</span></a>
@@ -787,10 +617,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   <div class="scrollcue" id="cue"><i></i> Scroll</div>
 </header>
 
-<!-- ══ 2. TRUST STRIP ══
-     Direct na hero: snel vertrouwen opbouwen
-     EU · 100% · A-Z · Krant
-═════════════════════════════════════════ -->
+<!-- TRUST STRIP -->
 <div class="trust">
   <div class="trust-inner">
     <div class="ti rv">
@@ -806,11 +633,6 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
       <div class="ti-lbl">Volledig geregeld<br>tot aan de deur</div>
     </div>
     <div class="ti rv">
-      <!--
-        De Limburger link — opent artikel in nieuw tabblad
-        Staat in trust strip: geloofwaardigheidssignaal direct na hero
-        Perfecte plek: vroeg in de pagina, subtiel maar krachtig
-      -->
       <a href="https://www.limburger.nl/regio/roermond/autofanaat-martijn-37-uit-roermond-is-gek-op-snelle-sportauto-s-en-laat-anderen-graag-meegenieten-van-zijn-passie/22277510.html"
          target="_blank" rel="noopener"
          style="text-decoration:none;display:flex;align-items:center;gap:.85rem;width:100%">
@@ -822,10 +644,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   </div>
 </div>
 
-<!-- ══ 3. ANGST-BREAKER ══
-     Bezwaren wegnemen VOORDAT ze tools zien
-     Logisch: eerst twijfels weg → dan actie
-═════════════════════════════════════════ -->
+<!-- FEAR BREAKER -->
 <div class="fear">
   <div class="fear-grid">
     <div class="fi-item rv">
@@ -851,10 +670,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   </div>
 </div>
 
-<!-- ══ 4. TOOLS ══
-     Na angst wegnemen: nu zijn ze klaar voor actie
-     Tools = lage drempel instap, of beslissen om uit te besteden
-═════════════════════════════════════════ -->
+<!-- TOOLS -->
 <section class="tools-sec" id="tools">
   <div class="wrap">
     <div class="tools-intro rv">
@@ -866,16 +682,14 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
       <h2>Bereken en controleer — voordat u beslist.</h2>
       <p class="lead">Drie instrumenten die wij zelf dagelijks inzetten. Direct beschikbaar, zonder registratie.</p>
     </div>
-
     <div class="tip-bar rv">
       <div class="tip-dot"></div>
       <p><strong>Tip van Martijn:</strong> Voer altijd eerst de kentekencheck en BPM-berekening uit voordat u een bod uitbrengt op een buitenlandse auto. Het kan u duizenden euro's schelen.</p>
     </div>
-
     <div class="tgrid rv">
       <a class="tc" href="https://bpm.apexclusive.nl">
         <div class="tc-photo">
-          <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=620,q_55,auto=format" alt="BPM Calculator" loading="lazy" decoding="async">
+          <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=620&q=55&auto=format" alt="BPM Calculator" loading="lazy" decoding="async">
           <div class="tc-fade"></div>
         </div>
         <div class="tc-body">
@@ -913,7 +727,6 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         </div>
       </a>
     </div>
-
     <div class="tools-cta rv">
       <p class="ey c">
         <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
@@ -927,66 +740,10 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   </div>
 </section>
 
-<!-- ══ 5. IMPORT — Europa is uw showroom ══
-     Wat doen we concreet? Showreel van aanpak
-     Luxe Unsplash nacht-skyline foto ipv dots kaart
-═════════════════════════════════════════ -->
-<section id="import" style="background:var(--ink2)">
-  <div class="wrap">
-    <div class="imp-grid">
-      <div class="imp-visual rv">
-        <div class="imp-img">
-          <!--
-            Luxe Europese nacht-skyline foto (Unsplash)
-            Vervangt de dots-kaart — veel sjieker, past beter bij premium merk
-            Alternatieven ook mooi: Parijs, Duomo Milano, Berlijn bij nacht
-          -->
-          <img
-            src="https://images.unsplash.com/photo-1467269204594-9661b134dd2b?w=850&q=58&auto=format"
-            alt="Europa — uw zoekgebied" loading="lazy" decoding="async">
-          <div class="imp-strip"><span></span><span></span><span></span></div>
-          <div class="imp-card">
-            <div class="imp-card-lbl">Actief zoekgebied</div>
-            <div class="imp-countries">
-              <div class="ic"><span class="ic-dot"></span>Duitsland</div>
-              <div class="ic"><span class="ic-dot"></span>België</div>
-              <div class="ic"><span class="ic-dot"></span>Italië</div>
-              <div class="ic"><span class="ic-dot"></span>Spanje</div>
-              <div class="ic"><span class="ic-dot"></span>Zweden</div>
-              <div class="ic"><span class="ic-dot"></span>Luxemburg</div>
-              <div class="ic"><span class="ic-dot"></span>Frankrijk</div>
-            </div>
-          </div>
-        </div>
-      </div>
-      <div class="rv">
-        <p class="ey">
-          <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
-          Importbegeleiding
-        </p>
-        <h2>Europa is uw showroom. Wij zijn uw gids.</h2>
-        <p class="lead" style="margin-bottom:1.35rem">De mooiste exemplaren staan zelden bij een Nederlandse dealer. Wij doorzoeken heel Europa en regelen het volledige importtraject — zonder dat u er wakker van hoeft te liggen.</p>
-        <div class="imp-steps">
-          <div class="imp-step"><div class="imp-step-n">01</div><div><div class="imp-step-t">Voertuig opsporen</div><div class="imp-step-d">Wij doorzoeken ons Europese netwerk op voertuigen die voldoen aan uw exacte wensen en budget.</div></div></div>
-          <div class="imp-step"><div class="imp-step-n">02</div><div><div class="imp-step-t">Keuring ter plaatse — op verzoek</div><div class="imp-step-d">Op verzoek regelen wij een onafhankelijke aankoopkeuring bij de verkoper. U beslist pas na groen licht.</div></div></div>
-          <div class="imp-step"><div class="imp-step-n">03</div><div><div class="imp-step-t">BPM-taxatie &amp; afhandeling</div><div class="imp-step-d">Volledige coördinatie via erkende partners. Transparant, geen verrassingen.</div></div></div>
-          <div class="imp-step"><div class="imp-step-n">04</div><div><div class="imp-step-t">Rijklaar afgeleverd aan huis</div><div class="imp-step-d">RDW-keuring, kenteken en montage bij u thuis. U stapt in — klaar.</div></div></div>
-        </div>
-        <div style="margin-top:2rem"><a href="#contact" class="btn"><span>Import bespreken</span></a></div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ 6. WERKWIJZE ══
-     Diensten en werkwijze SAMENGEVOEGD tot één sectie
-     Diensten staan nu als stappen IN de werkwijze
-     → Geen overlap, compacter, verticale scroll-animatie behouden
-═════════════════════════════════════════ -->
+<!-- WERKWIJZE — import sectie verwijderd, werkwijze blijft met premium look -->
 <section id="werkwijze">
   <div class="wrap">
     <div class="ww-layout">
-      <!-- Links: sticky uitleg -->
       <div class="ww-sticky rv">
         <p class="ey">
           <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
@@ -994,39 +751,35 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         </p>
         <h2>Van eerste gesprek tot sleuteloverdracht.</h2>
         <div class="rule" style="margin-bottom:1.5rem"></div>
-        <p style="margin-bottom:1.25rem">Elk traject begint met luisteren — en eindigt pas wanneer u volledig tevreden achter het stuur zit.</p>
-        <p>Transparant van start tot finish. Persoonlijk. Volledig op maat.</p>
-        <!-- Sleuteloverdracht foto -->
+        <p style="margin-bottom:1.25rem">Elk traject begint met luisteren. Het eindigt pas wanneer u volledig tevreden achter het stuur zit — in een auto die precies past bij uw wensen, budget en karakter.</p>
+        <p>Wij doorzoeken heel Europa. Duitsland, Italië, België, Luxemburg, Zweden — uw droomauto staat ergens. Wij vinden hem.</p>
         <div class="sleutels-wrap" style="margin-top:2rem">
-          <img
-            src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=700&q=55&auto=format"
-            alt="Sleuteloverdracht" loading="lazy" decoding="async">
+          <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=700&q=55&auto=format" alt="Sleuteloverdracht" loading="lazy" decoding="async">
           <div class="sleutels-quote">
             <p>"Van eerste gesprek tot sleuteloverdracht — alles geregeld, niets vergeten."</p>
             <cite>— Martijn Puts · Founder APEXclusive</cite>
           </div>
         </div>
       </div>
-      <!-- Rechts: verticale stappen -->
       <div class="rv">
         <div class="steps" id="steps">
           <div class="step rv">
             <span class="dot"></span>
             <span class="k">Stap 01</span>
             <h3>Intake &amp; wensen</h3>
-            <p>Persoonlijk gesprek over uw wensen, budget en rijervaring. Zonder verplichtingen.</p>
+            <p>Persoonlijk gesprek over uw wensen, budget en rijervaring. Zonder verplichtingen, zonder haast.</p>
           </div>
           <div class="step rv">
             <span class="dot"></span>
             <span class="k">Stap 02</span>
-            <h3>Zoeken &amp; screenen</h3>
-            <p>Wij doorzoeken netwerk en Europese markt. Inclusief bronnen waar anderen niet kijken.</p>
+            <h3>Europa doorzoeken</h3>
+            <p>Wij doorzoeken ons netwerk en de volledige Europese markt — inclusief bronnen waar anderen niet kijken.</p>
           </div>
           <div class="step rv">
             <span class="dot"></span>
             <span class="k">Stap 03</span>
-            <h3>Keuring ter plaatse — op verzoek</h3>
-            <p>Op verzoek regelen wij een onafhankelijke aankoopkeuring bij de verkoper. U beslist pas na groen licht.</p>
+            <h3>Keuring ter plaatse</h3>
+            <p>Op verzoek regelen wij een onafhankelijke aankoopkeuring bij de verkoper, waar in Europa ook. U beslist pas na groen licht.</p>
           </div>
           <div class="step rv">
             <span class="dot"></span>
@@ -1038,13 +791,13 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
             <span class="dot"></span>
             <span class="k">Stap 05</span>
             <h3>BPM-taxatie &amp; import</h3>
-            <p>Volledige importafhandeling via erkende partners. Transparant en zonder onverwachte kosten.</p>
+            <p>Volledige importafhandeling via erkende partners. Transparant, zonder onverwachte kosten.</p>
           </div>
           <div class="step rv">
             <span class="dot"></span>
             <span class="k">Stap 06</span>
             <h3>RDW-keuring &amp; kenteken aan huis</h3>
-            <p>Verplichte RDW-keuring en kentekenmontage direct bij u thuis. U rijdt pas als alles klopt.</p>
+            <p>Verplichte RDW-keuring en kentekenmontage direct bij u thuis. U rijdt pas als alles klopt — en de platen hangen er al op.</p>
           </div>
         </div>
         <div style="margin-top:2.5rem;padding-top:2rem;border-top:1px solid var(--hr)">
@@ -1055,10 +808,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   </div>
 </section>
 
-<!-- ══ 7. OVER ONS ══
-     Na werkwijze: wie staat hier achter?
-     Geloofwaardigheid, passie, eigen ervaring
-═════════════════════════════════════════ -->
+<!-- OVER ONS -->
 <section id="over" style="background:var(--ink2)">
   <div class="wrap">
     <div class="about-grid">
@@ -1073,21 +823,22 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
           <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
           Over de oprichter
         </p>
-        <h2>Piloot. Autofanaat. Meer dan tien jaar ervaring met exclusieve auto's.</h2>
+        <h2>Piloot. Importeur. Meer dan tien jaar achter het stuur van het uitzonderlijke.</h2>
         <div class="rule" style="margin-bottom:1.6rem"></div>
 
-        <p style="margin-bottom:1rem">APEXclusive is ontstaan vanuit een eenvoudige overtuiging: wie investeert in een bijzonder voertuig, verdient begeleiding die daar volledig bij past.</p>
+        <p style="margin-bottom:1.1rem;color:#bbb;font-size:.9rem;line-height:1.82">APEXclusive is ontstaan vanuit een eenvoudige overtuiging: wie investeert in een bijzonder voertuig, verdient begeleiding die daar volledig bij past — discreet, doordacht en zonder compromissen.</p>
 
-        <p style="margin-bottom:1rem">Als professioneel piloot zijn precisie, voorbereiding en oog voor detail geen eigenschappen — het zijn gewoontes die ik elke dag meeneem in elk adviestraject.</p>
+        <p style="margin-bottom:1.1rem;color:#bbb;font-size:.9rem;line-height:1.82">Als professioneel piloot zijn precisie, voorbereiding en oog voor detail geen kwaliteiten — het zijn gewoontes. Die breng ik mee in elk adviestraject.</p>
 
-        <p style="margin-bottom:1.65rem">Wat mij onderscheidt is dat ik niet alleen adviseur ben, maar zelf liefhebber én importeur. In meer dan tien jaar heb ik unieke auto's persoonlijk uit heel Europa naar Nederland gehaald — van een McLaren 650S Spyder uit België en een Lamborghini Huracán uit Zweden tot een Audi RS6 uit Duitsland. Die directe ervaring vormt de basis van het service‑niveau dat ik mijn klanten bied: discreet, zorgeloos en altijd met oog voor detail.</p>
+        <p style="margin-bottom:1.65rem;color:#bbb;font-size:.9rem;line-height:1.82">Ik importeer al meer dan tien jaar exclusieve auto's voor mezelf. Van een <em>McLaren 650S Spyder</em> uit België tot een <em>Lamborghini Huracán LP610</em> uit Zweden en een <em>Lamborghini Urus</em> rechtstreeks van een Luxemburgse dealerpartner — elke aankoop was een leermoment. Die kennis, dat netwerk en die directe marktervaring zet ik nu volledig in voor mijn klanten. Zonder tussenmarges. Zonder verborgen belangen.</p>
 
+        <!-- Garage scroll — ja, dit werkt: het toont authenticiteit en passie -->
         <div class="garage-section">
-          <div class="garage-label">Eigen rijervaring — selectie uit de garage</div>
+          <div class="garage-label">Eigen rijervaring — een selectie uit de garage</div>
           <div class="garage-scroll">
             <div class="garage-card">
               <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_300,q_52,f_auto/v1786123838/WhatsApp_Image_2025-05-20_at_01.01.02_nh95ep.jpg" alt="Lamborghini Huracán" loading="lazy" decoding="async">
-              <div class="garage-card-lbl">Lamborghini Huracán · Import</div>
+              <div class="garage-card-lbl">Lamborghini Huracán · Import Zweden</div>
             </div>
             <div class="garage-card">
               <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_300,q_52,f_auto/v1786123971/Scherm_afbeelding_2026-08-07_om_19.32.35_jnsz99.jpg" alt="McLaren 650S Spyder" loading="lazy" decoding="async">
@@ -1108,7 +859,6 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
           </div>
         </div>
 
-        <!-- Krant: aparte badge, niet in trust strip — logischer hier bij persoonlijk verhaal -->
         <a href="https://www.limburger.nl/regio/roermond/autofanaat-martijn-37-uit-roermond-is-gek-op-snelle-sportauto-s-en-laat-anderen-graag-meegenieten-van-zijn-passie/22277510.html"
            class="press-badge" target="_blank" rel="noopener">
           <svg viewBox="0 0 24 24"><path d="M4 22h16a2 2 0 0 0 2-2V4a2 2 0 0 0-2-2H8a2 2 0 0 0-2 2v16a2 2 0 0 0-2 2zm0 0a2 2 0 0 1-2-2v-9c0-1.1.9-2 2-2h2"/><path d="M18 14h-8M15 18h-5M10 6h8v4h-8z"/></svg>
@@ -1116,16 +866,13 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         </a>
 
         <p class="sig">Martijn Puts</p>
-        <p class="role">Founder &amp; Private Vehicle Advisor</p>
+        <p class="role">Founder &amp; Private Vehicle Advisor · Maastricht</p>
       </div>
     </div>
   </div>
 </section>
 
-<!-- ══ 8. PROJECTEN ══
-     Bewijs: dit hebben we al gerealiseerd
-     Versterkt vertrouwen vlak voor tarieven en contact
-═════════════════════════════════════════ -->
+<!-- PROJECTEN — uitklapbare case stories -->
 <section id="projecten">
   <div class="wrap">
     <div class="head rv">
@@ -1133,60 +880,100 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
         Gerealiseerde projecten
       </p>
-      <h2>Drie recente opdrachten.</h2>
-      <p class="lead">Elk voertuig persoonlijk begeleid, onafhankelijk gekeurd en rijklaar afgeleverd aan een tevreden eigenaar.</p>
+      <h2>Drie voertuigen. Drie verhalen.</h2>
+      <p class="lead">Elk exemplaar persoonlijk geselecteerd, onafhankelijk beoordeeld en rijklaar afgeleverd. Klik op een project voor het volledige verhaal.</p>
     </div>
     <div class="p-grid">
-      <article class="proj rv">
+
+      <!-- Project 1 -->
+      <article class="proj rv" onclick="projToggle(this)">
         <div class="imgwrap veil">
           <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_720,q_55,f_auto/v1786123838/WhatsApp_Image_2025-05-20_at_01.01.02_nh95ep.jpg" alt="Lamborghini Huracán LP610 Spyder" loading="lazy" decoding="async">
         </div>
         <div class="cap">
-          <span class="tag">Persoonlijke import · Zweden</span>
+          <span class="tag">Persoonlijke import · Zweden &amp; Noord-Duitsland</span>
           <h3>Lamborghini Huracán LP610 Spyder</h3>
-          <p>610 pk · V10 · Eerste eigenaar · Volledig PPF · Titanium F1-uitlaat · Ingeruild tegen McLaren 650S Spyder.</p>
-          <div class="proj-more">Klik voor case story</div>
+          <p>610 pk · V10 · Één eigenaar · Volledig PPF · Titanium F1-uitlaat</p>
+          <div class="proj-toggle">
+            <span>Lees het verhaal</span>
+            <span class="proj-toggle-arrow">↓</span>
+          </div>
         </div>
-        <div class="proj-details">
-          <p>Deze Huracán kwam uit Zweden, één eigenaar, en stond te koop in Noord-Duitsland. Hij werd persoonlijk geselecteerd in het veld en vervolgens rechtstreeks naar Nederland gebracht via een veilige importroute met volledige RDW- en BPM-afhandeling.</p>
+        <div class="proj-story">
+          <div class="proj-story-inner">
+            <p>Deze Huracán LP610 Spyder had zijn leven begonnen in Zweden — één eigenaar, perfecte onderhoudshistorie en voorzien van een volledig PPF-folie en een titanium F1-uitlaat. Na de nodige research stond hij te koop bij een privéverkoper in Noord-Duitsland. Ter plaatse persoonlijk beoordeeld, onderhandeld en aangeschaft. De McLaren 650S Spyder die ervoor ingeleverd werd, was zelf ooit geïmporteerd uit België. Zo werkt de cirkel van passie en kennis.</p>
+            <div class="story-meta">
+              <span class="story-tag">Import uit Noord-Duitsland</span>
+              <span class="story-tag">Oorsprong Zweden · 1 eigenaar</span>
+              <span class="story-tag">Volledig PPF</span>
+              <span class="story-tag">Titanium F1-uitlaat</span>
+              <span class="story-tag">Ingeruild tegen McLaren 650S</span>
+            </div>
+          </div>
         </div>
       </article>
-      <article class="proj rv">
+
+      <!-- Project 2 -->
+      <article class="proj rv" onclick="projToggle(this)">
         <div class="imgwrap veil">
           <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_720,q_55,f_auto/v1786111940/987D691B-FFBF-4137-9766-15DEF62F5CD4_1_201_a_k1eyvp.jpg" alt="Lamborghini Urus" loading="lazy" decoding="async">
         </div>
         <div class="cap">
           <span class="tag">Persoonlijke import · Luxemburg</span>
           <h3>Lamborghini Urus</h3>
-          <p>650 pk · V8 Twin-Turbo · Luxemburgse luxury dealer · 5 jaar Lamborghini Service Warranty inclusief onderhoud.</p>
-          <div class="proj-more">Klik voor case story</div>
+          <p>650 pk · V8 Twin-Turbo · Exclusieve dealer · 5 jaar Lamborghini Service Warranty</p>
+          <div class="proj-toggle">
+            <span>Lees het verhaal</span>
+            <span class="proj-toggle-arrow">↓</span>
+          </div>
         </div>
-        <div class="proj-details">
-          <p>Deze Urus kocht ik bij een zeer exclusieve dealer in Luxemburg. Hij kwam per gesloten transport naar Nederland, waarna ter plekke de taxatie, RDW-keuring en luxe kentekenafhandeling zijn gedaan — inclusief snelle levering van de nummerplaten na afronden van het BPM-proces.</p>
+        <div class="proj-story">
+          <div class="proj-story-inner">
+            <p>Deze Urus werd aangekocht bij een zeer exclusieve Lamborghini-dealer in Luxemburg — een partner waarmee een vertrouwensrelatie bestaat. Het voertuig werd per gesloten transport naar Nederland gebracht. Ter plaatse, aan huis, vonden de BPM-taxatie en de RDW-keuring plaats. De luxe kentekenplaten werden kort na het afronden van het BPM-proces geleverd. Een volledig zorgeloos traject — precies zoals het hoort.</p>
+            <div class="story-meta">
+              <span class="story-tag">Luxemburgse premium dealer</span>
+              <span class="story-tag">Gesloten transport naar Nederland</span>
+              <span class="story-tag">Taxatie &amp; RDW aan huis</span>
+              <span class="story-tag">5 jaar Service Warranty</span>
+              <span class="story-tag">BPM volledig uit handen genomen</span>
+            </div>
+          </div>
         </div>
       </article>
-      <article class="proj rv">
+
+      <!-- Project 3 -->
+      <article class="proj rv" onclick="projToggle(this)">
         <div class="imgwrap veil">
           <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_720,q_55,f_auto/v1786112182/8112FE63-03BD-4C6D-9A40-1217FCD5910F_1_201_a_vbazdb.heic" alt="Audi RS6 Avant C8" loading="lazy" decoding="async">
         </div>
         <div class="cap">
           <span class="tag">Aankoopbegeleiding · Duitsland</span>
           <h3>Audi RS6 Avant C8</h3>
-          <p>600 pk · V8 TFSI · Audi Approved · 24 maanden garantie · BPM-afhandeling en NL-registratie inbegrepen.</p>
-          <div class="proj-more">Klik voor case story</div>
+          <p>600 pk · V8 TFSI · Één eigenaar · Audi Approved · 12 maanden garantie</p>
+          <div class="proj-toggle">
+            <span>Lees het verhaal</span>
+            <span class="proj-toggle-arrow">↓</span>
+          </div>
         </div>
-        <div class="proj-details">
-          <p>Deze RS6 kwam rechtstreeks uit Duitsland van een fysiotherapeut met één eigenaar. De auto werd altijd op tijd vervangen via een leasecontract, was perfect onderhouden met weinig kilometers en werd geleverd met 12 maanden Audi-garantie.</p>
+        <div class="proj-story">
+          <div class="proj-story-inner">
+            <p>Een zeldzame vondst: deze RS6 C8 was eigendom van een fysiotherapeut die iedere drie jaar via een leasecontract een nieuwe RS6 ontving. Eén eigenaar, perfect onderhouden, weinig kilometers — en geleverd met 12 maanden Audi-garantie via het Audi Approved-programma. Gevonden in Duitsland, volledig begeleid aangekocht en inclusief BPM-afhandeling en NL-registratie naar Nederland gebracht.</p>
+            <div class="story-meta">
+              <span class="story-tag">1 eigenaar · Fysiotherapeut</span>
+              <span class="story-tag">Lease-auto · Altijd vervangen na 3 jaar</span>
+              <span class="story-tag">Audi Approved · 12 mnd garantie</span>
+              <span class="story-tag">BPM &amp; NL-registratie inbegrepen</span>
+              <span class="story-tag">Weinig kilometers · Perfect onderhouden</span>
+            </div>
+          </div>
         </div>
       </article>
+
     </div>
   </div>
 </section>
 
-<!-- ══ 9. QUOTE / AFTER SALES ══
-     Emotionele afsluiter vóór tarieven en contact
-     Pinned scroll = premium gevoel
-═════════════════════════════════════════ -->
+<!-- QUOTE -->
 <section class="quote" id="aftersales">
   <div class="q-pin">
     <div class="wrap" style="text-align:center">
@@ -1195,16 +982,13 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         After sales
         <span class="ey-tri-r" aria-hidden="true"><span></span><span></span><span></span></span>
       </p>
-      <blockquote id="bq">Ik bel u altijd na afloop. Niet als vinkje op een checklist — gewoon omdat ik echt wil weten hoe het voelt, rijdt en of u blij bent met uw keuze. Uw vertrouwen is niet alleen een formaliteit; het is het fundament van alles.</blockquote>
+      <blockquote id="bq">Ik bel u altijd na afloop. Niet als vinkje op een checklist — gewoon omdat ik echt wil weten hoe het voelt, rijdt en of u blij bent met uw keuze. Uw vertrouwen is niet alleen een formaliteit; het is het fundament van alles wat ik doe.</blockquote>
       <p class="attrib">— Martijn Puts · Founder &amp; Private Vehicle Advisor</p>
     </div>
   </div>
 </section>
 
-<!-- ══ 10. TARIEVEN ══
-     Kort en eerlijk — vlak voor contact
-     Geen uitgebreid blok, verwijst naar gesprek
-═════════════════════════════════════════ -->
+<!-- TARIEVEN -->
 <section id="tarieven" style="background:var(--ink2)">
   <div class="wrap">
     <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(2.5rem,5vw,5rem);align-items:center" class="rv">
@@ -1225,10 +1009,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   </div>
 </section>
 
-<!-- ══ 11. CONTACT ══
-     Logisch eindpunt: nu zijn ze overtuigd, actie
-     3 kaarten, compact, WhatsApp prominent
-═════════════════════════════════════════ -->
+<!-- CONTACT -->
 <section class="contact-sec" id="contact">
   <div class="wrap rv">
     <p class="ey c">
@@ -1238,7 +1019,6 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
     </p>
     <h2>Klaar om uw droomauto te importeren?</h2>
     <p class="lead">Eén gesprek is genoeg. Vrijblijvend, discreet en zonder verplichtingen.</p>
-
     <div class="c-grid">
       <div class="cc rv">
         <span class="tag">◆ Locatie</span>
@@ -1261,7 +1041,6 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         </p>
       </div>
     </div>
-
     <div class="cta-row" style="justify-content:center;margin-bottom:0">
       <a class="btn"    href="https://wa.me/31624735939"><span>WhatsApp +31 6 24 73 59 39</span></a>
       <a class="btn gh" href="mailto:info@apexclusive.nl"><span>E-mail sturen</span></a>
@@ -1269,7 +1048,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   </div>
 </section>
 
-<!-- ══ FOOTER ══ -->
+<!-- FOOTER -->
 <footer>
   <div class="fg">
     <div>
@@ -1298,168 +1077,68 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
     </div>
   </div>
   <div class="fb">
-    <span>© <span id="yr">2026</span> APEXclusive · Automotive Advisory · Maastricht</span>
+    <span>© <span id="yr">2025</span> APEXclusive · Automotive Advisory · Maastricht</span>
     <span>Driven by Excellence.<span class="tric"></span>Gran turismo, geregeld.</span>
   </div>
 </footer>
 
 <script>
 /* ══════════════════════════════════════
-   APEX CHAT — volledig verbeterd
-   - Professionele Nederlandse assistent
-   - Context-bewust welkom
-   - Lead opvang
-   - Gespreksgeschiedenis (localStorage)
-   - Enter om te versturen
+   PROJECT TOGGLE — uitklapbare case stories
+══════════════════════════════════════ */
+function projToggle(el) {
+  const isOpen = el.classList.contains('open');
+  // Sluit alle andere open projecten
+  document.querySelectorAll('.proj.open').forEach(p => p.classList.remove('open'));
+  if (!isOpen) el.classList.add('open');
+}
+
+/* ══════════════════════════════════════
+   APEX CHAT
 ══════════════════════════════════════ */
 const _CHAT_API = '/api/chat';
-const _SYSTEM_PROMPT = 'U bent de digitale adviseur van APEXclusive, een premium auto-import en aankoopbegeleiding service uit Maastricht. Antwoord in het Nederlands met een professionele, warme en beknopte toon. Gebruik correcte spelling en spreekwijze. Geef geen financieel of juridisch advies; verwijs bij complexe vragen naar WhatsApp +31 6 24 73 59 39. Wanneer een bezoeker zijn naam, telefoonnummer of e-mailadres deelt, reageer dan kort en discreet met een bevestiging dat de gegevens zijn ontvangen. Herhaal nooit het volledige e-mailadres of telefoonnummer letterlijk; gebruik alleen een algemene bevestiging zoals “we nemen binnenkort contact met u op via uw opgegeven contactgegevens.” Stel geen extra vragen als de bezoeker al contactgegevens heeft gegeven. Houd antwoorden onder de 120 woorden tenzij het echt nodig is.';
-const _LEAD_KEY = 'apex_chat_lead_v1';
-const _LEAD_NOTIFY_KEY = 'apex_chat_lead_notify_v1';
 let _msgs  = [];
 let _open  = false;
 let _busy  = false;
-let _leadData = {};
 
-/* ── Gespreksgeschiedenis laden ── */
 try {
   const saved = localStorage.getItem('apex_chat_v1');
   if (saved) _msgs = JSON.parse(saved);
 } catch(e) { _msgs = []; }
 
 function _saveHistory() {
-  try {
-    // Maximaal 20 berichten bewaren
-    const toSave = _msgs.slice(-20);
-    localStorage.setItem('apex_chat_v1', JSON.stringify(toSave));
-  } catch(e) {}
+  try { localStorage.setItem('apex_chat_v1', JSON.stringify(_msgs.slice(-20))); } catch(e) {}
 }
-
-function _saveLeadData() {
-  try {
-    localStorage.setItem(_LEAD_KEY, JSON.stringify(_leadData));
-  } catch(e) {}
-}
-
-function _hasLeadNotified() {
-  try {
-    return localStorage.getItem(_LEAD_NOTIFY_KEY) === '1';
-  } catch (e) {
-    return false;
-  }
-}
-
-function _markLeadNotified() {
-  try {
-    localStorage.setItem(_LEAD_NOTIFY_KEY, '1');
-  } catch (e) {}
-}
-
-async function _tryNotifyLead() {
-  if (!_leadData.email && !_leadData.phone) return;
-  if (_hasLeadNotified()) return;
-
-  try {
-    await fetch('/api/lead-notify', {
-      method: 'POST',
-      headers: { 'Content-Type': 'application/json' },
-      body: JSON.stringify({
-        lead: {
-          name: _leadData.name || null,
-          email: _leadData.email || null,
-          phone: _leadData.phone || null,
-          source: 'chat'
-        },
-        message: 'Nieuwe chat lead met contactgegevens',
-        timestamp: new Date().toISOString()
-      })
-    });
-    _markLeadNotified();
-  } catch (e) {
-    // Negeer netwerkfouten; probeer het later opnieuw bij een volgend contact.
-  }
-}
-
-function _loadLeadData() {
-  try {
-    const saved = localStorage.getItem(_LEAD_KEY);
-    if (saved) _leadData = JSON.parse(saved);
-  } catch(e) { _leadData = {}; }
-}
-
-function _extractReply(data) {
-  return data.reply || data.text || data.answer || data.content || data.output_text ||
-    data.response || data.message?.content?.parts?.[0] ||
-    data.choices?.[0]?.text || data.choices?.[0]?.message?.content ||
-    data.choices?.[0]?.message?.content?.parts?.[0] || data.choices?.[0]?.delta?.content || '';
-}
-
-function _sanitizeContactReply(text) {
-  return String(text)
-    .replace(/\b([A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})\b/g, 'uw e-mailadres')
-    .replace(/\b(?:\+31|0)(?:[\s.-]*6[\s.-]*\d{8}|[\s.-]*[1-9]\d[\s.-]*\d{7,8})\b/g, 'uw telefoonnummer');
-}
-
-function _extractLeadData(text) {
-  const result = { ..._leadData };
-  const normalized = String(text).trim();
-
-  const emailMatch = normalized.match(/([a-zA-Z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,})/);
-  const phoneMatch = normalized.match(/(\+31|0)[\s.-]*6[\s.-]*\d{8}/);
-  const nameMatch = normalized.match(/(?:mijn naam is|ik ben|ik heet|naam is|naam:)\s+([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)/i);
-  const simpleNameMatch = !nameMatch ? normalized.match(/^([A-Z][a-z]+(?:\s+[A-Z][a-z]+)?)$/) : null;
-
-  if (emailMatch) result.email = emailMatch[1];
-  if (phoneMatch) result.phone = phoneMatch[0].replace(/[\s.-]/g, '');
-  if (nameMatch) result.name = nameMatch[1];
-  else if (simpleNameMatch && !result.name) result.name = simpleNameMatch[1];
-
-  return result;
-}
-
-/* ── Context detectie ── */
 
 function _getContext() {
-  const sections = ['contact','projecten','over','werkwijze','import','tools'];
+  const sections = ['contact','projecten','over','werkwijze','tools'];
   for (const id of sections) {
     const el = document.getElementById(id);
-    if (el) {
-      const r = el.getBoundingClientRect();
-      if (r.top < window.innerHeight && r.bottom > 0) return id;
-    }
+    if (el) { const r = el.getBoundingClientRect(); if (r.top < innerHeight && r.bottom > 0) return id; }
   }
   return 'home';
 }
 
-
 const _contextWelkom = {
-  tools:     'Ik zie dat u onze tools bekijkt. Heeft u een specifieke auto in gedachten waarvoor u de **BPM** wilt berekenen of een advertentie wilt laten analyseren?',
-  import:    'Interessant dat u kijkt naar onze importdienst. Heeft u al een specifiek **merk, model of land** in gedachten?',
-  werkwijze: 'U bekijkt onze werkwijze — heeft u vragen over hoe een traject verloopt, of wilt u weten wat wij voor uw specifieke situatie kunnen betekenen?',
-  over:      'Goedag! Fijn dat u meer wilt weten over APEXclusive. Heeft u een vraag voor Martijn, of kan ik u ergens mee helpen?',
-  projecten: 'U bekijkt onze gerealiseerde projecten. Heeft u zelf een droomauto in gedachten? Ik vertel u graag wat wij voor u kunnen betekenen.',
-  contact:   'U wilt contact opnemen — prachtig. Laat uw naam, e-mail en 06 achter wanneer u daar klaar voor bent. Een adviseur van APEXclusive benadert u dan persoonlijk.',
-  home:      'Goedag! Ik ben de AI-adviseur van **APEXclusive**. Hoe kan ik u helpen vandaag? Wilt u direct een adviseur spreken, kies dan “Adviseur spreken”.'
+  tools:     'Ik zie dat u onze tools bekijkt. Heeft u een specifieke auto in gedachten waarvoor u de **BPM** wilt berekenen?',
+  werkwijze: 'U bekijkt onze werkwijze — heeft u een vraag over hoe een traject verloopt?',
+  over:      'Goedag! Fijn dat u meer wilt weten over APEXclusive en Martijn. Waarmee kan ik u helpen?',
+  projecten: 'U bekijkt onze gerealiseerde projecten. Heeft u zelf een droomauto in gedachten?',
+  contact:   'U wilt contact opnemen — uitstekend. Laat gerust uw naam en 06-nummer achter, dan neemt Martijn persoonlijk contact op.',
+  home:      'Goedag! Ik ben de digitale adviseur van **APEXclusive** in Maastricht. Waarmee kan ik u helpen?'
 };
 
-_loadLeadData();
-
-/* ── Toggle chat venster ── */
 function apexToggle() {
   _open = !_open;
   const win = document.getElementById('apex-chat-win');
   if (_open) {
     win.classList.add('open');
-    document.getElementById('apex-contact-form').classList.remove('open');
-    // Eerste keer openen: welkomstbericht
     if (_msgs.length === 0) {
-      const ctx = _getContext();
-      const welcome = _contextWelkom[ctx] || _contextWelkom.home;
+      const welcome = _contextWelkom[_getContext()] || _contextWelkom.home;
       _addMsg('bot', welcome);
       _msgs.push({ role: 'assistant', content: welcome });
       _saveHistory();
     } else {
-      // Geschiedenis herladen in UI als die leeg is
       const wrap = document.getElementById('apex-msgs');
       if (wrap.children.length === 0) _renderHistory();
     }
@@ -1469,7 +1148,6 @@ function apexToggle() {
   }
 }
 
-/* ── Geschiedenis opnieuw renderen ── */
 function _renderHistory() {
   _msgs.forEach(m => {
     if (m.role === 'user') _addMsg('user', m.content, true);
@@ -1477,85 +1155,38 @@ function _renderHistory() {
   });
 }
 
-function _validateEmail(email) {
-  return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
-}
-
-function _validatePhone(phone) {
-  return /^(?:\+31|0)[\s.-]*6[\s.-]*\d{8}$/.test(phone);
-}
-
-function apexShowContactForm() {
-  const form = document.getElementById('apex-contact-form');
-  form.classList.add('open');
-  document.getElementById('apex-contact-name').focus();
-}
-
-function apexHideContactForm() {
-  const form = document.getElementById('apex-contact-form');
-  form.classList.remove('open');
-}
-
-function apexToast(message) {
-  const toast = document.getElementById('apex-toast');
-  if (!toast) return;
-  toast.textContent = message;
-  toast.classList.add('visible');
-  clearTimeout(window._apexToastTimeout);
-  window._apexToastTimeout = setTimeout(() => {
-    toast.classList.remove('visible');
-  }, 3600);
-}
-
-function apexSubmitContact() {
-  const name = document.getElementById('apex-contact-name').value.trim();
-  const email = document.getElementById('apex-contact-email').value.trim();
-  const phone = document.getElementById('apex-contact-phone').value.trim();
-
-  if (!name && !email && !phone) {
-    alert('Vul ten minste één contactgegeven in.');
-    return;
-  }
-
-  if (email && !_validateEmail(email)) {
-    alert('Voer een geldig e-mailadres in.');
-    return;
-  }
-
-  if (phone && !_validatePhone(phone)) {
-    alert('Voer een geldig 06-nummer in. Bijvoorbeeld 06xxxxxxxx.');
-    return;
-  }
-
-  const values = [];
-  if (name) values.push(`Naam: ${name}`);
-  if (email) values.push(`E-mail: ${email}`);
-  if (phone) values.push(`06: ${phone}`);
-
-  apexHideContactForm();
-  document.getElementById('apex-inp').value = values.join(' | ');
-  apexToast('Dank, uw contactgegevens zijn ontvangen. We nemen snel contact met u op.');
+function apexQuick(tekst) {
+  document.getElementById('apex-quick').style.display = 'none';
+  document.getElementById('apex-inp').value = tekst;
   apexSend();
 }
 
 function apexRequestTransfer() {
-  const transferText = 'Ik wil graag met een medewerker of adviseur spreken.';
-  _addMsg('user', transferText);
-  _msgs.push({ role: 'user', content: transferText });
-  _leadData = { ..._leadData, ..._extractLeadData(transferText) };
-  _saveLeadData();
-  _saveHistory();
-  _addMsg('bot', 'Natuurlijk. Ik regel dat een adviseur uw vraag ziet. Laat uw naam, e-mail en 06 achter als u wilt dat we u persoonlijk terugbellen.');
-  _msgs.push({ role: 'assistant', content: 'Natuurlijk. Ik regel dat een adviseur uw vraag ziet. Laat uw naam, e-mail en 06 achter als u wilt dat we u persoonlijk terugbellen.' });
-  _saveHistory();
-  apexShowContactForm();
+  document.getElementById('apex-quick').style.display = 'none';
+  _addMsg('bot', 'Uiteraard. Laat uw naam, e-mailadres en 06-nummer achter — Martijn neemt persoonlijk contact op.');
+  document.getElementById('apex-contact-form').classList.add('open');
 }
 
-function _isHumanRequest(text) {
-  return /\b(medewerker|adviseur|persoonlijk|mens|spreken met|telefonisch|bellen|contact opnemen|ik wil graag spreken|direct contact)\b/i.test(text);
+function apexSubmitContact() {
+  const name  = document.getElementById('apex-contact-name').value.trim();
+  const email = document.getElementById('apex-contact-email').value.trim();
+  const phone = document.getElementById('apex-contact-phone').value.trim();
+  if (!name && !email && !phone) { alert('Vul ten minste één veld in.'); return; }
+  document.getElementById('apex-contact-form').classList.remove('open');
+  const msg = [name && `Naam: ${name}`, email && `E-mail: ${email}`, phone && `06: ${phone}`].filter(Boolean).join(' · ');
+  document.getElementById('apex-inp').value = msg;
+  apexSend();
 }
 
-/* ── Bericht versturen ── */
+function apexToast(message) {
+  const t = document.getElementById('apex-toast');
+  if (!t) return;
+  t.textContent = message;
+  t.classList.add('visible');
+  clearTimeout(window._apexToastTimer);
+  window._apexToastTimer = setTimeout(() => t.classList.remove('visible'), 3500);
+}
+
 async function apexSend() {
   const inp = document.getElementById('apex-inp');
   const msg = inp.value.trim();
@@ -1564,90 +1195,75 @@ async function apexSend() {
   inp.value = '';
   _addMsg('user', msg);
   _msgs.push({ role: 'user', content: msg });
-  _leadData = { ..._leadData, ..._extractLeadData(msg) };
-  _saveLeadData();
   _saveHistory();
-  apexHideContactForm();
-  void _tryNotifyLead();
+  document.getElementById('apex-quick').style.display = 'none';
+  document.getElementById('apex-contact-form').classList.remove('open');
 
   _busy = true;
   document.getElementById('apex-send').disabled = true;
 
-  // Maak lege bot bubble aan
   const botDiv = _createBotBubble();
   const contentDiv = botDiv.querySelector('.cmsg-content');
   let fullReply = '';
 
-  if (_isHumanRequest(msg)) {
-    const humanReply = 'Ik begrijp het. Een adviseur bekijkt uw vraag en ik vraag nu uw contactgegevens voor een persoonlijk vervolg.';
-    contentDiv.innerHTML = _fmt(humanReply);
-    fullReply = humanReply;
-    _msgs.push({ role: 'assistant', content: humanReply });
-    _saveHistory();
-    apexShowContactForm();
-    _busy = false;
-    document.getElementById('apex-send').disabled = false;
-    document.getElementById('apex-inp').focus();
-    return;
-  }
-
-  if (/\bNaam:.*\|.*E-mail:.*\|.*06:|\bNaam:.*\|.*06:.*\|.*E-mail:|\bE-mail:.*\|.*06:/i.test(msg)) {
-    const confirmReply = 'Dank. Uw contactgegevens zijn ontvangen en ik geef dit door aan een adviseur. Zij nemen snel contact met u op.';
-    contentDiv.innerHTML = _fmt(confirmReply);
-    fullReply = confirmReply;
-    _msgs.push({ role: 'assistant', content: confirmReply });
-    _saveHistory();
-    apexHideContactForm();
-    _busy = false;
-    document.getElementById('apex-send').disabled = false;
-    document.getElementById('apex-inp').focus();
-    return;
-  }
-
   try {
-const requestMessages = [
-        { role: 'system', content: _SYSTEM_PROMPT },
-        ..._msgs
-      ];
-
-      const res = await fetch(_CHAT_API, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ messages: requestMessages })
-      });
+    const res = await fetch(_CHAT_API, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ messages: _msgs })
+    });
 
     if (!res.ok) {
       const data = await res.json().catch(() => ({}));
-      contentDiv.innerHTML = _fmt('⚠️ ' + (data.error || 'Er ging iets mis.'));
+      contentDiv.innerHTML = _fmt('⚠️ ' + (data.error || 'Er ging iets mis. Probeer opnieuw.'));
       _busy = false;
       document.getElementById('apex-send').disabled = false;
       return;
     }
 
-    const data = await res.json().catch(() => ({}));
-    const rawReply = _extractReply(data);
-    const reply = _sanitizeContactReply(rawReply);
+    // Probeer streaming, val terug op JSON
+    const contentType = res.headers.get('content-type') || '';
 
-    if (data.error) {
-      contentDiv.innerHTML = _fmt('⚠️ ' + data.error);
-    } else if (reply) {
-      contentDiv.innerHTML = _fmt(reply);
-      fullReply = reply;
+    if (contentType.includes('text/event-stream')) {
+      const reader = res.body.getReader();
+      const decoder = new TextDecoder();
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        const chunk = decoder.decode(value);
+        for (const line of chunk.split('\n')) {
+          if (!line.startsWith('data: ')) continue;
+          const data = line.slice(6);
+          if (data === '[DONE]') continue;
+          try {
+            const parsed = JSON.parse(data);
+            if (parsed.token) {
+              fullReply += parsed.token;
+              contentDiv.innerHTML = _fmt(fullReply);
+              document.getElementById('apex-msgs').scrollTop = document.getElementById('apex-msgs').scrollHeight;
+            }
+          } catch(e) {}
+        }
+      }
     } else {
-      contentDiv.innerHTML = _fmt('⚠️ Ongeldig antwoord van de chatserver.');
+      const data = await res.json();
+      fullReply = data.reply || data.text || data.answer || '';
+      if (data.error) {
+        contentDiv.innerHTML = _fmt('⚠️ ' + data.error);
+      } else if (fullReply) {
+        contentDiv.innerHTML = _fmt(fullReply);
+      } else {
+        contentDiv.innerHTML = _fmt('Geen antwoord ontvangen. Probeer opnieuw.');
+      }
     }
 
-    // Opslaan in geschiedenis
     if (fullReply) {
       _msgs.push({ role: 'assistant', content: fullReply });
       _saveHistory();
     }
 
   } catch(e) {
-    contentDiv.innerHTML = _fmt(
-      'Verbindingsfout. Probeer opnieuw of neem contact op via ' +
-      '**WhatsApp +31 6 24 73 59 39**'
-    );
+    contentDiv.innerHTML = _fmt('Verbindingsfout. Probeer opnieuw of neem contact op via **WhatsApp +31 6 24 73 59 39**.');
   }
 
   _busy = false;
@@ -1655,94 +1271,72 @@ const requestMessages = [
   document.getElementById('apex-inp').focus();
 }
 
-/* ── Bot bubble aanmaken ── */
 function _createBotBubble() {
   const wrap = document.getElementById('apex-msgs');
   const div  = document.createElement('div');
   div.className = 'cmsg bot';
-
   const lbl = document.createElement('div');
   lbl.className = 'cmsg-lbl';
   lbl.textContent = 'APEXclusive Adviseur';
   div.appendChild(lbl);
-
   const content = document.createElement('div');
   content.className = 'cmsg-content';
-  // Toon knipperende cursor tijdens laden
   content.innerHTML = '<span class="chat-cursor">▋</span>';
   div.appendChild(content);
-
   wrap.appendChild(div);
   wrap.scrollTop = wrap.scrollHeight;
   return div;
 }
 
-/* ── Bericht toevoegen (voor user en geschiedenis) ── */
 function _addMsg(rol, tekst, silent = false) {
   const wrap = document.getElementById('apex-msgs');
   const div  = document.createElement('div');
   div.className = 'cmsg ' + rol;
-
   if (rol === 'bot') {
     const lbl = document.createElement('div');
     lbl.className = 'cmsg-lbl';
     lbl.textContent = 'APEXclusive Adviseur';
     div.appendChild(lbl);
   }
-
   const content = document.createElement('div');
   content.className = 'cmsg-content';
   content.innerHTML = _fmt(tekst);
   div.appendChild(content);
-
   wrap.appendChild(div);
   if (!silent) wrap.scrollTop = wrap.scrollHeight;
 }
 
-/* ── Tekst formatteren ── */
 function _fmt(t) {
-  const escapeHtml = text => String(text)
-    .replace(/&/g, '&amp;')
-    .replace(/</g, '&lt;')
-    .replace(/>/g, '&gt;');
-
-  const sanitizeUrl = url => {
-    try {
-      const parsed = new URL(url);
-      return (parsed.protocol === 'http:' || parsed.protocol === 'https:') ? parsed.toString() : '';
-    } catch (e) {
-      return '';
-    }
-  };
-
-  const sanitized = escapeHtml(t);
-
-  const withLinks = sanitized.replace(/\[([^\]]+?)\]\((https?:\/\/[^\s)]+)\)/g, (_, text, url) => {
-    const cleanUrl = sanitizeUrl(url);
-    const cleanText = escapeHtml(text.trim().replace(/^"|"$/g, ''));
-    return cleanUrl
-      ? `<a href="${cleanUrl}" target="_blank" rel="noopener" style="color:var(--pt);border-bottom:1px solid var(--ln)">${cleanText}</a>`
-      : escapeHtml(text);
-  });
-
-  return withLinks
-    .replace(/(https?:\/\/[^\s<>"']+)/g,
-      '<a href="$1" target="_blank" rel="noopener" style="color:var(--pt);border-bottom:1px solid var(--ln)">$1</a>')
-    .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-    .replace(/\*(.*?)\*/g, '<em>$1</em>')
-    .replace(/\n/g, '<br>');
+  return String(t)
+    .replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')
+    .replace(/\*\*(.*?)\*\*/g,'<strong>$1</strong>')
+    .replace(/\*(.*?)\*/g,'<em>$1</em>')
+    .replace(/\[([^\]]+)\]\((https?:\/\/[^\)]+)\)/g,'<a href="$2" target="_blank" rel="noopener" style="color:var(--pt);border-bottom:1px solid var(--ln)">$1</a>')
+    .replace(/(https?:\/\/[^\s<"]+)/g,'<a href="$1" target="_blank" rel="noopener" style="color:var(--pt);border-bottom:1px solid var(--ln)">$1</a>')
+    .replace(/\n/g,'<br>');
 }
 
-/* ── Enter om te versturen ── */
+/* Enter versturen */
 document.getElementById('apex-inp').addEventListener('keydown', function(e) {
-  if (e.key === 'Enter' && !e.shiftKey) {
-    e.preventDefault();
-    apexSend();
+  if (e.key === 'Enter' && !e.shiftKey) { e.preventDefault(); apexSend(); }
+});
+
+/* Klik buiten chat sluit hem */
+document.addEventListener('click', e => {
+  if (!_open) return;
+  const win    = document.getElementById('apex-chat-win');
+  const bubble = document.querySelector('.apex-bubble');
+  if (!win.contains(e.target) && !bubble.contains(e.target)) {
+    _open = false;
+    win.classList.remove('open');
   }
 });
 
+/* Escape sluit chat */
+document.addEventListener('keydown', e => { if (e.key === 'Escape' && _open) apexToggle(); });
+
 /* ══════════════════════════════════════
-   PAGINA LOGICA (ongewijzigd)
+   PAGINA LOGICA
 ══════════════════════════════════════ */
 document.getElementById('yr').textContent = new Date().getFullYear();
 const reduced = matchMedia('(prefers-reduced-motion: reduce)').matches;
@@ -1754,7 +1348,6 @@ addEventListener('scroll', () => {
 }, { passive: true });
 const clamp = (v, a, b) => Math.max(a, Math.min(b, v));
 
-/* H2 word split */
 if (!reduced) {
   document.querySelectorAll('section h2,header h1').forEach(h => {
     [...h.childNodes].forEach(node => {
@@ -1772,7 +1365,6 @@ if (!reduced) {
   });
 }
 
-/* Quote words */
 const bq = document.getElementById('bq');
 let qw = [];
 if (!reduced) {
@@ -1785,7 +1377,6 @@ if (!reduced) {
   qw = [...bq.querySelectorAll('.qw')];
 }
 
-/* Mobile menu */
 const nav    = document.getElementById('nav');
 const burger = document.getElementById('burger');
 const mmenu  = document.getElementById('mm');
@@ -1799,20 +1390,6 @@ const toggleMenu = open => {
 burger.addEventListener('click', () => toggleMenu(!mmenu.classList.contains('open')));
 mmenu.querySelectorAll('a').forEach(a => a.addEventListener('click', () => toggleMenu(false)));
 
-document.addEventListener('click', e => {
-  const win = document.getElementById('apex-chat-win');
-  const bubble = document.querySelector('.apex-bubble');
-  if (!_open || !win || !bubble) return;
-  if (win.contains(e.target) || bubble.contains(e.target)) return;
-  _open = false;
-  win.classList.remove('open');
-});
-
-document.addEventListener('keydown', e => {
-  if (e.key === 'Escape' && _open) apexToggle();
-});
-
-/* Reveal + tricolore + veil */
 const io = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (!e.isIntersecting) return;
@@ -1824,8 +1401,7 @@ const io = new IntersectionObserver(entries => {
     } else e.target.classList.add('in');
     if (e.target.classList.contains('ey')) e.target.classList.add('tri-in');
     e.target.querySelectorAll && e.target.querySelectorAll('.ey').forEach(ey =>
-      setTimeout(() => ey.classList.add('tri-in'), 160)
-    );
+      setTimeout(() => ey.classList.add('tri-in'), 160));
   });
 }, { threshold: .06, rootMargin: '0px 0px -3% 0px' });
 
@@ -1834,18 +1410,15 @@ document.querySelectorAll('.p-grid,.tgrid,.c-grid,.fear-grid').forEach(g => {
 });
 document.querySelectorAll('.rv,.step,.veil,section h2,.ey').forEach(el => io.observe(el));
 
-/* Scrollspy */
 const links = [...document.querySelectorAll('#navlinks a')];
 const spy = new IntersectionObserver(entries => {
   entries.forEach(e => {
     if (e.isIntersecting) links.forEach(a =>
-      a.classList.toggle('active', a.hash === '#' + e.target.id)
-    );
+      a.classList.toggle('active', a.hash === '#' + e.target.id));
   });
 }, { rootMargin: '-40% 0px -55% 0px' });
 links.forEach(a => { const t = document.querySelector(a.hash); if (t) spy.observe(t); });
 
-/* Main rAF loop */
 const bar   = document.getElementById('progress');
 const heroC = document.getElementById('heroContent');
 const cue   = document.getElementById('cue');
@@ -1881,6 +1454,6 @@ function frame() {
   requestAnimationFrame(frame);
 }
 requestAnimationFrame(frame);
-      </script>
+</script>
 </body>
 </html>
