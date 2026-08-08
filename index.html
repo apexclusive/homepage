@@ -1146,6 +1146,11 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
     splash.classList.add('hide');
     setTimeout(function(){
       splash.classList.add('force-hide');
+      splash.style.display = 'none';
+      splash.style.visibility = 'hidden';
+      splash.style.opacity = '0';
+      splash.style.pointerEvents = 'none';
+      if (splash.parentNode) splash.parentNode.removeChild(splash);
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
       initQuoteWords();
     }, 260);
@@ -1154,6 +1159,11 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
   setTimeout(function(){
     if (!splash.classList.contains('force-hide')) {
       splash.classList.add('force-hide');
+      splash.style.display = 'none';
+      splash.style.visibility = 'hidden';
+      splash.style.opacity = '0';
+      splash.style.pointerEvents = 'none';
+      if (splash.parentNode) splash.parentNode.removeChild(splash);
       window.scrollTo({ top: 0, left: 0, behavior: 'auto' });
       initQuoteWords();
     }
