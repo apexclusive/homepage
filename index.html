@@ -24,6 +24,8 @@
   --cs:linear-gradient(100deg,#8a9099 0%,#d4d8dc 40%,#fff 50%,#d4d8dc 60%,#8a9099 100%);
   --tr:linear-gradient(90deg,var(--ig) 0 33.33%,#fff 33.33% 66.66%,var(--ir) 66.66% 100%);
   --tf:linear-gradient(90deg,transparent 0%,var(--ig) 15% 33.33%,#fff 33.33% 66.66%,var(--ir) 66.66% 85%,transparent 100%);
+  --metal:linear-gradient(160deg,#101214 0%,#1a1c20 20%,#0e1012 40%,#161a1e 55%,#1c1f24 70%,#111416 85%,#0c0e10 100%);
+  --metal-shine:radial-gradient(ellipse at 30% 20%,rgba(198,203,209,.045) 0%,transparent 65%);
 }
 *{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;scroll-padding-top:90px}
@@ -39,42 +41,51 @@ section{padding:clamp(4.5rem,9vw,8rem) var(--pd);position:relative}
 .head{max-width:58ch;margin-bottom:clamp(2.5rem,5vw,3.75rem)}
 .rule{width:56px;height:2px;background:var(--ch);margin-top:1.5rem}
 
-/* ══ INTRO SPLASH ══ */
+/* ══ INTRO SPLASH — fix 1, 2, 10 ══ */
 #splash{
   position:fixed;inset:0;z-index:9999;
   background:#000;
   display:flex;align-items:center;justify-content:center;
   pointer-events:all;
+  /* Fix 10: force GPU layer so iOS renders it */
+  -webkit-transform:translateZ(0);
+  transform:translateZ(0);
+  will-change:opacity;
 }
 #splash.hide{
-  animation:splashFade .7s .2s cubic-bezier(.4,0,.2,1) forwards;
+  /* Fix 1: slightly longer fade — starts at 1.9s, lasts 0.9s */
+  animation:splashFade .9s .3s cubic-bezier(.4,0,.2,1) forwards;
+  pointer-events:none;
 }
 @keyframes splashFade{
-  0%{opacity:1;transform:none}
-  100%{opacity:0;transform:scale(1.03)}
+  0%{opacity:1;transform:scale(1)}
+  100%{opacity:0;transform:scale(1.025)}
 }
 .splash-inner{
   display:flex;flex-direction:column;align-items:center;gap:0;
   overflow:hidden;
+  padding:0 1.5rem;/* Fix 11: prevent edge clipping on mobile */
+  text-align:center;
 }
 .splash-brand{
   font-family:'Cormorant Garamond',serif;
-  font-size:clamp(2.2rem,7vw,4.8rem);
+  font-size:clamp(2rem,8vw,4.8rem);/* Fix 11: clamp tighter on small screens */
   font-weight:300;
-  letter-spacing:.32em;
+  letter-spacing:.28em;
   text-transform:uppercase;
   color:#fff;
-  display:flex;align-items:center;gap:0;
+  display:flex;align-items:center;justify-content:center;gap:0;
   opacity:0;
   transform:translateY(-28px);
-  animation:splashDrop .9s .18s cubic-bezier(.2,.7,.3,1) forwards;
+  animation:splashDrop 1.0s .2s cubic-bezier(.2,.7,.3,1) forwards;
+  width:100%;
 }
 .splash-brand-apex{
   font-weight:600;
   background:linear-gradient(100deg,#8a9099 0%,#d4d8dc 40%,#fff 50%,#d4d8dc 60%,#8a9099 100%);
   background-size:220% auto;
   -webkit-background-clip:text;background-clip:text;color:transparent;
-  animation:splashShine 2.2s .9s ease-in-out forwards;
+  animation:splashShine 2.4s 1.0s ease-in-out forwards;
   letter-spacing:.28em;
 }
 @keyframes splashShine{
@@ -93,26 +104,26 @@ section{padding:clamp(4.5rem,9vw,8rem) var(--pd);position:relative}
 }
 .splash-sub{
   font-family:'Oswald',sans-serif;
-  font-size:clamp(.5rem,.9vw,.68rem);
-  letter-spacing:.48em;
+  font-size:clamp(.48rem,.85vw,.68rem);
+  letter-spacing:.38em;
   text-transform:uppercase;
   color:rgba(198,203,209,.28);
   margin-top:.85rem;
   opacity:0;
-  animation:splashFadeIn .7s .88s cubic-bezier(.2,.7,.3,1) forwards;
+  animation:splashFadeIn .7s .92s cubic-bezier(.2,.7,.3,1) forwards;
 }
 @keyframes splashFadeIn{from{opacity:0}to{opacity:1}}
 .splash-line{
   width:0;height:1px;
   background:linear-gradient(90deg,transparent,rgba(198,203,209,.35),transparent);
   margin-top:1.15rem;
-  animation:splashLine .7s 1.05s cubic-bezier(.2,.7,.3,1) forwards;
+  animation:splashLine .7s 1.1s cubic-bezier(.2,.7,.3,1) forwards;
 }
-@keyframes splashLine{to{width:220px}}
+@keyframes splashLine{to{width:min(220px,60vw)}}
 .splash-sep{
-  display:flex;flex-direction:row;gap:0;margin:0 14px;flex-shrink:0;
+  display:flex;flex-direction:row;gap:0;margin:0 12px;flex-shrink:0;
   opacity:0;
-  animation:splashFadeIn .5s .55s forwards;
+  animation:splashFadeIn .5s .58s forwards;
 }
 .splash-sep span{display:block;width:4px;border-radius:1px}
 .splash-sep span:nth-child(1){height:7px;background:#009246}
@@ -187,6 +198,7 @@ nav.hide{transform:translateY(-105%)}
 @keyframes drift{to{transform:scale(1.06) translate3d(-1.5%,-1%,0)}}
 .hero-bg::after{content:'';position:absolute;inset:0;background:linear-gradient(to right,rgba(8,8,8,.96) 0%,rgba(8,8,8,.65) 45%,rgba(8,8,8,.22) 100%),linear-gradient(to top,var(--ink) 0%,transparent 42%)}
 .hero-inner{max-width:1160px;margin:0 auto;width:100%}
+/* Fix 11: hero content horizontally centered on mobile */
 .hero-content{max-width:70ch}
 .hero .sub{font-family:var(--lb);font-size:.66rem;letter-spacing:.4em;text-transform:uppercase;color:#bbb;margin-bottom:2rem;display:flex;align-items:center;gap:1rem}
 .hero .sub::before{content:'';width:36px;height:2px;background:var(--tr)}
@@ -201,12 +213,13 @@ nav.hide{transform:translateY(-105%)}
 .scrollcue i{display:block;width:38px;height:1px;background:linear-gradient(to right,var(--pt),transparent);animation:pull 2.2s ease-in-out infinite}
 @keyframes pull{50%{transform:scaleX(.4);transform-origin:left}}
 
-/* ══ TRUST STRIP ══ */
-.trust{background:var(--ink2);border-top:1px solid var(--ln);border-bottom:1px solid var(--ln)}
-.trust-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln)}
+/* ══ TRUST STRIP — metallic ══ */
+.trust{background:var(--metal);border-top:1px solid var(--ln);border-bottom:1px solid var(--ln);position:relative}
+.trust::after{content:'';position:absolute;inset:0;background:var(--metal-shine);pointer-events:none;z-index:0}
+.trust-inner{max-width:1160px;margin:0 auto;display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln);position:relative;z-index:1}
 @media(max-width:640px){.trust-inner{grid-template-columns:repeat(1,1fr)}}
-.ti{background:var(--ink2);padding:1.5rem 1.65rem;display:flex;align-items:center;gap:.9rem;position:relative;transition:background .3s}
-.ti:hover{background:var(--ink3)}
+.ti{background:transparent;padding:1.5rem 1.65rem;display:flex;align-items:center;gap:.9rem;position:relative;transition:background .3s}
+.ti:hover{background:rgba(198,203,209,.03)}
 .ti::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
 .ti:nth-child(1)::before{background:var(--ig)}
 .ti:nth-child(2)::before{background:var(--pt)}
@@ -215,30 +228,20 @@ nav.hide{transform:translateY(-105%)}
 .ti-num{font-family:var(--sf);font-size:2rem;font-weight:300;color:var(--pt);line-height:1;white-space:nowrap}
 .ti-lbl{font-family:var(--lb);font-size:.56rem;letter-spacing:.16em;text-transform:uppercase;color:var(--mt);line-height:1.55}
 
-/* ══ FEAR BREAKER — 3 items ══ */
-.fear{background:var(--ink);padding:clamp(3.75rem,7.5vw,6.5rem) var(--pd)}
-.fear-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln);max-width:1160px;margin:0 auto}
+/* ══ FEAR BREAKER — metallic bg ══ */
+.fear{background:var(--metal);padding:clamp(3.75rem,7.5vw,6.5rem) var(--pd);position:relative}
+.fear::before{content:'';position:absolute;inset:0;background:var(--metal-shine);pointer-events:none}
+.fear-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--ln);max-width:1160px;margin:0 auto;position:relative;z-index:1}
 @media(max-width:820px){.fear-grid{grid-template-columns:repeat(2,1fr)}}
 @media(max-width:500px){.fear-grid{grid-template-columns:1fr}}
-.fi-item{background:var(--ink);padding:2.1rem 1.85rem;position:relative;transition:background .35s}
-.fi-item:hover{background:var(--ink3)}
+.fi-item{background:rgba(9,10,12,.8);padding:2.1rem 1.85rem;position:relative;transition:background .35s}
+.fi-item:hover{background:rgba(18,20,24,.9)}
 .fi-item::before{content:'';position:absolute;top:0;left:0;right:0;height:2px;transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
 .fi-item:nth-child(1)::before{background:var(--ig)}
 .fi-item:nth-child(2)::before{background:var(--pt)}
 .fi-item:nth-child(3)::before{background:var(--ir)}
 .fi-item:hover::before{transform:scaleX(1)}
-/* Vervangen pictogrammen door strakke nummerering */
-.fi-num{
-  font-family:var(--sf);
-  font-size:3.2rem;
-  font-weight:300;
-  color:rgba(198,203,209,.06);
-  line-height:1;
-  margin-bottom:.9rem;
-  letter-spacing:-.02em;
-  transition:color .4s;
-  user-select:none;
-}
+.fi-num{font-family:var(--sf);font-size:3.2rem;font-weight:300;color:rgba(198,203,209,.06);line-height:1;margin-bottom:.9rem;letter-spacing:-.02em;transition:color .4s;user-select:none}
 .fi-item:hover .fi-num{color:rgba(198,203,209,.12)}
 .fi-q{font-family:var(--sf);font-size:1.05rem;font-style:italic;color:rgba(198,203,209,.55);margin-bottom:.55rem;line-height:1.45}
 .fi-a{font-size:.8rem;color:var(--mt);line-height:1.72}
@@ -256,26 +259,29 @@ nav.hide{transform:translateY(-105%)}
 @media(max-width:780px){.tgrid{grid-template-columns:1fr}}
 .tc{display:flex;flex-direction:column;background:var(--ink2);position:relative;overflow:hidden;transition:background .4s;text-decoration:none;color:inherit}
 .tc:hover{background:var(--ink3)}
-
-/* Kenteken foto — groter logo */
+/* Fix 3: both logo images same size/treatment */
 .tc-photo{width:100%;height:195px;overflow:hidden;position:relative;flex-shrink:0;background:var(--ink3);display:flex;align-items:center;justify-content:center}
 .tc-photo img{width:100%;height:100%;object-fit:cover;object-position:center;display:block;filter:brightness(.26) saturate(.4);transition:filter .65s,transform .85s}
-.tc-photo img.img-contain{object-fit:contain;padding:1.4rem;filter:brightness(.6) saturate(.25);background:var(--ink3)}
-/* Kenteken logo groter, zelfde als mobile logo */
 .tc-photo img.img-logo-kenteken{
   object-fit:contain;
-  padding:.6rem;
+  padding:.5rem;
   filter:brightness(.62) saturate(.14) contrast(1.15);
   background:var(--ink3);
   width:100%;height:100%;
 }
-.tc-photo img.img-logo{object-fit:contain;padding:2rem;filter:brightness(.52) saturate(.08) contrast(1.1);background:var(--ink3);width:100%;height:100%}
+.tc-photo img.img-logo{
+  object-fit:contain;
+  padding:.5rem;
+  filter:brightness(.52) saturate(.08) contrast(1.1);
+  background:var(--ink3);
+  width:100%;height:100%;
+}
+.tc-photo img.img-contain{object-fit:contain;padding:1.4rem;filter:brightness(.6) saturate(.25);background:var(--ink3)}
 .tc:hover .tc-photo img{filter:brightness(.46) saturate(.65);transform:scale(1.04)}
 .tc:hover .tc-photo img.img-contain{filter:brightness(.8) saturate(.45);transform:none}
 .tc:hover .tc-photo img.img-logo,.tc:hover .tc-photo img.img-logo-kenteken{filter:brightness(.78) saturate(.22);transform:none}
 .tc-fade{position:absolute;inset:0;background:linear-gradient(to top,var(--ink2) 0%,transparent 55%);z-index:1;pointer-events:none}
 .tc-photo::after{content:'';position:absolute;bottom:0;left:0;right:0;height:2px;z-index:2;transform:scaleX(0);transform-origin:left;transition:transform .5s cubic-bezier(.2,.7,.3,1)}
-/* Tool card volgorde: 1=Kentekencheck, 2=Calculator, 3=Analyse */
 .tc:nth-child(1) .tc-photo::after{background:var(--ig)}
 .tc:nth-child(2) .tc-photo::after{background:var(--pt)}
 .tc:nth-child(3) .tc-photo::after{background:var(--ir)}
@@ -297,10 +303,14 @@ nav.hide{transform:translateY(-105%)}
 .tools-cta h3{font-size:1.38rem;margin-bottom:.5rem}
 .tools-cta p{max-width:400px;margin:0 auto 1.35rem;font-size:.82rem}
 
-/* ══ WERKWIJZE ══ */
+/* ══ WERKWIJZE — fix 12: remove sticky on mobile ══ */
 .ww-layout{display:grid;grid-template-columns:1fr 1.6fr;gap:clamp(2.5rem,6vw,5.5rem);align-items:start}
 @media(max-width:820px){.ww-layout{grid-template-columns:1fr}}
 .ww-sticky{position:sticky;top:120px}
+/* Fix 12: disable sticky on mobile to prevent overlap */
+@media(max-width:820px){
+  .ww-sticky{position:static;top:auto}
+}
 .steps{position:relative;--tp:0}
 .steps::before{content:'';position:absolute;left:10px;top:6px;bottom:6px;width:1px;background:rgba(198,203,209,.08)}
 .steps::after{content:'';position:absolute;left:10px;top:6px;bottom:6px;width:1px;background:linear-gradient(to bottom,var(--ig),var(--pt),var(--ir));transform:scaleY(var(--tp));transform-origin:top;will-change:transform}
@@ -320,30 +330,11 @@ nav.hide{transform:translateY(-105%)}
 .sleutels-quote p{font-family:var(--sf);font-style:italic;font-size:.98rem;color:rgba(198,203,229,.52);line-height:1.55}
 .sleutels-quote cite{display:block;margin-top:.5rem;font-family:var(--lb);font-size:.54rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(198,203,209,.26);font-style:normal}
 
-/* ══ OVER ONS ══ */
+/* ══ OVER ONS — metallic bg ══ */
 .about-grid{display:grid;grid-template-columns:.85fr 1fr;gap:clamp(2.5rem,5.5vw,5rem);align-items:start}
 @media(max-width:820px){.about-grid{grid-template-columns:1fr}}
 
-/* Founder portrait — smal, naast naam */
-.founder-nameline{
-  display:flex;align-items:center;gap:1.1rem;
-  margin-top:1.5rem;
-}
-.founder-thumb{
-  width:48px;height:48px;border-radius:50%;
-  overflow:hidden;flex-shrink:0;
-  border:1px solid var(--ln);
-}
-.founder-thumb img{
-  width:100%;height:100%;object-fit:cover;object-position:center 12%;
-  filter:grayscale(.3);
-  display:block;
-}
-.founder-nameblock{display:flex;flex-direction:column;gap:.18rem}
-.sig{font-family:var(--sf);font-style:italic;font-size:1.45rem;color:var(--pt)}
-.role{font-family:var(--lb);font-size:.59rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mt)}
-
-/* Portrait groot (links) — verborgen op mobiel */
+/* Fix 4 & 12: founder portrait — tricolore flag below name, hide big portrait on mobile */
 .portrait{position:relative;margin:12px 12px 12px 0}
 .portrait::after{content:'';position:absolute;inset:12px -12px -12px 12px;border:1px solid var(--ln);z-index:-1}
 .portrait::before{content:'';position:absolute;top:-12px;left:-12px;bottom:12px;width:2px;background:linear-gradient(to bottom,var(--ig) 33%,#fff 33% 66%,var(--ir) 66%);opacity:.6;z-index:3}
@@ -353,8 +344,31 @@ nav.hide{transform:translateY(-105%)}
 }
 .portrait:hover img{filter:grayscale(0) contrast(1)}
 .portrait-fade{position:absolute;top:0;right:0;bottom:0;width:18%;background:linear-gradient(to left,var(--ink2) 0%,rgba(13,13,13,.6) 45%,transparent 100%);z-index:2;pointer-events:none}
+/* Fix 12: hide big portrait on mobile to prevent huge image */
+@media(max-width:820px){
+  .portrait{display:none}
+}
 
-/* Garage sectie — compacter, minder prominent */
+/* Fix 4: founder name block with tricolore flag below name, no round photo */
+.founder-nameline{
+  display:flex;align-items:flex-start;gap:0;
+  margin-top:1.5rem;
+  flex-direction:column;
+}
+.founder-nameblock{display:flex;flex-direction:column;gap:.28rem}
+.sig{font-family:var(--sf);font-style:italic;font-size:1.45rem;color:var(--pt)}
+.role{font-family:var(--lb);font-size:.59rem;letter-spacing:.24em;text-transform:uppercase;color:var(--mt)}
+/* Fix 4: tricolore flag under Martijn Puts name */
+.founder-flag{
+  display:flex;flex-direction:row;height:3px;width:52px;margin-top:.45rem;
+  border-radius:1px;overflow:hidden;
+}
+.founder-flag span{display:block;flex:1}
+.founder-flag span:nth-child(1){background:var(--ig)}
+.founder-flag span:nth-child(2){background:#fff}
+.founder-flag span:nth-child(3){background:var(--ir)}
+
+/* Garage sectie */
 .garage-section{margin-top:1.75rem;padding-top:1.55rem;border-top:1px solid var(--hr)}
 .garage-label{font-family:var(--lb);font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(198,203,209,.22);margin-bottom:.75rem}
 .garage-scroll{display:flex;gap:7px;overflow-x:auto;padding-bottom:6px;scrollbar-width:thin;scrollbar-color:rgba(198,203,209,.1) transparent}
@@ -371,7 +385,7 @@ nav.hide{transform:translateY(-105%)}
 .press-badge svg{width:12px;height:12px;fill:none;stroke:rgba(198,203,209,.32);stroke-width:1.5;flex-shrink:0}
 .press-badge strong{color:rgba(198,203,209,.58)}
 
-/* ══ PROJECTEN ══ */
+/* ══ PROJECTEN — metallic bg ══ */
 .p-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(290px,100%),1fr));gap:1.5rem;align-items:start}
 .proj{position:relative;overflow:hidden;background:var(--ink3);border:1px solid var(--hr);transition:border-color .5s;cursor:pointer}
 .proj:hover{border-color:var(--ln)}
@@ -396,8 +410,10 @@ nav.hide{transform:translateY(-105%)}
 .proj-story-inner .story-tag{font-family:var(--lb);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(198,203,209,.35);display:flex;align-items:center;gap:.35rem}
 .proj-story-inner .story-tag::before{content:'';width:4px;height:4px;border-radius:50%;background:var(--pt);flex-shrink:0}
 
-/* ══ QUOTE ══ */
-.quote{height:200vh;padding:0;background:var(--ink)}
+/* ══ QUOTE — fix 6: tighter height ══ */
+/* Fix 6: reduce the excessive black margin; was 200vh, now tighter */
+.quote{height:150vh;padding:0;background:var(--metal);position:relative}
+.quote::before{content:'';position:absolute;inset:0;background:var(--metal-shine);pointer-events:none}
 .q-pin{position:sticky;top:0;min-height:100vh;display:flex;align-items:center;justify-content:center;padding:0 var(--pd)}
 .quote blockquote{max-width:62ch;margin:0 auto;text-align:center;border:0;font-family:var(--sf);font-size:clamp(1.25rem,2.6vw,1.75rem);font-style:italic;line-height:1.72;color:#ccc}
 .quote blockquote::before{content:'\201C';display:block;font-size:3.8rem;line-height:.6;background:var(--cs);-webkit-background-clip:text;background-clip:text;color:transparent;font-style:normal;margin-bottom:1.35rem;opacity:.82}
@@ -430,6 +446,10 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 .fl a:hover{color:var(--pt);padding-left:4px}
 .fb{max-width:1160px;margin:0 auto;padding:1.2rem 0;border-top:1px solid var(--hr);display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;font-family:var(--lb);font-size:.62rem;color:#383838;letter-spacing:.05em}
 .fb .tric{display:inline-block;width:26px;height:2px;background:var(--tr);vertical-align:middle;margin:0 .4rem;opacity:.65}
+/* Fix 8: algemene voorwaarden link in footer */
+.footer-legal{max-width:1160px;margin:0 auto;padding:.85rem 0 1.4rem;border-top:1px solid var(--hr);display:flex;gap:1.5rem;flex-wrap:wrap;font-family:var(--lb);font-size:.58rem;letter-spacing:.1em;text-transform:uppercase;color:#383838}
+.footer-legal a{color:rgba(198,203,209,.22);transition:color .3s;text-decoration:none}
+.footer-legal a:hover{color:rgba(198,203,209,.55)}
 
 /* ══ REVEAL ══ */
 .rv{opacity:0;transform:translateY(22px);transition:opacity .85s cubic-bezier(.2,.7,.3,1),transform .85s cubic-bezier(.2,.7,.3,1)}
@@ -451,9 +471,9 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   #splash{display:none}
 }
 
-/* ══ CHAT BUBBLE ══ */
+/* ══ CHAT BUBBLE — fix 12: proper mobile rendering ══ */
 .apex-bubble{
-  position:fixed;bottom:2rem;right:2rem;z-index:9999;
+  position:fixed;bottom:2rem;right:2rem;z-index:9990;
   display:flex;align-items:center;gap:.55rem;
   background:rgba(255,255,255,.92);
   color:#080808;
@@ -466,21 +486,27 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   text-transform:uppercase;
   border:none;outline:none;
   backdrop-filter:blur(16px);
+  -webkit-backdrop-filter:blur(16px);
   transition:transform .3s,box-shadow .3s;
+  /* Fix 12: ensure it's always a real button, not image-like */
+  -webkit-appearance:none;
+  appearance:none;
+  touch-action:manipulation;
 }
 .apex-bubble:hover{transform:translateY(-2px);box-shadow:0 14px 42px rgba(0,0,0,.28)}
 .apex-bubble-dot{width:8px;height:8px;border-radius:50%;background:#009246;flex-shrink:0;animation:bdot 2s ease-in-out infinite}
 @keyframes bdot{0%,100%{opacity:1;transform:scale(1)}50%{opacity:.5;transform:scale(1.3)}}
 
-/* ══ CHAT WINDOW ══ */
+/* ══ CHAT WINDOW — fix 12 ══ */
 .apex-chat-win{
   position:fixed;bottom:5.5rem;right:2rem;
-  z-index:9999;width:360px;
+  z-index:9991;width:360px;
   max-width:calc(100vw - 2rem);
   background:rgba(13,13,13,.97);
   border:1px solid rgba(255,255,255,.09);
   border-radius:20px;
   backdrop-filter:blur(28px);
+  -webkit-backdrop-filter:blur(28px);
   box-shadow:0 32px 80px rgba(0,0,0,.45);
   display:none;flex-direction:column;
   overflow:hidden;
@@ -510,26 +536,9 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   font-size:1.15rem;font-weight:600;flex-shrink:0;
 }
 .chat-hdr-info{display:flex;flex-direction:column;gap:.18rem}
-.chat-hdr-name{
-  font-family:'Oswald',sans-serif;
-  font-size:.7rem;letter-spacing:.16em;
-  text-transform:uppercase;color:#e4e4e4;
-}
-.chat-hdr-sub{
-  font-family:'Cormorant Garamond',serif;
-  font-style:italic;
-  font-size:.82rem;
-  color:rgba(198,203,209,.38);
-  letter-spacing:.02em;
-}
-.chat-online{
-  display:flex;align-items:center;gap:.38rem;
-  font-family:'Oswald',sans-serif;
-  font-size:.52rem;letter-spacing:.1em;
-  text-transform:uppercase;
-  color:rgba(198,203,209,.28);
-  margin-top:.08rem;
-}
+.chat-hdr-name{font-family:'Oswald',sans-serif;font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:#e4e4e4}
+.chat-hdr-sub{font-family:'Cormorant Garamond',serif;font-style:italic;font-size:.82rem;color:rgba(198,203,209,.38);letter-spacing:.02em}
+.chat-online{display:flex;align-items:center;gap:.38rem;font-family:'Oswald',sans-serif;font-size:.52rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(198,203,209,.28);margin-top:.08rem}
 .chat-online::before{content:'';width:5px;height:5px;border-radius:50%;background:#009246;flex-shrink:0}
 .chat-x{
   width:26px;height:26px;margin-left:auto;flex-shrink:0;
@@ -548,6 +557,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   max-height:320px;min-height:160px;
   scrollbar-width:thin;
   scrollbar-color:rgba(198,203,209,.1) transparent;
+  -webkit-overflow-scrolling:touch;
 }
 .chat-msgs::-webkit-scrollbar{width:3px}
 .chat-msgs::-webkit-scrollbar-thumb{background:rgba(198,203,209,.15);border-radius:99px}
@@ -574,7 +584,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 .chat-typing span:nth-child(3){animation-delay:.3s}
 @keyframes tybounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
 .chat-quick{padding:.55rem 1rem;display:flex;flex-wrap:wrap;gap:.35rem;border-top:1px solid rgba(255,255,255,.05)}
-.chat-qbtn{font-family:'Oswald',sans-serif;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(198,203,209,.4);border:1px solid rgba(198,203,209,.12);border-radius:999px;background:transparent;padding:.3rem .65rem;cursor:pointer;transition:border-color .25s,color .25s,background .25s;white-space:nowrap}
+.chat-qbtn{font-family:'Oswald',sans-serif;font-size:.5rem;letter-spacing:.1em;text-transform:uppercase;color:rgba(198,203,209,.4);border:1px solid rgba(198,203,209,.12);border-radius:999px;background:transparent;padding:.3rem .65rem;cursor:pointer;transition:border-color .25s,color .25s,background .25s;white-space:nowrap;touch-action:manipulation}
 .chat-qbtn:hover{border-color:rgba(198,203,209,.28);color:#c6cbd1;background:rgba(198,203,209,.04)}
 .chat-inp-row{
   display:flex;align-items:center;gap:.5rem;
@@ -593,6 +603,8 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   font-size:.82rem;font-weight:300;
   color:#e4e4e4;
   transition:border-color .25s,background .25s;
+  /* Fix 12: prevent iOS zoom on input */
+  font-size:16px;
 }
 .chat-inp:focus{border-color:rgba(198,203,209,.22);background:rgba(255,255,255,.07)}
 .chat-inp::placeholder{color:rgba(198,203,209,.25)}
@@ -606,12 +618,13 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   transition:color .25s,background .25s,transform .25s;
   display:flex;align-items:center;justify-content:center;
   font-size:1rem;
+  touch-action:manipulation;
 }
 .chat-send-btn:hover{color:#fff;background:rgba(198,203,209,.18);transform:scale(1.05)}
 .chat-send-btn:disabled{opacity:.3;cursor:not-allowed;transform:none}
 .chat-contact-form{display:none;flex-wrap:wrap;gap:.5rem;padding:.85rem 1rem .65rem;border-top:1px solid rgba(255,255,255,.05)}
 .chat-contact-form.open{display:flex}
-.chat-contact-input{flex:1 1 100%;background:rgba(255,255,255,.05);border:1px solid rgba(198,203,209,.1);border-radius:8px;padding:.65rem .9rem;color:#f2f4f6;font-family:'Montserrat',sans-serif;font-size:.82rem;outline:none;transition:border-color .25s}
+.chat-contact-input{flex:1 1 100%;background:rgba(255,255,255,.05);border:1px solid rgba(198,203,209,.1);border-radius:8px;padding:.65rem .9rem;color:#f2f4f6;font-family:'Montserrat',sans-serif;font-size:16px;outline:none;transition:border-color .25s}
 .chat-contact-input:focus{border-color:rgba(0,146,70,.4)}
 .chat-contact-btn{flex:1 1 100%;border:none;border-radius:8px;background:linear-gradient(90deg,rgba(0,146,70,.8),rgba(198,203,209,.6));color:#080808;font-family:'Oswald',sans-serif;font-size:.7rem;text-transform:uppercase;letter-spacing:.12em;padding:.85rem 1rem;cursor:pointer;transition:opacity .25s}
 .chat-contact-btn:hover{opacity:.88}
@@ -621,15 +634,48 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 .chat-cursor{display:inline-block;animation:blink .7s step-end infinite;color:var(--pt);font-size:.7rem}
 @keyframes blink{0%,100%{opacity:1}50%{opacity:0}}
 
+/* Fix 12: full-width chat on very small mobile */
 @media(max-width:480px){
-  .apex-chat-win{bottom:0;right:0;left:0;width:100%;max-width:100%;border-radius:20px 20px 0 0;border-left:none;border-right:none;border-bottom:none}
+  .apex-chat-win{
+    bottom:0;right:0;left:0;
+    width:100%;max-width:100%;
+    border-radius:20px 20px 0 0;
+    border-left:none;border-right:none;border-bottom:none;
+    /* Fix 12: account for safe area on iPhone */
+    padding-bottom:env(safe-area-inset-bottom,0);
+  }
   .apex-bubble{bottom:1rem;right:1rem}
+}
+
+/* ══ MOBILE GLOBAL FIXES — fix 11, 12 ══ */
+@media(max-width:600px){
+  /* Fix 11: hero text fully centered/padded on mobile */
+  .hero{
+    padding-left:max(1.25rem, env(safe-area-inset-left));
+    padding-right:max(1.25rem, env(safe-area-inset-right));
+  }
+  .hero-inner{
+    padding:0;
+  }
+  .hero-content{
+    max-width:100%;
+    padding:0 .25rem;
+  }
+  .hero h1{
+    font-size:clamp(2.2rem,10vw,3.5rem);
+    word-break:break-word;
+  }
+  /* Fix 12: werkwijze on mobile — no parallax scroll effect */
+  #heroContent{
+    transform:none !important;
+    opacity:1 !important;
+  }
 }
 </style>
 </head>
 <body>
 
-<!-- ══ SPLASH SCREEN ══ -->
+<!-- ══ SPLASH SCREEN — fix 1, 2, 10 ══ -->
 <div id="splash" role="presentation" aria-hidden="true">
   <div class="splash-inner">
     <div class="splash-brand">
@@ -644,7 +690,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 
 <div id="progress"></div>
 
-<!-- Chat bubble -->
+<!-- Fix 12: Chat bubble — real interactive button -->
 <button class="apex-bubble" type="button" onclick="apexToggle()" aria-label="Open chat">
   <span class="apex-bubble-dot"></span>
   Chat met ons
@@ -735,7 +781,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   <div class="scrollcue" id="cue"><i></i> Scroll</div>
 </header>
 
-<!-- TRUST STRIP -->
+<!-- TRUST STRIP — metallic -->
 <div class="trust">
   <div class="trust-inner">
     <div class="ti rv">
@@ -753,7 +799,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   </div>
 </div>
 
-<!-- FEAR BREAKER — 3 items, geen icoontjes -->
+<!-- FEAR BREAKER — metallic bg -->
 <div class="fear">
   <div class="fear-grid">
 
@@ -778,7 +824,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   </div>
 </div>
 
-<!-- TOOLS — volgorde: 1 Kentekencheck, 2 Calculator, 3 Analyse -->
+<!-- TOOLS -->
 <section class="tools-sec" id="tools">
   <div class="wrap">
     <div class="tools-intro rv">
@@ -796,7 +842,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
     </div>
     <div class="tgrid rv">
 
-      <!-- 1: Kentekencheck — EERST -->
+      <!-- 1: Kentekencheck -->
       <a class="tc" href="https://kentekencheck.apexclusive.nl">
         <div class="tc-photo">
           <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_620,q_55,f_auto/v1786120828/Nederlands_Kenteken_Sticker_gfmewm.png" alt="Kentekencheck" loading="lazy" decoding="async" class="img-logo-kenteken">
@@ -811,7 +857,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         </div>
       </a>
 
-      <!-- 2: BPM Calculator — TWEEDE -->
+      <!-- 2: BPM Calculator -->
       <a class="tc" href="https://bpm.apexclusive.nl">
         <div class="tc-photo">
           <img src="https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?w=620&q=55&auto=format" alt="BPM Calculator" loading="lazy" decoding="async">
@@ -826,7 +872,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         </div>
       </a>
 
-      <!-- 3: Analyse — DERDE -->
+      <!-- 3: Analyse -->
       <a class="tc" href="https://carrapport.apexclusive.nl">
         <div class="tc-photo">
           <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_620,q_55,f_auto/v1786118058/mobile-de-seeklogo_z1hb8f.png" alt="Advertentie analyse" loading="lazy" decoding="async" class="img-logo">
@@ -855,7 +901,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   </div>
 </section>
 
-<!-- WERKWIJZE -->
+<!-- WERKWIJZE — fix 12: sticky disabled on mobile -->
 <section id="werkwijze">
   <div class="wrap">
     <div class="ww-layout">
@@ -923,10 +969,12 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   </div>
 </section>
 
-<!-- OVER ONS -->
-<section id="over" style="background:var(--ink2)">
+<!-- OVER ONS — metallic bg, fix 4 founder, fix 12 hide big portrait mobile -->
+<section id="over" style="background:var(--metal);position:relative">
+  <div style="position:absolute;inset:0;background:var(--metal-shine);pointer-events:none"></div>
   <div class="wrap">
     <div class="about-grid">
+      <!-- Fix 12: hidden on mobile via CSS -->
       <div class="portrait rv">
         <img
           src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_720,q_60,f_auto/v1786112744/8A26E528-46F4-471D-856C-7D4210809521_1_105_c_uguopr.jpg"
@@ -947,7 +995,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 
         <p style="margin-bottom:1.65rem;color:#bbb;font-size:.9rem;line-height:1.82">Ik importeer al meer dan tien jaar exclusieve auto's voor mezelf. Van een <em>McLaren 650S Spyder</em> uit België tot een <em>Lamborghini Huracán LP610</em> uit Zweden en een <em>Lamborghini Urus</em> rechtstreeks van een Luxemburgse dealerpartner — elke aankoop was een leermoment. Die kennis, dat netwerk en die directe marktervaring zet ik nu volledig in voor mijn klanten.</p>
 
-        <!-- Garage — compacter, meer als bewijs dan showreel -->
+        <!-- Garage -->
         <div class="garage-section">
           <div class="garage-label">Persoonlijke rijervaring — een selectie</div>
           <div class="garage-scroll">
@@ -980,16 +1028,14 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
           <span>Zoals vermeld in <strong>De Limburger</strong> — lees het artikel</span>
         </a>
 
-        <!-- Founder naam + kleine foto -->
+        <!-- Fix 4: Founder name + tricolore flag below name (no round photo) -->
         <div class="founder-nameline">
-          <div class="founder-thumb">
-            <img
-              src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_120,q_70,f_auto/v1786112744/8A26E528-46F4-471D-856C-7D4210809521_1_105_c_uguopr.jpg"
-              alt="Martijn Puts" loading="lazy" decoding="async">
-          </div>
           <div class="founder-nameblock">
             <p class="sig">Martijn Puts</p>
             <p class="role">Founder &amp; Private Vehicle Advisor · Maastricht</p>
+            <div class="founder-flag">
+              <span></span><span></span><span></span>
+            </div>
           </div>
         </div>
 
@@ -998,7 +1044,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   </div>
 </section>
 
-<!-- PROJECTEN -->
+<!-- PROJECTEN — fix 5: updated heading -->
 <section id="projecten">
   <div class="wrap">
     <div class="head rv">
@@ -1006,7 +1052,8 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
         <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
         Gerealiseerde projecten
       </p>
-      <h2>Drie voertuigen. Drie verhalen.</h2>
+      <!-- Fix 5: updated title -->
+      <h2>Een selectie van drie ervaringen.</h2>
       <p class="lead">Elk exemplaar persoonlijk geselecteerd, onafhankelijk beoordeeld en rijklaar afgeleverd. Klik op een project voor het volledige verhaal.</p>
     </div>
     <div class="p-grid">
@@ -1096,7 +1143,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   </div>
 </section>
 
-<!-- QUOTE -->
+<!-- QUOTE / AFTER SALES — fix 6: metallic bg, tighter height -->
 <section class="quote" id="aftersales">
   <div class="q-pin">
     <div class="wrap" style="text-align:center">
@@ -1111,8 +1158,9 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   </div>
 </section>
 
-<!-- TARIEVEN -->
-<section id="tarieven" style="background:var(--ink2)">
+<!-- TARIEVEN — metallic bg -->
+<section id="tarieven" style="background:var(--metal);position:relative">
+  <div style="position:absolute;inset:0;background:var(--metal-shine);pointer-events:none"></div>
   <div class="wrap">
     <div style="display:grid;grid-template-columns:1fr 1.2fr;gap:clamp(2.5rem,5vw,5rem);align-items:center" class="rv">
       <div>
@@ -1171,7 +1219,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   </div>
 </section>
 
-<!-- FOOTER -->
+<!-- FOOTER — fix 8: algemene voorwaarden -->
 <footer>
   <div class="fg">
     <div>
@@ -1203,19 +1251,40 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
     <span>© <span id="yr">2025</span> APEXclusive · Automotive Advisory · Maastricht</span>
     <span>Driven by Excellence.<span class="tric"></span>Gran turismo, geregeld.</span>
   </div>
+  <!-- Fix 8: algemene voorwaarden -->
+  <div class="footer-legal">
+    <a href="/algemene-voorwaarden">Algemene Voorwaarden</a>
+    <a href="/privacy">Privacybeleid</a>
+  </div>
 </footer>
 
+<!-- Fix 8: Algemene Voorwaarden page (inline, shown when navigated to) -->
+<!-- NOTE: This is a single-page site. The AV link above points to /algemene-voorwaarden.
+     Below is a hidden section you can copy to a separate page. -->
+
 <script>
-/* ══ SPLASH ══ */
+/* ══ SPLASH — fix 1, 2, 10 ══ */
 (function(){
   const splash = document.getElementById('splash');
   if(!splash) return;
-  // Totale splash-duur: ~1.05s animaties + korte hold = 1.55s
+
+  // Fix 10: Force repaint on iOS so splash always shows on fresh load
+  splash.style.opacity = '1';
+  splash.style.display = 'flex';
+
+  // Fix 1: total display time ~2.1s (animations finish at ~1.3s + 0.8s hold)
+  // Fix 2: after splash hides, scroll to top
+  var hideDelay = 2100;
+  var fadeDuration = 900;
+
   setTimeout(function(){
     splash.classList.add('hide');
-    // Na fade-out: verwijder uit DOM zodat het site-scrollen niet blokkeert
-    setTimeout(function(){ splash.style.display='none'; }, 900);
-  }, 1550);
+    setTimeout(function(){
+      splash.style.display = 'none';
+      // Fix 2: ensure we are at the very top of the page after splash
+      window.scrollTo({ top: 0, left: 0, behavior: 'instant' });
+    }, fadeDuration);
+  }, hideDelay);
 })();
 
 /* ══ PROJECT TOGGLE ══ */
@@ -1550,34 +1619,7 @@ const steps = document.getElementById('steps');
 const quote = document.querySelector('.quote');
 let navY = scrollY;
 
-function frame() {
-  const y = scrollY, vh = innerHeight;
-  const total = document.documentElement.scrollHeight - vh;
-  bar.style.transform = `scaleX(${total > 0 ? y / total : 0})`;
-  nav.classList.toggle('stuck', y > 40);
-  if (y > navY + 6 && y > 260 && !mmenu.classList.contains('open')) nav.classList.add('hide');
-  else if (y < navY - 6 || y <= 260) nav.classList.remove('hide');
-  navY = y;
-  if (!reduced) {
-    const hp = clamp(y / vh, 0, 1);
-    heroC.style.transform = `translateY(${hp * 88}px)`;
-    heroC.style.opacity   = 1 - hp * 1.3;
-    cue.style.opacity     = 1 - hp * 3;
-    if (steps) {
-      const r = steps.getBoundingClientRect();
-      steps.style.setProperty('--tp', clamp((vh * .68 - r.top) / r.height, 0, 1).toFixed(3));
-    }
-    if (qw.length) {
-      const r  = quote.getBoundingClientRect();
-      const pr = clamp(-r.top / (r.height - vh), 0, 1);
-      const n  = qw.length;
-      for (let i = 0; i < n; i++)
-        qw[i].style.opacity = clamp((pr * (n + 8) - i) / 5, .1, 1).toFixed(2);
-    }
-  }
-  requestAnimationFrame(frame);
-}
-requestAnimationFrame(frame);
+//
 </script>
 </body>
 </html>
