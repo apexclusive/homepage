@@ -354,25 +354,39 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 }
 .apex-bubble{
   position:fixed;bottom:2rem;right:2rem;z-index:9999;
-  display:flex;align-items:center;gap:.65rem;
-  background:#c6cbd1;color:#080808;
-  padding:.85rem 1.35rem .85rem 1rem;
+  display:flex;align-items:center;gap:.55rem;
+  background:rgba(255,255,255,.92);
+  color:#080808;
+  padding:.75rem 1.05rem .75rem 1rem;
+  border-radius:999px;
   cursor:pointer;
-  box-shadow:0 8px 32px rgba(0,0,0,.45);
+  box-shadow:0 22px 58px rgba(0,0,0,.24);
   font-family:'Oswald',sans-serif;
-  font-size:.65rem;letter-spacing:.18em;
+  font-size:.72rem;letter-spacing:.16em;
   text-transform:uppercase;
-  border:none;outline:none;
-  transition:transform .3s,box-shadow .3s;
+  border:1px solid rgba(255,255,255,.8);
+  backdrop-filter:blur(16px);
+  transition:transform .32s,box-shadow .32s,background .32s;
 }
 .apex-bubble:hover{
   transform:translateY(-2px);
-  box-shadow:0 12px 40px rgba(0,0,0,.55);
+  background:rgba(255,255,255,.99);
+  box-shadow:0 26px 64px rgba(0,0,0,.24);
 }
 .apex-bubble-dot{
   width:8px;height:8px;border-radius:50%;
   background:#009246;flex-shrink:0;
+  box-shadow:0 0 0 4px rgba(0,146,70,.12);
   animation:bdot 2s ease-in-out infinite;
+}
+.apex-bubble-label{
+  display:inline-flex;
+  align-items:center;
+  gap:.45rem;
+  font-family:'Oswald',sans-serif;
+  font-size:.72rem;
+  color:#080808;
+  letter-spacing:.16em;
 }
 @keyframes bdot{
   0%,100%{opacity:1;transform:scale(1)}
@@ -381,17 +395,29 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 
 .apex-chat-win{
   position:fixed;bottom:5.5rem;right:2rem;
-  z-index:9999;width:380px;
+  z-index:9999;width:340px;
   max-width:calc(100vw - 2rem);
-  background:#0d0d0d;
-  border:1px solid rgba(198,203,209,.18);
-  box-shadow:0 24px 64px rgba(0,0,0,.7);
+  background:rgba(12,12,12,.94);
+  border:1px solid rgba(255,255,255,.1);
+  border-radius:32px;
+  backdrop-filter:blur(28px);
+  box-shadow:0 32px 98px rgba(0,0,0,.32);
   display:none;flex-direction:column;
   overflow:hidden;
 }
+.apex-chat-win::before{
+  content:'';
+  position:absolute;top:0;left:0;right:0;height:2px;
+  background:linear-gradient(90deg,#009246,#c6cbd1,#CE2B37);
+  opacity:.65;
+}
 .apex-chat-win.open{
   display:flex;
-  animation:chatwin .25s cubic-bezier(.2,.7,.3,1);
+  animation:chatwin .25s cubic-bezier(.2,.7,.3,1), fadeInSlide .35s ease both;
+}
+@keyframes fadeInSlide{
+  from{opacity:0;transform:translateY(12px)}
+  to{opacity:1;transform:none}
 }
 @keyframes chatwin{
   from{opacity:0;transform:translateY(16px)}
@@ -399,9 +425,9 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 }
 
 .chat-hdr{
-  background:#131313;
-  border-bottom:1px solid rgba(198,203,209,.18);
-  padding:.9rem 1.25rem;
+  background:rgba(19,19,19,.98);
+  border-bottom:1px solid rgba(255,255,255,.08);
+  padding:1rem 1.25rem 1rem 1.25rem;
   display:flex;align-items:center;gap:.85rem;
   position:relative;
 }
@@ -429,6 +455,17 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   font-size:.6rem;color:rgba(198,203,209,.4);
   font-family:'Oswald',sans-serif;letter-spacing:.08em;
 }
+.chat-hdr-badge{
+  display:inline-flex;
+  padding:.25rem .6rem;
+  font-size:.58rem;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+  color:#e4e4e4;
+  background:linear-gradient(135deg,rgba(0,146,70,.14),rgba(255,255,255,.08),rgba(206,43,55,.14));
+  border:1px solid rgba(255,255,255,.12);
+  border-radius:999px;
+}
 .chat-hdr-status::before{
   content:'';width:6px;height:6px;
   border-radius:50%;background:#009246;
@@ -454,11 +491,17 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
   gap:.75rem;
   max-height:340px;min-height:180px;
   scrollbar-width:thin;
-  scrollbar-color:rgba(198,203,209,.1) transparent;
+  scrollbar-color:rgba(198,203,209,.18) transparent;
+  background:rgba(255,255,255,.02);
+  border-radius:1.35rem;
 }
-.chat-msgs::-webkit-scrollbar{width:3px}
+.chat-msgs::-webkit-scrollbar{width:6px}
 .chat-msgs::-webkit-scrollbar-thumb{
-  background:rgba(198,203,209,.15);
+  background:rgba(198,203,209,.2);
+  border-radius:999px;
+}
+.chat-msgs::-webkit-scrollbar-track{
+  background:transparent;
 }
 
 .cmsg{
@@ -510,87 +553,167 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 }
 
 .chat-quick{
-  padding:.6rem 1.1rem;
-  display:flex;flex-wrap:wrap;gap:.4rem;
-  border-top:1px solid rgba(198,203,209,.06);
+  padding:.75rem 1rem .65rem;
+  display:flex;flex-wrap:wrap;gap:.5rem;
+  border-top:1px solid rgba(198,203,209,.08);
+  background:rgba(20,20,20,.92);
+  backdrop-filter:blur(18px);
 }
 .chat-qbtn{
   font-family:'Oswald',sans-serif;
-  font-size:.52rem;letter-spacing:.1em;
+  font-size:.55rem;letter-spacing:.12em;
   text-transform:uppercase;
-  color:rgba(198,203,209,.45);
+  color:rgba(198,203,209,.7);
   border:1px solid rgba(198,203,209,.14);
-  background:transparent;padding:.35rem .7rem;
+  background:rgba(255,255,255,.04);
+  padding:.45rem .85rem;
   cursor:pointer;
-  transition:border-color .25s,color .25s;
+  transition:border-color .25s,color .25s,background .25s,transform .25s;
   white-space:nowrap;
+  border-radius:.45rem;
 }
 .chat-qbtn:hover{
-  border-color:rgba(198,203,209,.3);
-  color:#c6cbd1;
+  border-color:rgba(198,203,209,.35);
+  color:#fff;
+  background:rgba(255,255,255,.14);
+  transform:translateY(-1px);
 }
-
 .chat-inp-row{
   display:flex;gap:1px;
-  border-top:1px solid rgba(198,203,209,.18);
-  background:rgba(198,203,209,.18);
+  border-top:1px solid rgba(198,203,209,.12);
+  background:rgba(255,255,255,.05);
+  padding:.55rem;
+  border-bottom-left-radius:1rem;
+  border-bottom-right-radius:1rem;
 }
+.chat-toolbar{
+  display:flex;gap:.8rem;padding:.85rem 1.1rem;
+  border-top:1px solid rgba(198,203,209,.08);
+  background:rgba(255,255,255,.04);
+}
+.chat-tip{
+  padding:.7rem 1.1rem;
+  font-size:.75rem;
+  color:rgba(198,203,209,.78);
+  border-top:1px solid rgba(198,203,209,.08);
+  background:rgba(255,255,255,.04);
+  letter-spacing:.01em;
+  border-left:3px solid rgba(0,146,70,.45);
+}
+.chat-transfer-btn{
+  flex:1 1 50%;border:none;border-radius:.55rem;
+  background:linear-gradient(135deg,#11181a,#232a2d);
+  color:#f2f4f6;
+  font-family:'Oswald',sans-serif;font-size:.72rem;
+  text-transform:uppercase;letter-spacing:.12em;
+  padding:.9rem 1rem;cursor:pointer;
+  transition:background .25s,transform .25s,box-shadow .25s;
+  box-shadow:0 10px 24px rgba(0,0,0,.16);
+}
+.chat-transfer-btn:hover{background:linear-gradient(135deg,#141d21,#2b3236);text-decoration:none;transform:translateY(-1px)}
 .chat-contact-form{
-  display:flex;flex-wrap:wrap;gap:.55rem;
-  padding:.85rem 1.1rem .75rem;
-  border-top:1px solid rgba(198,203,209,.06);
-  background:#0a0a0a;
+  display:none;flex-wrap:wrap;gap:.6rem;
+  padding:.95rem 1.1rem .75rem;
+  border-top:1px solid rgba(198,203,209,.08);
+  background:rgba(255,255,255,.03);
+}
+.chat-contact-form.open{
+  display:flex;
 }
 .chat-contact-input{
   flex:1 1 100%;
   min-width:0;
-  background:#131313;
+  background:rgba(255,255,255,.05);
   border:1px solid rgba(198,203,209,.12);
-  border-radius:.35rem;
-  padding:.75rem 1rem;
-  color:#e4e4e4;
+  border-radius:.55rem;
+  padding:.78rem 1rem;
+  color:#f2f4f6;
   font-family:'Montserrat',sans-serif;
-  font-size:.8rem;
+  font-size:.85rem;
+  transition:border-color .25s,box-shadow .25s,background .25s;
+}
+.chat-contact-input:focus{
+  border-color:#009246;
+  box-shadow:0 0 0 3px rgba(0,146,70,.12);
+  background:rgba(255,255,255,.1);
 }
 .chat-contact-btn{
   flex:1 1 100%;
   border:none;
-  border-radius:.35rem;
+  border-radius:.55rem;
   background:linear-gradient(90deg,#009246,#CE2B37);
   color:#080808;
   font-family:'Oswald',sans-serif;
   font-size:.72rem;
   text-transform:uppercase;
   letter-spacing:.12em;
-  padding:.85rem 1rem;
+  padding:.95rem 1rem;
   cursor:pointer;
-  transition:opacity .25s,transform .25s;
+  transition:opacity .25s,transform .25s,box-shadow .25s;
+  box-shadow:0 16px 36px rgba(0,0,0,.18);
 }
 .chat-contact-btn:hover{
-  opacity:.9;
+  opacity:.96;
   transform:translateY(-1px);
 }
+.chat-toast{
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  min-height:44px;
+  margin:0 1.1rem .75rem;
+  padding:.8rem 1.05rem;
+  border-radius:999px;
+  background:rgba(255,255,255,.08);
+  border:1px solid rgba(255,255,255,.14);
+  color:#f7f8f9;
+  font-size:.84rem;
+  text-align:center;
+  letter-spacing:.01em;
+  backdrop-filter:blur(18px);
+  opacity:0;
+  transform:translateY(8px);
+  pointer-events:none;
+  transition:opacity .28s ease,transform .28s ease;
+}
+.chat-toast.visible{
+  opacity:1;
+  transform:translateY(0);
+}
 .chat-inp{
-  flex:1;background:#131313;
-  border:none;outline:none;
-  padding:.8rem 1rem;
+  flex:1;background:rgba(19,19,19,.96);
+  border:1px solid rgba(198,203,209,.12);
+  border-radius:999px;
+  outline:none;
+  padding:.92rem 1rem;
   font-family:'Montserrat',sans-serif;
-  font-size:.82rem;font-weight:300;
+  font-size:.84rem;font-weight:300;
   color:#e4e4e4;
 }
-.chat-inp::placeholder{color:rgba(198,203,209,.2)}
+.chat-inp::placeholder{color:rgba(198,203,209,.35)}
 .chat-send-btn{
-  background:#131313;border:none;
-  outline:none;padding:.8rem 1.1rem;
+  width:56px;
+  min-width:56px;
+  background:rgba(255,255,255,.06);
+  border:none;
+  outline:none;
+  padding:.82rem;
+  border-radius:999px;
   cursor:pointer;
-  color:rgba(198,203,209,.4);
-  transition:color .25s,background .25s;
-  display:flex;align-items:center;
+  color:rgba(198,203,209,.45);
+  transition:color .25s,background .25s,transform .25s;
+  display:flex;align-items:center;justify-content:center;
 }
 .chat-send-btn:hover{
-  color:#c6cbd1;background:#181818;
+  color:#fff;
+  background:rgba(255,255,255,.16);
+  transform:translateY(-1px);
 }
-.chat-send-btn:disabled{opacity:.3;cursor:not-allowed}
+.chat-send-btn:disabled{opacity:.35;cursor:not-allowed}
+@keyframes fadein{
+  from{opacity:0;transform:translateY(6px)}
+  to{opacity:1;transform:none}
+}
 /* Knipperende cursor tijdens laden */
 .chat-cursor {
   display: inline-block;
@@ -604,14 +727,14 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 }
 .chat-foot{
   padding:.45rem 1.1rem;
-  background:#0a0a0a;
-  border-top:1px solid rgba(198,203,209,.05);
+  background:rgba(10,10,10,.95);
+  border-top:1px solid rgba(255,255,255,.04);
   font-family:'Oswald',sans-serif;
-  font-size:.48rem;letter-spacing:.1em;
+  font-size:.48rem;letter-spacing:.12em;
   text-transform:uppercase;
-  color:rgba(198,203,209,.18);text-align:center;
+  color:rgba(198,203,209,.2);
+  text-align:center;
 }
-
 @media(max-width:480px){
   .apex-chat-win{
     bottom:0;right:0;left:0;
@@ -629,7 +752,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
 
 <button class="apex-bubble" type="button" onclick="apexToggle()" aria-label="Open chat">
   <span class="apex-bubble-dot"></span>
-  Chat met ons
+  <span class="apex-bubble-label">Chat</span>
 </button>
 
 <div class="apex-chat-win" id="apex-chat-win" aria-live="polite">
@@ -637,26 +760,32 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink)}
     <div class="chat-hdr-av" aria-hidden="true">A</div>
     <div>
       <div class="chat-hdr-name">APEXclusive Adviseur</div>
-      <div class="chat-hdr-status">Online — reageert direct</div>
+      <div class="chat-hdr-status">Discreet & persoonlijk advies</div>
+      <div class="chat-hdr-badge">Persoonlijk advies</div>
     </div>
     <button class="chat-x" type="button" onclick="apexToggle()" aria-label="Sluit chat">✕</button>
   </div>
   <div id="apex-msgs" class="chat-msgs"></div>
-  <div id="apex-quick" class="chat-quick">
+  <div id="apex-toast" class="chat-toast" aria-live="polite"></div>
+  <div class="chat-quick" id="apex-quick">
     <button class="chat-qbtn" type="button" onclick="apexQuick('BPM kosten')">BPM kosten</button>
     <button class="chat-qbtn" type="button" onclick="apexQuick('Importproces')">Importproces</button>
     <button class="chat-qbtn" type="button" onclick="apexQuick('Bijkomende kosten')">Bijkomende kosten</button>
     <button class="chat-qbtn" type="button" onclick="apexQuick('Taxatie')">Taxatie</button>
-    <button class="chat-qbtn" type="button" onclick="apexQuick('Over APEXclusive')">Over APEXclusive</button>
   </div>
-  <div class="chat-contact-form">
+  <div class="chat-toolbar">
+    <button class="chat-contact-btn" type="button" onclick="apexShowContactForm()">Contactgegevens</button>
+    <button class="chat-transfer-btn" type="button" onclick="apexRequestTransfer()">Adviseur spreken</button>
+  </div>
+  <div class="chat-tip">Stel eerst uw vraag. Als het nodig is vraag ik om uw contactgegevens. Voor persoonlijk advies kiest u “Adviseur spreken”.</div>
+  <div class="chat-contact-form" id="apex-contact-form">
     <input id="apex-contact-name" class="chat-contact-input" type="text" placeholder="Naam">
     <input id="apex-contact-email" class="chat-contact-input" type="email" placeholder="E-mail">
     <input id="apex-contact-phone" class="chat-contact-input" type="tel" placeholder="06-nummer">
-    <button class="chat-contact-btn" type="button" onclick="apexSubmitContact()">Verstuur contactgegevens</button>
+    <button class="chat-contact-btn" type="button" onclick="apexSubmitContact()">Stuur contact</button>
   </div>
   <div class="chat-inp-row">
-    <input id="apex-inp" class="chat-inp" type="text" placeholder="Typ uw vraag..." autocomplete="off">
+    <input id="apex-inp" class="chat-inp" type="text" placeholder="Laat uw vraag achter..." autocomplete="off">
     <button id="apex-send" class="chat-send-btn" type="button" onclick="apexSend()" aria-label="Verstuur bericht">→</button>
   </div>
   <div class="chat-foot">APEXclusive · Maastricht · AI Adviseur · Geen financieel advies</div>
@@ -1358,8 +1487,8 @@ const _contextWelkom = {
   werkwijze: 'U bekijkt onze werkwijze — heeft u vragen over hoe een traject verloopt, of wilt u weten wat wij voor uw specifieke situatie kunnen betekenen?',
   over:      'Goedag! Fijn dat u meer wilt weten over APEXclusive. Heeft u een vraag voor Martijn, of kan ik u ergens mee helpen?',
   projecten: 'U bekijkt onze gerealiseerde projecten. Heeft u zelf een droomauto in gedachten? Ik vertel u graag wat wij voor u kunnen betekenen.',
-  contact:   'U wilt contact opnemen — prachtig. Laat uw naam, e-mail en 06 achter, dan neemt een adviseur van APEXclusive binnen 24 uur contact met u op. Uw gegevens worden veilig behandeld.',
-  home:      'Goedag! Ik ben de digitale adviseur van **APEXclusive**. Ik help u graag met vragen over premium auto import, BPM-berekeningen of aankoopbegeleiding. Laat uw naam, e-mail en 06 achter, dan neemt een adviseur van APEXclusive contact met u op.'
+  contact:   'U wilt contact opnemen — prachtig. Laat uw naam, e-mail en 06 achter wanneer u daar klaar voor bent. Een adviseur van APEXclusive benadert u dan persoonlijk.',
+  home:      'Goedag! Ik ben de AI-adviseur van **APEXclusive**. Hoe kan ik u helpen vandaag? Wilt u direct een adviseur spreken, kies dan “Adviseur spreken”.'
 };
 
 _loadLeadData();
@@ -1370,6 +1499,8 @@ function apexToggle() {
   const win = document.getElementById('apex-chat-win');
   if (_open) {
     win.classList.add('open');
+    document.getElementById('apex-contact-form').classList.remove('open');
+    document.getElementById('apex-quick').style.display = 'flex';
     // Eerste keer openen: welkomstbericht
     if (_msgs.length === 0) {
       const ctx = _getContext();
@@ -1404,6 +1535,29 @@ function _validatePhone(phone) {
   return /^(?:\+31|0)[\s.-]*6[\s.-]*\d{8}$/.test(phone);
 }
 
+function apexShowContactForm() {
+  document.getElementById('apex-quick').style.display = 'none';
+  const form = document.getElementById('apex-contact-form');
+  form.classList.add('open');
+  document.getElementById('apex-contact-name').focus();
+}
+
+function apexHideContactForm() {
+  const form = document.getElementById('apex-contact-form');
+  form.classList.remove('open');
+}
+
+function apexToast(message) {
+  const toast = document.getElementById('apex-toast');
+  if (!toast) return;
+  toast.textContent = message;
+  toast.classList.add('visible');
+  clearTimeout(window._apexToastTimeout);
+  window._apexToastTimeout = setTimeout(() => {
+    toast.classList.remove('visible');
+  }, 3600);
+}
+
 function apexSubmitContact() {
   const name = document.getElementById('apex-contact-name').value.trim();
   const email = document.getElementById('apex-contact-email').value.trim();
@@ -1429,8 +1583,28 @@ function apexSubmitContact() {
   if (email) values.push(`E-mail: ${email}`);
   if (phone) values.push(`06: ${phone}`);
 
+  apexHideContactForm();
   document.getElementById('apex-inp').value = values.join(' | ');
+  apexToast('Dank, uw contactgegevens zijn ontvangen. We nemen snel contact met u op.');
   apexSend();
+}
+
+function apexRequestTransfer() {
+  const transferText = 'Ik wil graag met een medewerker of adviseur spreken.';
+  document.getElementById('apex-quick').style.display = 'none';
+  _addMsg('user', transferText);
+  _msgs.push({ role: 'user', content: transferText });
+  _leadData = { ..._leadData, ..._extractLeadData(transferText) };
+  _saveLeadData();
+  _saveHistory();
+  _addMsg('bot', 'Natuurlijk. Ik regel dat een adviseur uw vraag ziet. Laat uw naam, e-mail en 06 achter als u wilt dat we u persoonlijk terugbellen.');
+  _msgs.push({ role: 'assistant', content: 'Natuurlijk. Ik regel dat een adviseur uw vraag ziet. Laat uw naam, e-mail en 06 achter als u wilt dat we u persoonlijk terugbellen.' });
+  _saveHistory();
+  apexShowContactForm();
+}
+
+function _isHumanRequest(text) {
+  return /\b(medewerker|adviseur|persoonlijk|mens|spreken met|telefonisch|bellen|contact opnemen|ik wil graag spreken|direct contact)\b/i.test(text);
 }
 
 /* ── Quick buttons ── */
@@ -1452,6 +1626,7 @@ async function apexSend() {
   _leadData = { ..._leadData, ..._extractLeadData(msg) };
   _saveLeadData();
   _saveHistory();
+  apexHideContactForm();
   void _tryNotifyLead();
   document.getElementById('apex-quick').style.display = 'none';
 
@@ -1462,6 +1637,32 @@ async function apexSend() {
   const botDiv = _createBotBubble();
   const contentDiv = botDiv.querySelector('.cmsg-content');
   let fullReply = '';
+
+  if (_isHumanRequest(msg)) {
+    const humanReply = 'Ik begrijp het. Een adviseur bekijkt uw vraag en ik vraag nu uw contactgegevens voor een persoonlijk vervolg.';
+    contentDiv.innerHTML = _fmt(humanReply);
+    fullReply = humanReply;
+    _msgs.push({ role: 'assistant', content: humanReply });
+    _saveHistory();
+    apexShowContactForm();
+    _busy = false;
+    document.getElementById('apex-send').disabled = false;
+    document.getElementById('apex-inp').focus();
+    return;
+  }
+
+  if (/\bNaam:.*\|.*E-mail:.*\|.*06:|\bNaam:.*\|.*06:.*\|.*E-mail:|\bE-mail:.*\|.*06:/i.test(msg)) {
+    const confirmReply = 'Dank. Uw contactgegevens zijn ontvangen en ik geef dit door aan een adviseur. Zij nemen snel contact met u op.';
+    contentDiv.innerHTML = _fmt(confirmReply);
+    fullReply = confirmReply;
+    _msgs.push({ role: 'assistant', content: confirmReply });
+    _saveHistory();
+    apexHideContactForm();
+    _busy = false;
+    document.getElementById('apex-send').disabled = false;
+    document.getElementById('apex-inp').focus();
+    return;
+  }
 
   try {
 const requestMessages = [
