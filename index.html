@@ -303,7 +303,7 @@ nav::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;backg
   opacity:1;transform:none;animation:rise .9s cubic-bezier(.2,.7,.3,1) forwards
 }
 .hero.scrolled h1,.hero.revealed h1{animation-delay:.12s}.hero.scrolled .lead,.hero.revealed .lead{animation-delay:.25s}.hero.scrolled .cta-row,.hero.revealed .cta-row{animation-delay:.38s}
-.hero-highlight{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:1rem;margin:0 auto;padding:1rem .95rem;background:rgba(0,0,0,.16);border:1px solid rgba(255,255,255,.08);box-shadow:0 14px 36px rgba(0,0,0,.16);justify-self:center;max-width:640px;width:min(100%,640px);position:relative;z-index:2;align-self:center;transform:none;overflow:hidden;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
+.hero-highlight{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:.75rem;margin:0 auto;padding:.85rem .8rem;background:rgba(0,0,0,.16);border:1px solid rgba(255,255,255,.08);box-shadow:0 14px 36px rgba(0,0,0,.16);justify-self:center;max-width:520px;width:min(100%,520px);position:relative;z-index:2;align-self:center;transform:none;overflow:hidden;backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px)}
 .hero-highlight::before{content:'';position:absolute;inset:0;border:1px solid transparent;border-image:linear-gradient(90deg,#009246 0 33.33%,#ffffff 33.33% 66.66%,#ce2b37 66.66% 100%) 1;pointer-events:none;opacity:.92}
 .hero-highlight::after{content:'';position:absolute;inset:8px;border:1px solid rgba(255,255,255,.05);pointer-events:none;box-shadow:inset 0 0 16px rgba(255,255,255,.03);}
 @keyframes borderPulse{0%{opacity:.18;transform:scaleX(.998);box-shadow:0 0 0 rgba(255,255,255,0)}50%{opacity:.52;transform:scaleX(1);box-shadow:0 0 18px rgba(255,255,255,.09)}100%{opacity:.28;transform:scaleX(.999);box-shadow:0 0 0 rgba(255,255,255,0)}}
@@ -361,9 +361,9 @@ nav::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;backg
 .hero-price-card{padding:.55rem .7rem;border:1px solid rgba(255,255,255,.12);background:rgba(255,255,255,.03);color:#f7f7f7;font-family:var(--lb);font-size:.78rem;letter-spacing:.12em;text-transform:uppercase;box-shadow:inset 0 1px 0 rgba(255,255,255,.04)}
 .hero-price-vs{font-family:var(--lb);font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(198,203,209,.72)}
 .hero-actions{display:flex;flex-direction:column;gap:.45rem;width:100%;align-items:center;margin-top:.1rem}
-.hero-actions .btn{width:min(100%,280px);min-height:48px;padding:.8rem 1.2rem;justify-content:center}
+.hero-actions .btn{width:min(100%,260px);min-height:44px;padding:.7rem 1.1rem;justify-content:center}
 .hero-actions .hero-primary{background:linear-gradient(135deg,#ffffff 0%,#f3f6f7 28%,#eef3f9 52%,#f8f8f8 100%);border:1px solid rgba(255,255,255,.28);color:#101416;font-weight:700;box-shadow:0 14px 32px rgba(0,0,0,.24);position:relative;overflow:hidden;transition:transform .35s cubic-bezier(.2,.7,.3,1),box-shadow .35s ease,filter .35s ease}
-.hero-actions .hero-primary:hover,.hero-actions .hero-primary:focus-visible{transform:translateY(-2px) scale(1.01);box-shadow:0 0 0 1px rgba(255,255,255,.14),0 18px 44px rgba(0,0,0,.26);filter:brightness(1.01);text-shadow:0 0 12px rgba(16,20,22,.32),0 0 20px rgba(16,20,22,.18)}
+.hero-actions .hero-primary:hover,.hero-actions .hero-primary:focus-visible{transform:translateY(-2px) scale(1.012);box-shadow:0 0 0 1px rgba(255,255,255,.18),0 18px 44px rgba(0,0,0,.28),0 0 28px rgba(255,255,255,.08);filter:brightness(1.04);text-shadow:0 0 12px rgba(16,20,22,.32),0 0 20px rgba(16,20,22,.18)}
 .hero-actions .hero-secondary{width:auto;min-height:auto;padding:0;background:transparent;border:none;color:rgba(232,232,232,.78);font-size:.58rem;letter-spacing:.18em;text-transform:uppercase;text-decoration:none;display:inline-grid;grid-template-columns:auto max-content auto;align-items:center;column-gap:.6rem;line-height:1;white-space:nowrap}
 .hero-actions .hero-secondary::before{display:none!important}
 .hero-actions .hero-secondary .hero-secondary-line{display:block;width:16px;height:1px;background:currentColor;opacity:.72;transition:width .28s ease,opacity .28s ease}
@@ -531,7 +531,7 @@ nav::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;backg
 @media(max-width:820px){.hero-content{padding-right:0;min-height:auto}.hero-highlight{position:relative;top:auto;right:auto;left:auto;grid-template-columns:1fr;justify-self:stretch;max-width:100%;width:100%;padding:1rem;margin:1.25rem 0 0}.hero-highlight-copy{max-width:100%}.hero-highlight-plates{flex-direction:row;justify-content:center;gap:.8rem}.hero-highlight{padding:1.25rem}}
 
 /* show the hero highlight as part of the hero content on first load */
-.hero.initial-visible .hero-highlight{position:relative;top:auto;right:auto;left:auto;width:min(100%,640px);max-width:640px;z-index:2;background:rgba(0,0,0,.16);padding:1rem .95rem;border-radius:0;opacity:1;pointer-events:auto;box-shadow:0 14px 36px rgba(0,0,0,.16);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(14px);transition:none}
+.hero.initial-visible .hero-highlight{position:relative;top:auto;right:auto;left:auto;width:min(100%,520px);max-width:520px;z-index:2;background:rgba(0,0,0,.16);padding:.85rem .8rem;border-radius:0;opacity:1;pointer-events:auto;box-shadow:0 14px 36px rgba(0,0,0,.16);border:1px solid rgba(255,255,255,.08);backdrop-filter:blur(14px);transition:none}
 .hero.initial-visible .hero-highlight::before{content:'';position:absolute;inset:0;pointer-events:none;border:1px solid transparent;border-image:linear-gradient(90deg,#009246 0 33.33%,#ffffff 33.33% 66.66%,#ce2b37 66.66% 100%) 1;border-radius:0;z-index:0;opacity:.92}
 
 /* left plate stays clean */
@@ -652,10 +652,11 @@ nav::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;backg
 .tc:nth-child(1){border-left-color:var(--ig)}
 .tc:nth-child(2){border-left-color:var(--pt)}
 .tc:nth-child(3){border-left-color:var(--ir)}
-.tc:nth-child(4){border-left-color:rgba(198,203,209,.28)}
-.tc:nth-child(5){border-left-color:rgba(198,203,209,.2)}
-.tc:nth-child(6){border-left-color:rgba(198,203,209,.14)}
-.tc:nth-child(7){border-left-color:rgba(198,203,209,.08)}
+.tc:nth-child(4){border-left-color:var(--ig)}
+.tc:nth-child(5){border-left-color:var(--pt)}
+.tc:nth-child(6){border-left-color:var(--ir)}
+.tc:nth-child(7){border-left-color:var(--ig)}
+.tc:nth-child(8){border-left-color:var(--pt)}
 .tc-top{display:flex;align-items:center;gap:clamp(.85rem,2vw,1.35rem);flex:1;min-width:0}
 .tc-top .num{font-family:var(--sf);font-size:clamp(1.9rem,3.6vw,2.6rem);font-weight:300;color:var(--pt);line-height:1;opacity:.28;flex-shrink:0;min-width:2.8rem;text-align:right}
 .tc-top-text{display:flex;flex-direction:column;gap:.18rem;min-width:0;transition:transform .22s cubic-bezier(.2,.7,.3,1)}
@@ -1080,6 +1081,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
     <a href="#projecten">Projecten</a>
     <a href="https://vergelijk.apexclusive.nl" target="_blank" rel="noreferrer noopener">Vergelijk</a>
     <a href="#contact">Contact</a>
+    <a href="https://registratie.apexclusive.nl/?mode=login" target="_blank" rel="noreferrer noopener" style="opacity:.62;font-size:.62rem">Inloggen</a>
   </div>
   <a href="#contact" class="btn sm">Gesprek plannen</a>
   <button id="burger" aria-label="Menu openen" aria-expanded="false"><span></span><span></span><span></span></button>
@@ -1094,6 +1096,8 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
   <a href="#projecten" style="transition-delay:.26s" onclick="closeMM()">Projecten</a>
   <a href="https://vergelijk.apexclusive.nl" style="transition-delay:.32s" onclick="closeMM()">Vergelijk</a>
   <a href="#contact"   style="transition-delay:.38s;color:var(--pt)" onclick="closeMM()">Contact</a>
+  <a href="https://registratie.apexclusive.nl/?mode=register" style="transition-delay:.44s;color:var(--pt)" target="_blank" rel="noreferrer noopener" onclick="closeMM()">Premium-account</a>
+  <a href="https://registratie.apexclusive.nl/?mode=login" style="transition-delay:.50s;opacity:.62;font-size:clamp(1.3rem,5.5vw,1.8rem)" target="_blank" rel="noreferrer noopener" onclick="closeMM()">Inloggen</a>
   <div id="mm-foot">Maastricht &middot; Private Vehicle Advisory</div>
 </div>
 
@@ -1114,11 +1118,14 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
       <div class="hero-stage">
         <div class="hero-highlight rv" aria-hidden="false" id="heroHighlight">
           <div class="hero-highlight-copy">
+            <div class="hero-tool-badge">APEX Vehicle Intelligence</div>
+            <div class="hero-highlight-label-row" aria-hidden="true" style="font-family:var(--lb);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(198,203,209,.72);margin-bottom:.18rem">2 kentekens</div>
             <div class="hero-plates-pair" aria-hidden="true">
               <img class="hero-compare-vector" src="https://res.cloudinary.com/sfd8ohjz/image/upload/v1786362949/e3a78c2b-cbe1-4a8b-963a-57579a55a73e_di8xt3.png" alt="APEX vergelijking vector" loading="eager" decoding="async">
             </div>
+            <div class="hero-highlight-label-row" aria-hidden="true" style="font-family:var(--lb);font-size:.6rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(198,203,209,.72);margin-bottom:.28rem">1 helder advies</div>
             <div class="hero-analysis-list" role="list" aria-label="Analysecriteria">
-              <div class="hero-analysis-heading" aria-hidden="true"><span>KIES SLIM: 2 KENTEKENS, 1 ADVIES</span></div>
+              <div class="hero-analysis-heading" aria-hidden="true"><span>Direct inzicht op de punten die tellen</span></div>
               <div class="hero-analysis-item" role="listitem"><span class="hero-analysis-icon" aria-hidden="true"></span>Totale maandkosten</div>
               <div class="hero-analysis-item" role="listitem"><span class="hero-analysis-icon" aria-hidden="true"></span>Waardeverlies</div>
               <div class="hero-analysis-item" role="listitem"><span class="hero-analysis-icon" aria-hidden="true"></span>Onderhoud</div>
@@ -1291,9 +1298,17 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
         <span class="ey-tri" aria-hidden="true"><span></span><span></span><span></span></span>
         Doe de check
       </p>
-      <h2>Maak gebruik van onze 8 slimme analyse-tools.<br>Meer zekerheid v&oacute;&oacute;r uw aankoop.</h2>
+      <h2>Maak gebruik van onze 8 slimme analyse-tools.<br><span style="font-size:.58em;opacity:.72;letter-spacing:.04em">Meer zekerheid v&oacute;&oacute;r uw aankoop.</span></h2>
     </div>
     <div class="tools-badge rv">8 exclusieve analyse-tools &middot; direct beschikbaar &middot; gratis zonder registratie</div>
+    <div class="premium-cta-panel rv" style="background:var(--ink3);border:1px solid rgba(198,203,209,.14);padding:.85rem 1.25rem;margin-bottom:.95rem;display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;max-width:1160px;margin-left:auto;margin-right:auto;position:relative;overflow:hidden">
+      <div style="position:absolute;top:0;left:0;right:0;height:1px;background:var(--tr);opacity:.38"></div>
+      <div>
+        <div style="font-family:var(--lb);font-size:.56rem;letter-spacing:.22em;text-transform:uppercase;color:var(--pt);margin-bottom:.25rem">APEX Premium</div>
+        <p style="font-size:clamp(.78rem,1.8vw,.84rem);color:#c0c0c0;margin:0;line-height:1.6">Onbeperkt advies, prioriteit support en exclusieve inzichten &mdash; voor de serieuze autokopers.</p>
+      </div>
+      <a href="https://registratie.apexclusive.nl/?mode=register" target="_blank" rel="noreferrer noopener" class="btn sm" style="flex-shrink:0;white-space:nowrap">Gratis registreren</a>
+    </div>
     <div class="tip-bar rv">
       <div class="tip-dot"></div>
       <p><strong>Tip van APEX:</strong> Voer altijd eerst de BPM-berekening uit voordat u een bod uitbrengt op een buitenlandse auto. De kentekencheck is vooral relevant voor Nederlandse kentekens. Het kan u duizenden euro&rsquo;s schelen.</p>
@@ -1302,7 +1317,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
 
       <a class="tc rv" href="https://vergelijk.apexclusive.nl">
         <div class="tc-top">
-          <span class="num">01</span>
+          <span class="num">1</span>
           <div class="tc-top-text">
             <h3>KENTEKENVERGELIJKING</h3>
             <div class="tc-perk">Vergelijk twee voertuigen &middot; AI-aankoopadvies</div>
@@ -1313,7 +1328,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
 
       <a class="tc rv" href="https://kentekencheck.apexclusive.nl">
         <div class="tc-top">
-          <span class="num">02</span>
+          <span class="num">2</span>
           <div class="tc-top-text">
             <h3>RDW DATA CHECK</h3>
             <div class="tc-perk">RDW-data &middot; APK-historie &middot; Tellerstand</div>
@@ -1324,7 +1339,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
 
       <a class="tc rv" href="https://bpm.apexclusive.nl">
         <div class="tc-top">
-          <span class="num">03</span>
+          <span class="num">3</span>
           <div class="tc-top-text">
             <h3>BPM CALCULATOR</h3>
             <div class="tc-perk">Direct resultaat &middot; Geen registratie</div>
@@ -1335,9 +1350,9 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
 
       <a class="tc rv" href="https://carrapport.apexclusive.nl">
         <div class="tc-top">
-          <span class="num">04</span>
+          <span class="num">4</span>
           <div class="tc-top-text">
-            <h3>MARKTPLAATS / MOBILE / AUTOSCOUT ANALYSE</h3>
+            <h3>ADVERTENTIE ANALYSE</h3>
             <div class="tc-perk">Plak een link &middot; krijg aankoopadvies</div>
             <p class="tc-copy">Analyseer een voertuigdirect uit:</p>
             <ul class="tc-bullets">
@@ -1353,7 +1368,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
 
       <a class="tc rv" href="https://waarde.apexclusive.nl">
         <div class="tc-top">
-          <span class="num">05</span>
+          <span class="num">5</span>
           <div class="tc-top-text">
             <h3>AUTO WAARDE</h3>
             <div class="tc-perk">Inruilwaarde &middot; Marktplaatsprijs &middot; Handelaarsprijs</div>
@@ -1364,7 +1379,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
 
       <a class="tc rv" href="https://verzekering.apexclusive.nl">
         <div class="tc-top">
-          <span class="num">06</span>
+          <span class="num">6</span>
           <div class="tc-top-text">
             <h3>VERZEKERING VERGELIJKEN</h3>
             <div class="tc-perk">WA &middot; Beperkt Casco &middot; Volledig Casco</div>
@@ -1375,7 +1390,7 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
 
       <a class="tc rv" href="https://lening.apexclusive.nl">
         <div class="tc-top">
-          <span class="num">07</span>
+          <span class="num">7</span>
           <div class="tc-top-text">
             <h3>AUTO LENING</h3>
             <div class="tc-perk">Maandlast &middot; Rentes &middot; Bankenvergelijking</div>
@@ -1386,9 +1401,9 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
 
       <a class="tc rv" href="https://advertentie.apexclusive.nl">
         <div class="tc-top">
-          <span class="num">08</span>
+          <span class="num">8</span>
           <div class="tc-top-text">
-            <h3>10 TIPS VOOR UW ADVERTENTIE</h3>
+            <h3>ADVERTENTIE TIPS</h3>
             <div class="tc-perk">Marktplaats &middot; Adverteerderschecklist &middot; Prijsstrategie</div>
           </div>
         </div>
