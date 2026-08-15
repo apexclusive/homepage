@@ -178,15 +178,16 @@ h2.in .w i{transform:none}
 /* â•â• NAV â•â• */
 nav{
   position:fixed;inset:0 0 auto;z-index:200;
-  width:100%;display:flex;align-items:center;justify-content:space-between;gap:1.5rem;
+  width:100%;display:flex;align-items:center;justify-content:center;gap:1.5rem;
   padding:1.25rem var(--pd);
   padding-top:max(1.25rem,env(safe-area-inset-top));
   background:rgba(8,8,8,.96);
   -webkit-backdrop-filter:blur(20px);backdrop-filter:blur(20px);
   border-bottom:1px solid rgba(255,255,255,.08);
+  /* Logo is centered; primary navigation is available via the burger menu */
 }
 nav::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;background:linear-gradient(90deg,rgba(0,146,70,.18),rgba(255,255,255,.14),rgba(206,43,55,.18));opacity:.42;pointer-events:none}
-.navlinks{display:flex;gap:1.8rem;font-family:var(--lb);font-size:.92rem;letter-spacing:.14em;text-transform:uppercase}
+.navlinks{display:none}
 .navlinks a{color:#c8c8c8;position:relative;padding-bottom:4px;transition:color .3s}
 .navlinks a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--tf);transition:width .4s cubic-bezier(.2,.7,.3,1)}
 .navlinks a:hover,.navlinks a.active{color:#fff}
@@ -209,10 +210,11 @@ nav::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;backg
 .btn.sm{padding:.55rem 1.2rem;min-height:38px}
 .cta-row{display:flex;gap:.85rem;flex-wrap:wrap}
 #burger{
-  display:none;flex-direction:column;gap:6px;
+  display:flex;flex-direction:column;gap:6px;
   background:none;border:0;cursor:pointer;padding:10px;z-index:260;
   min-width:44px;min-height:44px;align-items:center;justify-content:center;
   -webkit-tap-highlight-color:transparent;
+  position:absolute;right:var(--pd);top:calc(max(1.25rem,env(safe-area-inset-top)));
 }
 #burger span{display:block;width:24px;height:1.5px;background:var(--pt);transition:transform .4s,opacity .3s;border-radius:2px}
 #burger.open span:nth-child(1){transform:translateY(7.5px) rotate(45deg)}
@@ -275,7 +277,7 @@ nav::after{content:'';position:absolute;left:0;right:0;bottom:0;height:1px;backg
 .mm-close:focus{outline:2px solid rgba(198,203,209,.9);outline-offset:2px}
 @media(max-width:420px){.mm-close{right:0.6rem;width:40px;height:40px;font-size:1rem}}
 
-@media(max-width:900px){.navlinks,nav>.btn.sm:not(#burger){display:none}#burger{display:flex}}
+@media(max-width:900px){nav>.btn.sm:not(#burger){display:none}}
 @media(min-width:640px) and (max-width:900px){nav .btn.sm{display:inline-flex}}
 
 /* â•â• HERO â•â• */
@@ -1171,16 +1173,6 @@ footer{padding:0 var(--pd);border-top:1px solid var(--hr);background:var(--ink);
     </a>
     <span class="brand-sub">Private Vehicle Advisory | Maastricht</span>
   </div>
-  <div class="navlinks" id="navlinks">
-    <a href="#tools">Tools</a>
-    <a href="#werkwijze">Werkwijze</a>
-    <a href="#over">Over ons</a>
-    <a href="#projecten">Projecten</a>
-    <a href="https://vergelijk.apexclusive.nl" target="_blank" rel="noreferrer noopener">Vergelijk</a>
-    <a href="https://registratie.apexclusive.nl/?mode=login" class="nav-account-link" rel="noreferrer noopener">Inloggen</a>
-    <a href="#contact">Contact</a>
-  </div>
-  <a href="#contact" class="btn sm">Gesprek plannen</a>
   <button id="burger" aria-label="Menu openen" aria-expanded="false"><span></span><span></span><span></span></button>
 </nav>
 
