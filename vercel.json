@@ -1,0 +1,18 @@
+{
+  "redirects": [
+    { "source": "/lening", "destination": "https://lening.apexclusive.nl", "permanent": true },
+    { "source": "/lening.html", "destination": "https://lening.apexclusive.nl", "permanent": true },
+    { "source": "/verzekering", "destination": "https://verzekering.apexclusive.nl", "permanent": true },
+    { "source": "/verzekering.html", "destination": "https://verzekering.apexclusive.nl", "permanent": true },
+    { "source": "/kentekencheck", "destination": "https://kentekencheck.apexclusive.nl", "permanent": true },
+    { "source": "/kentekencheck.html", "destination": "https://kentekencheck.apexclusive.nl", "permanent": true },
+    { "source": "/bpm", "destination": "https://bpm.apexclusive.nl", "permanent": true },
+    { "source": "/bpm.html", "destination": "https://bpm.apexclusive.nl", "permanent": true },
+    { "source": "/carrapport", "destination": "https://carrapport.apexclusive.nl", "permanent": true },
+    { "source": "/carrapport.html", "destination": "https://carrapport.apexclusive.nl", "permanent": true },
+    { "source": "/waarde", "destination": "https://waarde.apexclusive.nl", "permanent": true },
+    { "source": "/waarde.html", "destination": "https://waarde.apexclusive.nl", "permanent": true },
+    { "source": "/advertentie", "destination": "https://advertentie.apexclusive.nl", "permanent": true },
+    { "source": "/advertentie.html", "destination": "https://advertentie.apexclusive.nl", "permanent": true }
+  ]
+}
