@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 42" role="img" aria-label="APEX Exclusive">
+  <style>
+    .apex{font:700 18px 'DM Sans',Arial,sans-serif;letter-spacing:1.35px;fill:#f2f4f6}
+    .exclusive{font:300 18px 'DM Sans',Arial,sans-serif;letter-spacing:1.1px;fill:#d7dadd}
+  </style>
+  <text class="apex" x="0" y="20">APEX</text>
+  <path d="M99 4v19" stroke="#fff" stroke-opacity=".72" stroke-width="1"/>
+  <text class="exclusive" x="113" y="20">EXCLUSIVE</text>
+  <path d="M0 34h320" stroke="#009246" stroke-width="1"/>
+  <path d="M106.67 34h106.66" stroke="#fff" stroke-width="1"/>
+  <path d="M213.33 34h106.67" stroke="#ce2b37" stroke-width="1"/>
+</svg>
