@@ -10,6 +10,16 @@
       <stop offset=".666" stop-color="#ce2b37"/>
       <stop offset="1" stop-color="#ce2b37"/>
     </linearGradient>
+    <linearGradient id="silver" x1="0" y1="0" x2="1" y2="0">
+      <stop offset="0" stop-color="#5d6973"/>
+      <stop offset=".18" stop-color="#aeb9c1"/>
+      <stop offset=".34" stop-color="#f8fbfc"/>
+      <stop offset=".42" stop-color="#c9d2d8"/>
+      <stop offset=".58" stop-color="#77848e"/>
+      <stop offset=".72" stop-color="#edf2f5"/>
+      <stop offset=".82" stop-color="#aeb9c1"/>
+      <stop offset="1" stop-color="#5d6973"/>
+    </linearGradient>
     <filter id="soft-shadow" x="-30%" y="-30%" width="160%" height="160%">
       <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#000000" flood-opacity=".55"/>
     </filter>
@@ -22,7 +32,7 @@
         fill="none" stroke="#ffffff" stroke-opacity=".34" stroke-width="2" stroke-linejoin="round"/>
 
   <!-- Geometric A mark. -->
-  <path d="M400 184 222 620h77l35-91h132l35 91h77Zm-37 278 37-98 37 98Z"
-        fill="#ffffff" fill-opacity=".94" fill-rule="evenodd" filter="url(#soft-shadow)"/>
-  <path d="M274 650h252" stroke="url(#tricolore)" stroke-width="8" stroke-linecap="round"/>
+      <path d="M400 160 222 596h77l35-91h132l35 91h77Zm-37 278 37-98 37 98Z"
+        fill="url(#silver)" fill-opacity=".98" fill-rule="evenodd" filter="url(#soft-shadow)"/>
+    <path d="M274 626h252" stroke="url(#tricolore)" stroke-width="8" stroke-linecap="round"/>
 </svg>
