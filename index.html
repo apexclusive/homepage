@@ -5,10 +5,19 @@
 <meta name="viewport" content="width=device-width,initial-scale=1">
 <title>APEXclusive — Private Vehicle Advisory | Auto import &amp; aankoopbegeleiding Maastricht</title>
 <meta name="description" content="Droomauto uit Europa importeren zonder risico? APEXclusive begeleidt u van zoektocht tot sleuteloverdracht. Onafhankelijk, discreet, A tot Z geregeld.">
+<link rel="canonical" href="https://apexclusive.nl/">
 <meta property="og:title" content="APEXclusive | Private Vehicle Advisory">
 <meta property="og:description" content="Onafhankelijke begeleiding bij de aankoop en import van exclusieve auto's uit heel Europa.">
 <meta property="og:type" content="website">
+<meta property="og:url" content="https://apexclusive.nl/">
+<meta property="og:site_name" content="APEXclusive">
+<meta property="og:locale" content="nl_NL">
 <meta property="og:image" content="https://res.cloudinary.com/sfd8ohjz/image/upload/w_1600,q_auto:best,f_auto/v1786112048/Lamborghini_cockpit_zw7pmk.jpg">
+<meta property="og:image:alt" content="Cockpit van een Lamborghini">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="APEXclusive | Private Vehicle Advisory">
+<meta name="twitter:description" content="Onafhankelijke begeleiding bij de aankoop en import van exclusieve auto's uit heel Europa.">
+<meta name="twitter:image" content="https://res.cloudinary.com/sfd8ohjz/image/upload/w_1600,q_auto:best,f_auto/v1786112048/Lamborghini_cockpit_zw7pmk.jpg">
 <meta name="theme-color" content="#0d0f10">
 
 <script type="application/ld+json">
@@ -71,7 +80,7 @@ a{color:inherit;text-decoration:none}
 p,li,h1,h2,h3,h4{overflow-wrap:anywhere}
 button,input,textarea,select{font:inherit}
 *:focus-visible{outline:2px solid rgba(198,203,209,.86);outline-offset:2px}
-a:focus-visible,.btn:focus-visible,.navlinks a:focus-visible,.tc:focus-visible,.fi-item:focus-visible,.proj:focus-visible,.brand:focus-visible{outline-color:var(--pt);outline-offset:4px;border-radius:6px}
+a:focus-visible,.btn:focus-visible,.tc:focus-visible,.fi-item:focus-visible,.proj:focus-visible,.brand:focus-visible{outline-color:var(--pt);outline-offset:4px;border-radius:6px}
 ::selection{background:var(--pt);color:var(--ink)}
 ::-webkit-scrollbar{width:4px}
 ::-webkit-scrollbar-track{background:var(--ink)}
@@ -217,13 +226,6 @@ nav{
   /* Logo is centered; primary navigation is available via the burger menu */
 }
 nav::after{content:'';position:absolute;left:12%;right:12%;bottom:0;height:1px;background:rgba(255,255,255,.12);opacity:.7;pointer-events:none}
-.navlinks{display:none}
-.navlinks a{color:#c8c8c8;position:relative;padding-bottom:4px;transition:color .3s}
-.navlinks a::after{content:'';position:absolute;left:0;bottom:0;width:0;height:1px;background:var(--tf);transition:width .4s cubic-bezier(.2,.7,.3,1)}
-.navlinks a:hover,.navlinks a.active{color:#fff}
-.navlinks a:hover::after,.navlinks a.active::after{width:100%}
-.navlinks .nav-account-link{color:rgba(198,203,209,.82)}
-.navlinks .nav-account-link::after{background:linear-gradient(90deg,rgba(198,203,209,.45),rgba(255,255,255,.16))}
 .btn{
   display:inline-flex;align-items:center;justify-content:center;gap:.65rem;
   padding:.85rem 1.75rem;
@@ -1097,6 +1099,11 @@ footer{padding:0 var(--pd);border-top:1px solid rgba(198,203,209,.12);background
 .lux-corner.tl{top:2rem;left:var(--pd)}
 .lux-corner.br{bottom:2rem;right:var(--pd);transform:rotate(180deg)}
 
+/* Tarieven klapt onder 700px naar één kolom (verving een JS resize-listener) */
+@media(max-width:699px){
+  #tarieven .rv{grid-template-columns:1fr!important}
+}
+
 /* ══ MOBILE ══ */
 @media(max-width:600px){
   .btn{padding:.9rem 1.5rem;font-size:.75rem;letter-spacing:.15em;min-height:52px}
@@ -1117,7 +1124,6 @@ footer{padding:0 var(--pd);border-top:1px solid rgba(198,203,209,.12);background
   .step{padding:0 0 1.85rem 2.75rem}
   .tc-photo{height:175px}
   .tc-top{padding:1rem 1.1rem .75rem}
-  #tarieven .rv{grid-template-columns:1fr!important}
   .about-grid{gap:1.25rem}
   .about-grid > div{width:100%}
   .about-body-text{font-size:.92rem}
@@ -1271,6 +1277,12 @@ footer{padding:0 var(--pd);border-top:1px solid rgba(198,203,209,.12);background
   html{scroll-behavior:auto}
 }
 </style>
+
+<!-- Zonder JavaScript mag de splash de site niet blokkeren en moeten reveal-elementen zichtbaar zijn -->
+<noscript><style>
+#splash{display:none!important}
+.rv,.tgrid .tc.rv,.hero .hero-highlight{opacity:1!important;transform:none!important}
+</style></noscript>
 </head>
 <body>
 
@@ -1285,6 +1297,16 @@ footer{padding:0 var(--pd);border-top:1px solid rgba(198,203,209,.12);background
   </div>
 </div>
 
+<script>
+/* Failsafe: mocht het intro-script falen, dan mag de splash de site nooit blijven blokkeren. */
+setTimeout(function(){
+  var s = document.getElementById('splash');
+  if (s && !s.classList.contains('splash-exit')) s.classList.add('force-hide');
+  var h = document.querySelector('header.hero');
+  if (h) h.classList.add('initial-visible');
+}, 4000);
+</script>
+
 <div id="progress"></div>
 
 <!-- CHAT BUBBLE -->
@@ -1296,7 +1318,7 @@ footer{padding:0 var(--pd);border-top:1px solid rgba(198,203,209,.12);background
 </a>
 
 <!-- CHAT WINDOW -->
-<div class="apex-chat-win" id="apex-chat-win" aria-live="polite">
+<div class="apex-chat-win" id="apex-chat-win" role="dialog" aria-label="Chat met APEXclusive">
   <div class="chat-hdr">
     <div class="chat-hdr-av" aria-hidden="true">A</div>
     <div class="chat-hdr-info">
@@ -1306,8 +1328,8 @@ footer{padding:0 var(--pd);border-top:1px solid rgba(198,203,209,.12);background
     </div>
     <button class="chat-x" type="button" onclick="apexToggle()" aria-label="Sluit chat">✕</button>
   </div>
-  <div id="apex-msgs" class="chat-msgs"></div>
-  <div id="apex-toast" class="chat-toast"></div>
+  <div id="apex-msgs" class="chat-msgs" aria-live="polite" aria-atomic="false"></div>
+  <div id="apex-toast" class="chat-toast" role="status" aria-live="polite"></div>
   <div class="chat-contact-form" id="apex-contact-form">
     <input id="apex-contact-name"  class="chat-contact-input" type="text"  placeholder="Naam" aria-label="Naam">
     <input id="apex-contact-email" class="chat-contact-input" type="email" placeholder="E-mailadres" aria-label="E-mailadres">
@@ -1515,10 +1537,16 @@ footer{padding:0 var(--pd);border-top:1px solid rgba(198,203,209,.12);background
       try{ splash.style.display = 'none'; }catch(e){}
     }
 
-    if (prefersReduced){
+    // Intro maar één keer per sessie: bij doorklikken en terugkeren meteen de site tonen.
+    let alreadySeen = false;
+    try { alreadySeen = sessionStorage.getItem('apex_intro_v1') === '1'; } catch(e){}
+
+    if (prefersReduced || alreadySeen){
+      splash.classList.add('force-hide');
       finalizeIntro();
       return;
     }
+    try { sessionStorage.setItem('apex_intro_v1', '1'); } catch(e){}
 
     let splashTriggered = false;
     function triggerSplash(){
@@ -1553,7 +1581,7 @@ footer{padding:0 var(--pd);border-top:1px solid rgba(198,203,209,.12);background
     }
 
     const activateIntro = ()=> triggerSplash();
-    setTimeout(activateIntro, 3200);
+    setTimeout(activateIntro, 1300);
     // Enable interaction triggers only AFTER intro sequence completes
     setTimeout(()=>{
       window.addEventListener('scroll', activateIntro, {passive:true});
@@ -1562,7 +1590,7 @@ footer{padding:0 var(--pd);border-top:1px solid rgba(198,203,209,.12);background
         if (['PageDown','ArrowDown',' ','Enter','Home'].includes(e.key)) activateIntro();
       }, {passive:true});
       window.addEventListener('touchstart', activateIntro, {passive:true});
-    }, 4500);
+    }, 700);
     window.addEventListener('mousedown', activateIntro, {passive:true});
     window.addEventListener('pointerdown', activateIntro, {passive:true});
 
@@ -2153,11 +2181,20 @@ function apexRequestTransfer(){
   _addMsg('bot','Uiteraard. Laat uw naam, e-mailadres en 06-nummer achter — één van onze APEXclusive adviseurs neemt zo spoedig mogelijk persoonlijk contact met u op.');
   document.getElementById('apex-contact-form').classList.add('open');
 }
+var _toastTimer=null;
+function _toast(text){
+  var t=document.getElementById('apex-toast');
+  if(!t) return;
+  t.textContent=text;
+  t.classList.add('visible');
+  clearTimeout(_toastTimer);
+  _toastTimer=setTimeout(function(){ t.classList.remove('visible'); },3600);
+}
 function apexSubmitContact(){
   var n=document.getElementById('apex-contact-name').value.trim();
   var e=document.getElementById('apex-contact-email').value.trim();
   var p=document.getElementById('apex-contact-phone').value.trim();
-  if(!n&&!e&&!p){alert('Vul ten minste één veld in.');return;}
+  if(!n&&!e&&!p){_toast('Vul ten minste één veld in.');return;}
   document.getElementById('apex-contact-form').classList.remove('open');
   var msg=[n&&'Naam: '+n,e&&'E-mail: '+e,p&&'06: '+p].filter(Boolean).join(' · ');
   document.getElementById('apex-inp').value=msg;
@@ -2268,74 +2305,127 @@ function _fmt(t){
     .replace(/\n/g,'<br>');
 }
 
-/* ══ NAV SCROLL ══ */
-var lastY=0;
-var navEl=document.getElementById('nav');
-window.addEventListener('scroll',function(){
-  var y=scrollY;
-  lastY=y;
+/* ══ SCROLL EFFECTEN ══ */
+/* Alle metingen en style-writes gebeuren in één requestAnimationFrame per frame,
+   zodat scrollen niet per event een forced layout veroorzaakt. */
+var progressEl=document.getElementById('progress');
+var stepsEl=document.getElementById('steps');
+var docScrollRange=0;
+function measureDoc(){ docScrollRange=document.body.scrollHeight-innerHeight; }
+measureDoc();
+window.addEventListener('resize',measureDoc,{passive:true});
+window.addEventListener('load',measureDoc);
 
-  var h=document.body.scrollHeight-innerHeight;
-  document.getElementById('progress').style.transform='scaleX('+(h>0?y/h:0)+')';
+var lastQuoteReveal=-1;
+var scrollQueued=false;
 
-  var secs=['tools','werkwijze','over','projecten','contact'];
-  var active='';
-  secs.forEach(function(id){
-    var el=document.getElementById(id);
-    if(el&&el.getBoundingClientRect().top<120) active=id;
-  });
-  document.querySelectorAll('.navlinks a').forEach(function(a){
-    a.classList.toggle('active',a.getAttribute('href')==='#'+active);
-  });
+function onScrollFrame(){
+  scrollQueued=false;
 
-  var stepsEl=document.getElementById('steps');
+  if(progressEl){
+    var y=scrollY;
+    progressEl.style.transform='scaleX('+(docScrollRange>0?y/docScrollRange:0)+')';
+  }
+
   if(stepsEl){
     var r=stepsEl.getBoundingClientRect();
     var total=Math.max(1,r.height);
-    var visible=Math.min(total,Math.max(0,Math.min(total,innerHeight-r.top)));
-    var entered=Math.max(0,Math.min(total,visible));
-    var progress=Math.max(0,Math.min(1,entered/total));
+    var progress=Math.max(0,Math.min(1,(innerHeight-r.top)/total));
     stepsEl.style.setProperty('--tp',progress.toFixed(3));
   }
 
   if(quoteSection&&qw.length){
     var qr=quoteSection.getBoundingClientRect();
-    var qProgress=Math.max(0,Math.min(1,(-qr.top)/(qr.height-innerHeight)));
+    var span=qr.height-innerHeight;
+    var qProgress=span>0?Math.max(0,Math.min(1,(-qr.top)/span)):0;
     var reveal=Math.floor(qProgress*qw.length*1.4);
-    qw.forEach(function(w,i){
-      w.style.opacity=i<reveal?'1':'0.06';
-      w.style.transition=i<reveal?'opacity .3s':'opacity .1s';
-    });
-    if(reveal>=qw.length) quoteSection.classList.add('words-done');
-    else quoteSection.classList.remove('words-done');
+    /* Alleen herschrijven als het aantal zichtbare woorden verandert. */
+    if(reveal!==lastQuoteReveal){
+      lastQuoteReveal=reveal;
+      qw.forEach(function(w,i){
+        var on=i<reveal;
+        w.style.opacity=on?'1':'0.06';
+        w.style.transition=on?'opacity .3s':'opacity .1s';
+      });
+      quoteSection.classList.toggle('words-done',reveal>=qw.length);
+    }
   }
+}
+
+window.addEventListener('scroll',function(){
+  if(!scrollQueued){ scrollQueued=true; requestAnimationFrame(onScrollFrame); }
 },{passive:true});
+onScrollFrame();
 
 /* ══ BURGER ══ */
 var burger=document.getElementById('burger');
 var mm=document.getElementById('mm');
-burger.addEventListener('click',function(){
-  var isOpen=mm.classList.contains('open');
-  var mmClose=document.getElementById('mm-close');
-  if(isOpen) closeMM();
-  else{
-    mm.classList.add('open');
-    burger.classList.add('open');
-    burger.setAttribute('aria-expanded','true');
-    document.body.style.overflow='hidden';
-    // focus the close control for accessibility
-    try{ if(mmClose) mmClose.focus(); }catch(e){}
-  }
-});
-// close button inside mobile menu
 var __mmCloseBtn=document.getElementById('mm-close');
-if(__mmCloseBtn) __mmCloseBtn.addEventListener('click',function(e){ e.preventDefault(); closeMM(); });
+
+mm.setAttribute('aria-hidden','true');
+
+function _mmFocusable(){
+  return Array.prototype.filter.call(
+    mm.querySelectorAll('a[href],button:not([disabled])'),
+    function(el){ return el.offsetWidth>0||el.offsetHeight>0||el===document.activeElement; }
+  );
+}
+
+/* Tab-focus binnen het menu houden zolang het open staat (aria-modal belofte nakomen). */
+function _mmTrap(e){
+  if(e.key!=='Tab') return;
+  var items=_mmFocusable();
+  if(!items.length) return;
+  var first=items[0], last=items[items.length-1];
+  if(e.shiftKey && document.activeElement===first){ e.preventDefault(); last.focus(); }
+  else if(!e.shiftKey && document.activeElement===last){ e.preventDefault(); first.focus(); }
+}
+
+function openMM(){
+  mm.classList.add('open');
+  mm.setAttribute('aria-hidden','false');
+  burger.classList.add('open');
+  burger.setAttribute('aria-expanded','true');
+  document.body.style.overflow='hidden';
+  mm.addEventListener('keydown',_mmTrap);
+  /* #mm heeft transition:visibility .4s, dus visibility blijft tot het einde van de
+     transitie 'hidden' en accepteert dan nog geen focus. Wachten tot de transitie
+     klaar is, met een timeout als fallback. */
+  _mmFocusClose();
+}
+
+function _mmFocusClose(){
+  if(!__mmCloseBtn) return;
+  var done=false;
+  function grab(){
+    if(done) return;
+    done=true;
+    mm.removeEventListener('transitionend',onEnd);
+    if(mm.classList.contains('open')){ try{ __mmCloseBtn.focus(); }catch(e){} }
+  }
+  function onEnd(e){ if(e.target===mm && e.propertyName==='visibility') grab(); }
+  mm.addEventListener('transitionend',onEnd);
+  setTimeout(grab,450);
+}
+
 function closeMM(){
+  var wasOpen=mm.classList.contains('open');
   mm.classList.remove('open');
+  mm.setAttribute('aria-hidden','true');
   burger.classList.remove('open');
   burger.setAttribute('aria-expanded','false');
   document.body.style.overflow='';
+  mm.removeEventListener('keydown',_mmTrap);
+  /* Focus terug naar de knop die het menu opende. */
+  if(wasOpen){ try{ burger.focus(); }catch(e){} }
 }
+
+burger.addEventListener('click',function(){
+  if(mm.classList.contains('open')) closeMM();
+  else openMM();
+});
+
+if(__mmCloseBtn) __mmCloseBtn.addEventListener('click',function(e){ e.preventDefault(); closeMM(); });
 
 /* ══ ESCAPE KEY ══ */
 document.addEventListener('keydown',function(e){
@@ -2372,15 +2462,6 @@ document.getElementById('apex-inp').addEventListener('keydown',function(e){
 
 /* ══ JAAR FOOTER ══ */
 document.getElementById('yr').textContent=new Date().getFullYear();
-
-/* ══ TARIEVEN GRID RESPONSIVE ══ */
-function fixTarievenGrid(){
-  var el=document.querySelector('#tarieven .rv');
-  if(!el)return;
-  el.style.gridTemplateColumns=window.innerWidth<700?'1fr':'1fr 1.2fr';
-}
-fixTarievenGrid();
-window.addEventListener('resize',fixTarievenGrid,{passive:true});
 </script>
 </body>
 </html>
