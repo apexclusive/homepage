@@ -727,10 +727,14 @@ nav::after{content:'';position:absolute;left:12%;right:12%;bottom:0;height:1px;b
   .hero .ti{padding:.8rem 1rem;min-height:0}
   .hero .ti-lbl{font-size:.58rem;line-height:1.4}
   .apex-signal-inner{grid-template-columns:repeat(2,minmax(0,1fr))}
-  .apex-signal-item{min-width:0;min-height:48px;padding:.6rem .8rem;font-size:.5rem;line-height:1.45;overflow-wrap:anywhere}
+  /* break-word in plaats van anywhere: anywhere brak woorden middenin af
+     ("BEGELEIDIN G", "ONAFHANKELIJ K") omdat het ook de min-content-breedte
+     van de rasterkolom verlaagt. break-word breekt alleen als er echt geen
+     andere mogelijkheid is. */
+  .apex-signal-item{min-width:0;min-height:48px;padding:.6rem .8rem;font-size:.5rem;line-height:1.45;overflow-wrap:break-word}
   .apex-signal-item:nth-child(2){border-right:0}
   .apex-signal-item:nth-child(3){border-top:1px solid rgba(255,255,255,.08)}
-  .apex-signal-link{min-width:0;min-height:48px;padding:.6rem .8rem;display:flex;align-items:center;border-top:1px solid rgba(255,255,255,.08);font-size:.5rem;white-space:normal;overflow-wrap:anywhere}
+  .apex-signal-link{min-width:0;min-height:48px;padding:.6rem .8rem;display:flex;align-items:center;border-top:1px solid rgba(255,255,255,.08);font-size:.5rem;white-space:normal;overflow-wrap:break-word}
 }
 
 
