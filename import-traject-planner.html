@@ -23,7 +23,7 @@
 <script>document.documentElement.classList.replace('no-js','js');</script>
 <script src="header-scroll.js" defer></script>
   <link rel="stylesheet" href="apexclusive-subpages.css">
-  <link rel="stylesheet" href="apexclusive-tools.css?v=20260830-1">
+  <link rel="stylesheet" href="apexclusive-tools.css?v=20260830-2">
 </head>
 <body>
 <a class="skip-link" href="#main-content">Ga naar hoofdinhoud</a>
@@ -40,6 +40,7 @@
     <h1>Van keuze<br><em>tot registratie.</em></h1>
     <p>Een import bestaat uit een vaste reeks stappen. Vink hieronder af wat al geregeld is, dan houdt u precies over wat er nog open staat. Uw voortgang blijft op dit apparaat bewaard.</p>
     <p class="progress-note" id="progress-note">0 van 0 afgerond</p>
+    <div class="progress-meter" role="progressbar" aria-label="Voortgang" aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"><span id="progress-meter-bar"></span></div>
   </div>
 
   <div class="step-card">
@@ -128,6 +129,8 @@
   var KEY='apex_import_planner_v1';
   var boxes=Array.prototype.slice.call(document.querySelectorAll('.checklist input[type=checkbox]'));
   var note=document.getElementById('progress-note');
+  var meter=document.querySelector('.progress-meter');
+  var meterBar=document.getElementById('progress-meter-bar');
   var status=document.getElementById('status');
   var yr=document.getElementById('yr');
   if(yr) yr.textContent=new Date().getFullYear();
@@ -141,6 +144,9 @@
   function updateNote(){
     var done=boxes.filter(function(b){ return b.checked; }).length;
     note.textContent=done+' van '+boxes.length+' afgerond';
+    var percent=boxes.length?Math.round(done/boxes.length*100):0;
+    if(meterBar) meterBar.style.width=percent+'%';
+    if(meter) meter.setAttribute('aria-valuenow',String(percent));
   }
 
   var state=read();
