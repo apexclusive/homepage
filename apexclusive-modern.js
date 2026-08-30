@@ -24,6 +24,7 @@
     document.addEventListener('keydown', event => {
       if (event.key === 'Escape') { closeMenu(); menuButton.focus(); }
     });
+    window.addEventListener('resize', () => { if (window.innerWidth > 860) closeMenu(); }, { passive: true });
   }
 
   function onScroll() {
