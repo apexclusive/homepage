@@ -645,6 +645,47 @@ nav::after{content:'';position:absolute;left:12%;right:12%;bottom:0;height:1px;b
 .apex-signal-dot{width:6px;height:6px;border-radius:50%;background:#20cd68;box-shadow:0 0 0 4px rgba(32,205,104,.1);flex:0 0 auto}
 .apex-signal-link{padding:.7rem 1.1rem;color:var(--pt);font-family:var(--lb);font-size:.57rem;letter-spacing:.16em;text-transform:uppercase;text-decoration:none;white-space:nowrap;transition:color .25s,background .25s}
 .apex-signal-link:hover{color:#fff;background:rgba(255,255,255,.05)}
+/* Was 43px hoog, net onder de 44px die als minimum tikdoel geldt. */
+.apex-signal-link{display:inline-flex;align-items:center;min-height:44px}
+/* .market-link was 21px hoog op desktop en 26px op mobiel: te klein om
+   betrouwbaar aan te tikken. Het tikvlak wordt hier tot 44px opgerekt met een
+   onzichtbaar pseudo-element, zodat de tekst zelf even groot blijft en er niets
+   in de opmaak verschuift. */
+.market-link{position:relative}
+.market-link::after{
+  content:'';
+  position:absolute;
+  left:0;right:0;
+  top:50%;
+  transform:translateY(-50%);
+  height:max(44px,100%);
+}
+/* De signaalbalk staat absolute onderaan de hero, precies waar de twee vaste
+   knoppen liggen (WhatsApp linksonder, chat rechtsonder). Daardoor lag de
+   chatknop over "Geef uw opdracht" heen: 53px op desktop en 165 van 193px op
+   mobiel, waar die CTA dus niet meer aan te tikken was.
+
+   Ruimte vrijhouden in de balk werkte niet betrouwbaar, omdat het raster
+   gecentreerd is met een max-width en de vrije ruimte per breedte verschilt.
+   In plaats daarvan verbergen we de knoppen zolang de hero in beeld staat.
+   Dat lost de botsing op elke breedte op en geeft de eerste indruk rust.
+
+   Er staat al een vergelijkbare regel voor .hero-tool-open, dus dit sluit aan
+   bij het bestaande gedrag. Zonder JavaScript wordt de klasse nooit gezet en
+   blijven de knoppen simpelweg zichtbaar. */
+.apex-floats-hidden .apex-bubble,
+.apex-floats-hidden .whatsapp-float{
+  opacity:0;
+  visibility:hidden;
+  pointer-events:none;
+  transform:translateY(10px);
+}
+.apex-bubble,.whatsapp-float{
+  transition:transform .35s cubic-bezier(.2,.7,.3,1),opacity .3s ease,visibility .3s,box-shadow .3s,background .3s;
+}
+@media(prefers-reduced-motion:reduce){
+  .apex-bubble,.whatsapp-float{transition:opacity .01ms,visibility .01ms}
+}
 
 @media(min-width:821px){
   .hero h1{font-size:clamp(2.4rem,6vw,5.25rem)}
@@ -652,7 +693,7 @@ nav::after{content:'';position:absolute;left:12%;right:12%;bottom:0;height:1px;b
   .hero-compare-vector{height:5.7rem;margin:-.55rem 0 -.5rem}
   .hero-analysis-list{gap:.14rem;margin-bottom:.3rem}
   .hero-analysis-heading{margin-bottom:.08rem}
-  .hero-actions .btn{min-height:40px;padding:.52rem .7rem}
+  .hero-actions .btn{min-height:44px;padding:.52rem .7rem}
 }
 
 /* keep intro copy visible on the first screen and avoid a second duplicate state */
@@ -1376,7 +1417,10 @@ footer{padding:0 var(--pd);border-top:1px solid rgba(198,203,209,.12);background
   html{scroll-behavior:auto}
 }
 </style>
-<script>document.documentElement.classList.replace('no-js','js');</script>
+<script>document.documentElement.classList.replace('no-js','js');
+/* Meteen zetten zodat de zwevende knoppen niet even oplichten voordat de
+   observer hieronder overneemt. */
+document.documentElement.classList.add('apex-floats-hidden');</script>
 <script src="header-scroll.js" defer></script>
 </head>
 <body>
@@ -2685,6 +2729,22 @@ if(leadForm){
     }finally{submit.disabled=false;leadForm.removeAttribute('aria-busy');}
   });
 }
+
+/* ══ ZWEVENDE KNOPPEN VS HERO ══ */
+/* De chat- en WhatsApp-knop staan fixed rechtsonder en linksonder, precies over
+   de signaalbalk onderaan de hero. Zolang die balk in beeld is blijven ze weg. */
+(function(){
+  var root=document.documentElement;
+  var rail=document.querySelector('.apex-signal-rail');
+  if(!rail){ root.classList.remove('apex-floats-hidden'); return; }
+  if(!('IntersectionObserver' in window)){ root.classList.remove('apex-floats-hidden'); return; }
+  var obs=new IntersectionObserver(function(entries){
+    entries.forEach(function(entry){
+      root.classList.toggle('apex-floats-hidden',entry.isIntersecting);
+    });
+  },{threshold:0});
+  obs.observe(rail);
+})();
 
 /* ══ JAAR FOOTER ══ */
 document.getElementById('yr').textContent=new Date().getFullYear();
