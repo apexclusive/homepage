@@ -64,6 +64,20 @@
       window.location.href = fallback;
     } finally { submit.disabled = false; form.removeAttribute('aria-busy'); }
   });
+  const aiLauncher = document.getElementById('ai-launcher');
+  const aiPanel = document.getElementById('ai-panel');
+  const aiForm = document.getElementById('ai-form');
+  const aiInput = document.getElementById('ai-input');
+  const aiMessages = document.getElementById('ai-messages');
+  let aiHistory = [];
+  function addAiMessage(text, role) { const node=document.createElement('div'); node.className=`ai-message ai-${role}`; node.textContent=text; aiMessages.appendChild(node); aiMessages.scrollTop=aiMessages.scrollHeight; }
+  if (aiLauncher && aiPanel) {
+    const toggleAi = () => { const open=aiPanel.hidden; aiPanel.hidden=!open; aiLauncher.setAttribute('aria-expanded',String(open)); if(open) aiInput?.focus(); };
+    aiLauncher.addEventListener('click',toggleAi); aiPanel.querySelector('.ai-close').addEventListener('click',toggleAi);
+    aiPanel.querySelectorAll('.ai-quick button').forEach(btn=>btn.addEventListener('click',()=>{aiInput.value=btn.textContent;aiForm.requestSubmit();}));
+    aiForm.addEventListener('submit',async event=>{event.preventDefault();const question=aiInput.value.trim();if(!question)return;aiInput.value='';addAiMessage(question,'user');aiHistory.push({role:'user',content:question});const submit=aiForm.querySelector('button');submit.disabled=true;try{const response=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({brand:'apex',messages:aiHistory.slice(-12)})});const data=await response.json();const answer=data.reply||data.error||'Er ging iets mis. Neem gerust rechtstreeks contact op.';addAiMessage(answer,'bot');aiHistory.push({role:'assistant',content:answer});}catch(_){addAiMessage('De adviseur is tijdelijk niet bereikbaar. U kunt ons ook direct WhatsAppen.','bot');}finally{submit.disabled=false;}});
+  }
+
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 })();
