@@ -31,3 +31,18 @@
 .mobile-menu nav a:nth-child(6){animation-delay:.3s}
 @keyframes apex-menu-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
 @media(prefers-reduced-motion:reduce){.mobile-menu nav a{animation:none!important;transition:none!important}}
+
+/* === A-Z polish: typografie, contrast, merkbeleving === */
+/* Kleine tekst die onder de 4.5:1-norm zat, nu wel leesbaar. */
+.fine-print{color:#5f6562}
+.eyebrow.dark{color:#8a5632}
+.footer-bottom{color:#8a918c}
+/* Koppen breken evenwichtig, alinea's eindigen niet met één woord op een regel. */
+h1,h2,h3{text-wrap:balance}
+p{text-wrap:pretty}
+h1,h2,h3,p{overflow-wrap:break-word}
+/* Merkbeleving: koper bij selecteren, bij formuliervelden en bij aanraken. */
+::selection{background:var(--copper);color:#fff}
+:root{accent-color:var(--copper)}
+.lead-form input::placeholder,.lead-form textarea::placeholder{color:rgba(244,241,235,.55);opacity:1}
+a,button,summary{-webkit-tap-highlight-color:transparent}
