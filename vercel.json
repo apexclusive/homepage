@@ -14,5 +14,13 @@
     { "source": "/waarde.html", "destination": "https://waarde.apexclusive.nl", "permanent": true },
     { "source": "/advertentie", "destination": "https://advertentie.apexclusive.nl", "permanent": true },
     { "source": "/advertentie.html", "destination": "https://advertentie.apexclusive.nl", "permanent": true }
+  ],
+  "headers": [
+    { "source": "/(.*)", "headers": [
+      { "key": "X-Content-Type-Options", "value": "nosniff" },
+      { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+      { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" },
+      { "key": "Strict-Transport-Security", "value": "max-age=31536000; includeSubDomains" }
+    ]}
   ]
 }
