@@ -1148,11 +1148,10 @@ footer{padding:0 var(--pd);border-top:1px solid rgba(255,255,255,0.06);backgroun
 <!-- NAV -->
 <nav id="nav" aria-label="Hoofdnavigatie">
   <div class="navlinks">
-    <a href="#aanbod">Aanbod</a>
-    <a href="#tools">11 Tools &amp; Trajecten</a>
-    <a href="#werkwijze">Werkwijze</a>
-    <a href="#projecten">Projecten</a>
-    <a href="#contact">Contact</a>
+    <a href="#aanbod">Actueel aanbod</a>
+    <a href="#werkwijze">Onze werkwijze</a>
+    <a href="#over">Over APEXclusive</a>
+    <a href="#contact">Kennismaken</a>
   </div>
   <div class="brand-wrap">
     <a href="#top" class="brand" style="font-size:1.25rem">
@@ -1169,13 +1168,13 @@ footer{padding:0 var(--pd);border-top:1px solid rgba(255,255,255,0.06);backgroun
   <div id="mm-brand" class="brand" aria-hidden="true">
     <span class="brand-apex">APEX</span><span class="brand-divider" aria-hidden="true"></span><span class="brand-excl">EXCLUSIVE</span>
   </div>
-  <a href="#aanbod" style="transition-delay:.08s" onclick="closeMM()">Aanbod <span aria-hidden="true">&middot; te koop</span></a>
-  <a href="#tools" style="transition-delay:.14s" onclick="closeMM()">Tools</a>
-  <a href="#werkwijze" style="transition-delay:.20s" onclick="closeMM()">Werkwijze</a>
-  <a href="#over" style="transition-delay:.26s" onclick="closeMM()">Over ons</a>
-  <a href="#projecten" style="transition-delay:.32s" onclick="closeMM()">Projecten</a>
-  <a href="#tarieven" style="transition-delay:.38s" onclick="closeMM()">Tarieven</a>
-  <a href="#contact" style="transition-delay:.44s;color:var(--pt)" onclick="closeMM()">Contact</a>
+  <a href="#aanbod" style="transition-delay:.08s" onclick="closeMM()">Actueel aanbod</a>
+  <a href="#werkwijze" style="transition-delay:.14s" onclick="closeMM()">Onze werkwijze</a>
+  <a href="#over" style="transition-delay:.20s" onclick="closeMM()">Over APEXclusive</a>
+  <a href="#projecten" style="transition-delay:.26s" onclick="closeMM()">Gerealiseerde projecten</a>
+  <a href="#tools" style="transition-delay:.32s" onclick="closeMM()">Tools &amp; trajecten</a>
+  <a href="#tarieven" style="transition-delay:.38s" onclick="closeMM()">Investering</a>
+  <a href="#contact" style="transition-delay:.44s;color:var(--pt)" onclick="closeMM()">Kennismaken</a>
   <div id="mm-foot">Maastricht &middot; Nederland</div>
 </div>
 
@@ -2057,7 +2056,7 @@ window.addEventListener('scroll',function(){
   progress.style.transform='scaleX('+(progressPct/100)+')';
   progress.setAttribute('aria-valuenow',String(progressPct));
 
-  var secs=['aanbod','tools','werkwijze','over','projecten','contact'];
+  var secs=['aanbod','werkwijze','over','contact'];
   var active='';
   secs.forEach(function(id){
     var el=document.getElementById(id);
