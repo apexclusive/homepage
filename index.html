@@ -9,30 +9,121 @@
   <meta name="robots" content="index,follow,max-image-preview:large">
   <meta name="theme-color" content="#0b0d0d">
   <link rel="canonical" href="https://apexclusive.nl/">
+
+  <!-- Preload LCP hero image -->
+  <link rel="preload" as="image" href="https://res.cloudinary.com/sfd8ohjz/image/upload/w_1800,q_auto:best,f_auto/v1786112048/Lamborghini_cockpit_zw7pmk.jpg" fetchpriority="high">
+
+  <!-- Preconnect external origins -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preconnect" href="https://res.cloudinary.com">
+
+  <!-- Open Graph -->
   <meta property="og:title" content="APEXclusive | Private Vehicle Advisory">
   <meta property="og:description" content="Uw volgende exclusieve auto, onafhankelijk gevonden en zorgvuldig begeleid.">
   <meta property="og:type" content="website">
   <meta property="og:url" content="https://apexclusive.nl/">
-  <meta property="og:image" content="https://res.cloudinary.com/sfd8ohjz/image/upload/w_1600,q_auto:best,f_auto/v1786112048/Lamborghini_cockpit_zw7pmk.jpg">
+  <meta property="og:image" content="https://res.cloudinary.com/sfd8ohjz/image/upload/w_1200,h_630,c_fill,q_auto:best,f_auto/v1786112048/Lamborghini_cockpit_zw7pmk.jpg">
   <meta property="og:image:alt" content="Luxe auto-interieur voor APEXclusive">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
   <meta property="og:locale" content="nl_NL">
+  <meta property="og:site_name" content="APEXclusive">
+
+  <!-- Twitter Card -->
   <meta name="twitter:card" content="summary_large_image">
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <meta name="twitter:title" content="APEXclusive | Private Vehicle Advisory">
+  <meta name="twitter:description" content="Uw volgende exclusieve auto, onafhankelijk gevonden en zorgvuldig begeleid.">
+  <meta name="twitter:image" content="https://res.cloudinary.com/sfd8ohjz/image/upload/w_1200,h_630,c_fill,q_auto:best,f_auto/v1786112048/Lamborghini_cockpit_zw7pmk.jpg">
+  <meta name="twitter:image:alt" content="Luxe auto-interieur voor APEXclusive">
+
+  <!-- Fonts -->
   <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@300;400;500;600&family=Manrope:wght@400;500;600;700&family=Playfair+Display:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet">
+
+  <!-- Favicons -->
   <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="%230b0d0d"/><path d="M32 8 52 14v17c0 13-8 22-20 27C20 53 12 44 12 31V14z" fill="none" stroke="%23c99770" stroke-width="3"/><path d="m32 19-10 25h5l2-6h6l2 6h5z" fill="%23f4f1eb"/></svg>'>
-  <link rel="stylesheet" href="apexclusive-modern.css?v=20260830-2">
-  <link rel="stylesheet" href="apexclusive-brand.css?v=20260830-2">
-  <link rel="stylesheet" href="apexclusive-ai.css?v=20260830-3">
-  <link rel="stylesheet" href="apexclusive-quality.css?v=20260830-2">
-  <link rel="stylesheet" href="apexclusive-scale.css?v=20260830-1">
-  <link rel="stylesheet" href="apexclusive-finish.css?v=20260830-1">
-  <link rel="stylesheet" href="apexclusive-overview.css?v=20260830-1">
+  <link rel="apple-touch-icon" href="/apple-touch-icon.png">
+
+  <!-- Stylesheets -->
+  <link rel="stylesheet" href="apexclusive-modern.css?v=20260830-3">
+  <link rel="stylesheet" href="apexclusive-brand.css?v=20260830-3">
+  <link rel="stylesheet" href="apexclusive-ai.css?v=20260830-4">
+  <link rel="stylesheet" href="apexclusive-quality.css?v=20260830-3">
+  <link rel="stylesheet" href="apexclusive-scale.css?v=20260830-2">
+  <link rel="stylesheet" href="apexclusive-finish.css?v=20260830-2">
+  <link rel="stylesheet" href="apexclusive-overview.css?v=20260830-2">
+
+  <!-- Structured Data: LocalBusiness -->
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":["ProfessionalService","AutomotiveBusiness"],"@id":"https://apexclusive.nl/#business","name":"APEXclusive","url":"https://apexclusive.nl/","description":"Onafhankelijke aankoop- en importbegeleiding voor exclusieve auto's uit Europa.","areaServed":"Europe","address":{"@type":"PostalAddress","addressLocality":"Maastricht","addressCountry":"NL"},"email":"info@apexclusive.nl","telephone":"+31 6 24 73 59 39","founder":{"@type":"Person","name":"Martijn Puts"},"priceRange":"€€€","sameAs":["https://www.instagram.com/apexclusive.nl/"]}
+  {
+    "@context": "https://schema.org",
+    "@type": ["LocalBusiness", "AutomotiveBusiness"],
+    "@id": "https://apexclusive.nl/#business",
+    "name": "APEXclusive",
+    "url": "https://apexclusive.nl/",
+    "image": "https://res.cloudinary.com/sfd8ohjz/image/upload/w_1200,q_auto:best,f_auto/v1786112048/Lamborghini_cockpit_zw7pmk.jpg",
+    "description": "Onafhankelijke aankoop- en importbegeleiding voor exclusieve auto's uit Europa.",
+    "areaServed": [
+      {"@type": "Country", "name": "Nederland"},
+      {"@type": "Country", "name": "Duitsland"},
+      {"@type": "Country", "name": "België"},
+      {"@type": "Country", "name": "Italië"}
+    ],
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Maastricht",
+      "addressRegion": "Limburg",
+      "addressCountry": "NL"
+    },
+    "email": "info@apexclusive.nl",
+    "telephone": "+31624735939",
+    "founder": {"@type": "Person", "name": "Martijn Puts"},
+    "priceRange": "€€€",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Diensten",
+      "itemListElement": [
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Aankoopbegeleiding"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Importbegeleiding"}},
+        {"@type": "Offer", "itemOffered": {"@type": "Service", "name": "Sourcing service"}}
+      ]
+    },
+    "sameAs": ["https://www.instagram.com/apexclusive.nl/"]
+  }
   </script>
+
+  <!-- Structured Data: FAQ -->
   <script type="application/ld+json">
-  {"@context":"https://schema.org","@type":"FAQPage","mainEntity":[{"@type":"Question","name":"Wat doet APEXclusive precies?","acceptedAnswer":{"@type":"Answer","text":"APEXclusive zoekt, controleert en importeert exclusieve auto's uit Europa en begeleidt het volledige traject tot aan de sleuteloverdracht."}},{"@type":"Question","name":"Is APEXclusive onafhankelijk van dealers?","acceptedAnswer":{"@type":"Answer","text":"Ja. APEXclusive werkt onafhankelijk van merk en dealerbelang. U beslist zelf; wij maken de opties, risico's en kosten helder."}},{"@type":"Question","name":"Kunnen jullie ook BPM en RDW regelen?","acceptedAnswer":{"@type":"Answer","text":"APEXclusive coördineert BPM, transport, documentatie, RDW-keuring, registratie en aflevering via gespecialiseerde partners."}}]}
+  {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      {
+        "@type": "Question",
+        "name": "Wat doet APEXclusive precies?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "APEXclusive zoekt, controleert en importeert exclusieve auto's uit Europa en begeleidt het volledige traject tot aan de sleuteloverdracht."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Is APEXclusive onafhankelijk van dealers?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "Ja. APEXclusive werkt onafhankelijk van merk en dealerbelang. U beslist zelf; wij maken de opties, risico's en kosten helder."
+        }
+      },
+      {
+        "@type": "Question",
+        "name": "Kunnen jullie ook BPM en RDW regelen?",
+        "acceptedAnswer": {
+          "@type": "Answer",
+          "text": "APEXclusive coördineert BPM, transport, documentatie, RDW-keuring, registratie en aflevering via gespecialiseerde partners."
+        }
+      }
+    ]
+  }
   </script>
 </head>
 <body>
@@ -53,6 +144,8 @@
   </div>
 
   <main id="main-content">
+
+    <!-- ═══════════════ HERO ═══════════════ -->
     <section class="hero" id="top">
       <div class="hero-media"><img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_1800,q_auto:best,f_auto/v1786112048/Lamborghini_cockpit_zw7pmk.jpg" width="1800" height="1200" alt="Luxe interieur van een exclusieve auto" fetchpriority="high"></div>
       <div class="hero-overlay"></div>
@@ -65,38 +158,64 @@
       <div class="hero-bottom page-width"><span>Onafhankelijk</span><span>Heel Europa</span><span>Van A tot Z</span><span class="hero-scroll">Scroll om te ontdekken <i></i></span></div>
     </section>
 
+    <!-- ═══════════════ INTRO ═══════════════ -->
     <section class="intro section-light">
       <div class="page-width intro-grid"><div><p class="eyebrow dark">De juiste auto is meer dan een vondst</p><h2>Rust in een aankoop<br><em>van formaat.</em></h2></div><div class="intro-copy"><p>Een exclusieve auto kopen hoort bijzonder te zijn. Niet onnodig ingewikkeld. APEXclusive geeft u een onafhankelijk en helder overzicht van de mogelijkheden — voordat u beslist.</p><a class="under-link dark-link" href="#diensten">Wat wij voor u doen <span>→</span></a></div></div>
     </section>
 
+    <!-- ═══════════════ AANBOD ═══════════════ -->
     <section class="featured section-dark" id="aanbod">
-      <div class="page-width"><div class="section-label"><p class="eyebrow">Actueel aanbod</p><span>01 / 04</span></div><div class="featured-grid"><div class="featured-image"><a href="aanbod-urus.html"><img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_1200,q_auto:best,f_auto/v1787155833/Lamborghini-Urus-Nero-Hel%C3%A8ne-11_2025-06-_lq2gne.jpg" width="1200" height="900" alt="Lamborghini Urus te koop via APEXclusive" loading="lazy"><span class="image-tag">Beschikbaar · op afspraak</span></a></div><div class="featured-copy"><p class="eyebrow">Geselecteerd exemplaar</p><h2>Lamborghini<br><em>Urus</em></h2><p class="featured-description">Origineel, volledig dealeronderhouden en afkomstig van de eerste eigenaar. Schadevrij, aantoonbaar verzorgd en met fabrieksgarantie tot mei 2027.</p><div class="spec-row"><div><strong>650</strong><span>pk</span></div><div><strong>53.500</strong><span>km</span></div><div><strong>2022</strong><span>bouwjaar</span></div></div><div class="price-row"><div><small>Vraagprijs</small><strong>€ 252.500</strong></div><a class="button button-outline" href="aanbod-urus.html">Bekijk de auto <span>↗</span></a></div><p class="fine-print">Particuliere verkoop · BTW niet aftrekbaar · bezichtiging op afspraak</p></div></div></div>
+      <div class="page-width"><div class="section-label"><p class="eyebrow">Actueel aanbod</p><span>01 / 04</span></div><div class="featured-grid"><div class="featured-image"><a href="aanbod-urus.html"><img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_1200,q_auto:best,f_auto/v1787155833/Lamborghini-Urus-Nero-Hel%C3%A8ne-11_2025-06-_lq2gne.jpg" width="1200" height="900" alt="Lamborghini Urus te koop via APEXclusive" loading="lazy" decoding="async"><span class="image-tag">Beschikbaar · op afspraak</span></a></div><div class="featured-copy"><p class="eyebrow">Geselecteerd exemplaar</p><h2>Lamborghini<br><em>Urus</em></h2><p class="featured-description">Origineel, volledig dealeronderhouden en afkomstig van de eerste eigenaar. Schadevrij, aantoonbaar verzorgd en met fabrieksgarantie tot mei 2027.</p><div class="spec-row"><div><strong>650</strong><span>pk</span></div><div><strong>53.500</strong><span>km</span></div><div><strong>2022</strong><span>bouwjaar</span></div></div><div class="price-row"><div><small>Vraagprijs</small><strong>€ 252.500</strong></div><a class="button button-outline" href="aanbod-urus.html">Bekijk de auto <span>↗</span></a></div><p class="fine-print">Particuliere verkoop · BTW niet aftrekbaar · bezichtiging op afspraak</p></div></div></div>
     </section>
 
+    <!-- ═══════════════ DIENSTEN ═══════════════ -->
     <section class="services section-light" id="diensten"><div class="page-width"><div class="section-heading"><div><p class="eyebrow dark">Van eerste idee tot aflevering</p><h2>Alles geregeld.<br><em>Geen ruis.</em></h2></div><p>U krijgt één aanspreekpunt voor het volledige traject. Onafhankelijk advies, heldere keuzes en controle op ieder belangrijk moment.</p></div><div class="service-grid"><a class="service-card" href="aankoopbegeleiding.html"><span class="service-number">01</span><h3>Aankoopbegeleiding</h3><p>Van shortlist tot onderhandeling. Wij helpen u de juiste auto herkennen en met vertrouwen beslissen.</p><span class="card-link">Lees meer <b>↗</b></span></a><a class="service-card" href="importbegeleiding.html"><span class="service-number">02</span><h3>Importbegeleiding</h3><p>Transport, BPM, documentatie, RDW en aflevering. Eén zorgvuldig gecoördineerd traject.</p><span class="card-link">Lees meer <b>↗</b></span></a><a class="service-card" href="sourcing-service.html"><span class="service-number">03</span><h3>Sourcing service</h3><p>U weet wat u zoekt. Wij zoeken waar het staat — gericht in Duitsland, België, Italië en heel Europa.</p><span class="card-link">Lees meer <b>↗</b></span></a></div></div></section>
 
+    <!-- ═══════════════ WERKWIJZE ═══════════════ -->
     <section class="process section-dark" id="werkwijze"><div class="page-width process-grid"><div class="process-sticky"><p class="eyebrow">Onze werkwijze</p><h2>Van eerste gesprek<br><em>tot sleuteloverdracht.</em></h2><p>Een zorgvuldig proces geeft ruimte om van de auto te genieten. Dit is hoe we dat organiseren.</p><a class="under-link" href="#contact">Plan een kennismaking <span>→</span></a></div><div class="process-list"><article><span>01</span><div><h3>Luisteren &amp; scherpstellen</h3><p>Uw gebruik, smaak, budget en eisen vormen het uitgangspunt. Niet de voorraad.</p></div></article><article><span>02</span><div><h3>Zoeken &amp; selecteren</h3><p>We zoeken gericht in Europa en brengen alleen serieuze kandidaten in beeld.</p></div></article><article><span>03</span><div><h3>Controleren vóór aankoop</h3><p>Historie, documentatie, conditie en marktwaarde worden onafhankelijk beoordeeld.</p></div></article><article><span>04</span><div><h3>Onderhandelen &amp; regelen</h3><p>U beslist. Wij begeleiden de onderhandeling en coördineren de praktische uitvoering.</p></div></article><article><span>05</span><div><h3>Importeren &amp; afleveren</h3><p>Transport, BPM, RDW en registratie worden afgestemd tot de auto bij u thuis staat.</p></div></article></div></div></section>
 
-    <section class="tools section-light" id="tools"><div class="page-width"><div class="section-heading tools-heading"><div><p class="eyebrow dark">APEXclusive garage · 11 hulpmiddelen</p><h2>Meer inzicht.<br><em>Betere keuzes.</em></h2></div><p>Van de eerste kentekencheck tot de laatste stap van uw importtraject. Gebruik onze hulpmiddelen gratis — en schakel ons in wanneer u persoonlijk advies wilt.</p></div><div class="tool-groups"><div class="tool-group"><p class="tool-group-label">Kopen &amp; controleren</p><div class="tool-links"><a href="https://vergelijk.apexclusive.nl"><span>01 · Vergelijken</span><strong>Kentekenvergelijking</strong><b>↗</b></a><a href="https://kentekencheck.apexclusive.nl"><span>02 · Controleren</span><strong>RDW kentekencheck</strong><b>↗</b></a><a href="https://carrapport.apexclusive.nl"><span>03 · Analyseren</span><strong>Advertentie analyse</strong><b>↗</b></a><a href="https://waarde.apexclusive.nl"><span>04 · Inschatten</span><strong>Auto waarde</strong><b>↗</b></a></div></div><div class="tool-group"><p class="tool-group-label">Kosten &amp; regelen</p><div class="tool-links"><a href="https://bpm.apexclusive.nl"><span>05 · Berekenen</span><strong>BPM calculator</strong><b>↗</b></a><a href="https://verzekering.apexclusive.nl"><span>06 · Verzekeren</span><strong>Verzekering vergelijken</strong><b>↗</b></a><a href="https://lening.apexclusive.nl"><span>07 · Financieren</span><strong>Auto lening</strong><b>↗</b></a><a href="import-traject-planner.html"><span>08 · Voorbereiden</span><strong>Import traject planner</strong><b>↗</b></a></div></div><div class="tool-group"><p class="tool-group-label">Sourcen &amp; verkopen</p><div class="tool-links"><a href="https://advertentie.apexclusive.nl"><span>09 · Presenteren</span><strong>Advertentie tips</strong><b>↗</b></a><a href="sourcing-brief.html"><span>10 · Omschrijven</span><strong>Sourcing brief</strong><b>↗</b></a><a href="verkoopvoorbereiding-planner.html"><span>11 · Voorbereiden</span><strong>Verkoopvoorbereiding</strong><b>↗</b></a></div></div></div><div class="tools-more"><span>Gratis hulpmiddelen van APEXclusive</span><a class="under-link dark-link" href="#contact">Liever persoonlijk geregeld? <span>→</span></a></div></div></section>
+    <!-- ═══════════════ TOOLS ═══════════════ -->
+    <section class="tools section-light" id="tools"><div class="page-width"><div class="section-heading tools-heading"><div><p class="eyebrow dark">APEXclusive garage · 11 hulpmiddelen</p><h2>Meer inzicht.<br><em>Betere keuzes.</em></h2></div><p>Van de eerste kentekencheck tot de laatste stap van uw importtraject. Gebruik onze hulpmiddelen gratis — en schakel ons in wanneer u persoonlijk advies wilt.</p></div><div class="tool-groups"><div class="tool-group"><p class="tool-group-label">Kopen &amp; controleren</p><div class="tool-links"><a href="https://vergelijk.apexclusive.nl" rel="noopener"><span>01 · Vergelijken</span><strong>Kentekenvergelijking</strong><b>↗</b></a><a href="https://kentekencheck.apexclusive.nl" rel="noopener"><span>02 · Controleren</span><strong>RDW kentekencheck</strong><b>↗</b></a><a href="https://carrapport.apexclusive.nl" rel="noopener"><span>03 · Analyseren</span><strong>Advertentie analyse</strong><b>↗</b></a><a href="https://waarde.apexclusive.nl" rel="noopener"><span>04 · Inschatten</span><strong>Auto waarde</strong><b>↗</b></a></div></div><div class="tool-group"><p class="tool-group-label">Kosten &amp; regelen</p><div class="tool-links"><a href="https://bpm.apexclusive.nl" rel="noopener"><span>05 · Berekenen</span><strong>BPM calculator</strong><b>↗</b></a><a href="https://verzekering.apexclusive.nl" rel="noopener"><span>06 · Verzekeren</span><strong>Verzekering vergelijken</strong><b>↗</b></a><a href="https://lening.apexclusive.nl" rel="noopener"><span>07 · Financieren</span><strong>Auto lening</strong><b>↗</b></a><a href="import-traject-planner.html"><span>08 · Voorbereiden</span><strong>Import traject planner</strong><b>↗</b></a></div></div><div class="tool-group"><p class="tool-group-label">Sourcen &amp; verkopen</p><div class="tool-links"><a href="https://advertentie.apexclusive.nl" rel="noopener"><span>09 · Presenteren</span><strong>Advertentie tips</strong><b>↗</b></a><a href="sourcing-brief.html"><span>10 · Omschrijven</span><strong>Sourcing brief</strong><b>↗</b></a><a href="verkoopvoorbereiding-planner.html"><span>11 · Voorbereiden</span><strong>Verkoopvoorbereiding</strong><b>↗</b></a></div></div></div><div class="tools-more"><span>Gratis hulpmiddelen van APEXclusive</span><a class="under-link dark-link" href="#contact">Liever persoonlijk geregeld? <span>→</span></a></div></div></section>
 
-    <section class="cases section-dark" id="cases"><div class="page-width"><div class="section-label"><p class="eyebrow">Gerealiseerde trajecten</p><span>03 / 04</span></div><div class="cases-heading"><h2>Geen twee auto’s<br><em>zijn hetzelfde.</em></h2><div><p>Iedere aankoop vraagt om een eigen route. Dit zijn enkele dossiers die we met zorg hebben begeleid.</p><a class="under-link" href="cases.html">Bekijk alle dossiers <span>→</span></a></div></div><div class="case-grid"><article class="case-card case-large"><img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_900,q_auto:best,f_auto/v1786111940/987D691B-FFBF-4137-9766-15DEF62F5CD4_1_201_a_k1eyvp.jpg" alt="Lamborghini Huracán aankooptraject" loading="lazy"><div><span>Lamborghini</span><h3>Huracán LP610 Spyder</h3><p>610 pk · V10 · Zweden → Nederland</p></div></article><article class="case-card"><img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_900,q_auto:best,f_auto/v1786112182/8112FE63-03BD-4C6D-9A40-1217FCD5910F_1_201_a_vbazdb.jpg" alt="Lamborghini Urus importtraject" loading="lazy"><div><span>Lamborghini</span><h3>Urus</h3><p>650 pk · V8 · Luxemburg → Nederland</p></div></article><article class="case-card"><img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_900,q_auto:best,f_auto/v1786123838/WhatsApp_Image_2025-05-20_at_01.01.02_nh95ep.jpg" alt="Audi RS6 aankooptraject" loading="lazy"><div><span>Audi</span><h3>RS6 Avant C8</h3><p>600 pk · V8 TFSI · Audi Approved</p></div></article></div></div></section>
+    <!-- ═══════════════ CASES ═══════════════ -->
+    <section class="cases section-dark" id="cases"><div class="page-width"><div class="section-label"><p class="eyebrow">Gerealiseerde trajecten</p><span>03 / 04</span></div><div class="cases-heading"><h2>Geen twee auto's<br><em>zijn hetzelfde.</em></h2><div><p>Iedere aankoop vraagt om een eigen route. Dit zijn enkele dossiers die we met zorg hebben begeleid.</p><a class="under-link" href="cases.html">Bekijk alle dossiers <span>→</span></a></div></div><div class="case-grid"><article class="case-card case-large"><img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_900,q_auto:best,f_auto/v1786111940/987D691B-FFBF-4137-9766-15DEF62F5CD4_1_201_a_k1eyvp.jpg" width="900" height="600" alt="Lamborghini Huracán aankooptraject" loading="lazy" decoding="async"><div><span>Lamborghini</span><h3>Huracán LP610 Spyder</h3><p>610 pk · V10 · Zweden → Nederland</p></div></article><article class="case-card"><img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_900,q_auto:best,f_auto/v1786112182/8112FE63-03BD-4C6D-9A40-1217FCD5910F_1_201_a_vbazdb.jpg" width="900" height="600" alt="Lamborghini Urus importtraject" loading="lazy" decoding="async"><div><span>Lamborghini</span><h3>Urus</h3><p>650 pk · V8 · Luxemburg → Nederland</p></div></article><article class="case-card"><img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_900,q_auto:best,f_auto/v1786123838/WhatsApp_Image_2025-05-20_at_01.01.02_nh95ep.jpg" width="900" height="600" alt="Audi RS6 aankooptraject" loading="lazy" decoding="async"><div><span>Audi</span><h3>RS6 Avant C8</h3><p>600 pk · V8 TFSI · Audi Approved</p></div></article></div></div></section>
 
+    <!-- ═══════════════ VERTROUWEN ═══════════════ -->
     <section class="proof section-light" id="vertrouwen"><div class="page-width"><div class="section-heading"><div><p class="eyebrow dark">Waarom klanten voor ons kiezen</p><h2>Onafhankelijk<br><em>tot in detail.</em></h2></div><p>Een grote aankoop vraagt om meer dan enthousiasme. U wilt weten waar u aan toe bent — inhoudelijk, praktisch en financieel.</p></div><div class="proof-grid"><article><strong>01</strong><h3>Geen dealerbelang</h3><p>Wij verkopen u niet wat er toevallig staat. We zoeken naar wat bij u past en zeggen het ook wanneer een auto niet de juiste keuze is.</p></article><article><strong>02</strong><h3>Controle vóór aankoop</h3><p>Historie, documentatie, conditie en marktpositie worden beoordeeld voordat u een beslissing neemt.</p></article><article><strong>03</strong><h3>Eén aanspreekpunt</h3><p>Van de eerste selectie tot transport, BPM, RDW en aflevering: u weet wie de voortgang bewaakt.</p></article></div><div class="proof-note"><span>Persoonlijk advies · Europese marktkennis · Zorgvuldig geregeld</span><a class="under-link dark-link" href="over-apexclusive.html">Meer over onze aanpak <span>→</span></a></div></div></section>
 
-    <section class="about section-light" id="over"><div class="page-width about-grid"><div class="about-image"><img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_720,q_auto:best,f_auto/v1786112744/8A26E528-46F4-471D-856C-7D4210809521_1_105_c_uguopr.jpg" width="720" height="540" alt="Martijn Puts, oprichter van APEXclusive" loading="lazy"><span>Martijn Puts · Founder</span></div><div class="about-copy"><p class="eyebrow dark">Over APEXclusive</p><h2>Passie voor auto’s.<br><em>Oog voor detail.</em></h2><p>Als piloot en ervaren auto-importeur begeleid ik kopers die geen concessies willen doen aan kwaliteit, discretie en zekerheid.</p><p>Mijn aanpak is persoonlijk, helder en onafhankelijk. U krijgt eerlijk advies — ook wanneer een auto beter niet gekocht kan worden.</p><a class="under-link dark-link" href="over-apexclusive.html">Meer over APEXclusive <span>→</span></a></div></div></section>
+    <!-- ═══════════════ OVER ONS ═══════════════ -->
+    <section class="about section-light" id="over"><div class="page-width about-grid"><div class="about-image"><img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_720,q_auto:best,f_auto/v1786112744/8A26E528-46F4-471D-856C-7D4210809521_1_105_c_uguopr.jpg" width="720" height="540" alt="Martijn Puts, oprichter van APEXclusive" loading="lazy" decoding="async"><span>Martijn Puts · Founder</span></div><div class="about-copy"><p class="eyebrow dark">Over APEXclusive</p><h2>Passie voor auto's.<br><em>Oog voor detail.</em></h2><p>Als piloot en ervaren auto-importeur begeleid ik kopers die geen concessies willen doen aan kwaliteit, discretie en zekerheid.</p><p>Mijn aanpak is persoonlijk, helder en onafhankelijk. U krijgt eerlijk advies — ook wanneer een auto beter niet gekocht kan worden.</p><a class="under-link dark-link" href="over-apexclusive.html">Meer over APEXclusive <span>→</span></a></div></div></section>
 
+    <!-- ═══════════════ INVESTERING ═══════════════ -->
     <section class="investment section-dark" id="investering"><div class="page-width investment-grid"><div><p class="eyebrow">Investeren in zekerheid</p><h2>Een helder honorarium.<br><em>Geen verrassingen.</em></h2></div><div><p>De investering hangt af van de omvang van uw opdracht: een gerichte aankoopcontrole vraagt iets anders dan een volledige zoektocht en import uit Europa.</p><p>Na een eerste gesprek ontvangt u vooraf duidelijk wat we doen, wat u kunt verwachten en welke kosten daarbij horen.</p><a class="under-link" href="#contact">Bespreek uw opdracht <span>→</span></a></div></div></section>
 
-    <section class="contact section-dark" id="contact"><div class="page-width contact-grid"><div><p class="eyebrow">Uw zoektocht begint hier</p><h2>Een goed gesprek<br><em>zonder verplichting.</em></h2><p class="contact-lead">Vertel kort welke auto u zoekt. Martijn neemt persoonlijk contact met u op.</p><div class="contact-direct"><a href="https://wa.me/31624735939?text=Goedendag%2C%20ik%20wil%20mijn%20droomauto%20bespreken%20met%20APEXclusive" target="_blank" rel="noopener noreferrer">WhatsApp <span>↗</span></a><a href="mailto:info@apexclusive.nl">info@apexclusive.nl <span>↗</span></a></div></div><form class="lead-form" id="lead-form"><div class="form-title"><span>Persoonlijke aanvraag</span><small>We reageren binnen 24 uur.</small></div><label>Naam<input name="name" type="text" autocomplete="name" required></label><label>E-mailadres<input name="email" type="email" autocomplete="email" required></label><label>Telefoonnummer <small>(optioneel)</small><input name="phone" type="tel" autocomplete="tel"></label><label>Waar bent u naar op zoek?<textarea name="request" rows="4" required placeholder="Merk, model, budget, wensen of een link naar een advertentie"></textarea></label><label class="honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label><button class="button button-light" type="submit">Aanvraag versturen <span>↗</span></button><p class="form-status" id="lead-form-status" role="status" aria-live="polite"></p></form></div></section>
+    <!-- ═══════════════ CONTACT ═══════════════ -->
+    <section class="contact section-dark" id="contact"><div class="page-width contact-grid"><div><p class="eyebrow">Uw zoektocht begint hier</p><h2>Een goed gesprek<br><em>zonder verplichting.</em></h2><p class="contact-lead">Vertel kort welke auto u zoekt. Martijn neemt persoonlijk contact met u op.</p><div class="contact-direct"><a href="tel:+31624735939">Bel direct <span>↗</span></a><a href="https://wa.me/31624735939?text=Goedendag%2C%20ik%20wil%20mijn%20droomauto%20bespreken%20met%20APEXclusive" target="_blank" rel="noopener noreferrer">WhatsApp <span>↗</span></a><a href="mailto:info@apexclusive.nl">info@apexclusive.nl <span>↗</span></a></div></div><form class="lead-form" id="lead-form" novalidate><div class="form-title"><span>Persoonlijke aanvraag</span><small>We reageren binnen 24 uur.</small></div><label>Naam<input name="name" type="text" autocomplete="name" required></label><label>E-mailadres<input name="email" type="email" autocomplete="email" required></label><label>Telefoonnummer <small>(optioneel)</small><input name="phone" type="tel" autocomplete="tel"></label><label>Waar bent u naar op zoek?<textarea name="request" rows="4" required placeholder="Merk, model, budget, wensen of een link naar een advertentie"></textarea></label><label class="honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off"></label><button class="button button-light" type="submit">Aanvraag versturen <span>↗</span></button><p class="form-status" id="lead-form-status" role="status" aria-live="polite"></p></form></div></section>
 
-    <section class="faq section-light"><div class="page-width faq-grid"><div><p class="eyebrow dark">Veelgestelde vragen</p><h2>Helderheid<br><em>vooraf.</em></h2></div><div class="faq-list"><details><summary>Wat doet APEXclusive precies?<span>+</span></summary><p>APEXclusive zoekt, controleert en importeert exclusieve auto’s uit Europa en begeleidt het volledige traject tot aan de sleuteloverdracht.</p></details><details><summary>Is APEXclusive onafhankelijk van dealers?<span>+</span></summary><p>Ja. We werken onafhankelijk van merk en dealerbelang. U beslist zelf; wij maken de opties, risico’s en kosten helder.</p></details><details><summary>Kunnen jullie BPM en RDW regelen?<span>+</span></summary><p>We coördineren BPM, transport, documentatie, RDW-keuring, registratie en aflevering via gespecialiseerde partners.</p></details></div></div></section>
+    <!-- ═══════════════ FAQ ═══════════════ -->
+    <section class="faq section-light"><div class="page-width faq-grid"><div><p class="eyebrow dark">Veelgestelde vragen</p><h2>Helderheid<br><em>vooraf.</em></h2></div><div class="faq-list"><details><summary>Wat doet APEXclusive precies?<span>+</span></summary><p>APEXclusive zoekt, controleert en importeert exclusieve auto's uit Europa en begeleidt het volledige traject tot aan de sleuteloverdracht.</p></details><details><summary>Is APEXclusive onafhankelijk van dealers?<span>+</span></summary><p>Ja. We werken onafhankelijk van merk en dealerbelang. U beslist zelf; wij maken de opties, risico's en kosten helder.</p></details><details><summary>Kunnen jullie BPM en RDW regelen?<span>+</span></summary><p>We coördineren BPM, transport, documentatie, RDW-keuring, registratie en aflevering via gespecialiseerde partners.</p></details></div></div></section>
+
   </main>
 
+  <!-- ═══════════════ AI CONCIERGE ═══════════════ -->
   <button class="ai-launcher" id="ai-launcher" type="button" aria-label="Open APEXclusive Concierge" title="APEXclusive Concierge" aria-controls="ai-panel" aria-expanded="false"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 11.5a7.5 7.5 0 0 1-8 7.5 8.8 8.8 0 0 1-3.5-.7L4 19.5l1.2-3.2A7.2 7.2 0 0 1 4.5 12 7.5 7.5 0 0 1 12 4.5a7.5 7.5 0 0 1 8 7Z"/><path d="M8.5 12h.01M12 12h.01M15.5 12h.01"/></svg></button>
   <aside class="ai-panel" id="ai-panel" hidden aria-labelledby="ai-title"><div class="ai-head"><div><span class="ai-label">APEXclusive Concierge · digitale assistent</span><h2 id="ai-title">Waar kunnen we u mee helpen?</h2></div><button type="button" class="ai-close" aria-label="Sluit AI adviseur">×</button></div><div class="ai-messages" id="ai-messages" aria-live="polite"><div class="ai-message ai-bot">Goedendag. Ik help u met aankoop, import, BPM en onze werkwijze. Waar bent u naar op zoek?</div></div><div class="ai-quick"><button type="button">Importproces</button><button type="button">BPM inschatten</button><button type="button">Auto zoeken</button></div><form class="ai-form" id="ai-form"><input id="ai-input" maxlength="500" autocomplete="off" placeholder="Stel uw vraag…" aria-label="Uw vraag"><button type="submit" aria-label="Vraag versturen">↗</button></form></aside>
 
-  <footer class="site-footer"><div class="page-width footer-grid"><div><a class="wordmark footer-wordmark" href="#top"><span>APEX</span><i></i><b>EXCLUSIVE</b></a><p>Private Vehicle Advisory<br>Maastricht · Nederland</p></div><div><h3>Navigatie</h3><a href="#diensten">Diensten</a><a href="#werkwijze">Werkwijze</a><a href="#cases">Cases</a><a href="#contact">Contact</a></div><div><h3>Contact</h3><a href="mailto:info@apexclusive.nl">info@apexclusive.nl</a><a href="https://wa.me/31624735939" target="_blank" rel="noopener noreferrer">+31 6 24 73 59 39</a><a href="https://www.instagram.com/apexclusive.nl/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></div></div><div class="footer-bottom page-width"><span>© <span id="year"></span> APEX EXCLUSIVE</span><a href="algemenevoorwaarden.html">Algemene voorwaarden</a><span>Onafhankelijk. Persoonlijk. Zorgvuldig.</span></div></footer>
-  <script src="apexclusive-modern.js?v=20260830-5" defer></script>
-  <script src="apex-funnel-events.js?v=20260830-3" defer></script>
+  <!-- ═══════════════ FOOTER ═══════════════ -->
+  <footer class="site-footer"><div class="page-width footer-grid"><div><a class="wordmark footer-wordmark" href="#top"><span>APEX</span><i></i><b>EXCLUSIVE</b></a><p>Private Vehicle Advisory<br>Maastricht · Nederland</p></div><div><h3>Navigatie</h3><a href="#diensten">Diensten</a><a href="#werkwijze">Werkwijze</a><a href="#cases">Cases</a><a href="#contact">Contact</a></div><div><h3>Contact</h3><a href="mailto:info@apexclusive.nl">info@apexclusive.nl</a><a href="tel:+31624735939">+31 6 24 73 59 39</a><a href="https://wa.me/31624735939" target="_blank" rel="noopener noreferrer">WhatsApp ↗</a><a href="https://www.instagram.com/apexclusive.nl/" target="_blank" rel="noopener noreferrer">Instagram ↗</a></div></div><div class="footer-bottom page-width"><span>© <span id="year"></span> APEX EXCLUSIVE</span><span>KvK: XXXXXXXX</span><a href="algemenevoorwaarden.html">Algemene voorwaarden</a><a href="privacy.html">Privacy</a><span>Onafhankelijk. Persoonlijk. Zorgvuldig.</span></div></footer>
+
+  <!-- Scripts -->
+  <script src="apexclusive-modern.js?v=20260830-6" defer></script>
+  <script src="apex-funnel-events.js?v=20260830-4" defer></script>
+
+  <!-- Noscript fallback -->
+  <noscript>
+    <style>.mobile-menu,.ai-launcher,.ai-panel,.site-progress{display:none!important}</style>
+    <p style="text-align:center;padding:2rem;color:#f4f1eb;background:#0b0d0d;">
+      JavaScript is uitgeschakeld. Neem direct contact op via
+      <a href="mailto:info@apexclusive.nl" style="color:#c99770;">info@apexclusive.nl</a>
+      of <a href="tel:+31624735939" style="color:#c99770;">+31 6 24 73 59 39</a>.
+    </p>
+  </noscript>
 </body>
 </html>
