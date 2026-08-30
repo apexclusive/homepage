@@ -10,3 +10,24 @@
 /* Hoofdnavigatie met 6 items (Tools toegevoegd): ruimte houden op middelgrote schermen. */
 @media(max-width:1180px){.desktop-nav{gap:clamp(.8rem,2.1vw,1.8rem);margin-right:clamp(1rem,2.5vw,2rem)}.header-cta{padding:.85rem 1rem}}
 @media(max-width:1000px){.desktop-nav{font-size:.58rem;letter-spacing:.1em}.header-cta{font-size:.57rem;letter-spacing:.1em}}
+
+/* Mobiel menu: genummerde items, koperen lijn bij hover én bij aanraken. */
+.mobile-menu nav a{position:relative;display:flex;align-items:baseline;gap:0;color:var(--text);transition:color .3s ease}
+.mobile-menu nav a i{flex:none;margin-right:1.1rem;font:500 .62rem/1 var(--display);font-style:normal;letter-spacing:.2em;color:var(--muted);transition:color .3s ease,transform .3s ease}
+.mobile-menu nav a span{margin-left:.45rem}
+.mobile-menu nav a:after{content:'';position:absolute;left:0;bottom:-1px;width:0;height:1px;background:var(--copper);transition:width .35s ease}
+@media(hover:hover){.mobile-menu nav a:hover{color:#fff}.mobile-menu nav a:hover i{color:var(--copper-light);transform:translateX(3px)}.mobile-menu nav a:hover:after{width:100%}}
+.mobile-menu nav a:active{color:#fff}
+.mobile-menu nav a:active i{color:var(--copper-light)}
+.mobile-menu nav a:active:after{width:100%}
+.mobile-menu nav a:focus-visible{outline:2px solid var(--copper-light);outline-offset:6px}
+/* Items komen een voor een binnen zodra het menu opent (JS togglet het hidden-attribuut). */
+.mobile-menu nav a{animation:apex-menu-in .45s cubic-bezier(.2,.7,.3,1) backwards}
+.mobile-menu nav a:nth-child(1){animation-delay:.05s}
+.mobile-menu nav a:nth-child(2){animation-delay:.1s}
+.mobile-menu nav a:nth-child(3){animation-delay:.15s}
+.mobile-menu nav a:nth-child(4){animation-delay:.2s}
+.mobile-menu nav a:nth-child(5){animation-delay:.25s}
+.mobile-menu nav a:nth-child(6){animation-delay:.3s}
+@keyframes apex-menu-in{from{opacity:0;transform:translateY(12px)}to{opacity:1;transform:none}}
+@media(prefers-reduced-motion:reduce){.mobile-menu nav a{animation:none!important;transition:none!important}}
