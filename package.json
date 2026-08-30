@@ -1,0 +1,10 @@
+{
+  "name": "apexclusive-homepage",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Statische website van APEXclusive (apexclusive.nl) — losse CSS-bronbestanden, bundel voor index.html via scripts/build-css.mjs",
+  "scripts": {
+    "build:css": "node scripts/build-css.mjs",
+    "build": "npm run build:css"
+  }
+}
