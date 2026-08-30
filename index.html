@@ -1941,7 +1941,7 @@ async function apexSend(){
   var cDiv=bDiv.querySelector('.cmsg-content');
   var full='';
   try{
-    var res=await fetch(_CHAT_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:_msgs})});
+    var res=await fetch(_CHAT_API,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({messages:_msgs,brand:'apex'})});
     if(!res.ok){
       var d=await res.json().catch(function(){return{};});
       cDiv.innerHTML=_fmt('⚠️ '+(d.error||'Er ging iets mis.'));
@@ -2300,6 +2300,10 @@ window.addEventListener('resize',fixTarievenGrid,{passive:true});
     window.addEventListener('pointerdown', activateIntro, {passive:true});
   })();
 </script>
+<script src="apex-funnel-events.js"></script>
+</body>
+</html>
+ript>
 <script src="apex-funnel-events.js"></script>
 </body>
 </html>
