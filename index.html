@@ -1186,6 +1186,12 @@ footer{padding:0 var(--pd);border-top:1px solid rgba(198,203,209,.12);background
 .lux-corner.tl{top:2rem;left:var(--pd)}
 .lux-corner.br{bottom:2rem;right:var(--pd);transform:rotate(180deg)}
 
+/* Tarieven klapt onder 700px naar één kolom. Dit stond in JS met een
+   resize-listener; de breakpoint van 700px is daaruit overgenomen. */
+@media(max-width:699px){
+  #tarieven .rv{grid-template-columns:1fr!important}
+}
+
 /* ══ MOBILE ══ */
 @media(max-width:600px){
   .btn{padding:.9rem 1.5rem;font-size:.75rem;letter-spacing:.15em;min-height:52px}
@@ -1405,6 +1411,17 @@ footer{padding:0 var(--pd);border-top:1px solid rgba(198,203,209,.12);background
   </div>
 </div>
 
+<script>
+/* Failsafe: mocht het intro-script falen, dan mag de schermvullende zwarte
+   splash de site nooit blijven blokkeren. */
+setTimeout(function(){
+  var s = document.getElementById('splash');
+  if (s && !s.classList.contains('splash-exit')) s.classList.add('force-hide');
+  var h = document.querySelector('header.hero');
+  if (h) h.classList.add('initial-visible');
+}, 4000);
+</script>
+
 <div id="progress" role="progressbar" aria-label="Leesvoortgang" aria-hidden="true"></div>
 
 <!-- CHAT BUBBLE -->
@@ -1601,10 +1618,17 @@ footer{padding:0 var(--pd);border-top:1px solid rgba(198,203,209,.12);background
       try{ splash.style.display = 'none'; }catch(e){}
     }
 
-    if (prefersReduced){
+    // De intro speelt één keer per sessie. Wie doorklikt naar een tool en
+    // terugkomt, ziet de site direct in plaats van opnieuw een zwart scherm.
+    let alreadySeen = false;
+    try { alreadySeen = sessionStorage.getItem('apex_intro_v1') === '1'; } catch (e) {}
+
+    if (prefersReduced || alreadySeen){
+      splash.classList.add('force-hide');
       finalizeIntro();
       return;
     }
+    try { sessionStorage.setItem('apex_intro_v1', '1'); } catch (e) {}
 
     let splashTriggered = false;
     function triggerSplash(){
@@ -2122,14 +2146,14 @@ footer{padding:0 var(--pd);border-top:1px solid rgba(198,203,209,.12);background
       <p>Maastricht &middot; Nederland</p>
     </div>
     <div>
-      <p class="fh">Juridisch</p>
+      <p class="fh">Diensten &amp; tools</p>
       <ul class="fl">
-        <li><a href="algemenevoorwaarden.html">Algemene Voorwaarden</a></li>
-        <li><a href="over-apexclusive.html">Over APEXclusive</a></li>
-        <li><a href="aankoopbegeleiding.html">Aankoopbegeleiding</a></li>
-        <li><a href="sourcing-service.html">Sourcing service</a></li>
-        <li><a href="importbegeleiding.html">Importbegeleiding</a></li>
-        <li><a href="verkoopbegeleiding.html">Verkoopbegeleiding</a></li>
+        <li><a href="#over">Over APEXclusive</a></li>
+        <li><a href="#werkwijze">Aankoop- en importbegeleiding</a></li>
+        <li><a href="sourcing-brief.html">Sourcing brief opstellen</a></li>
+        <li><a href="import-traject-planner.html">Import traject planner</a></li>
+        <li><a href="verkoopvoorbereiding-planner.html">Verkoopvoorbereiding</a></li>
+        <li><a href="algemenevoorwaarden.html">Algemene voorwaarden</a></li>
       </ul>
     </div>
     <div>
@@ -2448,48 +2472,76 @@ function _fmt(t){
     .replace(/\n/g,'<br>');
 }
 
-/* ══ NAV SCROLL ══ */
-var lastY=0;
-var navEl=document.getElementById('nav');
-window.addEventListener('scroll',function(){
-  var y=scrollY;
-  lastY=y;
+/* ══ SCROLL EFFECTEN ══ */
+/* Alle metingen en style-writes gebeuren in één requestAnimationFrame per frame.
+   Anders veroorzaakt elk scroll-event een forced synchronous layout. */
+var progressEl=document.getElementById('progress');
+var stepsEl=document.getElementById('steps');
+var navLinkEls=Array.prototype.slice.call(document.querySelectorAll('.navlinks a'));
+var sectionEls=['aanbod','tools','werkwijze','over','projecten','contact']
+  .map(function(id){ return document.getElementById(id); })
+  .filter(Boolean);
 
-  var h=document.body.scrollHeight-innerHeight;
-  document.getElementById('progress').style.transform='scaleX('+(h>0?y/h:0)+')';
+var docScrollRange=0;
+function measureDoc(){ docScrollRange=document.body.scrollHeight-innerHeight; }
+measureDoc();
+window.addEventListener('resize',measureDoc,{passive:true});
+window.addEventListener('load',measureDoc);
 
-  var secs=['aanbod','tools','werkwijze','over','projecten','contact'];
-  var active='';
-  secs.forEach(function(id){
-    var el=document.getElementById(id);
-    if(el&&el.getBoundingClientRect().top<120) active=id;
-  });
-  document.querySelectorAll('.navlinks a').forEach(function(a){
-    a.classList.toggle('active',a.getAttribute('href')==='#'+active);
-  });
+var lastQuoteReveal=-1;
+var lastActiveSection='';
+var scrollQueued=false;
 
-  var stepsEl=document.getElementById('steps');
+function onScrollFrame(){
+  scrollQueued=false;
+
+  if(progressEl){
+    progressEl.style.transform='scaleX('+(docScrollRange>0?scrollY/docScrollRange:0)+')';
+  }
+
+  /* Alleen de navlinks aanraken als de actieve sectie echt wijzigt. */
+  if(navLinkEls.length){
+    var active='';
+    for(var i=0;i<sectionEls.length;i++){
+      if(sectionEls[i].getBoundingClientRect().top<120) active=sectionEls[i].id;
+    }
+    if(active!==lastActiveSection){
+      lastActiveSection=active;
+      navLinkEls.forEach(function(a){
+        a.classList.toggle('active',a.getAttribute('href')==='#'+active);
+      });
+    }
+  }
+
   if(stepsEl){
     var r=stepsEl.getBoundingClientRect();
     var total=Math.max(1,r.height);
-    var visible=Math.min(total,Math.max(0,Math.min(total,innerHeight-r.top)));
-    var entered=Math.max(0,Math.min(total,visible));
-    var progress=Math.max(0,Math.min(1,entered/total));
+    var progress=Math.max(0,Math.min(1,(innerHeight-r.top)/total));
     stepsEl.style.setProperty('--tp',progress.toFixed(3));
   }
 
   if(quoteSection&&qw.length){
     var qr=quoteSection.getBoundingClientRect();
-    var qProgress=Math.max(0,Math.min(1,(-qr.top)/(qr.height-innerHeight)));
+    var span=qr.height-innerHeight;
+    var qProgress=span>0?Math.max(0,Math.min(1,(-qr.top)/span)):0;
     var reveal=Math.floor(qProgress*qw.length*1.4);
-    qw.forEach(function(w,i){
-      w.style.opacity=i<reveal?'1':'0.06';
-      w.style.transition=i<reveal?'opacity .3s':'opacity .1s';
-    });
-    if(reveal>=qw.length) quoteSection.classList.add('words-done');
-    else quoteSection.classList.remove('words-done');
+    /* Zonder deze check werden alle woorden bij élk scroll-event herschreven. */
+    if(reveal!==lastQuoteReveal){
+      lastQuoteReveal=reveal;
+      qw.forEach(function(w,i){
+        var on=i<reveal;
+        w.style.opacity=on?'1':'0.06';
+        w.style.transition=on?'opacity .3s':'opacity .1s';
+      });
+      quoteSection.classList.toggle('words-done',reveal>=qw.length);
+    }
   }
+}
+
+window.addEventListener('scroll',function(){
+  if(!scrollQueued){ scrollQueued=true; requestAnimationFrame(onScrollFrame); }
 },{passive:true});
+onScrollFrame();
 
 /* ══ BURGER ══ */
 var burger=document.getElementById('burger');
@@ -2636,15 +2688,6 @@ if(leadForm){
 
 /* ══ JAAR FOOTER ══ */
 document.getElementById('yr').textContent=new Date().getFullYear();
-
-/* ══ TARIEVEN GRID RESPONSIVE ══ */
-function fixTarievenGrid(){
-  var el=document.querySelector('#tarieven .rv');
-  if(!el)return;
-  el.style.gridTemplateColumns=window.innerWidth<700?'1fr':'1fr 1.2fr';
-}
-fixTarievenGrid();
-window.addEventListener('resize',fixTarievenGrid,{passive:true});
 </script>
 <script src="apex-funnel-events.js"></script>
 </body>
