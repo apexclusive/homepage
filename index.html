@@ -38,7 +38,11 @@
 <link rel="dns-prefetch" href="https://images.unsplash.com">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500;600&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet">
+<!-- Fonts niet render-blocking laden. De noscript hieronder stond er al maar had
+     geen effect zolang de stylesheet gewoon blokkeerde; nu is hij de echte fallback.
+     display=swap zorgt dat tekst direct in de systeemfont verschijnt. -->
+<link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500;600&family=Oswald:wght@300;400;500;600&display=swap">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500;600&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet" media="print" onload="this.media='all';this.onload=null">
 <noscript><link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;1,300;1,400&family=DM+Sans:wght@200;300;400;500;600&family=Oswald:wght@300;400;500;600&display=swap" rel="stylesheet"></noscript>
 <link rel="icon" href='data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><rect width="64" height="64" fill="%230a0a0a"/><text x="32" y="46" font-family="Georgia,serif" font-size="42" fill="%23c6cbd1" text-anchor="middle">A</text></svg>'>
 
@@ -256,9 +260,9 @@ nav::after{content:'';position:absolute;left:12%;right:12%;bottom:0;height:1px;b
 /* ══ MOBILE MENU ══ */
 #mm{
   position:fixed;inset:0;z-index:250;
+  /* Geen backdrop-filter: bij 98% dekking is de blur onzichtbaar terwijl hij
+     wel een schermgroot compositing-laag kost. */
   background:rgba(4,4,4,.98);
-  -webkit-backdrop-filter:blur(28px) saturate(1.4);
-  backdrop-filter:blur(28px) saturate(1.4);
   display:flex;flex-direction:column;justify-content:center;align-items:center;gap:0;
   opacity:0;visibility:hidden;
   transition:opacity .4s cubic-bezier(.2,.7,.3,1),visibility .4s;
@@ -1170,9 +1174,9 @@ footer{padding:0 var(--pd);border-top:1px solid rgba(198,203,209,.12);background
 .apex-chat-win{
   position:fixed;z-index:9999;width:360px;
   max-width:calc(100vw - 2rem);
+  /* Zie #mm: 98% dekking maakt de blur onzichtbaar en dus pure kosten. */
   background:rgba(12,12,12,.98);
   border:1px solid rgba(255,255,255,.1);border-radius:20px;
-  -webkit-backdrop-filter:blur(28px);backdrop-filter:blur(28px);
   box-shadow:0 32px 80px rgba(0,0,0,.55);
   display:none;flex-direction:column;overflow:hidden;
   bottom:5.5rem;right:1.5rem;
@@ -1460,7 +1464,10 @@ setTimeout(function(){
     </div>
     <a class="offer-visual rv" href="aanbod-urus.html" aria-label="Bekijk de Lamborghini Urus en alle foto's">
       <span class="offer-badge">Beschikbaar</span>
-      <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_900,q_auto:best,f_auto/v1787155833/Lamborghini-Urus-Nero-Hel%C3%A8ne-11_2025-06-_lq2gne.jpg" alt="Lamborghini Urus te koop via APEXclusive" loading="lazy" decoding="async">
+      <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_900,q_auto:best,f_auto/v1787155833/Lamborghini-Urus-Nero-Hel%C3%A8ne-11_2025-06-_lq2gne.jpg"
+           srcset="https://res.cloudinary.com/sfd8ohjz/image/upload/w_480,q_auto:best,f_auto/v1787155833/Lamborghini-Urus-Nero-Hel%C3%A8ne-11_2025-06-_lq2gne.jpg 480w, https://res.cloudinary.com/sfd8ohjz/image/upload/w_720,q_auto:best,f_auto/v1787155833/Lamborghini-Urus-Nero-Hel%C3%A8ne-11_2025-06-_lq2gne.jpg 720w, https://res.cloudinary.com/sfd8ohjz/image/upload/w_900,q_auto:best,f_auto/v1787155833/Lamborghini-Urus-Nero-Hel%C3%A8ne-11_2025-06-_lq2gne.jpg 900w, https://res.cloudinary.com/sfd8ohjz/image/upload/w_1200,q_auto:best,f_auto/v1787155833/Lamborghini-Urus-Nero-Hel%C3%A8ne-11_2025-06-_lq2gne.jpg 1200w"
+           sizes="(max-width:760px) 100vw, 45vw"
+           alt="Lamborghini Urus te koop via APEXclusive" loading="lazy" decoding="async">
       <div class="offer-caption">
         <h3>Lamborghini Urus</h3>
         <p>Bekijk alle foto's &middot; &rarr;</p>
@@ -1745,7 +1752,10 @@ setTimeout(function(){
         </div>
         <p style="margin-bottom:.8rem;color:#b8b8b8;font-size:clamp(.9rem,1.9vw,.95rem);line-height:1.7">Wensen, budget en risico&rsquo;s helder in kaart. Daarna begeleiden wij uw traject van selectie tot aflevering.</p>
         <div class="sleutels-wrap">
-          <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=700&q=55&auto=format" alt="Sleuteloverdracht" loading="lazy" decoding="async">
+          <img src="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=700&q=55&auto=format"
+               srcset="https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=480&q=55&auto=format 480w, https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=700&q=55&auto=format 700w, https://images.unsplash.com/photo-1618843479313-40f8afb4b4d8?w=1000&q=55&auto=format 1000w"
+               sizes="(max-width:760px) 100vw, 40vw"
+               alt="Sleuteloverdracht" loading="lazy" decoding="async">
           <div class="sleutels-quote">
             <p>&ldquo;Rust in het proces. Zekerheid bij elke beslissing.&rdquo;</p>
             <cite>&mdash; Martijn Puts &middot; Founder APEXclusive</cite>
@@ -1869,7 +1879,10 @@ setTimeout(function(){
       </div>
       <div class="about-visual">
         <div class="about-photo-card">
-          <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_400,q_auto:best,f_auto/v1786112744/8A26E528-46F4-471D-856C-7D4210809521_1_105_c_uguopr.jpg" alt="Martijn Puts, Founder" loading="lazy" decoding="async">
+          <img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_400,q_auto:best,f_auto/v1786112744/8A26E528-46F4-471D-856C-7D4210809521_1_105_c_uguopr.jpg"
+               srcset="https://res.cloudinary.com/sfd8ohjz/image/upload/w_400,q_auto:best,f_auto/v1786112744/8A26E528-46F4-471D-856C-7D4210809521_1_105_c_uguopr.jpg 400w, https://res.cloudinary.com/sfd8ohjz/image/upload/w_800,q_auto:best,f_auto/v1786112744/8A26E528-46F4-471D-856C-7D4210809521_1_105_c_uguopr.jpg 800w"
+               sizes="(max-width:760px) 60vw, 400px"
+               alt="Martijn Puts, Founder" loading="lazy" decoding="async">
           <div class="about-photo-bar" aria-hidden="true"></div>
         </div>
         <div class="about-meta">
@@ -1896,7 +1909,7 @@ setTimeout(function(){
     <div class="p-grid">
 
       <article class="proj rv" onclick="projToggle(this)" onkeydown="projKeydown(event,this)" role="button" tabindex="0" aria-expanded="false">
-        <div class="imgwrap"><img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_720,q_auto:best,f_auto/v1786123838/WhatsApp_Image_2025-05-20_at_01.01.02_nh95ep.jpg" alt="Lamborghini Hurac&aacute;n LP610 Spyder" loading="lazy" decoding="async"></div>
+        <div class="imgwrap"><img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_720,q_auto:best,f_auto/v1786123838/WhatsApp_Image_2025-05-20_at_01.01.02_nh95ep.jpg" srcset="https://res.cloudinary.com/sfd8ohjz/image/upload/w_480,q_auto:best,f_auto/v1786123838/WhatsApp_Image_2025-05-20_at_01.01.02_nh95ep.jpg 480w, https://res.cloudinary.com/sfd8ohjz/image/upload/w_720,q_auto:best,f_auto/v1786123838/WhatsApp_Image_2025-05-20_at_01.01.02_nh95ep.jpg 720w, https://res.cloudinary.com/sfd8ohjz/image/upload/w_1080,q_auto:best,f_auto/v1786123838/WhatsApp_Image_2025-05-20_at_01.01.02_nh95ep.jpg 1080w" sizes="(max-width:760px) 100vw, 33vw" alt="Lamborghini Hurac&aacute;n LP610 Spyder" loading="lazy" decoding="async"></div>
         <div class="cap">
           <span class="tag">Persoonlijke import &middot; Zweden</span>
           <h3>Lamborghini Hurac&aacute;n LP610 Spyder</h3>
@@ -1915,7 +1928,7 @@ setTimeout(function(){
       </article>
 
       <article class="proj rv" onclick="projToggle(this)" onkeydown="projKeydown(event,this)" role="button" tabindex="0" aria-expanded="false">
-        <div class="imgwrap"><img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_720,q_auto:best,f_auto/v1786111940/987D691B-FFBF-4137-9766-15DEF62F5CD4_1_201_a_k1eyvp.jpg" alt="Lamborghini Urus" loading="lazy" decoding="async"></div>
+        <div class="imgwrap"><img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_720,q_auto:best,f_auto/v1786111940/987D691B-FFBF-4137-9766-15DEF62F5CD4_1_201_a_k1eyvp.jpg" srcset="https://res.cloudinary.com/sfd8ohjz/image/upload/w_480,q_auto:best,f_auto/v1786111940/987D691B-FFBF-4137-9766-15DEF62F5CD4_1_201_a_k1eyvp.jpg 480w, https://res.cloudinary.com/sfd8ohjz/image/upload/w_720,q_auto:best,f_auto/v1786111940/987D691B-FFBF-4137-9766-15DEF62F5CD4_1_201_a_k1eyvp.jpg 720w, https://res.cloudinary.com/sfd8ohjz/image/upload/w_1080,q_auto:best,f_auto/v1786111940/987D691B-FFBF-4137-9766-15DEF62F5CD4_1_201_a_k1eyvp.jpg 1080w" sizes="(max-width:760px) 100vw, 33vw" alt="Lamborghini Urus" loading="lazy" decoding="async"></div>
         <div class="cap">
           <span class="tag">Persoonlijke import &middot; Luxemburg</span>
           <h3>Lamborghini Urus</h3>
@@ -1934,7 +1947,7 @@ setTimeout(function(){
       </article>
 
       <article class="proj rv" onclick="projToggle(this)" onkeydown="projKeydown(event,this)" role="button" tabindex="0" aria-expanded="false">
-        <div class="imgwrap"><img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_720,q_auto:best,f_auto/v1786112182/8112FE63-03BD-4C6D-9A40-1217FCD5910F_1_201_a_vbazdb.jpg" alt="Audi RS6 Avant C8" loading="lazy" decoding="async"></div>
+        <div class="imgwrap"><img src="https://res.cloudinary.com/sfd8ohjz/image/upload/w_720,q_auto:best,f_auto/v1786112182/8112FE63-03BD-4C6D-9A40-1217FCD5910F_1_201_a_vbazdb.jpg" srcset="https://res.cloudinary.com/sfd8ohjz/image/upload/w_480,q_auto:best,f_auto/v1786112182/8112FE63-03BD-4C6D-9A40-1217FCD5910F_1_201_a_vbazdb.jpg 480w, https://res.cloudinary.com/sfd8ohjz/image/upload/w_720,q_auto:best,f_auto/v1786112182/8112FE63-03BD-4C6D-9A40-1217FCD5910F_1_201_a_vbazdb.jpg 720w, https://res.cloudinary.com/sfd8ohjz/image/upload/w_1080,q_auto:best,f_auto/v1786112182/8112FE63-03BD-4C6D-9A40-1217FCD5910F_1_201_a_vbazdb.jpg 1080w" sizes="(max-width:760px) 100vw, 33vw" alt="Audi RS6 Avant C8" loading="lazy" decoding="async"></div>
         <div class="cap">
           <span class="tag">Aankoopbegeleiding &middot; Duitsland</span>
           <h3>Audi RS6 Avant C8</h3>
