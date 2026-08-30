@@ -260,9 +260,11 @@ nav::after{content:'';position:absolute;left:12%;right:12%;bottom:0;height:1px;b
 /* ══ MOBILE MENU ══ */
 #mm{
   position:fixed;inset:0;z-index:250;
-  /* Geen backdrop-filter: bij 98% dekking is de blur onzichtbaar terwijl hij
-     wel een schermgroot compositing-laag kost. */
-  background:rgba(4,4,4,.98);
+  /* Volledig dekkend in plaats van 98% met een blur erover. De blur diende hier
+     niet als effect maar verdoezelde dat er 2% doorheen kwam: zonder blur waren
+     de hero-koppen als leesbare tekst achter het menu te zien. Dekkend maken lost
+     dat beter op en kost geen schermgrote compositing-laag. */
+  background:#040404;
   display:flex;flex-direction:column;justify-content:center;align-items:center;gap:0;
   opacity:0;visibility:hidden;
   transition:opacity .4s cubic-bezier(.2,.7,.3,1),visibility .4s;
@@ -1174,9 +1176,12 @@ footer{padding:0 var(--pd);border-top:1px solid rgba(198,203,209,.12);background
 .apex-chat-win{
   position:fixed;z-index:9999;width:360px;
   max-width:calc(100vw - 2rem);
-  /* Zie #mm: 98% dekking maakt de blur onzichtbaar en dus pure kosten. */
+  /* Hier blijft de blur staan: dit paneel is 360px breed en maar zichtbaar als de
+     chat open is, dus de kosten zijn verwaarloosbaar, en het glaseffect over de
+     pagina is hier een bewuste designkeuze. */
   background:rgba(12,12,12,.98);
   border:1px solid rgba(255,255,255,.1);border-radius:20px;
+  -webkit-backdrop-filter:blur(28px);backdrop-filter:blur(28px);
   box-shadow:0 32px 80px rgba(0,0,0,.55);
   display:none;flex-direction:column;overflow:hidden;
   bottom:5.5rem;right:1.5rem;
