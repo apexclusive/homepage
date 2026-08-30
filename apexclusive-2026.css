@@ -1,0 +1,29 @@
+/* Final 2026 clarity layer: intentional whitespace, stable text blocks, no clipped labels. */
+:root{--apx-2026-ink:#0a0d0e;--apx-2026-panel:#151b1b;--apx-2026-ivory:#f4f1eb;--apx-2026-copper:#b77748}
+.ey{overflow:visible!important;clip:initial!important;clip-path:none!important;white-space:nowrap!important;min-width:max-content;display:inline-flex!important;align-items:center!important}
+.ey-tri,.ey-tri-r{overflow:hidden!important;flex:0 0 auto!important}
+#werkwijze .ww-sticky .ey{color:#87502d!important;text-shadow:none!important}
+#werkwijze .ww-sticky h2{max-width:12ch;line-height:1.02!important;overflow:visible!important;word-break:normal!important}
+#werkwijze .ww-sticky>p:not(.ey){max-width:35ch;font-size:1rem!important;line-height:1.8!important}
+#werkwijze .ww-summary{gap:.55rem!important}
+#werkwijze .ww-summary span{background:rgba(10,13,14,.045)!important;border-color:rgba(10,13,14,.18)!important;color:rgba(10,13,14,.78)!important;white-space:nowrap}
+#werkwijze .steps{padding-top:.15rem}
+#werkwijze .step{padding-bottom:2rem!important}
+#werkwijze .step h3{font-size:clamp(1.3rem,2.2vw,1.8rem)!important;line-height:1.15!important;color:#101515!important}
+#werkwijze .step p{max-width:48ch!important;font-size:1rem!important;line-height:1.8!important;color:rgba(10,13,14,.76)!important}
+#werkwijze .step .k{color:#87502d!important}
+.hero-highlight,.offer-card,.tc,.proj,.fi-item,.lead-form{isolation:isolate}
+.offer-meta,.offer-price{position:relative;z-index:2}
+.offer-price{border:1px solid rgba(10,13,14,.18)!important}
+.offer-price small{max-width:34ch!important}
+/* Never place pale copy directly over a high-frequency image. */
+.hero-intro{max-width:48ch!important}
+.sleutels-quote{background:linear-gradient(to top,rgba(8,8,8,.98),rgba(8,8,8,.7) 72%,rgba(8,8,8,.06))!important}
+/* Keep persistent controls clear of iOS home indicators. */
+.whatsapp-float{bottom:max(1.25rem,env(safe-area-inset-bottom))!important}
+.apex-bubble{bottom:max(1.25rem,env(safe-area-inset-bottom))!important}
+@media(max-width:700px){
+  #werkwijze .ww-sticky h2{max-width:14ch;font-size:clamp(2.3rem,10vw,3.5rem)!important}
+  #werkwijze .step p{font-size:.98rem!important}
+  .ey{letter-spacing:.2em!important}
+}
