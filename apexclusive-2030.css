@@ -1,7 +1,7 @@
 /* APEXclusive 2030 direction: oversized editorial blocks, depth and restrained motion. */
 :root{--a30-copper:#c48a60;--a30-ink:#080b0b;--a30-paper:#f5f1ea}
 /* The A-mark is enough. No crest, no logo underline, no tricolore decoration in the wordmark. */
-.wordmark:before{width:1.25rem!important;height:1.35rem!important;background-image:url('apexclusive-a-mark.svg')!important;opacity:.92!important;filter:none!important}.wordmark i,.wordmark span:after{display:none!important}.wordmark b{color:var(--a30-copper)!important}
+.wordmark:before{display:none!important}.wordmark i,.wordmark span:after{display:none!important}.wordmark b{color:var(--a30-copper)!important}.wordmark{gap:.18em!important;letter-spacing:.14em!important}
 .hero:after{display:none!important}
 /* Big block rhythm: fewer visual interruptions, stronger chapters. */
 section{position:relative;overflow:clip}section:before{pointer-events:none}.intro,.featured,.services,.process,.tools,.cases,.about,.contact,.faq{isolation:isolate}.intro{padding-block:clamp(8rem,17vw,15rem)!important}.featured{padding-block:clamp(7rem,14vw,13rem)!important}.services,.tools,.about,.faq{padding-block:clamp(8rem,16vw,14rem)!important}.process,.cases,.contact{padding-block:clamp(8rem,16vw,14rem)!important}
