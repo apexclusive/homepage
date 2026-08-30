@@ -79,13 +79,6 @@
     aiForm.addEventListener('submit',async event=>{event.preventDefault();const question=aiInput.value.trim();if(!question)return;aiInput.value='';addAiMessage(question,'user');aiHistory.push({role:'user',content:question});const submit=aiForm.querySelector('button');submit.disabled=true;try{const response=await fetch('/api/chat',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({brand:'apex',messages:aiHistory.slice(-12)})});const data=await response.json();const answer=data.reply||data.error||'Er ging iets mis. Neem gerust rechtstreeks contact op.';addAiMessage(answer,'bot');aiHistory.push({role:'assistant',content:answer});}catch(_){addAiMessage('De adviseur is tijdelijk niet bereikbaar. U kunt ons ook direct WhatsAppen.','bot');}finally{submit.disabled=false;}});
   }
 
-  const intro = document.getElementById('site-intro');
-  if (intro) {
-    const reduce = window.matchMedia?.('(prefers-reduced-motion: reduce)').matches;
-    const dismiss = () => { intro.classList.add('is-done'); window.setTimeout(() => intro.remove(), 550); };
-    if (reduce) dismiss(); else window.setTimeout(dismiss, 850);
-  }
-
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
 })();
