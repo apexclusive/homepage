@@ -1,3 +1,23 @@
+// Simpele in-memory rate limiter per IP (per serverless-instance). Niet
+// globaal, maar genoeg om een burst van bot-verkeer af te remmen zonder
+// dat een echte bezoeker er last van heeft.
+const RATE_LIMIT = 20;          // max berichten
+const RATE_WINDOW_MS = 60_000;  // per minuut
+const rateBuckets = new Map();
+
+function isRateLimited(ip) {
+  if (!ip) return false;
+  const now = Date.now();
+  const timestamps = (rateBuckets.get(ip) || []).filter(t => now - t < RATE_WINDOW_MS);
+  if (timestamps.length >= RATE_LIMIT) {
+    rateBuckets.set(ip, timestamps);
+    return true;
+  }
+  timestamps.push(now);
+  rateBuckets.set(ip, timestamps);
+  return false;
+}
+
 export default async function handler(req, res) {
   const requestOrigin = req.headers.origin;
   const allowedOrigins = new Set([
@@ -23,6 +43,11 @@ export default async function handler(req, res) {
 
   if (req.method !== 'POST') {
     return res.status(405).json({ error: 'Alleen POST toegestaan' });
+  }
+
+  const clientIp = req.headers['x-forwarded-for']?.split(',')[0].trim() || req.headers['x-real-ip'] || 'onbekend';
+  if (isRateLimited(clientIp)) {
+    return res.status(429).json({ error: 'Even geduld — u hebt veel berichten in korte tijd verstuurd. Probeer over een minuut opnieuw.' });
   }
 
   const contentType = String(req.headers?.['content-type'] || '').toLowerCase();
