@@ -6,9 +6,12 @@ import- en verkoopbegeleiding voor exclusieve auto's. Gedeployed op Vercel.
 ## Structuur
 
 ```
-index.html                     Homepage (hero, aanbod, diensten, werkwijze, cases,
-                               over, investering, contact, FAQ, tools, kennisbank,
-                               AI-chat, WhatsApp-knop)
+index.html                     Homepage (hero, aanbod, diensten, werkwijze, dossiers,
+                               over, investering, contact, FAQ, 11 hulpmiddelen,
+                               kennisbank, AI-chat, WhatsApp-knop)
+icons/                         Favicon-set: favicon.ico/-16/-32, apple-touch-icon,
+                               PWA-iconen 192/512 (schildlogo op donkere plaat)
+site.webmanifest               PWA-manifest (standalone, donkere huisstijl)
 aanbod-urus.html               Verkooppagina Lamborghini Urus (galerij + lightbox,
                                FAQ + FAQPage-schema, cross-links, WhatsApp-knop)
 aankoopbegeleiding.html        Dienstpagina
@@ -56,6 +59,12 @@ vercel.json                    Redirects, security headers (CSP), cachebeleid
 - **Leadformulier** op homepage + dienstpagina's + over-pagina; honneypot,
   server-side validatie en mailto-fallback.
 - **Scrollspy**: actieve sectie wordt gemarkeerd in de hoofdnavigatie.
+- **11 hulpmiddelen** in drie groepen (kopen & controleren, kosten & regelen,
+  sourcen & verkopen); elk met icoon, korte functie-uitleg en externe link naar
+  het betreffende subdomein (`target="_blank"` + sr-only-notitie). "Tools" staat
+  in de hoofd- en mobiele navigatie en in de footer.
+- **Favicon-set**: eigen gerasterd schildlogo (tricolore contour, zilveren A) als
+  multi-size favicon.ico, PNG-favicons, apple-touch-icon en PWA-iconen.
 
 ## Vereisten voor deploy (Vercel)
 
