@@ -46,7 +46,7 @@ section{scroll-margin-top:84px}.intro,.featured,.services,.process,.tools,.cases
 @media(prefers-reduced-motion:reduce){.insight-card{transition:none}}
 
 /* ── Render-prestatie: onderliggende secties pas opbouwen bij scroll ──── */
-.services,.process,.tools,.cases,.voices,.proof,.about,.investment,.insights,.faq,.contact,.site-footer{content-visibility:auto;contain-intrinsic-size:auto 700px}
+.services,.process,.tools,.cases,.proof,.about,.investment,.insights,.faq,.contact,.site-footer{content-visibility:auto;contain-intrinsic-size:auto 700px}
 
 /* ── Scrollspy: actieve navigatie-link ────────────────────────────────── */
 .desktop-nav a.active{color:var(--copper-light)}

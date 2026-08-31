@@ -7,8 +7,8 @@ import- en verkoopbegeleiding voor exclusieve auto's. Gedeployed op Vercel.
 
 ```
 index.html                     Homepage (hero, aanbod, diensten, werkwijze, cases,
-                               ervaringen, over, investering, contact, FAQ, tools,
-                               kennisbank, AI-chat, WhatsApp-knop)
+                               over, investering, contact, FAQ, tools, kennisbank,
+                               AI-chat, WhatsApp-knop)
 aanbod-urus.html               Verkooppagina Lamborghini Urus (galerij + lightbox,
                                FAQ + FAQPage-schema, cross-links, WhatsApp-knop)
 aankoopbegeleiding.html        Dienstpagina
