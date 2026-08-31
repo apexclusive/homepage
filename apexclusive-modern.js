@@ -68,8 +68,31 @@
   }
   function hideAiTyping() { if (aiTypingEl) { aiTypingEl.remove(); aiTypingEl = null; } }
   if (aiLauncher && aiPanel) {
-    const toggleAi = () => { const open=aiPanel.hidden; aiPanel.hidden=!open; aiLauncher.setAttribute('aria-expanded',String(open)); if(open) aiInput?.focus(); };
-    aiLauncher.addEventListener('click',toggleAi); aiPanel.querySelector('.ai-close').addEventListener('click',toggleAi);
+    // Focus-trap: houd de tab-volgorde binnen het chatpaneel zolang het open is.
+    function trapAiFocus(event) {
+      if (aiPanel.hidden) return;
+      if (event.key !== 'Tab') return;
+      const focusables = aiPanel.querySelectorAll('button, input, [href], [tabindex]:not([tabindex="-1"])');
+      if (!focusables.length) return;
+      const first = focusables[0];
+      const last = focusables[focusables.length - 1];
+      if (event.shiftKey && document.activeElement === first) {
+        event.preventDefault();
+        last.focus();
+      } else if (!event.shiftKey && document.activeElement === last) {
+        event.preventDefault();
+        first.focus();
+      }
+    }
+    const toggleAi = () => {
+      const open = aiPanel.hidden;
+      aiPanel.hidden = !open;
+      aiLauncher.setAttribute('aria-expanded', String(open));
+      if (open) { aiInput?.focus(); document.addEventListener('keydown', trapAiFocus); }
+      else document.removeEventListener('keydown', trapAiFocus);
+    };
+    aiLauncher.addEventListener('click', toggleAi);
+    aiPanel.querySelector('.ai-close').addEventListener('click', toggleAi);
     aiPanel.querySelectorAll('.ai-quick button').forEach(btn=>btn.addEventListener('click',()=>{aiInput.value=btn.textContent;aiForm.requestSubmit();}));
     aiForm.addEventListener('submit',async event=>{
       event.preventDefault();

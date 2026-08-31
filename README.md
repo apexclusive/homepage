@@ -7,8 +7,10 @@ import- en verkoopbegeleiding voor exclusieve auto's. Gedeployed op Vercel.
 
 ```
 index.html                     Homepage (hero, aanbod, diensten, werkwijze, cases,
-                               ervaringen, over, investering, contact, FAQ, tools, AI-chat)
-aanbod-urus.html               Verkooppagina Lamborghini Urus (galerij + lightbox)
+                               ervaringen, over, investering, contact, FAQ, tools,
+                               kennisbank, AI-chat, WhatsApp-knop)
+aanbod-urus.html               Verkooppagina Lamborghini Urus (galerij + lightbox,
+                               FAQ + FAQPage-schema, cross-links, WhatsApp-knop)
 aankoopbegeleiding.html        Dienstpagina
 importbegeleiding.html         Dienstpagina
 verkoopbegeleiding.html        Dienstpagina
@@ -36,12 +38,24 @@ apexclusive-subpages.css       Merklaag voor alle subpagina's
 apexclusive-tools.css          Merklaag voor de tool-pagina's
 apexclusive-tool-concierge.*   Chatwidget voor tool-pagina's
 apexclusive-ai.css             Bronbestand chatwidget homepage (samengevoegd in index.css)
-apexclusive-modern.js          Menu, scroll-header, leadformulier, AI-chat
+apexclusive-modern.js          Menu, scroll-header, leadformulier, AI-chat, scrollspy
 apexclusive-funnel-events.js   dataLayer-events (geen externe trackers)
 404.html                       Merkgebonden 404-pagina (Vercel serveert hem automatisch)
 .well-known/security.txt       Beveiligingscontact voor onderzoekers
 vercel.json                    Redirects, security headers (CSP), cachebeleid
 ```
+
+## Contact- en conversie-elementen
+
+- **Zwevende WhatsApp-knop** (linksonder) op alle pagina's, ook de tool-pagina's
+  en de 404; op aanbod-urus met een specifieke vooraf ingevulde vraag. Officiële
+  `wa.me`-links: mobiel opent de app, desktop opent WhatsApp Web — geen
+  embedded widget (bewuste keuze, zie ANALYSE-verbeterpunten.md).
+- **AI-concierge** (rechtsonder, homepage): chat met OpenAI-fallback, nu met
+  `role="dialog"` + focus-trap voor toetsenbordgebruikers.
+- **Leadformulier** op homepage + dienstpagina's + over-pagina; honneypot,
+  server-side validatie en mailto-fallback.
+- **Scrollspy**: actieve sectie wordt gemarkeerd in de hoofdnavigatie.
 
 ## Vereisten voor deploy (Vercel)
 

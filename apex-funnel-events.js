@@ -71,7 +71,7 @@
         return track('marketplace_click', { label: label(el) });
       }
       // Chat openen
-      if (el.matches('#apex-chat-launcher')) {
+      if (el.matches('#ai-launcher')) {
         return track('chat_open');
       }
     },
@@ -84,7 +84,7 @@
     function (e) {
       var form = e.target;
       if (!(form instanceof HTMLFormElement)) return;
-      if (form.id === 'lead-form') return track('lead_form_submit');
+      if (form.id === 'lead-form' || form.classList.contains('lead-form')) return track('lead_form_submit');
       if (form.id === 'brief-form') return track('sourcing_brief_submit');
     },
     { capture: true }
