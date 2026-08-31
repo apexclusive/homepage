@@ -10,3 +10,8 @@ main{max-width:1080px!important;padding:clamp(3.5rem,8vw,7rem) var(--pd)!importa
 .topbar .brand:before{display:none!important}
 .topbar .brand{gap:.18em!important;letter-spacing:.14em!important}
 .topbar .brand-excl{color:var(--sub-copper-light)!important;letter-spacing:.16em!important}
+
+/* Footer op subpagina's: ademruimte en een duidelijke weg terug. */
+footer p{line-height:2.4}
+footer a{white-space:nowrap;transition:color .25s}
+footer a:hover{color:#fff}
