@@ -1,0 +1,4 @@
+Contact: mailto:info@apexclusive.nl
+Expires: 2027-08-31T00:00:00Z
+Preferred-Languages: nl, en
+Canonical: https://apexclusive.nl/.well-known/security.txt

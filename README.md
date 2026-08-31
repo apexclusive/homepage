@@ -25,12 +25,16 @@ api/apex-lead.js               Serverless: ontvangt leadformulier, bezorgt via
 api/chat.js                    Serverless: AI-concierge (OpenAI gpt-4o-mini), met
                                offline fallback-antwoorden
 apexclusive-modern.css         Basis thema (tokens, header, hero, secties)
+apexclusive-index.css          Homepage: samengevoegde stijllagen (brand, ai,
+                               quality, scale, finish, overview — 6 verzoeken → 1)
 apexclusive-subpages.css       Merklaag voor alle subpagina's
 apexclusive-tools.css          Merklaag voor de tool-pagina's
 apexclusive-tool-concierge.*   Chatwidget voor tool-pagina's
-apexclusive-ai.css             Chatwidget homepage (AI-concierge)
+apexclusive-ai.css             Bronbestand chatwidget homepage (samengevoegd in index.css)
 apexclusive-modern.js          Menu, scroll-header, leadformulier, AI-chat
 apexclusive-funnel-events.js   dataLayer-events (geen externe trackers)
+404.html                       Merkgebonden 404-pagina (Vercel serveert hem automatisch)
+.well-known/security.txt       Beveiligingscontact voor onderzoekers
 vercel.json                    Redirects, security headers (CSP), cachebeleid
 ```
 
