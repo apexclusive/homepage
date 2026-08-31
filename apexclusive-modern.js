@@ -95,4 +95,29 @@
 
   const year = document.getElementById('year');
   if (year) year.textContent = new Date().getFullYear();
+
+  // Scrollspy: markeer de actieve sectie in de hoofdnavigatie.
+  if ('IntersectionObserver' in window) {
+    const spyLinks = document.querySelectorAll('.desktop-nav a[href^="#"]');
+    if (spyLinks.length) {
+      const spySections = ['diensten', 'werkwijze', 'aanbod', 'cases', 'over', 'investering'];
+      const setActive = id => {
+        spyLinks.forEach(link => {
+          const active = link.getAttribute('href') === '#' + id;
+          link.classList.toggle('active', active);
+          if (active) link.setAttribute('aria-current', 'true');
+          else link.removeAttribute('aria-current');
+        });
+      };
+      const spyObserver = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) setActive(entry.target.id);
+        });
+      }, { rootMargin: '-35% 0px -60% 0px' });
+      spySections.forEach(id => {
+        const section = document.getElementById(id);
+        if (section) spyObserver.observe(section);
+      });
+    }
+  }
 })();
