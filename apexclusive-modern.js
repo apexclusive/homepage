@@ -123,7 +123,7 @@
   if ('IntersectionObserver' in window) {
     const spyLinks = document.querySelectorAll('.desktop-nav a[href^="#"]');
     if (spyLinks.length) {
-      const spySections = ['diensten', 'werkwijze', 'aanbod', 'cases', 'over', 'investering'];
+      const spySections = ['diensten', 'werkwijze', 'aanbod', 'cases', 'tools', 'over', 'investering'];
       const setActive = id => {
         spyLinks.forEach(link => {
           const active = link.getAttribute('href') === '#' + id;

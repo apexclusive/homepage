@@ -25,13 +25,15 @@ privacyverklaring.html         Juridisch (AVG)
 import-traject-planner.html    Tool: import-checklist met voortgang (localStorage)
 sourcing-brief.html            Tool: sourcing brief opstellen
 verkoopvoorbereiding-planner.html  Tool: verkoop-checklist met voortgang
-kennisbank.html                 Kennisbank-overzicht (2 artikelen)
+kennisbank.html                 Kennisbank-overzicht (3 artikelen)
 kennisbank-bpm-import.html      Artikel: BPM bij import (Article + FAQPage-schema)
 kennisbank-aankoopcontrole.html Artikel: controle vóór aankoop (Article + FAQPage-schema)
+kennisbank-verkoop.html         Artikel: exclusieve auto verkopen (Article + FAQPage-schema)
 api/apex-lead.js               Serverless: ontvangt leadformulier, bezorgt via
                                webhook (Zoho Flow/Make/Zapier) of e-mail (ZeptoMail/Resend)
-api/chat.js                    Serverless: AI-concierge (OpenAI gpt-4o-mini), met
-                               offline fallback-antwoorden
+api/chat.js                    Serverless: AI-concierge (OpenAI gpt-4o-mini) met
+                               volledige site-kennis (diensten, 11 tools, kennisbank,
+                               aanbod) in de system-prompt; offline fallback in u-vorm
 apex-lead-form.js              Bindt elk <form class="lead-form"> (homepage + dienstpagina's);
                                stuurt naar /api/apex-lead met mailto-fallback
 apexclusive-modern.css         Basis thema (tokens, header, hero, secties)
@@ -65,6 +67,8 @@ vercel.json                    Redirects, security headers (CSP), cachebeleid
   in de hoofd- en mobiele navigatie en in de footer.
 - **Favicon-set**: eigen gerasterd schildlogo (tricolore contour, zilveren A) als
   multi-size favicon.ico, PNG-favicons, apple-touch-icon en PWA-iconen.
+- **Tool-pagina's** linken naar de bijbehorende dienst (planner → begeleiding);
+  de 4e link in "Verder lezen" wordt als volle-breedte-banner getoond.
 
 ## Vereisten voor deploy (Vercel)
 
