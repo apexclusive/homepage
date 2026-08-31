@@ -30,8 +30,8 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://res.cloudinary.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600&family=Manrope:wght@400;500;600&family=Playfair+Display:ital,wght@0,400;0,500;1,400&display=swap" rel="stylesheet">
-<link rel="stylesheet" href="apexclusive-modern.css?v=20260831-6">
-<link rel="stylesheet" href="apexclusive-subpages.css?v=20260831-6">
+<link rel="stylesheet" href="apexclusive-modern.css?v=20260831-7">
+<link rel="stylesheet" href="apexclusive-subpages.css?v=20260831-7">
 <script type="application/ld+json">
 {
   "@context": "https://schema.org",
@@ -74,13 +74,26 @@
 
   <section class="service-cta">
     <div class="service-cta-inner">
-      <h2>Een auto op het oog?</h2>
+      <div class="cta-copy">
+<h2>Een auto op het oog?</h2>
       <p>Vertel kort wat u zoekt. Martijn neemt persoonlijk contact met u op om te bespreken wat de verstandigste volgende stap is.</p>
       <div class="actions">
         <a class="button button-light" href="index.html#contact">Plan een kennismaking <span>↗</span></a>
         <a class="button button-outline" href="sourcing-brief.html">Start met de sourcing brief <span>↗</span></a>
       </div>
-    </div>
+      </div>
+      <form class="lead-form" novalidate>
+        <div class="form-title"><span>Persoonlijke aanvraag</span><small>We reageren binnen 24 uur.</small></div>
+        <label>Naam<input name="name" type="text" autocomplete="name" required></label>
+        <label>E-mailadres<input name="email" type="email" autocomplete="email" required></label>
+        <label>Telefoonnummer <small>(optioneel)</small><input name="phone" type="tel" autocomplete="tel"></label>
+        <label>Waar bent u naar op zoek?<textarea name="request" rows="3" required placeholder="Merk, model, budget, wensen of een link naar een advertentie"></textarea></label>
+        <label class="honeypot" aria-hidden="true">Website<input name="website" tabindex="-1" autocomplete="off" aria-hidden="true"></label>
+        <button class="button button-light" type="submit">Aanvraag versturen <span>↗</span></button>
+        <p class="form-privacy">Uw gegevens gebruiken we alleen om contact op te nemen. Lees onze <a href="privacyverklaring.html">privacyverklaring</a>.</p>
+        <p class="form-status" role="status" aria-live="polite"></p>
+      </form>
+</div>
   </section>
 
   <nav class="related" aria-label="Verder verkennen">
@@ -105,6 +118,7 @@
       <a href="index.html#werkwijze">Werkwijze</a>
       <a href="index.html#aanbod">Aanbod</a>
       <a href="cases.html">Cases</a>
+      <a href="kennisbank.html">Kennisbank</a>
       <a href="index.html#contact">Contact</a>
     </div>
     <div>
@@ -123,7 +137,8 @@
   </div>
 </footer>
 
-<script src="header-scroll.js?v=20260831-6" defer></script>
+<script src="apex-lead-form.js?v=20260831-7" defer></script>
+<script src="header-scroll.js?v=20260831-7" defer></script>
 <script>document.getElementById('year').textContent=new Date().getFullYear();</script>
 </body>
 </html>

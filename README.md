@@ -20,10 +20,15 @@ privacyverklaring.html         Juridisch (AVG)
 import-traject-planner.html    Tool: import-checklist met voortgang (localStorage)
 sourcing-brief.html            Tool: sourcing brief opstellen
 verkoopvoorbereiding-planner.html  Tool: verkoop-checklist met voortgang
+kennisbank.html                 Kennisbank-overzicht (2 artikelen)
+kennisbank-bpm-import.html      Artikel: BPM bij import (Article + FAQPage-schema)
+kennisbank-aankoopcontrole.html Artikel: controle vóór aankoop (Article + FAQPage-schema)
 api/apex-lead.js               Serverless: ontvangt leadformulier, bezorgt via
                                webhook (Zoho Flow/Make/Zapier) of e-mail (ZeptoMail/Resend)
 api/chat.js                    Serverless: AI-concierge (OpenAI gpt-4o-mini), met
                                offline fallback-antwoorden
+apex-lead-form.js              Bindt elk <form class="lead-form"> (homepage + dienstpagina's);
+                               stuurt naar /api/apex-lead met mailto-fallback
 apexclusive-modern.css         Basis thema (tokens, header, hero, secties)
 apexclusive-index.css          Homepage: samengevoegde stijllagen (brand, ai,
                                quality, scale, finish, overview — 6 verzoeken → 1)

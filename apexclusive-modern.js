@@ -38,33 +38,6 @@
   }
   window.addEventListener('scroll', onScroll, { passive: true });
 
-  const form = document.getElementById('lead-form');
-  if (form) form.addEventListener('submit', async event => {
-    event.preventDefault();
-    const status = document.getElementById('lead-form-status');
-    const submit = form.querySelector('button[type="submit"]');
-    const data = new FormData(form);
-    if (data.get('website')) return;
-    if (!form.reportValidity()) { status.textContent = 'Vul uw naam, e-mailadres en wensen in.'; return; }
-    const values = {
-      name: String(data.get('name') || '').trim(),
-      email: String(data.get('email') || '').trim(),
-      phone: String(data.get('phone') || '').trim(),
-      request: String(data.get('request') || '').trim(),
-      website: '', brand: 'apex'
-    };
-    submit.disabled = true; form.setAttribute('aria-busy', 'true'); status.textContent = 'Aanvraag wordt verzonden…';
-    const fallback = `mailto:info@apexclusive.nl?subject=${encodeURIComponent('Nieuwe aanvraag via APEXclusive')}&body=${encodeURIComponent(`Naam: ${values.name}\nE-mail: ${values.email}\nTelefoon: ${values.phone || '-'}\n\nAanvraag:\n${values.request}`)}`;
-    try {
-      const response = await fetch('/api/apex-lead', { method:'POST', headers:{'Content-Type':'application/json'}, body:JSON.stringify(values) });
-      if (!response.ok) throw new Error('send failed');
-      form.reset(); status.textContent = 'Bedankt. Uw aanvraag is ontvangen. We nemen binnen 24 uur contact op.';
-      window.apexTrack?.('lead_form_submit');
-    } catch (_) {
-      status.textContent = 'Uw e-mailprogramma wordt geopend…';
-      window.location.href = fallback;
-    } finally { submit.disabled = false; form.removeAttribute('aria-busy'); }
-  });
   const aiLauncher = document.getElementById('ai-launcher');
   const aiPanel = document.getElementById('ai-panel');
   const aiForm = document.getElementById('ai-form');
