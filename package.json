@@ -1,0 +1,7 @@
+{
+  "name": "apexclusive-homepage",
+  "version": "1.0.0",
+  "private": true,
+  "description": "APEXclusive — statische website met serverless API-functies (Vercel)",
+  "type": "module"
+}
