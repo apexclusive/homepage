@@ -69,6 +69,12 @@ vercel.json                    Redirects, security headers (CSP), cachebeleid
 - **Favicon-set**: eigen gerasterd schildlogo (tricolore contour, zilveren A) als
   multi-size favicon.ico, PNG-favicons, apple-touch-icon, PWA-iconen en
   Safari-pinned-tab (mask-icon, koper).
+- **Zichtbare breadcrumbs** op alle 15 subpagina's (afgeleid van de
+  BreadcrumbList-JSON-LD; laatste item aria-current).
+- **Sectie-ritme** op de homepage: Dossiers donkerder dan Werkwijze, Over en
+  Kennisbank in een warmere lichte tint — geen twee identieke achtergronden
+  meer naast elkaar.
+- **ItemList-JSON-LD** met de 11 hulpmiddelen (naam + URL per tool).
 - **Tool-pagina's** linken naar de bijbehorende dienst (planner → begeleiding);
   de 4e link in "Verder lezen" wordt als volle-breedte-banner getoond.
 
