@@ -88,6 +88,15 @@ export default async function handler(req, res) {
     });
   }
 
+  const toolContext = String(body?.toolContext || '');
+  const apexContextNote = toolContext === 'importtraject'
+    ? `\n\nHUIDIGE CONTEXT: de bezoeker gebruikt de Import traject planner (https://apexclusive.nl/import-traject-planner.html). Help bij vragen over het importplan, BPM, RDW en termijnen. Verwijs bij verdieping naar importbegeleiding (https://apexclusive.nl/importbegeleiding.html) en het BPM-artikel (https://apexclusive.nl/kennisbank-bpm-import.html).`
+    : toolContext === 'sourcingbrief'
+      ? `\n\nHUIDIGE CONTEXT: de bezoeker stelt een sourcing brief op (https://apexclusive.nl/sourcing-brief.html). Help de brief scherp en concreet te krijgen (merk, model, budget, eisen, timing). Verwijs voor het zoeken zelf naar de sourcing service (https://apexclusive.nl/sourcing-service.html).`
+      : toolContext === 'verkoopvoorbereiding'
+        ? `\n\nHUIDIGE CONTEXT: de bezoeker gebruikt de Verkoopvoorbereiding planner (https://apexclusive.nl/verkoopvoorbereiding-planner.html). Help bij de voorbereiding en overdracht van de verkoop. Verwijs voor persoonlijke begeleiding naar verkoopbegeleiding (https://apexclusive.nl/verkoopbegeleiding.html) en het verkoop-artikel (https://apexclusive.nl/kennisbank-verkoop.html).`
+        : '';
+
   const systemPrompt = brand === 'mpx'
     ? {
         role: 'system',
@@ -185,7 +194,8 @@ INSTRUCTIES:
 - Bij advertentie- of prijsvragen: verwijs naar https://carrapport.apexclusive.nl en https://waarde.apexclusive.nl
 - Bij verkoopvragen: verwijs naar https://apexclusive.nl/verkoopbegeleiding.html en https://apexclusive.nl/verkoopvoorbereiding-planner.html
 - Bij zoekvragen: verwijs naar https://apexclusive.nl/sourcing-service.html en https://apexclusive.nl/sourcing-brief.html
-- Alle hulpmiddelen zijn gratis, zonder kosten of verplichtingen      };
+- Alle hulpmiddelen zijn gratis, zonder kosten of verplichtingen${apexContextNote}`
+      };
 
   try {
     const response = await fetch('https://api.openai.com/v1/chat/completions', {

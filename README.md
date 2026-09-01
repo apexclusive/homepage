@@ -33,7 +33,9 @@ api/apex-lead.js               Serverless: ontvangt leadformulier, bezorgt via
                                webhook (Zoho Flow/Make/Zapier) of e-mail (ZeptoMail/Resend)
 api/chat.js                    Serverless: AI-concierge (OpenAI gpt-4o-mini) met
                                volledige site-kennis (diensten, 11 tools, kennisbank,
-                               aanbod) in de system-prompt; offline fallback in u-vorm
+                               aanbod, dossiers) in de system-prompt; gebruikt de
+                               toolContext van de tool-pagina's voor contextuele
+                               antwoorden; offline fallback in u-vorm
 apex-lead-form.js              Bindt elk <form class="lead-form"> (homepage + dienstpagina's);
                                stuurt naar /api/apex-lead met mailto-fallback
 apexclusive-modern.css         Basis thema (tokens, header, hero, secties)
