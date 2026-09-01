@@ -13,7 +13,9 @@
     { "source": "/waarde", "destination": "https://waarde.apexclusive.nl", "permanent": true },
     { "source": "/waarde.html", "destination": "https://waarde.apexclusive.nl", "permanent": true },
     { "source": "/advertentie", "destination": "https://advertentie.apexclusive.nl", "permanent": true },
-    { "source": "/advertentie.html", "destination": "https://advertentie.apexclusive.nl", "permanent": true }
+    { "source": "/advertentie.html", "destination": "https://advertentie.apexclusive.nl", "permanent": true },
+    { "source": "/vergelijk", "destination": "https://vergelijk.apexclusive.nl", "permanent": true },
+    { "source": "/vergelijk.html", "destination": "https://vergelijk.apexclusive.nl", "permanent": true }
   ],
   "headers": [
     {
@@ -34,6 +36,24 @@
       "source": "/(.*)\\.(css|js)$",
       "headers": [
         { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/icons/(.*)",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/favicon.ico",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=31536000, immutable" }
+      ]
+    },
+    {
+      "source": "/site.webmanifest",
+      "headers": [
+        { "key": "Cache-Control", "value": "public, max-age=86400" }
       ]
     }
   ]

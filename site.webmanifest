@@ -27,5 +27,25 @@
       "type": "image/png",
       "purpose": "maskable"
     }
+  ],
+  "shortcuts": [
+    {
+      "name": "Actueel aanbod",
+      "short_name": "Aanbod",
+      "url": "/aanbod-urus.html",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Afgeronde dossiers",
+      "short_name": "Dossiers",
+      "url": "/cases.html",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Kennisbank",
+      "short_name": "Kennisbank",
+      "url": "/kennisbank.html",
+      "icons": [{ "src": "icons/icon-192.png", "sizes": "192x192" }]
+    }
   ]
 }

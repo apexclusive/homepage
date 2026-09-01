@@ -47,6 +47,7 @@ export default async function handler(req, res) {
 
   const clientIp = req.headers['x-forwarded-for']?.split(',')[0].trim() || req.headers['x-real-ip'] || 'onbekend';
   if (isRateLimited(clientIp)) {
+    res.setHeader('Retry-After', '60');
     return res.status(429).json({ error: 'Even geduld — u hebt veel berichten in korte tijd verstuurd. Probeer over een minuut opnieuw.' });
   }
 

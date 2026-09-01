@@ -30,6 +30,7 @@
   <link rel="icon" type="image/png" sizes="16x16" href="icons/favicon-16.png">
   <link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
   <link rel="manifest" href="site.webmanifest">
+  <link rel="mask-icon" href="apexclusive-mask-icon.svg" color="#ba7e53">
 <script type="application/ld+json">
 {
   "@context":"https://schema.org",
@@ -113,7 +114,30 @@ footer{border-top:1px solid rgba(255,255,255,.1);padding:2rem var(--pd);display:
 .whatsapp-launcher:focus-visible{outline:2px solid var(--pt);outline-offset:3px}
 .whatsapp-launcher svg{width:26px;height:26px;fill:currentColor}
 @media(max-width:720px){.whatsapp-launcher{left:1rem;bottom:max(1rem,env(safe-area-inset-bottom));width:44px;height:44px}.whatsapp-launcher svg{width:24px;height:24px}}
-@media print{.whatsapp-launcher{display:none!important}}
+@media print{
+.whatsapp-launcher,.lightbox,.photo-actions,.btn.wa,.back,.brand{display:none!important}
+body{background:#fff;color:#111;font-size:11pt}
+.topbar{position:static;background:#fff;border-bottom:1px solid #ccc;padding:.8rem 1.2rem}
+.brand{display:inline-flex;font-size:.9rem;letter-spacing:.1em;text-transform:uppercase}
+.hero{min-height:0!important;grid-template-columns:1fr!important;gap:1rem;padding:1.2rem!important;background:#fff!important}
+.hero::after{display:none}
+.hero h1{font-size:22pt;color:#111}
+.hero h1 em{color:#555}
+.hero-intro{color:#333;font-size:10.5pt}
+.hero-stats{grid-template-columns:repeat(4,1fr);border:1px solid #ccc;background:none}
+.stat{background:none;padding:.6rem}
+.stat strong{font-size:12pt;color:#111}
+.stat span{color:#555}
+.section-head,.details{padding:1rem 1.2rem!important;background:#fff!important;color:#111}
+.section-head h2,.details h2{font-size:14pt;color:#111}
+.section-head p,.details p,.spec-list li,.detail-list span{color:#333}
+.spec-list{columns:2}
+.detail-list{border:1px solid #ccc}
+.spec-block{border-top:1px solid #ddd;margin-top:1rem;padding-top:.8rem}
+.spec-block h3{font-size:10.5pt;color:#111}
+.faq-box,.related-box{display:none}
+a[href]:after{content:""}
+}}
 /* FAQ-sectie */
 .faq-box{border-top:1px solid rgba(198,203,209,.12);padding-top:clamp(2.5rem,5vw,4rem);margin-top:clamp(3rem,6vw,5rem)}
 .faq-box h2{font-family:var(--sf);font-size:clamp(1.8rem,3.5vw,2.8rem);font-weight:300;line-height:1.1}

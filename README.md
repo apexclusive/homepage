@@ -39,12 +39,11 @@ api/chat.js                    Serverless: AI-concierge (OpenAI gpt-4o-mini) met
 apex-lead-form.js              Bindt elk <form class="lead-form"> (homepage + dienstpagina's);
                                stuurt naar /api/apex-lead met mailto-fallback
 apexclusive-modern.css         Basis thema (tokens, header, hero, secties)
-apexclusive-index.css          Homepage: samengevoegde stijllagen (brand, ai,
-                               quality, scale, finish, overview — 6 verzoeken → 1)
+apexclusive-index.css          Homepage: alle samengevoegde stijllagen in één
+                               bestand (was 14 losse bronbestanden, verwijderd)
 apexclusive-subpages.css       Merklaag voor alle subpagina's
 apexclusive-tools.css          Merklaag voor de tool-pagina's
 apexclusive-tool-concierge.*   Chatwidget voor tool-pagina's
-apexclusive-ai.css             Bronbestand chatwidget homepage (samengevoegd in index.css)
 apexclusive-modern.js          Menu, scroll-header, leadformulier, AI-chat, scrollspy
 apexclusive-funnel-events.js   dataLayer-events (geen externe trackers)
 404.html                       Merkgebonden 404-pagina (Vercel serveert hem automatisch)
@@ -68,7 +67,8 @@ vercel.json                    Redirects, security headers (CSP), cachebeleid
   het betreffende subdomein (`target="_blank"` + sr-only-notitie). "Tools" staat
   in de hoofd- en mobiele navigatie en in de footer.
 - **Favicon-set**: eigen gerasterd schildlogo (tricolore contour, zilveren A) als
-  multi-size favicon.ico, PNG-favicons, apple-touch-icon en PWA-iconen.
+  multi-size favicon.ico, PNG-favicons, apple-touch-icon, PWA-iconen en
+  Safari-pinned-tab (mask-icon, koper).
 - **Tool-pagina's** linken naar de bijbehorende dienst (planner → begeleiding);
   de 4e link in "Verder lezen" wordt als volle-breedte-banner getoond.
 

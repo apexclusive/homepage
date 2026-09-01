@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 900">
+  <!-- Monochroom silhouet voor Safari-pinned-tab (kleur komt uit het mask-icon link-attribuut) -->
+  <path d="M400 42 690 132v242c0 194-116 353-290 454C226 727 110 568 110 374V132Z"
+        fill="none" stroke="#000" stroke-width="13" stroke-linejoin="round"/>
+  <path d="M400 70 660 151v220c0 174-103 316-260 410-157-94-260-236-260-410V151Z"
+        fill="none" stroke="#000" stroke-width="2" stroke-linejoin="round"/>
+  <path fill-rule="evenodd" fill="#000" d="M400 160 222 596h77l35-91h132l35 91h77Zm-37 278 37-98 37 98Z"/>
+  <path d="M274 626h252" stroke="#000" stroke-width="8" stroke-linecap="round"/>
+</svg>
