@@ -90,13 +90,15 @@ export default async function handler(req, res) {
   }
 
   const toolContext = String(body?.toolContext || '');
-  const apexContextNote = toolContext === 'importtraject'
-    ? `\n\nHUIDIGE CONTEXT: de bezoeker gebruikt de Import traject planner (https://apexclusive.nl/import-traject-planner.html). Help bij vragen over het importplan, BPM, RDW en termijnen. Verwijs bij verdieping naar importbegeleiding (https://apexclusive.nl/importbegeleiding.html) en het BPM-artikel (https://apexclusive.nl/kennisbank-bpm-import.html).`
-    : toolContext === 'sourcingbrief'
-      ? `\n\nHUIDIGE CONTEXT: de bezoeker stelt een sourcing brief op (https://apexclusive.nl/sourcing-brief.html). Help de brief scherp en concreet te krijgen (merk, model, budget, eisen, timing). Verwijs voor het zoeken zelf naar de sourcing service (https://apexclusive.nl/sourcing-service.html).`
-      : toolContext === 'verkoopvoorbereiding'
-        ? `\n\nHUIDIGE CONTEXT: de bezoeker gebruikt de Verkoopvoorbereiding planner (https://apexclusive.nl/verkoopvoorbereiding-planner.html). Help bij de voorbereiding en overdracht van de verkoop. Verwijs voor persoonlijke begeleiding naar verkoopbegeleiding (https://apexclusive.nl/verkoopbegeleiding.html) en het verkoop-artikel (https://apexclusive.nl/kennisbank-verkoop.html).`
-        : '';
+  const apexContextNote = toolContext === 'importkosten'
+    ? `\n\nHUIDIGE CONTEXT: de bezoeker gebruikt de Importkosten & BPM Calculator (https://apexclusive.nl/importkosten-calculator.html). Help bij het begrijpen van de totale landingskosten (rest-BPM, transport open/gesloten, RDW keuring, leges en opties). Verwijs bij concrete importwensen naar importbegeleiding (https://apexclusive.nl/importbegeleiding.html).`
+    : toolContext === 'importtraject'
+      ? `\n\nHUIDIGE CONTEXT: de bezoeker gebruikt de Import traject planner (https://apexclusive.nl/import-traject-planner.html). Help bij vragen over het importplan, BPM, RDW en termijnen. Verwijs bij verdieping naar importbegeleiding (https://apexclusive.nl/importbegeleiding.html) en het BPM-artikel (https://apexclusive.nl/kennisbank-bpm-import.html).`
+      : toolContext === 'sourcingbrief'
+        ? `\n\nHUIDIGE CONTEXT: de bezoeker stelt een sourcing brief op (https://apexclusive.nl/sourcing-brief.html). Help de brief scherp en concreet te krijgen (merk, model, budget, eisen, timing). Verwijs voor het zoeken zelf naar de sourcing service (https://apexclusive.nl/sourcing-service.html).`
+        : toolContext === 'verkoopvoorbereiding'
+          ? `\n\nHUIDIGE CONTEXT: de bezoeker gebruikt de Verkoopvoorbereiding planner (https://apexclusive.nl/verkoopvoorbereiding-planner.html). Help bij de voorbereiding en overdracht van de verkoop. Verwijs voor persoonlijke begeleiding naar verkoopbegeleiding (https://apexclusive.nl/verkoopbegeleiding.html) en het verkoop-artikel (https://apexclusive.nl/kennisbank-verkoop.html).`
+          : '';
 
   const systemPrompt = brand === 'mpx'
     ? {
@@ -156,7 +158,7 @@ GRATIS HULPMIDDELEN (11 stuks, https://apexclusive.nl/#tools):
 2. RDW kentekencheck: https://kentekencheck.apexclusive.nl
 3. Advertentie analyse: https://carrapport.apexclusive.nl
 4. Auto waarde: https://waarde.apexclusive.nl
-5. BPM calculator: https://bpm.apexclusive.nl
+5. Importkosten & BPM Calculator: https://apexclusive.nl/importkosten-calculator.html
 6. Verzekering vergelijken: https://verzekering.apexclusive.nl
 7. Auto lening: https://lening.apexclusive.nl
 8. Import traject planner: https://apexclusive.nl/import-traject-planner.html
@@ -166,6 +168,7 @@ GRATIS HULPMIDDELEN (11 stuks, https://apexclusive.nl/#tools):
 
 KENNISBANK (https://apexclusive.nl/kennisbank.html):
 - BPM bij import: https://apexclusive.nl/kennisbank-bpm-import.html
+- Fabrieksgarantie bij import: https://apexclusive.nl/kennisbank-garantie-import.html
 - Controle vóór aankoop: https://apexclusive.nl/kennisbank-aankoopcontrole.html
 - Exclusieve auto verkopen: https://apexclusive.nl/kennisbank-verkoop.html
 
@@ -190,7 +193,8 @@ INSTRUCTIES:
 - Houd antwoorden onder de 120 woorden tenzij echt nodig
 - Gebruik vetgedrukt voor belangrijke termen
 - Verwijs actief naar de juiste pagina's en hulpmiddelen hierboven
-- Bij BPM vragen: verwijs naar https://bpm.apexclusive.nl en het kennisbank-artikel
+- Bij BPM- en importkosten vragen: verwijs naar https://apexclusive.nl/importkosten-calculator.html en https://apexclusive.nl/kennisbank-bpm-import.html
+- Bij garantie/Approved vragen: leg uit dat Europese fabrieksgarantie en programma's zoals Porsche Approved/Ferrari Power internationaal geldig blijven, en verwijs naar https://apexclusive.nl/kennisbank-garantie-import.html
 - Bij kenteken/historie vragen: verwijs naar https://kentekencheck.apexclusive.nl
 - Bij advertentie- of prijsvragen: verwijs naar https://carrapport.apexclusive.nl en https://waarde.apexclusive.nl
 - Bij verkoopvragen: verwijs naar https://apexclusive.nl/verkoopbegeleiding.html en https://apexclusive.nl/verkoopvoorbereiding-planner.html

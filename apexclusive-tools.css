@@ -13,5 +13,22 @@ main{max-width:1080px!important;padding:clamp(3rem,7vw,6.5rem) var(--pd)!importa
 .whatsapp-launcher:focus-visible{outline:2px solid var(--tool-paper);outline-offset:3px}
 .whatsapp-launcher svg{width:26px;height:26px;fill:currentColor}
 @media(max-width:620px){.whatsapp-launcher{left:1rem;bottom:max(1rem,env(safe-area-inset-bottom));width:44px;height:44px}.whatsapp-launcher svg{width:24px;height:24px}}
-@media print{.whatsapp-launcher{display:none!important}}
+@media print{
+  body{background:#fff!important;color:#000!important}
+  body:before{display:none!important}
+  .topbar,.back,.actions,.tool-concierge,.tool-concierge-launcher,.whatsapp-launcher,.skip-link,.cta{display:none!important}
+  main{max-width:100%!important;padding:1cm 0!important}
+  .intro{padding-bottom:1rem!important;margin-bottom:1.5rem!important}
+  .intro:after{display:none!important}
+  .intro h1{font-size:2.2rem!important;color:#000!important}
+  .intro h1 em{color:#333!important}
+  .intro p{color:#333!important}
+  .progress-note,.progress-meter{display:none!important}
+  .step-card{background:#fff!important;border:1px solid #ddd!important;box-shadow:none!important;padding:1rem!important;page-break-inside:avoid;break-inside:avoid}
+  .step-card h2{color:#000!important;font-size:1.4rem!important}
+  .step-card p{color:#444!important}
+  .checklist li{background:#fff!important;border:1px solid #eee!important}
+  .checklist span{color:#000!important}
+  footer{background:#fff!important;color:#666!important;border-top:1px solid #ccc!important}
+}
 @media(prefers-reduced-motion:reduce){.whatsapp-launcher{transition:none}}

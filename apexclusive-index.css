@@ -34,15 +34,16 @@ section{scroll-margin-top:84px}.intro,.featured,.services,.process,.tools,.cases
 .intro-grid>*,.section-heading>*,.featured-grid>*,.process-grid>*,.about-grid>*,.contact-grid>*,.faq-grid>*,.investment-grid>*,.proof-grid article{min-width:0}.intro h1,.section-heading h2,.featured-copy h2,.process h2,.cases-heading h2,.about h2,.contact h2,.faq h2,.investment h2{overflow:visible!important;white-space:normal!important;word-break:normal!important;overflow-wrap:normal!important}.investment-grid>div:last-child{min-width:0}.investment-grid>div:last-child p{max-width:52ch!important;overflow-wrap:break-word!important;white-space:normal!important}.proof-grid article p{max-width:42ch!important;overflow-wrap:break-word!important;white-space:normal!important}.section-heading>p{max-width:42ch!important;overflow-wrap:break-word!important}.cases-heading>div{min-width:0}.cases-heading>div p{overflow-wrap:break-word!important}@media(max-width:860px){.section-heading,.cases-heading{align-items:start!important}.investment-grid>div:last-child{width:100%}.investment-grid>div:last-child p{max-width:60ch!important}}
 
 /* ── Kennisbank-sectie (homepage) ──────────────────────────────────────── */
-.insights{padding-block:clamp(4.5rem,8vw,7rem)!important}.insight-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1rem;margin-top:2.5rem}
+.insights{padding-block:clamp(4.5rem,8vw,7rem)!important}.insight-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:1rem;margin-top:2.5rem}
 .insight-card{display:flex;flex-direction:column;gap:.55rem;padding:clamp(1.4rem,3vw,2rem);background:#fff;border:1px solid rgba(10,13,14,.14);transition:border-color .3s,transform .3s}
 .insight-card:hover{border-color:#b77748;transform:translateY(-4px)}
 .insight-card span{color:#98603a;font:600 .56rem/1 var(--display);letter-spacing:.16em;text-transform:uppercase}
-.insight-card h3{font-size:clamp(1.4rem,2.4vw,1.9rem);margin-top:.3rem;letter-spacing:-.01em}
-.insight-card p{color:#5a605d;font-size:.9rem;line-height:1.75}
+.insight-card h3{font-size:clamp(1.3rem,2.1vw,1.75rem);margin-top:.3rem;letter-spacing:-.01em}
+.insight-card p{color:#5a605d;font-size:.88rem;line-height:1.7}
 .insight-card b{margin-top:auto;color:#98603a;font-weight:600;font-size:.85rem}
 .insight-card b span{letter-spacing:0;text-transform:none;font-size:1rem}
-@media(max-width:700px){.insight-grid{grid-template-columns:1fr}}
+@media(max-width:1080px){.insight-grid{grid-template-columns:repeat(2,1fr)}}
+@media(max-width:640px){.insight-grid{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){.insight-card{transition:none}}
 
 /* ── Render-prestatie: onderliggende secties pas opbouwen bij scroll ──── */
