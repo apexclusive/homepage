@@ -158,6 +158,29 @@ main{max-width:1080px;margin:0 auto;padding:clamp(3.5rem,7vw,6rem) var(--pad)}
 .dossier h2{font-size:clamp(2rem,3.8vw,3.4rem);margin:.7rem 0 1rem;letter-spacing:-.02em}
 .dossier h2 em{color:var(--copper-light);font-style:italic}
 .dossier p{color:var(--muted);max-width:52ch;line-height:1.85}
+.dossier-quote{
+  margin-top:1.4rem;
+  padding:.9rem 1.1rem;
+  border-left:2px solid var(--copper);
+  background:rgba(186,126,83,.06);
+}
+.dossier-quote p{
+  font-family:var(--serif);
+  font-style:italic;
+  color:#dfded8;
+  font-size:clamp(.95rem,1.4vw,1.05rem);
+  line-height:1.6;
+}
+.dossier-quote cite{
+  display:block;
+  margin-top:.5rem;
+  font-family:var(--display);
+  font-style:normal;
+  font-size:.65rem;
+  letter-spacing:.12em;
+  text-transform:uppercase;
+  color:var(--copper-light);
+}
 .cta{
   margin-top:clamp(2rem,4vw,3rem);
   padding:clamp(1.6rem,3.5vw,2.4rem);
@@ -277,7 +300,7 @@ main{max-width:1080px;margin:0 auto;padding:clamp(3.5rem,7vw,6rem) var(--pad)}
 }
 
 /* ── Kennisbank ────────────────────────────────────────────────────────── */
-.kb-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:1rem;margin-top:2.5rem}
+.kb-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1rem;margin-top:2.5rem}
 .kb-card{display:flex;flex-direction:column;gap:.6rem;padding:clamp(1.4rem,3vw,2rem);background:rgba(19,24,25,.92);border:1px solid rgba(244,241,235,.12);transition:border-color .3s,transform .3s}
 .kb-card:hover{border-color:var(--copper);transform:translateY(-4px)}
 .kb-card span{color:var(--copper-light);font:500 .56rem/1 var(--display);letter-spacing:.16em;text-transform:uppercase}
@@ -304,12 +327,14 @@ main{max-width:1080px;margin:0 auto;padding:clamp(3.5rem,7vw,6rem) var(--pad)}
 .article .disclaimer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--line);color:var(--muted);font-size:.78rem;line-height:1.6}
 .article .lede{font-size:clamp(1.05rem,1.6vw,1.2rem);color:#d5d6d0;line-height:1.85;margin-top:1.2rem}
 .byline{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;margin-top:1.2rem;color:var(--muted);font:500 .58rem/1 var(--display);letter-spacing:.14em;text-transform:uppercase}
-.article .faq-list{border-top:1px solid var(--line);margin-top:1.5rem}
-.article .faq-list details{border-bottom:1px solid rgba(244,241,235,.12)}
-.article .faq-list summary{color:var(--paper);font:500 .95rem/1.4 var(--display);padding:1.1rem 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:1rem}
-.article .faq-list summary::-webkit-details-marker{display:none}
-.article .faq-list summary span{color:var(--copper-light);font:400 1.3rem/1 var(--sans);transition:transform .2s}
-.article .faq-list details[open] summary span{transform:rotate(45deg)}
-.article .faq-list details p{padding:0 3rem 1.2rem 0;color:var(--muted);font-size:.9rem}
-@media(max-width:560px){.article .faq-list details p{padding-right:0}}
+.article .faq-list,.service-faq .faq-list{border-top:1px solid var(--line);margin-top:1.5rem}
+.article .faq-list details,.service-faq .faq-list details{border-bottom:1px solid rgba(244,241,235,.12)}
+.article .faq-list summary,.service-faq .faq-list summary{color:var(--paper);font:500 .95rem/1.4 var(--display);padding:1.1rem 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+.article .faq-list summary::-webkit-details-marker,.service-faq .faq-list summary::-webkit-details-marker{display:none}
+.article .faq-list summary span,.service-faq .faq-list summary span{color:var(--copper-light);font:400 1.3rem/1 var(--sans);transition:transform .2s}
+.article .faq-list details[open] summary span,.service-faq .faq-list details[open] summary span{transform:rotate(45deg)}
+.article .faq-list details p,.service-faq .faq-list details p{padding:0 3rem 1.2rem 0;color:var(--muted);font-size:.9rem;line-height:1.7}
+.service-faq{margin:3.5rem 0 2rem}
+.service-faq h2{font-family:var(--serif);font-size:clamp(1.8rem,3vw,2.5rem);color:var(--paper);letter-spacing:-.01em}
+@media(max-width:560px){.article .faq-list details p,.service-faq .faq-list details p{padding-right:0}}
 @media print{.kb-card,.article{background:#fff!important;color:#000!important}.article p,.article li{color:#222!important}}
