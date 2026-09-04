@@ -182,6 +182,9 @@ KENNISBANK (https://apexclusive.nl/kennisbank.html):
 - Top 10 waardevaste auto's 2026: https://apexclusive.nl/kennisbank-top10-waardevast.html
 - Import handleiding A-Z (doe-het-zelf, €99 t/m 31-12-2026): https://apexclusive.nl/import-handleiding.html
 - Lamborghini Urus kopen (modelgids): https://apexclusive.nl/kennisbank-urus.html
+- Porsche Macan kopen (modelgids): https://apexclusive.nl/kennisbank-macan.html
+- Porsche Cayenne kopen (modelgids): https://apexclusive.nl/kennisbank-cayenne.html
+- Range Rover kopen (modelgids): https://apexclusive.nl/kennisbank-range-rover.html
 - Restwaarde vergelijker (afschrijving 2 modellen vergelijken): https://apexclusive.nl/restwaarde-vergelijker.html
 
 CONTACT:
