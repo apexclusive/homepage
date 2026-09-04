@@ -185,6 +185,8 @@ KENNISBANK (https://apexclusive.nl/kennisbank.html):
 - Porsche Macan kopen (modelgids): https://apexclusive.nl/kennisbank-macan.html
 - Porsche Cayenne kopen (modelgids): https://apexclusive.nl/kennisbank-cayenne.html
 - Range Rover kopen (modelgids): https://apexclusive.nl/kennisbank-range-rover.html
+- BMW X5 kopen (modelgids): https://apexclusive.nl/kennisbank-bmw-x5.html
+- Top 10 beste importauto's uit Duitsland: https://apexclusive.nl/kennisbank-beste-importautos.html
 - Restwaarde vergelijker (afschrijving 2 modellen vergelijken): https://apexclusive.nl/restwaarde-vergelijker.html
 
 CONTACT:
