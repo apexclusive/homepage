@@ -47,6 +47,8 @@ kennisbank-cayenne.html      Artikel: Porsche Cayenne kopen — modelgids (Artic
 kennisbank-range-rover.html  Artikel: Range Rover kopen — modelgids (Article + FAQPage-schema)
 kennisbank-bmw-x5.html       Artikel: BMW X5 kopen — modelgids (Article + FAQPage-schema)
 kennisbank-beste-importautos.html Artikel: top 10 beste importauto's 2026 (Article + FAQPage + ItemList-schema)
+kennisbank-taycan.html        Artikel: Porsche Taycan kopen — modelgids (Article + FAQPage-schema)
+kennisbank-audi-rsq8.html     Artikel: Audi RS Q8 kopen — modelgids (Article + FAQPage-schema)
 restwaarde-vergelijker.html   Tool: vergelijk de 5-jaars afschrijving van twee modellen (WebApplication + ItemList-schema)
 api/apex-lead.js               Serverless: ontvangt leadformulier, bezorgt via
                                webhook (Zoho Flow/Make/Zapier) of e-mail (ZeptoMail/Resend)
