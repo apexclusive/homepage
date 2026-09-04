@@ -7,8 +7,8 @@ import- en verkoopbegeleiding voor exclusieve auto's. Gedeployed op Vercel.
 
 ```
 index.html                     Homepage (hero, aanbod, diensten, werkwijze, dossiers,
-                               over, investering, contact, FAQ, 11 hulpmiddelen,
-                               kennisbank, AI-chat, WhatsApp-knop)
+                               over, investering, contact, FAQ, 13 hulpmiddelen,
+                               deel-banner, kennisbank, AI-chat, WhatsApp-knop)
 icons/                         Favicon-set: favicon.ico/-16/-32, apple-touch-icon,
                                PWA-iconen 192/512 (schildlogo op donkere plaat)
 site.webmanifest               PWA-manifest (standalone, donkere huisstijl)
@@ -25,14 +25,20 @@ privacyverklaring.html         Juridisch (AVG)
 import-traject-planner.html    Tool: import-checklist met voortgang (localStorage)
 sourcing-brief.html            Tool: sourcing brief opstellen
 verkoopvoorbereiding-planner.html  Tool: verkoop-checklist met voortgang
-kennisbank.html                 Kennisbank-overzicht (3 artikelen)
+maandkosten-calculator.html        Tool: wat kost uw auto per maand (TCO, live)
+top100-rij-anthems.html            Tool: top 100 rij-anthems met Spotify + Tidal-links
+apexclusive-anthems.js             Rij-anthems: data (100 tracks) + zoeken/filteren/downloaden
+apexclusive-anthems.css            Rij-anthems: specifieke stijlen
+apexclusive-share.js               Deel-component: Web Share API + WhatsApp/copy-fallback
+kennisbank.html                 Kennisbank-overzicht (4 artikelen)
 kennisbank-bpm-import.html      Artikel: BPM bij import (Article + FAQPage-schema)
 kennisbank-aankoopcontrole.html Artikel: controle vóór aankoop (Article + FAQPage-schema)
 kennisbank-verkoop.html         Artikel: exclusieve auto verkopen (Article + FAQPage-schema)
+kennisbank-maandkosten.html     Artikel: maandkosten exclusieve auto (Article + FAQPage-schema)
 api/apex-lead.js               Serverless: ontvangt leadformulier, bezorgt via
                                webhook (Zoho Flow/Make/Zapier) of e-mail (ZeptoMail/Resend)
 api/chat.js                    Serverless: AI-concierge (OpenAI gpt-4o-mini) met
-                               volledige site-kennis (diensten, 11 tools, kennisbank,
+                               volledige site-kennis (diensten, 13 tools, kennisbank,
                                aanbod, dossiers) in de system-prompt; gebruikt de
                                toolContext van de tool-pagina's voor contextuele
                                antwoorden; offline fallback in u-vorm
@@ -62,10 +68,13 @@ vercel.json                    Redirects, security headers (CSP), cachebeleid
 - **Leadformulier** op homepage + dienstpagina's + over-pagina; honneypot,
   server-side validatie en mailto-fallback.
 - **Scrollspy**: actieve sectie wordt gemarkeerd in de hoofdnavigatie.
-- **11 hulpmiddelen** in drie groepen (kopen & controleren, kosten & regelen,
-  sourcen & verkopen); elk met icoon, korte functie-uitleg en externe link naar
-  het betreffende subdomein (`target="_blank"` + sr-only-notitie). "Tools" staat
-  in de hoofd- en mobiele navigatie en in de footer.
+- **13 hulpmiddelen** in vier groepen (kopen & controleren, kosten & regelen,
+  sourcen & verkopen, plannen & beleven); elk met icoon, korte functie-uitleg en
+  externe link naar het betreffende subdomein (`target="_blank"` +
+  sr-only-notitie). "Tools" staat in de hoofd- en mobiele navigatie en in de footer.
+- **Deel-banner (mond-tot-mond)** onder de hulpmiddelen: Web Share API met
+  WhatsApp- en kopieer-fallback (`apexclusive-share.js`), gevoed door
+  Nielsen-data (92% vertrouwt een aanbeveling boven reclame).
 - **Favicon-set**: eigen gerasterd schildlogo (tricolore contour, zilveren A) als
   multi-size favicon.ico, PNG-favicons, apple-touch-icon, PWA-iconen en
   Safari-pinned-tab (mask-icon, koper).
@@ -74,7 +83,7 @@ vercel.json                    Redirects, security headers (CSP), cachebeleid
 - **Sectie-ritme** op de homepage: Dossiers donkerder dan Werkwijze, Over en
   Kennisbank in een warmere lichte tint — geen twee identieke achtergronden
   meer naast elkaar.
-- **ItemList-JSON-LD** met de 11 hulpmiddelen (naam + URL per tool).
+- **ItemList-JSON-LD** met de 13 hulpmiddelen (naam + URL per tool).
 - **Tool-pagina's** linken naar de bijbehorende dienst (planner → begeleiding);
   de 4e link in "Verder lezen" wordt als volle-breedte-banner getoond.
 

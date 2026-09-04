@@ -1,0 +1,78 @@
+/* APEXclusive · Top 100 rij-anthems — specifieke stijlen (gedeelde basis: apexclusive-tools.css) */
+.anthems-tidal-note{display:flex;gap:1rem;align-items:flex-start;margin-top:2rem;padding:1.15rem 1.25rem;border:1px solid rgba(223,177,141,.35);background:rgba(186,126,83,.08);max-width:62ch}
+.anthems-tidal-note p{margin:0;color:#c7cbc4;font-size:.92rem;line-height:1.75}
+.anthems-tidal-badge{flex:0 0 auto;font:600 .56rem/1.4 var(--tool-display);letter-spacing:.14em;text-transform:uppercase;color:var(--tool-copper-light);border:1px solid rgba(223,177,141,.4);padding:.4rem .55rem}
+.anthems-tidal-note strong{color:var(--tool-paper)}
+
+.anthems-toolbar{display:flex;flex-wrap:wrap;gap:.8rem;align-items:center;margin-bottom:1.4rem;padding:1rem 1.1rem;background:rgba(21,27,27,.7);border:1px solid var(--tool-line)}
+.anthems-search{position:relative;flex:1 1 260px;min-width:220px}
+.anthems-search svg{position:absolute;left:.85rem;top:50%;transform:translateY(-50%);width:18px;height:18px;color:#8a928b;pointer-events:none}
+.anthems-search input{width:100%;padding-left:2.6rem}
+.anthems-filters{display:flex;flex-wrap:wrap;gap:.45rem}
+.anthems-chip{font:600 .56rem/1 var(--tool-display);letter-spacing:.1em;text-transform:uppercase;color:#b9beb7;background:rgba(244,241,235,.05);border:1px solid rgba(244,241,235,.16);padding:.55rem .7rem;cursor:pointer;border-radius:0;transition:background .2s,border-color .2s,color .2s}
+.anthems-chip:hover{color:var(--tool-copper-light);border-color:rgba(223,177,141,.5)}
+.anthems-chip.is-active{color:var(--tool-ink);background:var(--tool-copper-light);border-color:var(--tool-copper-light)}
+.anthems-sort{display:inline-flex;align-items:center;gap:.6rem;font:600 .56rem/1 var(--tool-display);letter-spacing:.12em;text-transform:uppercase;color:#b9beb7}
+.anthems-sort select{min-height:0;padding:.5rem .6rem;font:500 .85rem/1.3 var(--tool-display);letter-spacing:0;text-transform:none;color:var(--tool-paper);background:rgba(7,10,10,.76);border:1px solid rgba(244,241,235,.2);border-radius:0}
+.anthems-count{font:500 .62rem/1 var(--tool-display);letter-spacing:.1em;color:#8a928b;text-transform:uppercase;margin-left:auto}
+
+.anthems-list{list-style:none;margin:0;padding:0;display:flex;flex-direction:column;gap:.5rem}
+.anthems-track{display:grid;grid-template-columns:3.2rem 1fr auto auto;grid-template-areas:"rank main genre links";align-items:center;gap:.9rem 1.1rem;padding:.9rem 1.1rem;background:rgba(21,27,27,.88);border:1px solid rgba(244,241,235,.12);transition:border-color .2s,background .2s,transform .2s}
+.anthems-track:hover{border-color:rgba(223,177,141,.45);background:rgba(24,31,31,.95)}
+.anthems-rank{grid-area:rank;font:600 1.05rem/1 var(--tool-serif);color:var(--tool-copper-light)}
+.anthems-main{grid-area:main;min-width:0}
+.anthems-main h3{font:500 1.02rem/1.25 var(--tool-serif);color:var(--tool-paper);margin:0;letter-spacing:-.01em}
+.anthems-artist{margin:.2rem 0 0;font:400 .72rem/1.4 var(--tool-display);color:#9aa19b;letter-spacing:.02em}
+.anthems-genre{grid-area:genre;font:600 .52rem/1 var(--tool-display);letter-spacing:.12em;text-transform:uppercase;color:#8a928b;border:1px solid rgba(244,241,235,.16);padding:.32rem .45rem;white-space:nowrap}
+.anthems-links{grid-area:links;display:flex;gap:.45rem;justify-content:flex-end}
+.anthems-link{display:inline-flex;align-items:center;gap:.45rem;font:600 .6rem/1 var(--tool-display);letter-spacing:.06em;padding:.5rem .7rem;border:1px solid rgba(244,241,235,.2);color:var(--tool-paper);transition:border-color .2s,color .2s,background .2s}
+.anthems-link svg{width:14px;height:14px;fill:currentColor}
+.anthems-spotify:hover{border-color:#1db954;color:#1db954}
+.anthems-tidal:hover{border-color:var(--tool-copper-light);color:var(--tool-copper-light)}
+.anthems-noscript{color:var(--tool-copper-light);border:1px solid rgba(223,177,141,.35);background:rgba(186,126,83,.08);padding:1.2rem}
+.anthems-noscript a{color:var(--tool-copper-light)}
+
+@media(max-width:720px){
+  .anthems-toolbar{flex-direction:column;align-items:stretch}
+  .anthems-count{margin-left:0}
+  .anthems-track{grid-template-columns:2.4rem 1fr auto;grid-template-areas:"rank main links" "rank genre links";row-gap:.45rem}
+  .anthems-links{flex-direction:row;justify-content:flex-start}
+  .anthems-link span{display:none}
+  .anthems-link{padding:.55rem .65rem}
+  .anthems-main h3{font-size:.95rem}
+}
+/* ===== Genrequiz ("Wat vindt u vet?") ===== */
+.anthems-quiz{margin:0 0 2.2rem}
+.anthems-quiz h2{font-family:var(--tool-serif);font-size:clamp(1.55rem,2.6vw,2.15rem);line-height:1.1;color:var(--tool-paper);letter-spacing:-.02em;margin:0 0 .95rem}
+.anthems-quiz h2 span{display:block;margin-top:.35rem;font:600 .56rem/1 var(--tool-display);letter-spacing:.16em;text-transform:uppercase;color:#8a928b}
+.anthems-quiz .anthems-quiz-mood-title{margin-top:2rem}
+.anthems-filters-genre{margin-bottom:0}
+
+/* ===== Ingesloten speler ===== */
+.anthems-player{position:relative;display:grid;grid-template-columns:minmax(0,1fr) minmax(260px,340px);grid-template-areas:"meta embed" "links embed";column-gap:1.8rem;row-gap:.4rem;align-items:center;margin:2rem 0;padding:2.2rem 1.6rem 1.6rem;background:rgba(21,27,27,.92);border:1px solid rgba(223,177,141,.35);box-shadow:0 24px 70px rgba(0,0,0,.2)}
+.anthems-player:before{content:'';position:absolute;top:0;left:0;right:0;height:2px;background:linear-gradient(90deg,var(--tool-copper),var(--tool-paper),transparent)}
+.anthems-player-meta{grid-area:meta;min-width:0}
+.anthems-player-label{font:600 .56rem/1 var(--tool-display);letter-spacing:.18em;text-transform:uppercase;color:var(--tool-copper-light);margin:0 0 .55rem}
+.anthems-player-title{font-family:var(--tool-serif);font-size:clamp(1.5rem,2.4vw,2.05rem);line-height:1.05;color:var(--tool-paper);margin:0;letter-spacing:-.02em}
+.anthems-player-artist{margin:.35rem 0 0;color:#9aa19b;font-size:.95rem}
+.anthems-player-embed{grid-area:embed;display:flex;align-items:center;justify-content:center;min-height:152px}
+.anthems-player-embed iframe{display:block;border:0}
+.anthems-player-fallback{padding:1.4rem;border:1px dashed rgba(244,241,235,.22);color:#b9beb7;font-size:.9rem;text-align:center}
+.anthems-player-links{grid-area:links;display:flex;flex-wrap:wrap;gap:.6rem;margin-top:.4rem}
+.anthems-player-links a{display:inline-flex;align-items:center;gap:.5rem;font:600 .6rem/1 var(--tool-display);letter-spacing:.1em;text-transform:uppercase;padding:.68rem .95rem;border:1px solid rgba(244,241,235,.24);color:var(--tool-paper);transition:border-color .2s,color .2s,background .2s}
+#anthems-player-spotify:hover{border-color:#1db954;color:#1db954}
+#anthems-player-tidal:hover{border-color:var(--tool-copper-light);color:var(--tool-copper-light)}
+
+/* ===== Bron ===== */
+.anthems-source{max-width:72ch;margin:2.4rem 0 0;color:#8a928b;font-size:.8rem;line-height:1.75}
+
+@media(max-width:760px){
+  .anthems-player{grid-template-columns:1fr;grid-template-areas:"meta" "embed" "links";row-gap:1.1rem}
+  .anthems-player-embed{min-height:0}
+  .anthems-tidal-note{flex-direction:column;gap:.7rem}
+}
+
+@media print{
+  .anthems-toolbar,.share-bar,.anthems-links,.anthems-filters,.anthems-search,.anthems-player-embed,.anthems-player-links,.anthems-quiz{display:none!important}
+  .anthems-track{border:0;border-bottom:1px solid #ccc;background:#fff}
+}
