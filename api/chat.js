@@ -175,6 +175,8 @@ KENNISBANK (https://apexclusive.nl/kennisbank.html):
 - Controle vóór aankoop: https://apexclusive.nl/kennisbank-aankoopcontrole.html
 - Exclusieve auto verkopen: https://apexclusive.nl/kennisbank-verkoop.html
 - Maandkosten exclusieve auto: https://apexclusive.nl/kennisbank-maandkosten.html
+- Auto importeren uit Duitsland: https://apexclusive.nl/kennisbank-importeren-duitsland.html
+- Restwaarde en afschrijving: https://apexclusive.nl/kennisbank-restwaarde.html
 
 CONTACT:
 - Email: info@apexclusive.nl

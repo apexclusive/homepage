@@ -30,11 +30,13 @@ top100-rij-anthems.html            Tool: top 100 rij-anthems met Spotify + Tidal
 apexclusive-anthems.js             Rij-anthems: data (100 tracks) + zoeken/filteren/downloaden
 apexclusive-anthems.css            Rij-anthems: specifieke stijlen
 apexclusive-share.js               Deel-component: Web Share API + WhatsApp/copy-fallback
-kennisbank.html                 Kennisbank-overzicht (4 artikelen)
+kennisbank.html                 Kennisbank-overzicht (6 artikelen)
 kennisbank-bpm-import.html      Artikel: BPM bij import (Article + FAQPage-schema)
+kennisbank-importeren-duitsland.html Artikel: auto importeren uit Duitsland (Article + FAQPage-schema)
 kennisbank-aankoopcontrole.html Artikel: controle vóór aankoop (Article + FAQPage-schema)
 kennisbank-verkoop.html         Artikel: exclusieve auto verkopen (Article + FAQPage-schema)
 kennisbank-maandkosten.html     Artikel: maandkosten exclusieve auto (Article + FAQPage-schema)
+kennisbank-restwaarde.html      Artikel: restwaarde & afschrijving (Article + FAQPage-schema)
 api/apex-lead.js               Serverless: ontvangt leadformulier, bezorgt via
                                webhook (Zoho Flow/Make/Zapier) of e-mail (ZeptoMail/Resend)
 api/chat.js                    Serverless: AI-concierge (OpenAI gpt-4o-mini) met

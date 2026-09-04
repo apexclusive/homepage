@@ -33,6 +33,11 @@
 }
 .back:hover{color:var(--copper-light)}
 .back span{margin-left:.4rem;color:var(--copper-light)}
+.topbar-actions{display:flex;align-items:center;gap:1.2rem}
+.topbar-tel{display:inline-flex;align-items:center;gap:.5rem;font:600 .6rem/1 var(--display);letter-spacing:.12em;text-transform:uppercase;color:var(--copper-light);white-space:nowrap;transition:color .25s}
+.topbar-tel svg{width:15px;height:15px;flex:0 0 auto}
+.topbar-tel:hover{color:var(--paper)}
+@media(max-width:640px){.topbar-actions{gap:.75rem}.topbar-tel span{display:none}}
 
 /* ── Basis layout ──────────────────────────────────────────────────────── */
 body{background:var(--ink)}
@@ -314,7 +319,7 @@ main{max-width:1080px;margin:0 auto;padding:clamp(3.5rem,7vw,6rem) var(--pad)}
 @media(max-width:560px){.article .faq-list details p{padding-right:0}}
 @media print{.kb-card,.article{background:#fff!important;color:#000!important}.article p,.article li{color:#222!important}}
 
-/* ════ Kennisbank-overzicht: 4 artikelen in 2×2-raster ════ */
+/* ════ Kennisbank-overzicht: 6 artikelen in 2×3-raster ════ */
 .kb-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media(max-width:700px){.kb-grid{grid-template-columns:1fr}}
 
