@@ -52,6 +52,8 @@ kennisbank-audi-rsq8.html     Artikel: Audi RS Q8 kopen — modelgids (Article +
 kennisbank-top10-snelste-afschrijving.html Artikel: top 10 snelst afschrijvende auto's 2026 (Article + ItemList + FAQPage)
 kennisbank-audi-etron-gt.html Artikel: Audi e-tron GT kopen — modelgids (Article + FAQPage-schema)
 kennisbank-bmw-7-serie.html   Artikel: BMW 7 Serie kopen — modelgids (Article + FAQPage-schema)
+kennisbank-mercedes-eqs.html Artikel: Mercedes EQS kopen — modelgids (Article + FAQPage-schema)
+kennisbank-bmw-i7.html       Artikel: BMW i7 kopen — modelgids (Article + FAQPage-schema)
 restwaarde-vergelijker.html   Tool: vergelijk de 5-jaars afschrijving van twee modellen (WebApplication + ItemList-schema)
 api/apex-lead.js               Serverless: ontvangt leadformulier, bezorgt via
                                webhook (Zoho Flow/Make/Zapier) of e-mail (ZeptoMail/Resend)

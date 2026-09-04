@@ -193,6 +193,8 @@ KENNISBANK (https://apexclusive.nl/kennisbank.html):
 - Top 10 snelst afschrijvende auto's 2026: https://apexclusive.nl/kennisbank-top10-snelste-afschrijving.html
 - Audi e-tron GT kopen (modelgids): https://apexclusive.nl/kennisbank-audi-etron-gt.html
 - BMW 7 Serie kopen (modelgids): https://apexclusive.nl/kennisbank-bmw-7-serie.html
+- Mercedes EQS kopen (modelgids): https://apexclusive.nl/kennisbank-mercedes-eqs.html
+- BMW i7 kopen (modelgids): https://apexclusive.nl/kennisbank-bmw-i7.html
 - Restwaarde vergelijker (afschrijving 2 modellen vergelijken): https://apexclusive.nl/restwaarde-vergelijker.html
 
 CONTACT:
