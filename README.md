@@ -42,6 +42,7 @@ kennisbank-porsche-911.html     Artikel: Porsche 911 kopen — modelgids (Articl
 kennisbank-g-klasse.html        Artikel: Mercedes G-Klasse kopen — modelgids (Article + FAQPage-schema)
 kennisbank-top10-waardevast.html Artikel: top 10 waardevaste auto's 2026 (Article + FAQPage + ItemList-schema)
 kennisbank-urus.html          Artikel: Lamborghini Urus kopen — modelgids (Article + FAQPage-schema)
+restwaarde-vergelijker.html   Tool: vergelijk de 5-jaars afschrijving van twee modellen (WebApplication + ItemList-schema)
 api/apex-lead.js               Serverless: ontvangt leadformulier, bezorgt via
                                webhook (Zoho Flow/Make/Zapier) of e-mail (ZeptoMail/Resend)
 api/chat.js                    Serverless: AI-concierge (OpenAI gpt-4o-mini) met
