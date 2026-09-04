@@ -96,6 +96,10 @@ export default async function handler(req, res) {
       ? `\n\nHUIDIGE CONTEXT: de bezoeker stelt een sourcing brief op (https://apexclusive.nl/sourcing-brief.html). Help de brief scherp en concreet te krijgen (merk, model, budget, eisen, timing). Verwijs voor het zoeken zelf naar de sourcing service (https://apexclusive.nl/sourcing-service.html).`
       : toolContext === 'verkoopvoorbereiding'
         ? `\n\nHUIDIGE CONTEXT: de bezoeker gebruikt de Verkoopvoorbereiding planner (https://apexclusive.nl/verkoopvoorbereiding-planner.html). Help bij de voorbereiding en overdracht van de verkoop. Verwijs voor persoonlijke begeleiding naar verkoopbegeleiding (https://apexclusive.nl/verkoopbegeleiding.html) en het verkoop-artikel (https://apexclusive.nl/kennisbank-verkoop.html).`
+      : toolContext === 'maandkosten'
+        ? `\n\nHUIDIGE CONTEXT: de bezoeker gebruikt de Maandkosten calculator (https://apexclusive.nl/maandkosten-calculator.html). Help bij het inschatten van afschrijving, brandstof, verzekering, wegenbelasting en onderhoud. Geef GEEN financieel of fiscaal advies; verwijs voor BPM naar https://bpm.apexclusive.nl, voor financiering naar https://lening.apexclusive.nl en voor persoonlijk advies naar het contactformulier (https://apexclusive.nl/#contact).`
+      : toolContext === 'anthems'
+        ? `\n\nHUIDIGE CONTEXT: de bezoeker gebruikt de Top 100 rij-anthems (https://apexclusive.nl/top100-rij-anthems.html), een lijst van 100 rij-anthems met een genrequiz ('wat vindt u vet?'), een ritfilter (highway/nacht/cruise/feest), een ingebouwde Spotify-speler en links naar Tidal (verliesvrije hifi). Help bij vragen over de lijst, de quiz, Spotify, Tidal en audio-kwaliteit. Koppel enthousiasme over muziek en autorijden waar passend aan de diensten van APEXclusive (https://apexclusive.nl/sourcing-service.html).`
         : '';
 
   const systemPrompt = brand === 'mpx'
@@ -151,7 +155,7 @@ DIENSTEN (met pagina's):
 - Afgeronde dossiers: https://apexclusive.nl/cases.html
 - Over APEXclusive: https://apexclusive.nl/over-apexclusive.html
 
-GRATIS HULPMIDDELEN (11 stuks, https://apexclusive.nl/#tools):
+GRATIS HULPMIDDELEN (14 stuks, https://apexclusive.nl/#tools):
 1. Kentekenvergelijking: https://vergelijk.apexclusive.nl
 2. RDW kentekencheck: https://kentekencheck.apexclusive.nl
 3. Advertentie analyse: https://carrapport.apexclusive.nl
@@ -163,11 +167,35 @@ GRATIS HULPMIDDELEN (11 stuks, https://apexclusive.nl/#tools):
 9. Advertentie tips: https://advertentie.apexclusive.nl
 10. Sourcing brief opstellen: https://apexclusive.nl/sourcing-brief.html
 11. Verkoopvoorbereiding planner: https://apexclusive.nl/verkoopvoorbereiding-planner.html
+12. Maandkosten calculator (wat kost uw auto per maand): https://apexclusive.nl/maandkosten-calculator.html
+13. Top 100 rij-anthems (Spotify + Tidal): https://apexclusive.nl/top100-rij-anthems.html
+14. Import besparingschecker (hoeveel bespaart u met importeren): https://apexclusive.nl/import-besparingschecker.html
 
 KENNISBANK (https://apexclusive.nl/kennisbank.html):
 - BPM bij import: https://apexclusive.nl/kennisbank-bpm-import.html
 - Controle vóór aankoop: https://apexclusive.nl/kennisbank-aankoopcontrole.html
 - Exclusieve auto verkopen: https://apexclusive.nl/kennisbank-verkoop.html
+- Maandkosten exclusieve auto: https://apexclusive.nl/kennisbank-maandkosten.html
+- Auto importeren uit Duitsland: https://apexclusive.nl/kennisbank-importeren-duitsland.html
+- Restwaarde en afschrijving: https://apexclusive.nl/kennisbank-restwaarde.html
+- Porsche 911 kopen (modelgids): https://apexclusive.nl/kennisbank-porsche-911.html
+- Mercedes G-Klasse kopen (modelgids): https://apexclusive.nl/kennisbank-g-klasse.html
+- Top 10 waardevaste auto's 2026: https://apexclusive.nl/kennisbank-top10-waardevast.html
+- Import handleiding A-Z (doe-het-zelf, €99 t/m 31-12-2026): https://apexclusive.nl/import-handleiding.html
+- Lamborghini Urus kopen (modelgids): https://apexclusive.nl/kennisbank-urus.html
+- Porsche Macan kopen (modelgids): https://apexclusive.nl/kennisbank-macan.html
+- Porsche Cayenne kopen (modelgids): https://apexclusive.nl/kennisbank-cayenne.html
+- Range Rover kopen (modelgids): https://apexclusive.nl/kennisbank-range-rover.html
+- BMW X5 kopen (modelgids): https://apexclusive.nl/kennisbank-bmw-x5.html
+- Top 10 beste importauto's uit Duitsland: https://apexclusive.nl/kennisbank-beste-importautos.html
+- Porsche Taycan kopen (modelgids): https://apexclusive.nl/kennisbank-taycan.html
+- Audi RS Q8 kopen (modelgids): https://apexclusive.nl/kennisbank-audi-rsq8.html
+- Top 10 snelst afschrijvende auto's 2026: https://apexclusive.nl/kennisbank-top10-snelste-afschrijving.html
+- Audi e-tron GT kopen (modelgids): https://apexclusive.nl/kennisbank-audi-etron-gt.html
+- BMW 7 Serie kopen (modelgids): https://apexclusive.nl/kennisbank-bmw-7-serie.html
+- Mercedes EQS kopen (modelgids): https://apexclusive.nl/kennisbank-mercedes-eqs.html
+- BMW i7 kopen (modelgids): https://apexclusive.nl/kennisbank-bmw-i7.html
+- Restwaarde vergelijker (afschrijving 2 modellen vergelijken): https://apexclusive.nl/restwaarde-vergelijker.html
 
 CONTACT:
 - Email: info@apexclusive.nl

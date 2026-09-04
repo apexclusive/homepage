@@ -40,7 +40,9 @@ const FIELD_LIMITS = {
   name: 120,
   email: 200,
   phone: 40,
-  request: 4000
+  request: 4000,
+  updates: 10,
+  subject: 160
 };
 
 function clean(value, max) {
@@ -113,6 +115,8 @@ export default async function handler(req, res) {
     email: clean(body.email, FIELD_LIMITS.email),
     phone: clean(body.phone, FIELD_LIMITS.phone),
     request: clean(body.request, FIELD_LIMITS.request),
+    updates: clean(body.updates, FIELD_LIMITS.updates),
+    subject: clean(body.subject, FIELD_LIMITS.subject),
     brand: body.brand === 'mpx' ? 'mpx' : 'apex'
   };
 
@@ -120,7 +124,7 @@ export default async function handler(req, res) {
   if (lead.name.length < 2) problems.push('naam');
   if (!isPlausibleEmail(lead.email)) problems.push('e-mailadres');
   if (!isPlausiblePhone(lead.phone)) problems.push('telefoonnummer');
-  if (!lead.request) problems.push('aanvraag');
+  if (!lead.request && !lead.subject) problems.push('aanvraag');
 
   if (problems.length) {
     return res.status(400).json({ error: `Controleer uw ${problems.join(', ')}.` });
@@ -164,12 +168,13 @@ export default async function handler(req, res) {
       `Naam:      ${lead.name}`,
       `E-mail:    ${lead.email}`,
       `Telefoon:  ${lead.phone || '-'}`,
+      `Updates:   ${lead.updates === 'ja' ? 'ja (nieuwsbrief/aanbod)' : 'nee'}`,
       `Ontvangen: ${submittedAt}`,
       '',
       'Aanvraag:',
       lead.request
     ];
-    const subject = `Nieuwe aanvraag via apexclusive.nl — ${lead.name}`;
+    const subject = lead.subject || `Nieuwe aanvraag via apexclusive.nl — ${lead.name}`;
 
     if (zeptoToken) {
       // ZeptoMail kent regionale datacentra. Standaard .com, met
