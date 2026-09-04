@@ -445,6 +445,17 @@ body.sticky-cta-open .whatsapp-launcher{bottom:calc(4.5rem + env(safe-area-inset
 .rank-item h3{font-size:clamp(1.05rem,2vw,1.3rem);margin-top:0;color:var(--paper)}
 .rank-item p{margin-top:.25rem;color:var(--muted);font-size:.82rem;line-height:1.6}
 .rank-item strong{color:var(--copper-light);font-weight:600}
+.rank-bar{display:block;margin-top:.55rem;height:5px;border-radius:99px;background:rgba(244,241,235,.09);overflow:hidden}
+.rank-bar > i{display:block;height:100%;border-radius:99px;background:linear-gradient(90deg,var(--copper),var(--copper-light));width:var(--w,0%)}
+.stats-band{background:linear-gradient(150deg,#0b0e0e,#111817 60%,#0b0e0e);border-top:1px solid var(--line);border-bottom:1px solid var(--line);padding-block:clamp(2.25rem,5vw,3.5rem);margin-block:clamp(2rem,4vw,3rem)}
+.stats-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:clamp(1.5rem,4vw,2.75rem)}
+.stat-item{display:flex;flex-direction:column;gap:.6rem;text-decoration:none}
+.stat-num{font-family:var(--serif);font-size:clamp(2.2rem,4.5vw,3.5rem);line-height:.95;letter-spacing:-.03em;color:var(--copper-light);transition:color .25s}
+.stat-item:hover .stat-num{color:var(--paper)}
+.stat-label{font:500 .56rem/1.55 var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--muted);max-width:26ch;transition:color .25s}
+.stat-item:hover .stat-label{color:var(--copper-light)}
+.stats-source{max-width:72ch;margin-top:2.2rem;color:#7e8780;font-size:.72rem;line-height:1.7}
+@media(max-width:720px){.stats-grid{grid-template-columns:1fr 1fr;gap:1.8rem 1.2rem}.stat-label{max-width:none}}
 .article .faq-list summary{color:var(--paper);font:500 .95rem/1.4 var(--display);padding:1.1rem 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:1rem}
 .article .faq-list summary::-webkit-details-marker{display:none}
 .article .faq-list summary span{color:var(--copper-light);font:400 1.3rem/1 var(--sans);transition:transform .2s}

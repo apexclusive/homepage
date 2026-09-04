@@ -49,6 +49,9 @@ kennisbank-bmw-x5.html       Artikel: BMW X5 kopen — modelgids (Article + FAQP
 kennisbank-beste-importautos.html Artikel: top 10 beste importauto's 2026 (Article + FAQPage + ItemList-schema)
 kennisbank-taycan.html        Artikel: Porsche Taycan kopen — modelgids (Article + FAQPage-schema)
 kennisbank-audi-rsq8.html     Artikel: Audi RS Q8 kopen — modelgids (Article + FAQPage-schema)
+kennisbank-top10-snelste-afschrijving.html Artikel: top 10 snelst afschrijvende auto's 2026 (Article + ItemList + FAQPage)
+kennisbank-audi-etron-gt.html Artikel: Audi e-tron GT kopen — modelgids (Article + FAQPage-schema)
+kennisbank-bmw-7-serie.html   Artikel: BMW 7 Serie kopen — modelgids (Article + FAQPage-schema)
 restwaarde-vergelijker.html   Tool: vergelijk de 5-jaars afschrijving van twee modellen (WebApplication + ItemList-schema)
 api/apex-lead.js               Serverless: ontvangt leadformulier, bezorgt via
                                webhook (Zoho Flow/Make/Zapier) of e-mail (ZeptoMail/Resend)
