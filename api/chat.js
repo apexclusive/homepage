@@ -155,7 +155,7 @@ DIENSTEN (met pagina's):
 - Afgeronde dossiers: https://apexclusive.nl/cases.html
 - Over APEXclusive: https://apexclusive.nl/over-apexclusive.html
 
-GRATIS HULPMIDDELEN (13 stuks, https://apexclusive.nl/#tools):
+GRATIS HULPMIDDELEN (14 stuks, https://apexclusive.nl/#tools):
 1. Kentekenvergelijking: https://vergelijk.apexclusive.nl
 2. RDW kentekencheck: https://kentekencheck.apexclusive.nl
 3. Advertentie analyse: https://carrapport.apexclusive.nl
@@ -169,6 +169,7 @@ GRATIS HULPMIDDELEN (13 stuks, https://apexclusive.nl/#tools):
 11. Verkoopvoorbereiding planner: https://apexclusive.nl/verkoopvoorbereiding-planner.html
 12. Maandkosten calculator (wat kost uw auto per maand): https://apexclusive.nl/maandkosten-calculator.html
 13. Top 100 rij-anthems (Spotify + Tidal): https://apexclusive.nl/top100-rij-anthems.html
+14. Import besparingschecker (hoeveel bespaart u met importeren): https://apexclusive.nl/import-besparingschecker.html
 
 KENNISBANK (https://apexclusive.nl/kennisbank.html):
 - BPM bij import: https://apexclusive.nl/kennisbank-bpm-import.html

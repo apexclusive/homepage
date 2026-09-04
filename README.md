@@ -7,7 +7,7 @@ import- en verkoopbegeleiding voor exclusieve auto's. Gedeployed op Vercel.
 
 ```
 index.html                     Homepage (hero, aanbod, diensten, werkwijze, dossiers,
-                               over, investering, contact, FAQ, 13 hulpmiddelen,
+                               over, investering, contact, FAQ, 14 hulpmiddelen,
                                deel-banner, kennisbank, AI-chat, WhatsApp-knop)
 icons/                         Favicon-set: favicon.ico/-16/-32, apple-touch-icon,
                                PWA-iconen 192/512 (schildlogo op donkere plaat)
@@ -51,7 +51,7 @@ restwaarde-vergelijker.html   Tool: vergelijk de 5-jaars afschrijving van twee m
 api/apex-lead.js               Serverless: ontvangt leadformulier, bezorgt via
                                webhook (Zoho Flow/Make/Zapier) of e-mail (ZeptoMail/Resend)
 api/chat.js                    Serverless: AI-concierge (OpenAI gpt-4o-mini) met
-                               volledige site-kennis (diensten, 13 tools, kennisbank,
+                               volledige site-kennis (diensten, 14 tools, kennisbank,
                                aanbod, dossiers) in de system-prompt; gebruikt de
                                toolContext van de tool-pagina's voor contextuele
                                antwoorden; offline fallback in u-vorm
@@ -81,7 +81,7 @@ vercel.json                    Redirects, security headers (CSP), cachebeleid
 - **Leadformulier** op homepage + dienstpagina's + over-pagina; honneypot,
   server-side validatie en mailto-fallback.
 - **Scrollspy**: actieve sectie wordt gemarkeerd in de hoofdnavigatie.
-- **13 hulpmiddelen** in vier groepen (kopen & controleren, kosten & regelen,
+- **14 hulpmiddelen** in vier groepen (kopen & controleren, kosten & regelen,
   sourcen & verkopen, plannen & beleven); elk met icoon, korte functie-uitleg en
   externe link naar het betreffende subdomein (`target="_blank"` +
   sr-only-notitie). "Tools" staat in de hoofd- en mobiele navigatie en in de footer.
@@ -96,7 +96,7 @@ vercel.json                    Redirects, security headers (CSP), cachebeleid
 - **Sectie-ritme** op de homepage: Dossiers donkerder dan Werkwijze, Over en
   Kennisbank in een warmere lichte tint — geen twee identieke achtergronden
   meer naast elkaar.
-- **ItemList-JSON-LD** met de 13 hulpmiddelen (naam + URL per tool).
+- **ItemList-JSON-LD** met de 14 hulpmiddelen (naam + URL per tool).
 - **Tool-pagina's** linken naar de bijbehorende dienst (planner → begeleiding);
   de 4e link in "Verder lezen" wordt als volle-breedte-banner getoond.
 
