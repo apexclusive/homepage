@@ -28,6 +28,7 @@
         phone: String(data.get('phone') || '').trim(),
         request: String(data.get('request') || '').trim(),
         updates: data.get('updates') ? 'ja' : '',
+        subject: String(data.get('subject') || '').trim(),
         website: '',
         brand: 'apex'
       };
@@ -36,7 +37,7 @@
       form.setAttribute('aria-busy', 'true');
       status.textContent = 'Aanvraag wordt verzonden…';
 
-      const fallback = `mailto:info@apexclusive.nl?subject=${encodeURIComponent('Nieuwe aanvraag via APEXclusive')}&body=${encodeURIComponent(`Naam: ${values.name}\nE-mail: ${values.email}\nTelefoon: ${values.phone || '-'}\n\nAanvraag:\n${values.request}`)}`;
+      const fallback = `mailto:info@apexclusive.nl?subject=${encodeURIComponent(values.subject || 'Nieuwe aanvraag via APEXclusive')}&body=${encodeURIComponent(`Naam: ${values.name}\nE-mail: ${values.email}\nTelefoon: ${values.phone || '-'}\n\nAanvraag:\n${values.request}`)}`;
 
       try {
         const response = await fetch('/api/apex-lead', {
@@ -46,7 +47,7 @@
         });
         if (!response.ok) throw new Error('send failed');
         form.reset();
-        status.textContent = 'Bedankt. Uw aanvraag is ontvangen. We nemen binnen 24 uur contact op.';
+        status.textContent = form.dataset.success || 'Bedankt. Uw aanvraag is ontvangen. We nemen binnen 24 uur contact op.';
         window.apexTrack?.('lead_form_submit');
       } catch (_) {
         status.textContent = 'Uw e-mailprogramma wordt geopend…';

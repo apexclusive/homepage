@@ -112,3 +112,5 @@ body.sticky-cta-open .whatsapp-launcher,body.sticky-cta-open .ai-launcher{bottom
 .stats-source{max-width:72ch;margin-top:2.2rem;color:#7e8780;font-size:.72rem;line-height:1.7}
 @media(max-width:720px){.stats-grid{grid-template-columns:1fr 1fr;gap:1.8rem 1.2rem}.stat-label{max-width:none}}
 @media(prefers-reduced-motion:reduce){.stat-num,.stat-label{transition:none}}
+
+.investment-diy{margin-top:1.6rem;padding-top:1.2rem;border-top:1px solid var(--line);color:var(--muted);font-size:.8rem;line-height:1.6}.investment-diy a{color:var(--copper-light);border-bottom:1px solid rgba(226,178,142,.45);transition:color .25s,border-color .25s}.investment-diy a:hover{color:var(--paper);border-color:var(--paper)}

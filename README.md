@@ -23,6 +23,7 @@ over-apexclusive.html          Over APEXclusive
 algemenevoorwaarden.html       Juridisch
 privacyverklaring.html         Juridisch (AVG)
 import-traject-planner.html    Tool: import-checklist met voortgang (localStorage)
+import-handleiding.html         Product: doe-het-zelf import handleiding A-Z (€99, Product-schema)
 sourcing-brief.html            Tool: sourcing brief opstellen
 verkoopvoorbereiding-planner.html  Tool: verkoop-checklist met voortgang
 maandkosten-calculator.html        Tool: wat kost uw auto per maand (TCO, live)

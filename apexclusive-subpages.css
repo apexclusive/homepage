@@ -221,6 +221,31 @@ main{max-width:1080px;margin:0 auto;padding:clamp(3.5rem,7vw,6rem) var(--pad)}
 .about-block p{color:var(--muted);line-height:1.85;margin-top:.9rem;max-width:48ch}
 .about-block p:first-of-type{margin-top:1.4rem}
 
+/* ── Product: import handleiding ──────────────────────────────────────── */
+.price-panel{
+  display:grid;grid-template-columns:1.05fr .95fr;gap:clamp(1.5rem,4vw,3.5rem);
+  align-items:center;padding:clamp(1.6rem,4vw,2.8rem);
+  background:linear-gradient(150deg,#151d1c,#0d1312);
+  border:1px solid rgba(226,178,142,.4);
+  margin-bottom:clamp(2.5rem,5vw,4rem);
+}
+.price-figure .ey{margin-bottom:1.2rem}
+.price-figure strong{
+  display:block;font:400 clamp(2.9rem,6vw,4.4rem)/1 var(--serif);
+  color:var(--paper);letter-spacing:-.02em;
+}
+.price-figure strong small{font-size:.4em;color:var(--muted);font-weight:400;letter-spacing:0}
+.price-old{color:var(--muted);text-decoration:line-through;font-size:.95rem;margin-right:.7rem}
+.price-badge{
+  display:inline-block;padding:.42rem .7rem;background:var(--copper);color:#fff;
+  font:600 .55rem/1 var(--display);letter-spacing:.14em;text-transform:uppercase;
+  vertical-align:middle;
+}
+.price-details p{color:#c2c4be;line-height:1.8;max-width:56ch}
+.price-details ul{margin:1rem 0 1.4rem;padding-left:1.2rem;color:#c2c4be;line-height:1.9}
+.price-details li{margin:.2rem 0}
+@media(max-width:720px){.price-panel{grid-template-columns:1fr}}
+
 /* ── Footer van subpagina's gebruikt dezelfde klassen als de homepage ──── */
 .site-footer{margin-top:clamp(3rem,7vw,6rem)}
 
