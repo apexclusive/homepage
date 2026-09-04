@@ -317,3 +317,26 @@ main{max-width:1080px;margin:0 auto;padding:clamp(3.5rem,7vw,6rem) var(--pad)}
 /* ════ Kennisbank-overzicht: 4 artikelen in 2×2-raster ════ */
 .kb-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 @media(max-width:700px){.kb-grid{grid-template-columns:1fr}}
+
+/* ════ Servicepagina FAQ ════ */
+.faq{margin-top:clamp(2rem,4vw,3.2rem)}
+.faq .ey{margin-bottom:.5rem}
+.faq h2{font-family:var(--serif);font-size:clamp(1.7rem,3vw,2.5rem);letter-spacing:-.02em;color:var(--paper);margin:0 0 1.3rem}
+.faq .faq-list{border-top:1px solid var(--line)}
+.faq .faq-list details{border-bottom:1px solid rgba(244,241,235,.12)}
+.faq .faq-list summary{color:var(--paper);font:500 .95rem/1.4 var(--display);padding:1.1rem 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:1rem}
+.faq .faq-list summary::-webkit-details-marker{display:none}
+.faq .faq-list summary span{color:var(--copper-light);font:400 1.3rem/1 var(--sans);transition:transform .2s}
+.faq .faq-list details[open] summary span{transform:rotate(45deg)}
+.faq .faq-list details p{padding:0 3rem 1.2rem 0;color:var(--muted);font-size:.9rem}
+@media(max-width:560px){.faq .faq-list details p{padding-right:0}}
+@media print{.faq .faq-list details{border-color:#999!important}}
+
+/* ════ Deel dit artikel (word-of-mouth) ════ */
+.article-share{display:flex;flex-wrap:wrap;align-items:center;gap:.6rem;margin-top:2rem;padding:1rem 1.1rem;border:1px solid rgba(223,177,141,.32);background:rgba(186,126,83,.07)}
+.article-share-label{font:600 .56rem/1 var(--display);letter-spacing:.14em;text-transform:uppercase;color:var(--copper-light);margin-right:.2rem}
+.article-share button{display:inline-flex;align-items:center;gap:.5rem;font:600 .72rem/1 var(--display);letter-spacing:.04em;color:var(--paper);background:transparent;border:1px solid rgba(244,241,235,.28);padding:.6rem .85rem;cursor:pointer;transition:border-color .2s,color .2s,background .2s}
+.article-share button:hover{border-color:var(--copper-light);color:var(--copper-light)}
+.article-share button.is-shared{border-color:var(--copper-light);color:var(--copper-light);background:rgba(186,126,83,.12)}
+.article-share button b{font-weight:400;color:var(--copper-light)}
+@media print{.article-share{display:none!important}}
