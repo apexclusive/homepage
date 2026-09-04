@@ -168,6 +168,25 @@ a[href]:after{content:""}
 .related-links strong{font-family:var(--sf);font-weight:400;font-size:1.15rem;line-height:1.25;color:var(--pt)}
 .related-links b{color:var(--copper-light);font-weight:400}
 @media(max-width:720px){.related-links{grid-template-columns:1fr}}
+/* Sticky CTA-balk (verschijnt na scroll voorbij de hero) */
+.sticky-cta{position:fixed;left:0;right:0;bottom:0;z-index:44;transform:translateY(105%);transition:transform .35s ease;background:rgba(9,11,12,.96);border-top:1px solid rgba(198,203,209,.16);-webkit-backdrop-filter:blur(16px);backdrop-filter:blur(16px);box-shadow:0 -12px 34px rgba(0,0,0,.35)}
+.sticky-cta.is-visible{transform:none}
+.sticky-cta-inner{max-width:1240px;margin:0 auto;padding:.8rem var(--pd);display:flex;align-items:center;justify-content:space-between;gap:1.2rem}
+.sticky-cta-info{min-width:0}
+.sticky-cta-info strong{display:block;font-family:var(--sf);font-weight:400;font-size:1.05rem;color:var(--tx);letter-spacing:.01em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.sticky-cta-info span{display:block;font-family:var(--lb);font-size:.52rem;letter-spacing:.14em;text-transform:uppercase;color:rgba(198,203,209,.6);margin-top:.15rem}
+.sticky-cta-actions{display:flex;gap:.5rem;flex:0 0 auto}
+.sticky-cta-actions .btn{min-height:42px;padding:.6rem 1.05rem}
+.sticky-cta-actions .btn.wa{margin-left:0}
+@media(max-width:720px){
+  .sticky-cta-inner{padding:.6rem 1rem;gap:.75rem}
+  .sticky-cta-info{display:none}
+  .sticky-cta-actions{width:100%}
+  .sticky-cta-actions .btn{flex:1;justify-content:center;padding:.6rem .5rem;font-size:.56rem}
+  .whatsapp-launcher{bottom:calc(4.6rem + env(safe-area-inset-bottom))}
+}
+@media print{.sticky-cta{display:none!important}}
+@media(prefers-reduced-motion:reduce){.sticky-cta{transition:none}}
 </style>
 <script src="header-scroll.js?v=20260904-19" defer></script>
 <script type="application/ld+json">
@@ -272,5 +291,18 @@ async function downloadSharedWatermark(){const image=lightboxImage,mark=document
 document.querySelector('.lightbox-download').addEventListener('click',event=>{event.preventDefault();event.stopImmediatePropagation();downloadSharedWatermark()},true);
 </script>
 <a class="whatsapp-launcher" href="https://wa.me/31624735939?text=Hallo%20APEXclusive%2C%20ik%20heb%20een%20vraag%20over%20de%20Lamborghini%20Urus." target="_blank" rel="noopener noreferrer" aria-label="WhatsApp — chat direct met APEXclusive over deze Urus" title="WhatsApp"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.52.149-.174.198-.298.297-.497.1-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg></a>
+<div class="sticky-cta" id="sticky-cta" aria-hidden="true">
+  <div class="sticky-cta-inner">
+    <div class="sticky-cta-info"><strong>Lamborghini Urus 4.0 V8</strong><span>&euro; 252.500 &middot; 53.500 km &middot; garantie t/m 2027</span></div>
+    <div class="sticky-cta-actions">
+      <a class="btn wa" href="https://wa.me/31624735939?text=Ik%20heb%20interesse%20in%20de%20Lamborghini%20Urus" target="_blank" rel="noreferrer noopener">WhatsApp</a>
+      <a class="btn" href="mailto:info@apexclusive.nl?subject=Interesse%20Lamborghini%20Urus">E-mail</a>
+      <a class="btn" href="tel:+31624735939">Bel +31 6 24 73 59 39</a>
+    </div>
+  </div>
+</div>
+<script>
+(function(){var bar=document.getElementById('sticky-cta');var hero=document.querySelector('.hero');if(!bar||!hero)return;var ticking=false;function update(){var h=hero.getBoundingClientRect();var show=h.bottom<0;if(show){bar.classList.add('is-visible');bar.setAttribute('aria-hidden','false')}else{bar.classList.remove('is-visible');bar.setAttribute('aria-hidden','true')}ticking=false}function onScroll(){if(!ticking){requestAnimationFrame(update);ticking=true}}window.addEventListener('scroll',onScroll,{passive:true});update()})();
+</script>
 </body>
 </html>

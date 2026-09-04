@@ -177,6 +177,7 @@ KENNISBANK (https://apexclusive.nl/kennisbank.html):
 - Maandkosten exclusieve auto: https://apexclusive.nl/kennisbank-maandkosten.html
 - Auto importeren uit Duitsland: https://apexclusive.nl/kennisbank-importeren-duitsland.html
 - Restwaarde en afschrijving: https://apexclusive.nl/kennisbank-restwaarde.html
+- Porsche 911 kopen (modelgids): https://apexclusive.nl/kennisbank-porsche-911.html
 
 CONTACT:
 - Email: info@apexclusive.nl
