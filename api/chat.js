@@ -181,6 +181,7 @@ KENNISBANK (https://apexclusive.nl/kennisbank.html):
 - Mercedes G-Klasse kopen (modelgids): https://apexclusive.nl/kennisbank-g-klasse.html
 - Top 10 waardevaste auto's 2026: https://apexclusive.nl/kennisbank-top10-waardevast.html
 - Import handleiding A-Z (doe-het-zelf, €99 t/m 31-12-2026): https://apexclusive.nl/import-handleiding.html
+- Lamborghini Urus kopen (modelgids): https://apexclusive.nl/kennisbank-urus.html
 
 CONTACT:
 - Email: info@apexclusive.nl

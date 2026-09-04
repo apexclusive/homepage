@@ -423,6 +423,16 @@ body.sticky-cta-open .whatsapp-launcher{bottom:calc(4.5rem + env(safe-area-inset
 .article a:hover{color:var(--paper);border-color:var(--paper)}
 .article .tip{border-left:2px solid var(--copper);background:rgba(186,126,83,.07);padding:1rem 1.2rem;margin-top:1.6rem;color:#d8d7d0;font-size:.92rem;line-height:1.7}
 .article .disclaimer{margin-top:2.5rem;padding-top:1.2rem;border-top:1px solid var(--line);color:var(--muted);font-size:.78rem;line-height:1.6}
+
+/* Auteurblok (E-E-A-T) */
+.article-author{display:flex;gap:1rem;align-items:flex-start;margin-top:2.4rem;padding:1.2rem 1.3rem;border:1px solid var(--line);background:#111616}
+.article-author img{width:56px;height:56px;border-radius:50%;object-fit:cover;flex:0 0 auto}
+.article-author span{display:block;color:var(--copper-light);font:500 .56rem/1 var(--display);letter-spacing:.16em;text-transform:uppercase}
+.article-author strong{display:block;margin-top:.35rem;font:500 1.05rem/1.2 var(--display);color:var(--paper)}
+.article-author p{margin-top:.4rem;color:#b8beb8;font-size:.85rem;line-height:1.7;max-width:60ch}
+.article-author a{display:inline-block;margin-top:.6rem;color:var(--copper-light);font:600 .6rem/1 var(--display);letter-spacing:.14em;text-transform:uppercase;border-bottom:0}
+.article-author a b{margin-left:.4rem;color:var(--copper-light)}
+.article-author a:hover{color:var(--paper)}
 .article .lede{font-size:clamp(1.05rem,1.6vw,1.2rem);color:#d5d6d0;line-height:1.85;margin-top:1.2rem}
 .byline{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;margin-top:1.2rem;color:var(--muted);font:500 .58rem/1 var(--display);letter-spacing:.14em;text-transform:uppercase}
 .article .faq-list{border-top:1px solid var(--line);margin-top:1.5rem}
