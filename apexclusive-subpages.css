@@ -311,6 +311,14 @@ main{max-width:1080px;margin:0 auto;padding:clamp(3.5rem,7vw,6rem) var(--pad)}
 .byline{display:flex;flex-wrap:wrap;gap:.5rem 1.2rem;margin-top:1.2rem;color:var(--muted);font:500 .58rem/1 var(--display);letter-spacing:.14em;text-transform:uppercase}
 .article .faq-list{border-top:1px solid var(--line);margin-top:1.5rem}
 .article .faq-list details{border-bottom:1px solid rgba(244,241,235,.12)}
+
+/* Ranking-lijst (top 10 waardevaste auto's) */
+.rank-list{margin-top:1.4rem;border-top:1px solid var(--line)}
+.rank-item{display:flex;gap:1.2rem;align-items:baseline;padding:1.05rem .2rem;border-bottom:1px solid var(--line)}
+.rank-pos{font:400 1.5rem/1 var(--serif);color:var(--copper-light);min-width:2.6rem;letter-spacing:-.02em}
+.rank-item h3{font-size:clamp(1.05rem,2vw,1.3rem);margin-top:0;color:var(--paper)}
+.rank-item p{margin-top:.25rem;color:var(--muted);font-size:.82rem;line-height:1.6}
+.rank-item strong{color:var(--copper-light);font-weight:600}
 .article .faq-list summary{color:var(--paper);font:500 .95rem/1.4 var(--display);padding:1.1rem 0;cursor:pointer;list-style:none;display:flex;justify-content:space-between;gap:1rem}
 .article .faq-list summary::-webkit-details-marker{display:none}
 .article .faq-list summary span{color:var(--copper-light);font:400 1.3rem/1 var(--sans);transition:transform .2s}

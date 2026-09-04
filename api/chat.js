@@ -179,6 +179,7 @@ KENNISBANK (https://apexclusive.nl/kennisbank.html):
 - Restwaarde en afschrijving: https://apexclusive.nl/kennisbank-restwaarde.html
 - Porsche 911 kopen (modelgids): https://apexclusive.nl/kennisbank-porsche-911.html
 - Mercedes G-Klasse kopen (modelgids): https://apexclusive.nl/kennisbank-g-klasse.html
+- Top 10 waardevaste auto's 2026: https://apexclusive.nl/kennisbank-top10-waardevast.html
 
 CONTACT:
 - Email: info@apexclusive.nl

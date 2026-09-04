@@ -27,6 +27,7 @@
         email: String(data.get('email') || '').trim(),
         phone: String(data.get('phone') || '').trim(),
         request: String(data.get('request') || '').trim(),
+        updates: data.get('updates') ? 'ja' : '',
         website: '',
         brand: 'apex'
       };

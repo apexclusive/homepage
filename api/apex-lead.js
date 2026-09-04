@@ -40,7 +40,8 @@ const FIELD_LIMITS = {
   name: 120,
   email: 200,
   phone: 40,
-  request: 4000
+  request: 4000,
+  updates: 10
 };
 
 function clean(value, max) {
@@ -113,6 +114,7 @@ export default async function handler(req, res) {
     email: clean(body.email, FIELD_LIMITS.email),
     phone: clean(body.phone, FIELD_LIMITS.phone),
     request: clean(body.request, FIELD_LIMITS.request),
+    updates: clean(body.updates, FIELD_LIMITS.updates),
     brand: body.brand === 'mpx' ? 'mpx' : 'apex'
   };
 
@@ -164,6 +166,7 @@ export default async function handler(req, res) {
       `Naam:      ${lead.name}`,
       `E-mail:    ${lead.email}`,
       `Telefoon:  ${lead.phone || '-'}`,
+      `Updates:   ${lead.updates === 'ja' ? 'ja (nieuwsbrief/aanbod)' : 'nee'}`,
       `Ontvangen: ${submittedAt}`,
       '',
       'Aanvraag:',
