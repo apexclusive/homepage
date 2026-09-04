@@ -178,6 +178,7 @@ KENNISBANK (https://apexclusive.nl/kennisbank.html):
 - Auto importeren uit Duitsland: https://apexclusive.nl/kennisbank-importeren-duitsland.html
 - Restwaarde en afschrijving: https://apexclusive.nl/kennisbank-restwaarde.html
 - Porsche 911 kopen (modelgids): https://apexclusive.nl/kennisbank-porsche-911.html
+- Mercedes G-Klasse kopen (modelgids): https://apexclusive.nl/kennisbank-g-klasse.html
 
 CONTACT:
 - Email: info@apexclusive.nl

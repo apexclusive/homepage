@@ -319,7 +319,7 @@ main{max-width:1080px;margin:0 auto;padding:clamp(3.5rem,7vw,6rem) var(--pad)}
 @media(max-width:560px){.article .faq-list details p{padding-right:0}}
 @media print{.kb-card,.article{background:#fff!important;color:#000!important}.article p,.article li{color:#222!important}}
 
-/* ════ Kennisbank-overzicht: 7 artikelen in 2-kolomsraster (laatste kaart vol breed) ════ */
+/* ════ Kennisbank-overzicht: 8 artikelen in 2×4-raster ════ */
 .kb-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
 .kb-grid > :last-child:nth-child(odd){grid-column:1/-1}
 @media(max-width:700px){.kb-grid{grid-template-columns:1fr}.kb-grid > :last-child:nth-child(odd){grid-column:auto}}
